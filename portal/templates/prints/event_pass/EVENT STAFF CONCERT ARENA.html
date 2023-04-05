@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Infoevent Admin</title>
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}">
+  <link href="http://fonts.cdnfonts.com/css/avenir-next-lt-pro" rel="stylesheet">
+  <link href="http://fonts.cdnfonts.com/css/avenir-next-lt-pro-900" rel="stylesheet">
+
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/daz_favicon.png' %}" />
+  <!-- font awesome cdn start -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+  <style>
+.id_img
+{
+  border: none;
+  width: 80px;
+  height: 100px;
+}
+.log
+{
+  width: 70%;
+}
+.vapp-card
+{
+  background-color:#5fd8f8;
+  height: 700px;
+
+}
+
+    body{
+      -webkit-print-color-adjust:exact !important;
+  print-color-adjust:exact !important;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+    @media print {
+      @page {
+   
+          size: 89mm 140mm ;   
+      
+margin: 0px;
+
+        }
+      
+      body * {
+        visibility: hidden;
+
+       
+      
+      
+      }
+  
+      #section-to-print, #section-to-print * {
+        visibility: visible;
+        
+      }
+      #section-to-print {
+        position: absolute;
+        left: 0px;
+
+      top:0px;
+   
+
+   
+      }
+  
+    }
+
+</style>
+
+</head>
+<body>
+<!-- vapp_vip Id card Design Start -->
+<div class="col-md-6 main-vapp-card" id="section-to-print">
+
+    <div >
+<img src="{% static 'images/daz_idcard/daz_event_staff_concert.png' %}" style="width: 337px; height: 527px; position:absolute; left: 0px;">
+    </div>
+    <div style="z-index:100; position:absolute; top:205px; left:120px;  width:100px; height:110px;">
+<img style="width:99px; height:105px;" src="{{profile}}">
+    </div>
+    <div style="z-index: 100; position: absolute; top:320px; left: 40px; width: 255px; text-align: center;">
+      <div style="font-size: 16px;">{{name}}</div>
+      <div style="font-weight: bolder; font-size: 16px;">{{comp}}</div>
+    </div>
+  
+  </div>

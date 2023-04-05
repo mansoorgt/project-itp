@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>MOTN Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors/ti-icons/css/themify-icons.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors/css/vendor.bundle.base.css' %}"
+    />
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors/ti-icons/css/themify-icons.css' %}"
+    />
+
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link
+      rel="stylesheet"
+      href="{% static 'css/vertical-layout-light/style.css' %}"
+    />
+
+    <style>
+      .location {
+        text-decoration: none !important;
+        background-color: #ad3d3c;
+        color: white !important;
+        font-weight: bold;
+        padding: 15px !important;
+        border-radius: 15px;
+      }
+      .location:hover {
+        color: white;
+        padding: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col">
+            <h1 style="color: green">
+              You Have Successfully Registered Your {{reg}}
+            </h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <span style="font-weight: bold">UID</span>:<span
+              style="font-weight: bold; color: #ad3d3c"
+              >{{uid}}</span
+            ><br />
+            <span style="font-weight: bold">NAME</span>:<span
+              style="font-weight: bold; color: #ad3d3c"
+              >{{name}}</span
+            ><br />
+
+            <span style="font-weight: bold">MOBILE NO</span>:<span
+              style="font-weight: bold; color: #ad3d3c"
+              >{{mobile}}</span
+            >
+          </div>
+          <div style="padding-top: 50px;" class="col-md-6">
+            <a
+              class="location"
+              href="https://maps.app.goo.gl/36jnsbfHcBvvf8uD7?g_st=ic"
+              style=""
+            >
+            
+                <img
+                  style="margin-bottom: -10px !important;"
+                  height="20"
+                  src="https://cdn-icons-png.flaticon.com/512/2335/2335353.png"
+                />
+             
+              Location To The Accreditation On Site</a
+            >
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 20px">
+          <div class="col">
+            <img
+              width="30%"
+              class="img-fluid"
+              src="https://img.freepik.com/free-vector/completed-concept-illustration_114360-3891.jpg?w=740&t=st=1667564543~exp=1667565143~hmac=3e0571b7a0274232c76eabcc3af7f0c2fd016c777cdab3445365b98c8c7f5f00 "
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
