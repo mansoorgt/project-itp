@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>MOTN Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors/ti-icons/css/themify-icons.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors/css/vendor.bundle.base.css' %}"
+    />
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors/ti-icons/css/themify-icons.css' %}"
+    />
+
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link
+      rel="stylesheet"
+      href="{% static 'css/vertical-layout-light/style.css' %}"
+    />
+
+    <style>
+      .location {
+        text-decoration: none !important;
+        background-color: blue;
+        color: white !important;
+        
+        padding: 15px !important;
+        border-radius: 15px;
+      }
+      .location:hover {
+        color: white;
+        padding: 12px;
+        background-color:darkblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-md-12">
+        <div class="row">
+         
+          <div class="col">
+           
+<span style="color: black;  font-size: 16px; text-transform: capitalize; "> Dear {{name}}</span>
+
+<br>
+<br>
+
+<div style="width:400px;">
+              <span  style="color: black; font-size: 15px; width:100px;" >Unfortunately your application (uid: {{uid}}) has been rejected, due to the following:
+<br><br>
+               <span >{{reason}}</span> 
+   <br>  <br>           
+               <span >Please resolve the above mentioned issues & kindly re-apply, if needed.</span>  
+                <br>  <br> 
+                 <span >Thank you</span></span></div>
+        
+          </div>
+          
+        </div>
+      
+
+      </div>
+      <div style="margin-top: 30px;">
+        <a style=" background-color:#0275d8; padding:12px; color: white; border-radius: 10px; text-decoration: none;" href="https://motn.infoeventz.com/registration">Re-register</a>
+      </div>
+<div class="col-md-12" style="margin-top:30px;">
+  <a href="https://infoeventz.com/"><img width="30%" class="img-fluid" src="http://daz.infoeventz.com/static/images/daz_logo.png"></a>
+</div>
+
+    </div>
+  </body>
+</html>

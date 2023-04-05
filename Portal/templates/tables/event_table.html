@@ -1,0 +1,202 @@
+{% load static %}
+
+<div class="tab-pane fade {% if all_tabs is None %} show active {% endif %}" id="event-table-div" role="tabpanel">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div  class="row">
+            <div class="col-md-2">
+          <h4 class="card-title">Event Pass</h4>
+          <p class="card-description">INFO EVENTZ</p>
+        </div>
+       
+        <div class="col-md-5" >
+          <div class="row float-right" id="event-checked_button" style="display: none;"> 
+            <div class="co-md-3">
+              <button class="btn btn-sm btn-behance ml-2" data-target="#event-bulk-edit" onclick="bulk_edit(2)" data-toggle="modal" >Edit</button>
+            </div>
+            <div class="co-md-3">
+              <button class="btn btn-sm btn-secondary text-white ml-2" onclick="deselect(2)">Deselect All</button>
+            </div>
+            <div class="co-md-3">
+              <button class="btn btn-sm btn-primary ml-2" onclick="select_all(2)">Select All</button>
+            </div>
+            {% if role_id == 1 %}
+            <div class="co-md-3">
+              <button class="btn btn-sm btn-danger ml-2" data-target="#reject-popup" data-toggle="modal" onclick="send_rejection_mail(0,2,true)">Reject</button>
+            </div>
+            <div class="co-md-3">
+              <button class="btn btn-sm btn-warning ml-2" onclick="update_bulk_selected(2,1)"> Approve</button>
+            </div>
+            {% endif %}
+          
+          <div class="co-md-3">
+            <button class="btn btn-sm btn-dark ml-2" onclick="print_bulk(2)">print</button>
+          </div>
+          
+          
+          </div>
+        </div>
+      
+        <div class="col-md-5">
+          <div   class="d-flex float-right">
+          <button class="btn btn-sm btn-primary ml-2" onclick="ExportToExcel_event('xlsx')">Export As Excel</button>
+          <button class="btn btn-sm btn-primary ml-2" onclick="download_profile_imgs()">Download User Profile</button>
+        </div>
+        </div>
+  
+        </div>
+        <div class="row mb-3">
+          <div class="col-2">
+            <input type="text" id="event-min" name="event-min" class="form-control" placeholder="from date">
+          
+          </div>
+          
+          <div class="col-2">
+            <input type="text" id="event-max" name="event-max" class="form-control"    placeholder="to date">
+          
+          </div>
+          </div>
+          <div class="table-responsive">
+           
+            <table class="table table-striped display event" id="event-table">
+              <thead>
+                <tr>
+                 
+                <th id="th-tick">#</th>
+
+                  <th id="th-user">
+                    User
+                  </th>
+                  <th>Created at </th>
+                  <th>
+                    UID
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                  Designation
+                  </th>
+                  <th>
+                  Company Name
+                  </th>
+                 <th>Expiry Date</th>
+                  <th id="th-action">
+                    Actions
+                  </th>
+                  <th>
+                    Status
+                  </th>
+                  <th>
+                    Remark
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for e in event_table %}
+                <tr id="EV-{{e.id}}"> 
+                  {% if e.status == 1 or role_id == 1 %}
+                <td id="td-tick"><input type="checkbox" class="form-control" name="event-checkbox" value="{{e.id}}" id="build-checkbox" onchange="check_checkbox(2)"></td>
+                {% else %}
+                <td>-</td>
+                {% endif %}
+                  <td class="py-1" id="td-user">
+                    
+                   <a onclick="get_profile_details(2,{{e.id}})" data-toggle="modal" data-target="#profilemodal"> <img src="{% static 'images/avatar.webp' %}" alt="image"/></a>
+                  </td>
+                  <td><span style="display:none;">{{e.created_at |date:'Y-m-d H:i'}}</span> {{e.created_at |date:'d-m-y H:i' }}
+                  {% if e.status != 0 and e.approved_by_id != null %}
+                  <br>
+                  <small style="font-size: 12px;" class="text-muted">Approved By:</small><br>
+                  <small style="font-size:12px;" class="text-muted">{{e.approved_by}}</small>
+                  {% endif %}
+                  </td>
+                  <td id="event-uid">
+                       <div class="uid">{{e.UID}}</div>
+                  
+                   <br>
+                  {% if e.collected == 1 %}
+                  <span class="badge badge-info">Collected</span>
+                  {% endif %}
+                  
+                  </td>
+                  <td>
+                    <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;"> {{e.name}} </div>
+                  </td>
+                 
+                    {% if e.des_id == 0 %}
+                    <td>{{e.other_des}}</td>
+                    {% else %}
+                    <td>{{e.designation}} </td>
+                    {% endif %}
+            
+                  <td>
+                    <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;" id="table-comp-name">{{e.comp}}</div>
+                  </td>
+                  <td>{% if e.exp_date != None %} {{e.exp_date | date:'d-m-Y'}} {% else %} NO DATE {% endif %}</td>
+                  <td id="td-action">
+                    {% if role_id == 1 %} 
+                    <i style="font-size: 20px;" class="fa-solid fa-trash" onclick="Delete_registration(2,{{e.id}})"></i>
+                    {% endif %}
+                    {% if e.status == 1 %}
+                   
+                    <i style="font-size: 20px;" class="fa-solid fa-print" onclick="Print_Id_card(2,{{e.id}})" ></i>
+                    
+                    {% endif %}
+                    <a  data-toggle="modal" data-target="#EventModal" onclick="edit_eventtable({{e.id}},'{{e.firstname}}','{{e.lastname}}','{{e.comp}}',{{e.des_id}},'{{e.other_des}}','{{e.exp_date}}','{{e.id_proof}}',false)"><i style="font-size: 20px;" class="fa-solid fa-edit" ></i></a>
+                    {% if e.collected != 1 and e.print_status != 0 %}
+                    <i style="font-size: 20px; color: #3d7040;" onclick="update_status(1,2,{{e.id}},true)" class="fa-duotone fa-solid fa-circle-check"></i>
+                  {% endif %}
+                  
+                  </td>
+                  <td>
+                
+                    
+  
+                    {% if role_id == 1 %}
+                    <!-- superadmin -->
+
+                    {% if e.status == 0 %}
+                  <button class="btn btn-sm btn-warning" onclick="update_status(1,2,{{e.id}})"  >Approve</button>
+                  <button class="btn btn-sm btn-danger" data-target="#reject-popup" data-toggle="modal"  onclick="send_rejection_mail([{{e.id}}],2,false)" >Reject</button>
+                  {% endif %}
+
+                  {% if e.status == 1 %}
+                  <label class="badge badge-success">Approved</label>
+                  {% endif %}
+                  {% if e.status == 2 %}
+                  <label class="badge badge-danger">Rejected</label>
+                  {% endif %}
+
+                    {% endif %}
+  
+                   <!-- infome user  -->
+                   {% if e.status == 1 %}
+                  
+                  {% if e.print_status == 0 %}
+                  <label class="badge badge-danger">Not printed</label>
+                  {% else %}
+                  <label class="badge badge-success">Printed</label>
+                  <label class="badge badge-warning">{{e.print_count}}</label>
+                  <i class="fa-regular fa-square-minus" style="color:blue;" onclick="update_reset_print_status(2,{{e.id}})"></i>
+                  {% endif %}
+                  {% endif %} 
+                  {% if role_id == 2 and e.status != 1 %}
+                  <label class="badge badge-warning">Approvel Pending</label>
+                  {% endif %}
+       
+
+                
+                  </td>
+                   <td><textarea name="" class="form-control" id="event-remark" style="width:150px;" onkeyup="chnage_remark(2,{{e.id}},this)">{% if e.remark != None %} {{e.remark}} {% endif %}</textarea></td> 
+
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

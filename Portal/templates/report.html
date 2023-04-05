@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>INFOEVENTZ-DASHBOARD</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/info_logo.png' %}" />
+  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+  
+  <style>
+    .daz_menu:hover
+  {
+    color: #1CAFA0 ;
+    text-decoration: none;
+  }
+  
+  .img-ss
+  {
+    width: 10px;
+    height: 10px;
+  }
+  #settings-trigger
+  {
+    background-color: green !important;
+    color: white !important;
+    cursor: pointer;
+  }
+  #settings-trigger:hover
+  {
+    background-color: white !important;
+  
+    cursor: pointer;
+  }
+
+  .ti-face-smile:hover
+  {
+    color: green !important;
+    cursor: pointer;
+    font-size: 30px !important;
+  }
+</style>
+  
+  
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo ml-3" href="index.html"><img style="height: 105px;" src="{% static 'images/infoevent_logo.png' %}" class="" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'images/infoevent_logo.png' %}" alt="logo"/></a>
+      </div>
+      
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+   
+
+        <!-- navbar menu web view start -->
+   <div class="row ml-5 motin-menu-web">
+    <div class="col-md-2">
+      <a class="daz_menu" href="{% url 'dashboard' %}"><img  class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/1828/1828673.png" style="width:15% ;"><span class="font-weight-bolder m-1"> Dashboard</span></a>
+      </div>
+  
+        <div class="col-md-2">
+          <a class="daz_menu" href="{% url 'registration' %}" target="_blank"><img  class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/2921/2921226.png" style="width:15% ;"><span class="font-weight-bolder m-1"> Register</span></a>
+          </div>
+          <div class="col-md-2">
+            <a class="daz_menu" href="{% url 'registration' %}" target="_blank"><img  class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/3029/3029351.png" style="width:15% ;"><span class="font-weight-bolder m-1"> Report</span></a>
+            </div>
+
+          <div class="dropdown show" style="margin-top: -5px;">
+            <a class="btn btn-sm btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              MANAGEMENT
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'tables' %}">NEW REGISTRATIONS</a>
+              <a class="dropdown-item" href="{% url 'build_pass_page' %}">BUILD PASS</a>
+              <a class="dropdown-item" href="{% url 'event_pass_page' %}">EVENT PASS</a>
+              <a class="dropdown-item" href="{% url 'vapp_pass_page' %}">VAPP PASS</a>
+            </div>
+          </div>
+          
+      </div>
+      <!-- navbar menu mob view end -->
+<!-- navbar menu for mobile view start-->
+<div class="row motn-menu-mob">
+    <div class="col-md-4">
+      <div class="dropdown">
+        <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenuIconButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="ti-menu-alt"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton1">
+        
+          <a class="dropdown-item font-weight-bold" href="{% url 'dashboard' %}">Dashboard</a>
+          <a class="dropdown-item font-weight-bold" href="{% url 'tables' %}">Events</a>
+          <a class="dropdown-item font-weight-bold" href="{% url 'registration' %}">Register</a>
+         
+        </div>
+      </div>
+      </div>
+
+      </div>
+<!-- navbar menu for mobile view end -->
+ 
+        <ul class="navbar-nav navbar-nav-right">
+        
+          <li class="nav-item nav-profile dropdown">
+           
+  
+       
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              {% if role_id == 2 %} 
+              <img src="https://www.infomeuae.com/assets/img/new/INFOME.png" alt="profile"/>
+              {% else %}
+              <img src="{% static 'images/user_icon.jpg' %}" alt="profile"/>
+              {% endif %}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="ti-settings text-primary"></i>
+                {{username}}
+              </a>
+              <a class="dropdown-item" href="{% url 'logout' %}">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+    
+      
+      <div class="main-panel">
+        <div class="content-wrapper">
+<div class="row">
+<div class="col-md-12 mb-5">
+<h3 class="text-center">Report</h3>
+</div>
+</div>
+
+  <form class="needs-validation" id="data-form" onsubmit="getData()" novalidate>
+     <div class="col-md-12">
+       <div class="row">
+<div class="col-md-3">
+<label>Category</label>
+<select class="form-control" id="catogry-sel" onchange="onChangeCategory(this)" required>
+  <option disabled selected value="">Select Category</option>
+  <option value="1">BUILD PASS</option>
+  <option value="2">EVENT PASS</option>
+  <option value="3">VAPP PASS</option>
+
+</select> 
+<div class="invalid-feedback">
+  Please choose a Category
+</div>
+</div>
+<div class="col-md-3">
+  <label>Designation</label>
+  <select class="form-control" id="designation-sel" required>
+    <option disabled selected value="">Select Designation</option>
+    
+  </select> 
+  <div class="invalid-feedback">
+    Please choose a designation
+  </div>
+
+  <div class="build-designations d-none" >
+    {% for build_des in build_designations %}
+    <option value="{{build_des.id}}">{{build_des.designation}}</option>
+    {% endfor %}
+  </div>
+  
+  <div class="event-designations d-none" >
+    {% for event_des in eventpass_designations %}
+    <option value="{{event_des.id}}">{{event_des.designation}}</option>
+    {% endfor %}
+  </div>
+
+  <div class="vapp-designations d-none" >
+    {% for vapp_des in  vapp_designations %}
+    <option value="{{vapp_des.id}}">{{vapp_des.category}}</option>
+    {% endfor %}
+  </div>
+
+  </div>
+  <div class="col-md-2">
+    <label>Date From</label>
+<input class="form-control" type="date" id="dateFrom" required>
+<div class="invalid-feedback">
+  Please choose a date
+</div>
+  </div>
+  <div class="col-md-2">
+    <label>Date To</label>
+<input class="form-control" type="date" id="dateTo" required>
+<div class="invalid-feedback">
+  Please choose a date
+</div>
+  </div>
+  <div class="col-md-2">
+
+<button type="submit"   class="btn mt-4 btn-primary 
+" > View </button>
+  </div>
+       </div>
+      </div>
+    </form>
+<div class="row mt-5" >
+  <div class="col-md-12">
+  <div class="card p-3">
+<h3 class="text-center text-muted" style="padding: 60px;" id="no-data-lable"> NO DATA</h3>
+    <div class="col-md-12" id="Table-Parent">
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+          </div>
+
+
+
+
+   
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+   
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <footer class="footer">
+      <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023.<a href="https://www.infomeuae.com/" target="_blank">INFOME TECHNOLOGIES LLC</a>. All rights reserved.</span>
+
+      </div>
+    </footer>
+    <!-- page-body-wrapper ends -->
+
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'js/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+  
+  <!-- End custom js for this page-->
+
+    <script>
+
+      function onChangeCategory(sel) {
+
+        if (sel.value == '1'){
+          
+          var options=$('.build-designations').html()
+
+          $('#designation-sel').html(options)
+        }
+
+        if (sel.value == '2'){
+          
+          var options=$('.event-designations').html()
+
+          $('#designation-sel').html(options)
+        }
+
+        if (sel.value == '3'){
+          
+          var options=$('.vapp-designations').html()
+
+          $('#designation-sel').html(options)
+        }
+        
+      }
+
+      function getData() {
+        console.log($('#data-form')[0].checkValidity())
+        if (!$('#data-form')[0].checkValidity()){
+          return false
+        }
+      
+      
+
+        var CategorySel=$('#catogry-sel').val()
+        var DesignationSel=$('#designation-sel').val();
+        var Datefrom=$('#dateFrom').val();
+        var Dateto=$('#dateTo').val();
+        
+
+        //var from=$('#data-form')[0].serialize();
+        $.ajax({
+          type: "GET",
+          url: "{% url 'reportGetData' %}",
+          data: {CategorySel:CategorySel,DesignationSel:DesignationSel,Datefrom:Datefrom,Dateto:Dateto},
+          dataType: "json",
+          success: function (data) {
+          
+          document.getElementById('no-data-lable').style.display='none';
+          $("#Table-Parent").html(data.Table);
+
+         $('#build-table').DataTable();
+        $('#event-table').DataTable();
+        $('#vapp-table').DataTable();
+
+          }
+        });
+      }
+
+      (function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        event.preventDefault()
+          event.stopPropagation()
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+
+    </script>
+ 
+
+</script>
+
+</body>
+
+</html>
+

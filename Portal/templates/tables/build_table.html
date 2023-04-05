@@ -1,0 +1,212 @@
+
+{% load static %}
+
+<div class="tab-pane fade  show active " id="build-table-div" role="tabpanel">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <!--filter buttons start  -->
+ 
+    <!-- filter button end -->
+      <div class="card-body">
+       
+        <div  class="row">
+          <div class="col-md-4">
+        <h4 class="card-title">Build/Dismantle </h4>
+        <p class="card-description">INFO EVENTZ</p>
+      </div>
+
+      <div class="col-md-6" >
+        <div class="row float-right" id="build-checked_button" style="display: none;"> 
+          <div class="co-md-3">
+            <button class="btn btn-sm btn-behance ml-2" data-target="#bulid-bulk-edit" data-toggle="modal" onclick="bulk_edit(1)" >Edit</button>
+          </div>
+          <div class="co-md-3">
+            <button class="btn btn-sm btn-secondary text-white ml-2" onclick="deselect(1)">Deselect All</button>
+          </div>
+          <div class="co-md-3">
+            <button class="btn btn-sm btn-primary ml-2" onclick="select_all(1)">Select All</button>
+          </div>
+          {% if role_id == 1 %}
+          
+          <div class="co-md-3">
+            <button class="btn btn-sm btn-danger ml-2" data-target="#reject-popup" data-toggle="modal" onclick="send_rejection_mail(0,1,true)">Reject</button>
+          </div>
+          <div class="co-md-3">
+            <button class="btn btn-sm btn-warning ml-2" onclick="update_bulk_selected(1,1)"> Approve</button>
+          </div>
+          {% endif %}
+          
+            <div class="co-md-3">
+              <button class="btn btn-sm btn-dark ml-2" onclick="print_bulk(1)">print</button>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="col-md-2" id='build-export-as-excel'>
+        <div class="d-flex content-justify-right">
+        <button class="float-right btn btn-sm btn-primary ml-2" onclick="ExportToExcel_build('xlsx')">Export As Excel</button>
+      </div>
+     
+      </div>
+
+      </div>
+      <div class="row mb-3">
+        <div class="col-2">
+          <input type="text" id="build-min" name="min" class="form-control" placeholder="from date">
+        
+        </div>
+        
+        <div class="col-2">
+          <input type="text" id="build-max" name="max" class="form-control"    placeholder="to date">
+        
+        </div>
+        </div>
+        <div class="table-responsive">
+          <tr>
+            
+            <td></td>
+        </tr>
+        <tr>
+            
+            <td></td>
+        </tr>
+          <table class="table table-striped display build" id="build-table">
+            <thead>
+              <tr>
+                
+                <th id="th-tick">#</th>
+                
+                
+                <th id="th-user">User</th>
+                <th>Created at </th>
+                <th>UID</th>
+                <th>Name</th>
+                <th>Designation</th>
+                <th>Company Name</th>
+                
+                <th id="th-action">Actions</th>
+                <th id="th-status">Status</th>
+                <th>Remark</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for b in build_table %}
+              <tr id="BU-{{b.id}}">
+                {% if b.status == 1 or role_id == 1 %}
+ 
+                <td id="td-tick"><input type="checkbox" class="form-control" name="build-checkbox" value="{{b.id}}" id="build-checkbox" onchange="check_checkbox(1)"></td>
+      
+                {% else %}
+                <td>-</td>
+                {% endif %}
+               
+                <td class="py-1" id="td-user">
+                  <a onclick="get_profile_details(1,{{b.id}})" data-toggle="modal" data-target="#profilemodal" ><img src="{% static 'images/avatar.webp' %}" alt="image" /></a>
+                </td>
+                <td><span style="display:none;">{{b.created_at |date:'Y-m-d H:i'}}</span>{{b.created_at |date:'d-m-y H:i' }}
+                {% if b.status != 0 and b.approved_by_id != null %}
+                  <br>
+                  <small style="font-size: 12px;" class="text-muted">Approved By:</small><br>
+                  <small style="font-size:12px;" class="text-muted">{{b.approved_by}}</small>
+                  {% endif %}
+                  
+                </td>
+                
+                <td class="py-1" id="build-uid">
+                     <div class="uid">{{b.UID}}</div>
+                <br>
+                  {% if b.collected == 1 %}
+                  <span class="badge badge-info">Collected</span>
+                  {% endif %}
+                  
+                </td>
+                <td> <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;">{{b.name}}</div></td>
+                
+                {% if b.des_id == 0 %}
+                <td>{{b.other_des}}</td>
+                {% else %}
+                
+                <td>{{b.designation}} </td> 
+                {% endif %}
+
+                <td> <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;" id="table-comp-name">{{b.comp}} </div> </td>
+
+                
+                <td id="td-action">
+
+                  {% if role_id == 1 %} 
+                  <i style="font-size: 20px" class="fa-solid fa-trash" onclick="Delete_registration(1,{{b.id}})"></i>
+                  {% endif %}
+                 
+
+                  {% if b.status == 1 %}
+
+           
+             
+                  <i style="font-size: 20px" class="fa-solid fa-print" onclick="Print_Id_card(1,{{b.id}})" ></i>
+            
+
+                  {% endif %}
+                  <a  data-toggle="modal" data-target="#BuildModal" onclick="edit_buildtable({{b.id}},'{{b.firstname}}','{{b.lastname}}','{{b.comp}}',{{b.des_id}}, '{{b.other_des}}',false )"><i style="font-size: 20px;" class="fa-solid fa-edit" ></i></a> 
+                {% if b.collected != 1 and b.print_status != 0 %}
+                      <i style="font-size: 20px; color: #3d7040;" onclick="update_status(1,1,{{b.id}},true)" class="fa-duotone fa-solid fa-circle-check"></i>
+                    {% endif %}
+                    
+               
+                </td>
+                <td>
+                
+                  
+
+                  {% if role_id == 1 %}
+                  <!-- superadmin -->
+                  {% if b.status == 0 %}
+                 
+                  <button class="btn btn-sm btn-warning" onclick="update_status(1,1,{{b.id}})">Approve</button>
+                  <button class="btn btn-sm btn-danger" data-target="#reject-popup" data-toggle="modal" onclick="send_rejection_mail([{{b.id}}],1,false)" >Reject</button>
+ 
+                  {% endif %}
+
+                  {% if b.status == 1 %}
+                  <label class="badge badge-success" >Approved</label>
+                  {% endif %}
+                  {% if b.status == 2 %}
+                  <label class="badge badge-danger">Rejected</label>
+                  {% endif %}
+
+                  {% endif %}
+
+
+                  <!-- infome user  -->
+
+                  {% if b.status == 1 %}
+                  
+                  {% if b.print_status == 0 %}
+                  <label class="badge badge-danger">Not printed</label>
+                  
+                  {% else %}
+                  <label class="badge badge-success">Printed</label>
+                  <label class="badge badge-warning">{{b.print_count}}</label>
+                  <i class="fa-regular fa-square-minus" onclick="update_reset_print_status(1,{{b.id}})"></i>
+                  {% endif %}
+                  {% endif %} 
+
+                  {% if role_id == 2 and b.status != 1 %}
+                  <label class="badge badge-warning">Approvel Pending</label>
+                  {% endif %}
+                  
+
+                  
+                </td>
+                <td><textarea name="" class="form-control" id="build-remark" style="width:150px;" onkeyup="chnage_remark(1,{{b.id}},this)">{% if b.remark != None %} {{b.remark}} {% endif %}</textarea></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -41,18 +41,19 @@ SPEAKER REGISTRATION
 </div>
 </div>
 
+<form onsubmit="submitSpeakerForm(event)" id='speaker-reg-form' novalidate>
 <div class="row mt-4">
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">FIRST NAME</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ENTER YOUR FIRST NAME">
+        <input type="text" class="form-control"  name="first-name" id="first-name" aria-describedby="emailHelp" placeholder="ENTER YOUR FIRST NAME" required>
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
       </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">LAST NAME</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ENTER YOUR LAST NAME">
+        <input type="text" class="form-control" name="last-name" id="last-name" aria-describedby="emailHelp" placeholder="ENTER YOUR LAST NAME" required>
 
       </div>
 </div>
@@ -60,7 +61,7 @@ SPEAKER REGISTRATION
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">DESIGNATION</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ENTER YOUR DESIGNATION">
+        <input type="text" class="form-control" name="designation" id="designation" aria-describedby="emailHelp" placeholder="ENTER YOUR DESIGNATION" required>
 
       </div>
 </div>
@@ -68,14 +69,14 @@ SPEAKER REGISTRATION
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">COMPANY</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ENTER YOUR COMPANY">
+        <input type="text" class="form-control" name="company" id="company" aria-describedby="emailHelp" placeholder="ENTER YOUR COMPANY" required>
 
       </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">EMAIL</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ENTER YOUR EMAIL">
+        <input type="email"  class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="ENTER YOUR EMAIL" required>
 
       </div>
 </div>
@@ -83,7 +84,7 @@ SPEAKER REGISTRATION
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">MOBILE NO</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ENTER YOUR MOBILE NUMBER">
+        <input type="text" class="form-control" name="mobile"  id="mobile" aria-describedby="emailHelp" placeholder="ENTER YOUR MOBILE NUMBER" required>
 
       </div>
 </div>
@@ -91,7 +92,7 @@ SPEAKER REGISTRATION
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">COUNTRY OF RESIDENCE</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ENTER YOUR COUNTRY OF RESIDENCE">
+        <input type="text" class="form-control" name="country" id="country" aria-describedby="emailHelp" placeholder="ENTER YOUR COUNTRY OF RESIDENCE" required>
 
       </div>
 </div>
@@ -99,21 +100,21 @@ SPEAKER REGISTRATION
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">TRAVELING FROM</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="TRAVELING FROM">
+        <input type="text" class="form-control" id="traveling-from" name="traveling-from" aria-describedby="emailHelp" placeholder="TRAVELING FROM" required>
 
       </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">DEPATURE DATE AND TIME</label>
-        <input type="datetime-local" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+        <input type="datetime-local" class="form-control" name="depature-date-time" id='depature-date-time' aria-describedby="emailHelp" required>
 
       </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">RETURN DATE AND TIME</label>
-        <input type="datetime-local" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+        <input type="datetime-local" class="form-control" id="retun-date-time" name="retun-date-time" aria-describedby="emailHelp" required>
 
       </div>
 </div>
@@ -122,7 +123,7 @@ SPEAKER REGISTRATION
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">OUTLINE OF TALKING POINTS</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="OUTLINE OF TALKING POINTS">
+        <input type="text" class="form-control" id="outline-talk" name="outline-talk" aria-describedby="emailHelp" placeholder="OUTLINE OF TALKING POINTS" required>
 
       </div>
 </div>
@@ -131,15 +132,15 @@ SPEAKER REGISTRATION
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">PASSPORT COPY</label>
-        <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+        <input type="file" class="form-control" id="passport-copy" name="passport-copy" aria-describedby="emailHelp" required>
 
       </div>
 </div>
 
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
-        <label for="exampleInputEmail1">PHPTO UPLOAD</label>
-        <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+        <label for="exampleInputEmail1">PHOTO UPLOAD</label>
+        <input type="file" class="form-control" id="photo-upload" name="photo-upload" aria-describedby="emailHelp" required>
 
       </div>
 </div>
@@ -150,11 +151,11 @@ SPEAKER REGISTRATION
     <label class="mt-4" for="exampleInputEmail1">KSA VISA</label>
     <br>
     <div class="form-check form-check-inline mt-2 ">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio1" checked value="1">
         <label class="form-check-label" for="inlineRadio1">YES</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio2" value="0">
         <label class="form-check-label" for="inlineRadio2">NO</label>
       </div>
 </div>
@@ -165,12 +166,12 @@ SPEAKER REGISTRATION
 <div class="row">
 <div class="col-md-3 mt-4">
 
-    <button class="btn-primary btn">SUBMIT</button>
+    <button type="submit" class="btn-primary btn">SUBMIT</button>
 
 </div>
 
 </div>
-
+</form>
 </div>
 
 
@@ -182,7 +183,16 @@ SPEAKER REGISTRATION
   </footer>
 
   </body>
-
+  <script
+  src="https://code.jquery.com/jquery-3.6.4.js"
+  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+  crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-</html>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    var csrftoken = '{{ csrf_token }}';
+  </script>
+  <script src="{% static 'js/registration.js' %}"></script>
+
+  </html>

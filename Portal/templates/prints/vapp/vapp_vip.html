@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Infoevent Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/motin_favicon.jpg' %}" />
+  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+  <!-- font awesome cdn start -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+  <style>
+    body{
+      -webkit-print-color-adjust:exact !important;
+  print-color-adjust:exact !important;
+    }
+    @media print {
+      @page {
+          /*size: A5;
+          margin: 5px;*/
+          size: 210mm 148mm ;  
+          size: portrait;
+      
+margin: 0px;
+
+        }
+       
+      body * {
+        visibility: hidden;
+
+
+      
+      
+      }
+      #section-to-print, #section-to-print * {
+        visibility: visible;
+        
+      }
+      #section-to-print {
+        position: absolute;
+        left: 0px;
+
+      top:0px;
+   
+
+   
+      }
+.vapp-font
+{
+    font-size:55px;
+}
+      .vapp-details
+{
+    background-color:#cfd1d0; 
+    height: 50px; 
+    width: 70%;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 100px;
+}
+.img-fluid
+{
+    width:30% !important;
+}
+.card
+{
+margin-left:-14px;
+margin-right:-14px;
+    border-radius:0px;
+}
+    }
+
+</style>
+
+</head>
+<body>
+<!-- Id card Design Start -->
+<div class="col-md-6 main-vapp-card" id="section-to-print">
+
+    <div class="card vapp-card">
+  
+      <div class="d-flex justify-content-center m-2">
+        <img class="img-fluid" src="{% static 'images/id card/pink_car.png' %}">
+  
+      </div>
+  
+      <div class="d-flex justify-content-center ">
+        <h2 class="text-white font-weight-bolder vapp-font">VIP</h2>
+  
+      </div>
+      <div class="d-flex justify-content-center ">
+        <h2 class="text-white font-weight-bolder vapp-font">PARKING</h2>
+  
+      </div>
+  <div class="mb-5">
+      <div class="d-flex justify-content-center ">
+    
+       <div class="col-md-8 m-2">
+        <div class="p-3 vapp-details">
+          <span class="font-weight-bold">NAME</span> : <span class="font-weight-bold text-uppercase" style="font-size:20px ;">{{name}}</span>
+    
+        </div>
+       
+       </div>
+      
+  
+      </div>
+      <div class="d-flex justify-content-center ">
+     
+        <div class="col-md-8 m-2">
+         <div class="p-3 vapp-details">
+
+   <span class="font-weight-bold">MOBILE NUMBER</span> : <span class="font-weight-bold text-uppercase" style="font-size:20px ;">{{mobile}}</span>
+         </div>
+        </div>
+       
+  </div>
+  <div class="d-flex justify-content-center ">
+     
+    <div class="col-md-8 m-2">
+     <div class="p-3 vapp-details">
+      <span class="font-weight-bold">COMPANY</span> : <span class="font-weight-bold text-uppercase" style="font-size:20px ;">{{comp}}</span>
+     </div>
+    </div>
+   
+  </div>
+  
+  
+  <div class="d-flex justify-content-center ">
+     
+    <div class="col-md-8 m-2">
+     <div class="p-3 vapp-details" >
+      <span class="font-weight-bold">VEHICLE PLATE NUMBER</span> : <span class="font-weight-bold text-uppercase" style="font-size:20px ;">{{vehicle_num}}</span>
+     </div>
+    </div>
+   
+  </div>
+  </div>
+    </div>
+  
+  </div>
+  
+  
+  
+  
+  <!-- Id Card Design End -->
+
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'js/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+
+<script>
+
+
+</body>
+</html>
