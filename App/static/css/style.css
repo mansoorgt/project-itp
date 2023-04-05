@@ -1,0 +1,106 @@
+/* index page design start */
+body{
+
+    font-family: 'Anuphan', sans-serif !important;
+}
+a{
+    text-decoration: none !important;
+}
+
+/* register box start */
+
+.register-box {
+    height: 300px;
+    width: 200px;
+    background-color: #7277c4; /* replace with your desired background color */
+    transition: all 0.3s ease; /* this will make the transition smooth */
+    border-radius: 10px;
+  
+  }
+  
+  .register-box:hover {
+    background-color: #5058cc; /* replace with your desired hover background color */
+    transform: scale(1.05); /* this will make the box slightly larger on hover */
+  }
+  .reg-text {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+
+/* register box end */
+
+@keyframes slide-in {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+/* index page design end */
+
+/* register page design start */
+
+input::placeholder {
+    font-size: 11px; /* replace with your desired font size */
+    color: darkgray;
+  }
+
+/* register page design end */
+
+
+@media (max-width: 425px) {
+.desk-index.d-flex
+{
+    display:none !important;
+    
+}
+.mobile-index-reg
+{
+    width: 330px;
+    height: 50px;
+   border-radius: 10px;
+    background-color: #7277c4;
+    animation: slide-in 0.5s ease-out forwards;
+}
+
+}
+
+
+
+
+
+@media (min-width: 768px) { 
+
+.mobile-index.d-flex
+{
+    display:none !important;
+}
+.desk-index.d-flex
+{
+    display:flex !important;
+    
+}
+ }
+
+@media (min-width: 992px) {
+    .mobile-index.d-flex
+    {
+        display:none !important;
+    }
+    .desk-index.d-flex
+{
+    display:flex !important;
+    
+}
+
+ }
+
+@media (min-width: 1200px) { 
+    .mobile-index.d-flex
+    {
+        display:none !important;
+    }
+
+ }
