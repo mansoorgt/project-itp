@@ -63,9 +63,9 @@ urlpatterns = [
     path('update_bulk_print_page',views.Tablepage.update_bulk_print_page,name='update_bulk_print_page'),
     
     path('get_new_data',views.Tablepage.get_new_data,name='get_new_data'),
-    path('build_pass_page',views.Tablepage.build_table_page,name='build_pass_page'),
-    path('event_pass_page',views.Tablepage.event_table_page,name='event_pass_page'),
-    path('vapp_pass_page',views.Tablepage.vapp_table_page,name='vapp_pass_page'),
+    path('speakers_registrations_page',views.Tablepage.Speakers_reg_page,name='speaker_registrations_page'),
+    # path('event_pass_page',views.Tablepage.event_table_page,name='event_pass_page'),
+    # path('vapp_pass_page',views.Tablepage.vapp_table_page,name='vapp_pass_page'),
     
     #report 
     

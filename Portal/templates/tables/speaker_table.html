@@ -11,7 +11,7 @@
        
         <div  class="row">
           <div class="col-md-4">
-        <h4 class="card-title">Build/Dismantle </h4>
+        <h4 class="card-title">Speakers </h4>
         <p class="card-description">INFO EVENTZ</p>
       </div>
 
@@ -84,16 +84,17 @@
                 <th>Name</th>
                 <th>Designation</th>
                 <th>Company Name</th>
-                
+                <th>contact</th>
+                <th>Traveling From</th>
                 <th id="th-action">Actions</th>
                 <th id="th-status">Status</th>
                 <th>Remark</th>
               </tr>
             </thead>
             <tbody>
-              {% for b in build_table %}
-              <tr id="BU-{{b.id}}">
-                {% if b.status == 1 or role_id == 1 %}
+              {% for b in datas %}
+              <tr id="SP-{{b.id}}">
+                {% if b.status == 1  %}
  
                 <td id="td-tick"><input type="checkbox" class="form-control" name="build-checkbox" value="{{b.id}}" id="build-checkbox" onchange="check_checkbox(1)"></td>
       
@@ -114,30 +115,31 @@
                 </td>
                 
                 <td class="py-1" id="build-uid">
-                     <div class="uid">{{b.UID}}</div>
+                     <div class="uid">{{b.id}}</div>
                 <br>
                   {% if b.collected == 1 %}
                   <span class="badge badge-info">Collected</span>
                   {% endif %}
                   
                 </td>
-                <td> <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;">{{b.name}}</div></td>
+                <td> <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;">{{b.first_name}} {{b.last_name}}</div></td>
                 
-                {% if b.des_id == 0 %}
-                <td>{{b.other_des}}</td>
-                {% else %}
+                
                 
                 <td>{{b.designation}} </td> 
-                {% endif %}
+                
 
-                <td> <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;" id="table-comp-name">{{b.comp}} </div> </td>
-
+                <td> <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;" id="table-comp-name">{{b.company}}</div> </td>
+                <td>
+                  {{b.email}} <br>
+                  {{b.mobile}}
+                </td>
                 
                 <td id="td-action">
 
-                  {% if role_id == 1 %} 
+                
                   <i style="font-size: 20px" class="fa-solid fa-trash" onclick="Delete_registration(1,{{b.id}})"></i>
-                  {% endif %}
+                
                  
 
                   {% if b.status == 1 %}
@@ -159,7 +161,7 @@
                 
                   
 
-                  {% if role_id == 1 %}
+                 
                   <!-- superadmin -->
                   {% if b.status == 0 %}
                  
@@ -175,7 +177,7 @@
                   <label class="badge badge-danger">Rejected</label>
                   {% endif %}
 
-                  {% endif %}
+              
 
 
                   <!-- infome user  -->

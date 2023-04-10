@@ -14,6 +14,10 @@ import datetime
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.utils import timezone
+
+##
+
+from App.models import *
 # Create your views here.
 
 
@@ -363,86 +367,10 @@ class Tablepage():
         
         data={'all_tabs':True,'username':request.user.username,'build_table':build_table,'approved_by':approved_by,'approved_by_id':v.approved_by,'event_table':event_table,'vpp_table':vpp_table,'categorys':vapp_category.objects.all(),'build_pass_designations':build_designation.objects.all(),'event_pass_designations':eventpass_designation.objects.all(),'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])}
         return render(request,'Tables.html',data) 
-        
-    @login_required
-    def build_table_page(request):
-       
-        #admin    
-        if request.session['user_role'] == 1:
-            build_table_obj=Buildpass_table.objects.all().order_by('-id')
-            
-            
-        if request.session['user_role'] == 2:
-            build_table_obj=Buildpass_table.objects.all().order_by('-id')
-            
-        #builpass
-        build_table=[] 
-        for b in build_table_obj:
-            try:
-                approved_by=user_DB.objects.get(id=b.approved_by).username
-            except:
-                approved_by='not-apporved'
-            designation=build_designation.objects.get(id=b.designation_id).designation
-            build_table.append({'name':b.firstname+' '+b.lastname,'collected': b.collected,'approved_by':approved_by,'approved_by_id':b.approved_by,'firstname':b.firstname,'lastname':b.lastname,'des_id':b.designation_id,'id':b.id,'UID':b.UID,'designation':designation,'comp':b.company_name,'exp_date':b.exp_date,'status':b.status,'print_status':b.print_status,'print_count':b.print_count,'other_des':b.other_designation,'created_at':b.reg_created_at,'remark':b.remark})
-       
-        data={'username':request.user.username,'build_table':build_table,'categorys':vapp_category.objects.all(),'build_pass_designations':build_designation.objects.all(),'event_pass_designations':eventpass_designation.objects.all(),'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])}
-        return render(request,'build_table_main.html',data) 
-    @login_required
-    def event_table_page(request):
-       
-        
-        #admin    
-        if request.session['user_role'] == 1:
-           
-            event_table_obj=Eventpass_table.objects.all().order_by('-id')
-            
-            
-        if request.session['user_role'] == 2:
-            
-            event_table_obj=Eventpass_table.objects.all().order_by('-id')
-            
-      
-    
-        #eventpass
-        event_table=[]
-        for e in event_table_obj.iterator():
-            try:
-                approved_by=user_DB.objects.get(id=e.approved_by).username
-            except:
-                approved_by='not-apporved'
-                
-            designation=eventpass_designation.objects.get(id=e.designation_id).designation
-            #img=eventpass_image_db.objects.get()
-            event_table.append({'name':e.firstname+' '+e.lastname,'approved_by':approved_by,'approved_by_id':e.approved_by,'firstname':e.firstname,'collected':e.collected,'lastname':e.lastname,'des_id':e.designation_id,'UID':e.UID,'id':e.id,'designation':designation,'comp':e.company_name,'exp_date':e.exp_date,'user_img':e.file,'status':e.status,'print_status':e.print_status,'print_count':e.print_count,'other_des':e.other_designation,'created_at':e.reg_created_at,'id_proof':e.id_proof,'remark':e.remark})
-       
-        data={'username':request.user.username,'categorys':vapp_category.objects.all(),'event_table':event_table,'build_pass_designations':build_designation.objects.all(),'event_pass_designations':eventpass_designation.objects.all(),'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])}
-        return render(request,'event_table_main.html',data) 
-    @login_required
-    def vapp_table_page(request):
-       
-        
-        #admin    
-        if request.session['user_role'] == 1:
-            
-            vapp_table_obj=Vapp_table.objects.all().order_by('-id')
-            
-        if request.session['user_role'] == 2:
-           
-            vapp_table_obj=Vapp_table.objects.all().order_by('-id')
-            
-
-        
-        vpp_table=[]
-        for v in vapp_table_obj.iterator():
-            try:
-                approved_by=user_DB.objects.get(id=v.approved_by).username
-            except:
-                approved_by='not-apporved'
-            category=vapp_category.objects.get(id=v.category_id).category
-            vpp_table.append({'name':v.firstname+' '+v.lastname,'firstname':v.firstname,'approved_by':approved_by,'approved_by_id':v.approved_by,'collected': v.collected,'lastname':v.lastname,'UID':v.UID,'id':v.id,'category':category,'comp':v.company_name,'exp_date':v.exp_date,'approved_date':v.approved_date,'vehicle_number':v.vehicle_number,'status':v.status,'mobile':v.mobile_number,'print_status':v.print_status,'print_count':v.print_count,'category_id':v.category_id,'created_at':v.reg_created_at,'remark':v.remark})    
-        
-        data={'username':request.user.username,'vpp_table':vpp_table,'categorys':vapp_category.objects.all(),'build_pass_designations':build_designation.objects.all(),'event_pass_designations':eventpass_designation.objects.all(),'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])}
-        return render(request,'vapp_table_main.html',data) 
+    def Speakers_reg_page(request):
+        objs=SpeakerRegistrations.objects.all().order_by('-id')
+        data={'datas':objs}
+        return render(request,'speaker_table_main.html',data)
     def change_category_vapp(request):
         id=request.POST.get('id')
         value=request.POST.get('value')

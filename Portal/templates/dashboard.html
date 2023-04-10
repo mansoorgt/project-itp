@@ -89,9 +89,8 @@
           
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="{% url 'tables' %}">NEW REGISTRATIONS</a>
-              <a class="dropdown-item" href="{% url 'build_pass_page' %}">BUILD PASS</a>
-              <a class="dropdown-item" href="{% url 'event_pass_page' %}">EVENT PASS</a>
-              <a class="dropdown-item" href="{% url 'vapp_pass_page' %}">VAPP PASS</a>
+               <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}">SPEAKER REGISTRATIONS</a>
+             
             </div>
           </div>
           
@@ -233,9 +232,9 @@
                 <div class="col-md-6 mb-4 stretch-card transparent">
                     
                   <div class="card card-dark-blue">
-                      <a href="{% url 'build_pass_page' %}" style="text-decoration: none; color: white;">
+                      <a href="{% url 'speaker_registrations_page' %}" style="text-decoration: none; color: white;">
                     <div class="card-body">
-                      <p class="mb-4">Build Pass</p>
+                      <p class="mb-4">SPEAKER REGISTRATIONS</p>
                       <p class="fs-30 mb-2">{{bu_count}}</p>
                       <p>DAZ FESTIVAL 2023</p>
                     </div>
@@ -246,7 +245,7 @@
               <div class="row">
                 <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                   <div class="card card-light-blue">
-                      <a href="{% url 'event_pass_page' %}" style="text-decoration: none; color: white;">
+                      <a  style="text-decoration: none; color: white;">
                     <div class="card-body">
                       <p class="mb-4">Event Pass</p>
                       <p class="fs-30 mb-2">{{ev_count}}</p>
@@ -257,7 +256,7 @@
                 </div>
                 <div class="col-md-6 stretch-card transparent">
                   <div class="card card-light-danger">
-                      <a href="{% url 'vapp_pass_page' %}" style="text-decoration: none; color: white;">
+                      <a  style="text-decoration: none; color: white;">
                     <div class="card-body">
                       <p class="mb-4">Vapp</p>
                       <p class="fs-30 mb-2">{{vapp_count}}</p>

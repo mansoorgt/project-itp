@@ -315,9 +315,8 @@ p {
           
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="{% url 'tables' %}">NEW REGISTRATIONS</a>
-              <a class="dropdown-item active" href="{% url 'build_pass_page' %}">BUILD PASS</a>
-              <a class="dropdown-item" href="{% url 'event_pass_page' %}">EVENT PASS</a>
-              <a class="dropdown-item" href="{% url 'vapp_pass_page' %}">VAPP PASS</a>
+              <a class="dropdown-item active" href="{% url 'speaker_registrations_page' %}">SPEAKER REGISTRATIONS</a>
+              
             </div>
           </div>
       </div>
@@ -487,7 +486,7 @@ p {
         <!-- build event TABLE -->
 
         {% block 'buildtable' %}
-        {% include 'tables/build_table.html' %}  
+        {% include 'tables/speaker_table.html' %}  
         {% endblock 'buildtable' %}
 
         <!-- events TABLE -->
@@ -1375,13 +1374,13 @@ $(window).on('load', function(){
 
       load_new_data()
 
-      var interval=setInterval ( function () {
+      // var interval=setInterval ( function () {
 
-        load_new_data()
+      //   load_new_data()
 
-      }
+      // }
  
- ,5000)
+      // ,5000)
  
  
 });

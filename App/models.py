@@ -22,5 +22,13 @@ class SpeakerRegistrations(models.Model):
     passport_copy=models.FileField(upload_to=speaker_directory_path)
     photo_upload=models.FileField(upload_to=speaker_directory_path)
     ksa_visa=models.IntegerField(null=True)
+    
+    status=models.IntegerField(null=True)
+    created_at=models.DateTimeField(null=True)
+    updated_at=models.DateTimeField(null=True)
+    approved_by=models.IntegerField(null=True)
+    collected=models.IntegerField(null=True)
+    print_status=models.IntegerField(null=True)
+    
     class Meta:
         db_table='app_speakerregistrations'
