@@ -17,6 +17,9 @@ function submitSpeakerForm(e) {
         dataType: "json",
         success: function (res) {
 
+          fetch('send_speaker_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
+          body:JSON.stringify({'reg_id':res.reg_id})})
+
             Swal.fire({
                 position: 'top-center',
                 icon: 'success',
@@ -28,11 +31,29 @@ function submitSpeakerForm(e) {
 
               setTimeout(() => {
 
-                window.location.href=window.location.origin
+              //  window.location.href=window.location.origin
 
               }, 2000);
             
         }
     });
     
+}
+
+
+function send_speaker_registration_mail(id) {
+
+
+
+
+  // $.ajax({
+  //   type: "POST",
+  //   url: "send_speaker_reg_success_mail",
+  //   data: {reg_id:id,csrfmiddlewaretoken:csrftoken},
+  //   dataType: "json",
+  //   success: function (response) {
+      
+  //   }
+  // });
+  
 }
