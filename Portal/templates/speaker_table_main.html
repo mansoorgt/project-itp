@@ -314,8 +314,10 @@ p {
             </a>
           
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'tables' %}">NEW REGISTRATIONS</a>
-              <a class="dropdown-item active" href="{% url 'speaker_registrations_page' %}">SPEAKER REGISTRATIONS</a>
+              <!-- <a class="dropdown-item" href="{% url 'tables' %}">NEW REGISTRATIONS</a> -->
+              <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}">SPEAKER REGISTRATIONS</a>
+              <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}" style="pointer-events: none; cursor: default;">INVITED DELEGATES</a>
+               <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}" style="pointer-events: none; cursor: default;">APPLICANT DELEGATES</a>
               
             </div>
           </div>
@@ -578,7 +580,7 @@ p {
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              Register Build Pass
+              Edit Speaker
             </h5>
             <button
               type="button"
@@ -598,8 +600,8 @@ p {
                     <input
                       type="text"
                       class="form-control"
-                      id="edit-build-pass-first-name"
-                      placeholder="Enter Name"
+                      id="edit-speaker-first-name"
+                      placeholder="Enter First Name"
                     />
                   </div>
                 </div>
@@ -609,47 +611,91 @@ p {
                     <input
                       type="text"
                       class="form-control"
-                      id="edit-build-pass-last-name"
-                      placeholder="Enter Name"
+                      id="edit-speaker-last-name"
+                      placeholder="Enter Last Name"
                     />
                   </div>
                 </div>
                 
                 <div class="col-md-6 col-sm-6">
-                  <div class="form-group ">
+                  <div class="form-group">
                     <label for="exampleInputUsername1">Designation</label>
-                    <select name="" class="form-control "  id="build-pass-desiganation" onchange="change_designation_other(this)" required>
-                      <option value="" selected disabled>select desigantion </option>
-                      {% for d in build_pass_designations %}
-                      <option value="{{d.id}}">{{d.designation}}</option>
-                      {% endfor %}
-                    </select>
-                    
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="edit-speaker-designation"
+                      placeholder="Enter Designation"
+                    />
                   </div>
                 </div>
                 <div class="col-md-6 col-sm-6" id="edit-build-pass-other-des-div">
                   <div class="form-group">
-                    <label for="exampleInputUsername1">Other designation</label>
+                    <label for="exampleInputUsername1">COUNTRY OF RESIDENCE</label>
                     <input
                       type="text"
                       class="form-control"
-                      id="edit-build-pass-other-des"
-                      placeholder="Enter Other desigantion"
+                      id="edit-speaker-country"
+                      placeholder="Enter COUNTRY OF RESIDENCE"
                     />
                   </div>
                 </div>
+                <div class="col-md-6 col-sm-6" id="edit-build-pass-other-des-div">
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">TRAVELING FROM</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="edit-speaker-traveling-from"
+                      placeholder="Enter TRAVELING FROM"
+                    />
+                  </div>
+                </div>
+
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <label for="exampleInputUsername1">Company Name</label>
                     <input
                       type="text"
                       class="form-control"
-                      id="edit-build-pass-comp"
+                      id="edit-speaker-comp"
                       placeholder="Enter Company Name"
                     />
                   </div>
                 </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">OUTLINE OF TALKING POINTS</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="edit-speaker-outline-talking"
+                      placeholder="Enter OUTLINE OF TALKING POINTS"
+                    />
+                  </div>
+                </div>
                 
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">DEPATURE DATE AND TIME</label>
+                    <input
+                      type="datetime-local"
+                      class="form-control"
+                      id="edit-speaker-depature"
+                      placeholder="Enter OUTLINE OF TALKING POINTS"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">RETURN DATE AND TIME</label>
+                    <input
+                      type="datetime-local"
+                      class="form-control"
+                      id="edit-speaker-return-date"
+                      placeholder="Enter Retun Date"
+                    />
+                  </div>
+                </div>
               </div>
             </form>
           </div>
@@ -1031,6 +1077,27 @@ p {
                                                                           <p class="m-b-10 f-w-600">Company Name</p>
                                                                           <h6 class="text-muted f-w-400" id="profile-comp">98979989898</h6>
                                                                       </div>
+                                                                      <div class="col-md-6 col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Country</p>
+                                                                        <h6 class="text-muted f-w-400" id="profile-country">98979989898</h6>
+                                                                    </div>
+                                                                    <div class="col-md-6 col-sm-6">
+                                                                      <p class="m-b-10 f-w-600">Traveling From</p>
+                                                                      <h6 class="text-muted f-w-400" id="profile-travel">98979989898</h6>
+                                                                  </div>
+                                                                  <div class="col-md-6 col-sm-6">
+                                                                    <p class="m-b-10 f-w-600">Outline Talking</p>
+                                                                    <h6 class="text-muted f-w-400" id="profile-outline">98979989898</h6>
+                                                                </div>
+                                                                    
+                                                                      <div class="col-md-6 col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">DEPATURE DATE AND TIME</p>
+                                                                        <h6 class="text-muted f-w-400" id="profile-depature-date-time">98979989898</h6>
+                                                                    </div>
+                                                                    <div class="col-md-6 col-sm-6">
+                                                                      <p class="m-b-10 f-w-600">RETURN DATE AND TIME</p>
+                                                                      <h6 class="text-muted f-w-400" id="profile-return-date-time">98979989898</h6>
+                                                                  </div>
                                                                       <div class="col-md-6 col-sm-6" id='vehicle-num'>
                                                                         <p class="m-b-10 f-w-600" >Vehicle Number </p>
                                                                         <h6 class="text-muted f-w-400" id="profile-vehicle-num">98979989898</h6>
@@ -1059,7 +1126,7 @@ p {
                                                                     <div class="row" >
                                                                     <div class="col-lg-3 col-md-3 col-sm-3" >
                                                                       <p class="m-b-10 f-w-600" id="id-image-lable">Passport</p>
-                                                                      <img class="img-fluid" height="50px" width="50px" id="id-photo-img" width="50px" onclick="change_image(this)" src="https://dubaimachines.com/pub/media/catalog/product/h/e/heidi-dual-sided-printer-uae-dubai-sharjah-ajman-abudhabi-dubaimachines_1_2.jpg">
+                                                                      <img class="img-fluid" height="50px" width="50px" id="id-photo-img" width="50px" onclick="change_image(this)" src="https://seuclick.com/imagens/loading.gif?%3E">
                                                                       <br>
                                                                       <a href="" id="download-id-proof" download="">
                                                                         <img  width="20px" src="{% static 'images/download.png' %}" class="img-fluid down_icon ml-3 mt-2" alt="">
@@ -1068,14 +1135,14 @@ p {
 
                                                                       <div class="col-lg-3 col-md-3 col-sm-3" id="id-photo-img-back-div">
                                                                         <p class="m-b-10 f-w-600">Emirates Id Back</p>
-                                                                        <img class="img-fluid" onclick="change_image(this)" id="id-photo-img-back" height="50px" width="50px" src="https://i.ytimg.com/vi/fNSdPmbL6O8/maxresdefault.jpg">
+                                                                        <img class="img-fluid" onclick="change_image(this)" id="id-photo-img-back" height="50px" width="50px" src="https://seuclick.com/imagens/loading.gif?%3E">
                                                                         <br><a href="" id="download-id-back-proof" download=""><img  width="20px" src="{% static 'images/download.png' %}" class="img-fluid down_icon ml-3 mt-2" alt=""></a>  
                                                                       </div>
 
 
                                                                         <div class="col-lg-3 col-md-3 col-sm-3" id="mulkiya-img-back-div">
                                                                           <p class="m-b-10 f-w-600">Mulkya</p>
-                                                                          <img class="img-fluid" height="50px" width="50px" id='mulkiya-img' onclick="change_image(this)" src="data:image/jpeg;base64,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">
+                                                                          <img class="img-fluid" height="50px" width="50px" id='mulkiya-img' onclick="change_image(this)" src="https://seuclick.com/imagens/loading.gif?%3E">
                                                                           <br><a href="" id="download-id-mulkya-proof"><img  width="20px" src="{% static 'images/download.png' %}" class="img-fluid down_icon ml-3 mt-2" alt=""></a>
                                                                         </div>
                                                               </div>
@@ -1164,7 +1231,7 @@ p {
         <div class="col-md-6 col-sm-6">
           <div class="form-group ">
             <label for="exampleInputUsername1">Designation</label>
-            <select name="" class="form-control "  id="bulk-build-pass-desiganation" onchange="change_bulk_designation_other(this)" required>
+            <select name="" class="form-control "  id="bulk-speaker-desiganation" onchange="change_bulk_designation_other(this)" required>
               <option value="" selected disabled>select desigantion </option>
               {% for d in build_pass_designations %}
               <option value="{{d.id}}">{{d.designation}}</option>
@@ -1363,7 +1430,7 @@ $(window).on('load', function(){
 //   console.log('lofin')
    $('.bar').fadeOut('slow');
 
-      $('#build-table').DataTable()
+      $('#build-table').DataTable({"aaSorting": [],"bDestroy": true})
       //$('#event-table').DataTable()
       //$('#vapp-table').DataTable()
 
@@ -1372,7 +1439,7 @@ $(window).on('load', function(){
       build_last_data_id=Number(build_last_data_id.slice(3));
       console.log(build_last_data_id)
 
-      load_new_data()
+      //load_new_data()
 
       // var interval=setInterval ( function () {
 
@@ -1474,10 +1541,10 @@ minBuildDate = new DateTime($('#build-min'), {
 });
 
 
-$('#build-min, #build-max').on('change', function () {
- var tablebuild = $('table.build').DataTable().draw();
+// $('#build-min, #build-max').on('change', function () {
+//  var tablebuild = $('table.build').DataTable().draw();
 
-});
+// });
 
 
 // minEventDate = new DateTime($('#event-min'), {
@@ -1601,7 +1668,7 @@ $('#build-min, #build-max').on('change', function () {
             $('table.build').DataTable().page.len(current_build_page_lenght).draw();
             $('table.build').DataTable().search(search_build_val).draw();
             $('table.build').DataTable().page(current_build_page).draw('page')
-            $('#BU-'+id).html(data.table_html)
+            $('#SP-'+id).html(data.table_html)
           }
           if(table == 2){
             
@@ -1628,11 +1695,11 @@ $('#build-min, #build-max').on('change', function () {
           }
           if (status == 1 ){
             id_array=[id]
-          send_approved_mail(id_array,table)
+          //send_approved_mail(id_array,table)
          }
            if (status == 2){
             id_array=[id]
-            send_rejection_mail(id_array,table)
+            //send_rejection_mail(id_array,table)
            }
 
            if (status == 1){
@@ -1889,7 +1956,7 @@ $('#build-min, #build-max').on('change', function () {
             var tr = $('#'+id)
             // $('#build-table-div').replaceWith(data.table_html);
             
-            $('table.build').DataTable().rows('#BU-'+id).remove().draw();
+            $('table.build').DataTable().rows('#SP-'+id).remove().draw();
             $('table.build').DataTable().page.len(current_build_page_lenght).draw();
             $('table.build').DataTable().search(search_build_val).draw();
            
@@ -2126,24 +2193,23 @@ function update_front_page(table) {
     edit_build_id=0
     var req_build_profile=false
     
-    function edit_buildtable(id,firstname,lastname,companyname,des_id,other,req_profile) {
+    function edit_speakertable(id,firstname,lastname,companyname,designation,country,travel,outline,return_date_time,depature_date_time,req_profile) {
       edit_build_id=id
       req_build_profile=req_profile
-      document.getElementById('edit-build-pass-first-name').value=firstname
-      document.getElementById('edit-build-pass-last-name').value=lastname
-      document.getElementById('edit-build-pass-comp').value=companyname
-      
-      $("#build-pass-desiganation").prop("value",des_id);
+      document.getElementById('edit-speaker-first-name').value=firstname
+      document.getElementById('edit-speaker-last-name').value=lastname
+      document.getElementById('edit-speaker-comp').value=companyname
+      document.getElementById('edit-speaker-designation').value=designation
+      document.getElementById('edit-speaker-country').value=country
+      document.getElementById('edit-speaker-traveling-from').value=travel
+      document.getElementById('edit-speaker-outline-talking').value=outline
 
-      if(des_id == 0 ){
-        document.getElementById('edit-build-pass-other-des-div').style.display='block'
-        document.getElementById('edit-build-pass-other-des').value=other
-      }
-      else{
-        document.getElementById('edit-build-pass-other-des-div').style.display='none'
-        document.getElementById('edit-build-pass-other-des').value=''
-      }
+      console.log(depature_date_time,'-',return_date_time)
 
+
+       $('#edit-speaker-depature').val(new Date(depature_date_time).toISOString().slice(0,16))
+       $('#edit-speaker-return-date').val(new Date(return_date_time).toISOString().slice(0,16))
+     
     }
 
     function change_designation_other(table) {
@@ -2167,38 +2233,47 @@ function update_front_page(table) {
     
 
     function submit_edit_build() {
-      firstname=document.getElementById('edit-build-pass-first-name').value
-      lastname=document.getElementById('edit-build-pass-last-name').value
-      comp=document.getElementById('edit-build-pass-comp').value
-      des_id=document.getElementById('build-pass-desiganation').value
-      
+      firstname=document.getElementById('edit-speaker-first-name').value
+      lastname=document.getElementById('edit-speaker-last-name').value
+      companyname=document.getElementById('edit-speaker-comp').value
+      designation=document.getElementById('edit-speaker-designation').value
+      country=document.getElementById('edit-speaker-country').value
+      travel=document.getElementById('edit-speaker-traveling-from').value
+      outline=document.getElementById('edit-speaker-outline-talking').value
+      depature_date_time=$('#edit-speaker-depature').val()
+      return_date_time=$('#edit-speaker-return-date').val()
+     
       var current_build_page_lenght=$("select[name='build-table_length']").val();
-
-      if (des_id == 0){
-        other_des=document.getElementById('edit-build-pass-other-des').value
-      }
-      else{
-        other_des=''
-      }
-      
 
       var current_page=$('#build-table').DataTable().page.info().page
       var search_val=$('#build-table_filter input').val();
 
       var current_build_page_lenght=$("select[name='build-table_length']").val();
-     
-      console.log(search_val)
-
+      
+      var m_data=new FormData()
+      m_data.append('id',edit_build_id)
+      m_data.append('firstname',firstname)
+      m_data.append('lastname',lastname)
+      m_data.append('companyname',companyname)
+      m_data.append('designation',designation)
+      m_data.append('country',country)
+      m_data.append('travel',travel)
+      m_data.append('outline',outline)
+      m_data.append('departure_date_time',depature_date_time)
+      m_data.append('retun_date_time',return_date_time)
+      m_data.append('csrfmiddlewaretoken','{{ csrf_token }}')
       $.ajax({
         type: "POST",
-        url: "{% url 'edit_submit_buildtable' %}",
-        data: {id:edit_build_id,firstname:firstname,lastname:lastname,comp:comp,des_id:des_id,other_des:other_des,csrfmiddlewaretoken:'{{ csrf_token }}'},
+        url: "{% url 'edit_submit_speaker_reg' %}",
+        data:m_data,
+        processData:false,
+        contentType: false,
         dataType: "json",
         success: function (data) {
           
 
           $('#BuildModal').modal('hide');
-          $('#BU-'+edit_build_id).html(data.table_html)
+          $('#SP-'+edit_build_id).html(data.table_html)
           // $('#build-table-div').replaceWith(data.table_html);
           
           var table = $('#build-table').DataTable();
@@ -2871,15 +2946,15 @@ function ExportToExcel_vapp(type, fn, dl) {
           document.getElementById('profile-next-btn').style.display='block'
           document.getElementById('profile-prs-btn').style.display='block'
           document.getElementById('profile-uid').innerHTML=data.uid
-          if (role_id != 1 ){
-              document.getElementById("profile-apporve-btn").style.display='none'
-              document.getElementById("profile-reject-btn").style.display='none'
+          // if (role_id != 1 ){
+          //     document.getElementById("profile-apporve-btn").style.display='none'
+          //     document.getElementById("profile-reject-btn").style.display='none'
               
-            }
-            else{
+          //   }
+          //   else{
               document.getElementById("profile-apporve-btn").style.display='block'
               document.getElementById("profile-reject-btn").style.display='block'
-            }
+            // }
 
 
           if (data.status == 0){
@@ -2911,25 +2986,33 @@ function ExportToExcel_vapp(type, fn, dl) {
           if (table==1){
             document.getElementById('profile-verf-div').style.display='none'
             document.getElementById('id-data-div').style.display='none'
-            document.getElementById('id-photo-hover-div').style.display='none'
+            document.getElementById('id-photo-hover-div').style.display='block'
           document.getElementById('profile-user-name').innerHTML=data.name
           document.getElementById('profile-email').innerHTML=data.email
           document.getElementById('profile-mobile').innerHTML=data.mobile
           document.getElementById('profile-comp').innerHTML=data.comp
           document.getElementById('profile-created').innerHTML=data.created_at
           document.getElementById('vehicle-num').style.display='none'
-          document.getElementById('profile-dp').src='https://img.icons8.com/bubbles/100/000000/user.png'
+          document.getElementById('profile-dp').src=data.profile_image
           document.getElementById('id-photo-img-back-div').style.display='none'
+          document.getElementById('mulkiya-img-back-div').style.display='none'
           document.getElementById('vapp-type-div').style.display='none'
+          document.getElementById('id-photo-img').src=data.passport
+          document.getElementById('download-id-proof').href=data.passport
           document.getElementById('profile-next-btn').onclick=function(){ next_profile(1,data.id) }
           document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(1,data.id) }
            document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,1,data.id); update_status_profile(data.status,data.remark); }
            document.getElementById("profile-reject-btn").onclick=function() {  send_rejection_mail([data.id],1,false)  }
+            document.getElementById('profile-travel').innerHTML=data.travel
+            document.getElementById('profile-outline').innerHTML=data.outline
+            document.getElementById('profile-country').innerHTML=data.country
 
+           document.getElementById('profile-depature-date-time').innerHTML=data.depature_time
+           document.getElementById('profile-return-date-time').innerHTML=data.return_time
            document.getElementById('profile_edit-build').style.display='block'
            document.getElementById('profile_edit-event').style.display='none'
            document.getElementById('profile_edit-vapp').style.display='none'
-           document.getElementById('profile_edit-build').onclick=function(){  edit_buildtable(data.id,data.firstname,data.lastname,data.comp,data.des_id,data.other,true)}
+           document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,data.travel,data.outline,data.return_time_iso,data.depature_time_iso,true)}
            
          
           

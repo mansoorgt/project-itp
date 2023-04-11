@@ -1,0 +1,113 @@
+              {% load static %}
+   
+                {% if sp.status == 1  %}
+ 
+                <td id="td-tick"><input type="checkbox" class="form-control" name="build-checkbox" value="{{sp.id}}" id="build-checkbox" onchange="check_checkbox(1)"></td>
+      
+                {% else %}
+                <td>-</td>
+                {% endif %}
+               
+                <td class="py-1" id="td-user">
+                  <a onclick="get_profile_details(1,{{sp.id}})" data-toggle="modal" data-target="#profilemodal" ><img src="{% static 'images/avatar.webp' %}" alt="image" /></a>
+                </td>
+                <td><span style="display:none;">{{sp.created_at |date:'Y-m-d H:i'}}</span>{{sp.created_at |date:'d-m-y H:i' }}
+                {% if sp.status != 0 and sp.approved_by != null %}
+                  <br>
+                  <small style="font-size: 12px;" class="text-muted">Approved By:</small><br>
+                  <small style="font-size:12px;" class="text-muted">{{approved_by_name}}</small>
+                  {% endif %}
+                  
+                </td>
+                
+                <td class="py-1" id="build-uid">
+                     <div class="uid">{{sp.id}}</div>
+                <br>
+                  {% if sp.collected == 1 %}
+                  <span class="badge badge-info">Collected</span>
+                  {% endif %}
+                  
+                </td>
+                <td> <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;">{{sp.first_name}} {{sp.last_name}}</div></td>
+                
+                
+                
+                <td>{{sp.designation}} </td> 
+                
+
+                <td> <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;" id="table-comp-name">{{sp.company}}</div> </td>
+                <td>
+                  {{sp.email}} <br> 
+                  {{sp.mobile}}
+                </td>
+             
+                
+                
+                <td id="td-action">
+
+                
+                  <i style="font-size: 20px" class="fa-solid fa-trash" onclick="Delete_registration(1,{{sp.id}})"></i>
+                
+                 
+
+                  {% if sp.status == 1 %}
+
+           
+             
+                  <i style="font-size: 20px" class="fa-solid fa-print" onclick="Print_Id_card(1,{{sp.id}})" ></i>
+            
+
+                  {% endif %}
+                  <a  data-toggle="modal" data-target="#BuildModal" onclick="edit_buildtable({{sp.id}},'{{sp.firstname}}','{{sp.lastname}}','{{sp.comp}}',{{sp.des_id}}, '{{sp.other_des}}',false )"><i style="font-size: 20px;" class="fa-solid fa-edit" ></i></a> 
+                {% if sp.collected != 1 and sp.print_status != 0 %}
+                      <i style="font-size: 20px; color: #3d7040;" onclick="update_status(1,1,{{sp.id}},true)" class="fa-duotone fa-solid fa-circle-check"></i>
+                    {% endif %}
+                    
+               
+                </td>
+                <td>
+                
+                  
+
+                 
+                  <!-- superadmin -->
+                  {% if sp.status == 0 %}
+                 
+                  <button class="btn btn-sm btn-warning" onclick="update_status(1,1,{{sp.id}})">Approve</button>
+                  <button class="btn btn-sm btn-danger" data-target="#reject-popup" data-toggle="modal" onclick="send_rejection_mail([{{sp.id}}],1,false)" >Reject</button>
+ 
+                  {% endif %}
+
+                  {% if sp.status == 1 %}
+                  <label class="badge badge-success" >Approved</label>
+                  {% endif %}
+                  {% if sp.status == 2 %}
+                  <label class="badge badge-danger">Rejected</label>
+                  {% endif %}
+
+              
+
+
+                  <!-- infome user  -->
+
+                  {% if sp.status == 1 %}
+                  
+                  {% if sp.print_status == 0 %}
+                  <label class="badge badge-danger">Not printed</label>
+                  
+                  {% else %}
+                  <label class="badge badge-success">Printed</label>
+                  <label class="badge badge-warning">{{sp.print_count}}</label>
+                  <i class="fa-regular fa-square-minus" onclick="update_reset_print_status(1,{{sp.id}})"></i>
+                  {% endif %}
+                  {% endif %} 
+
+                  {% if role_id == 2 and sp.status != 1 %}
+                  <label class="badge badge-warning">Approvel Pending</label>
+                  {% endif %}
+                  
+
+                  
+                </td>
+                <td><textarea name="" class="form-control" id="build-remark" style="width:150px;" onkeyup="chnage_remark(1,{{sp.id}},this)">{% if sp.remark != None %} {{sp.remark}} {% endif %}</textarea></td>
+ 

@@ -30,5 +30,6 @@ class SpeakerRegistrations(models.Model):
     collected=models.IntegerField(null=True)
     print_status=models.IntegerField(null=True)
     
+    deleted=models.IntegerField(default=0)
     class Meta:
         db_table='app_speakerregistrations'

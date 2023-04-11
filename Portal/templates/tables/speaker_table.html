@@ -71,7 +71,7 @@
             
             <td></td>
         </tr>
-          <table class="table table-striped display build" id="build-table">
+           <table class="table table-striped display build" id="build-table">
             <thead>
               <tr>
                 
@@ -85,7 +85,7 @@
                 <th>Designation</th>
                 <th>Company Name</th>
                 <th>contact</th>
-                <th>Traveling From</th>
+             
                 <th id="th-action">Actions</th>
                 <th id="th-status">Status</th>
                 <th>Remark</th>
@@ -105,11 +105,11 @@
                 <td class="py-1" id="td-user">
                   <a onclick="get_profile_details(1,{{b.id}})" data-toggle="modal" data-target="#profilemodal" ><img src="{% static 'images/avatar.webp' %}" alt="image" /></a>
                 </td>
-                <td><span style="display:none;">{{b.created_at |date:'Y-m-d H:i'}}</span>{{b.created_at |date:'d-m-y H:i' }}
-                {% if b.status != 0 and b.approved_by_id != null %}
+                <td><span style="display:none;">{{b.created_at |date:'Y-m-d H:i'}}</span>{{b.created_at |date:'d-m-y P' }}
+                {% if b.status != 0 and b.approved_by != null %}
                   <br>
                   <small style="font-size: 12px;" class="text-muted">Approved By:</small><br>
-                  <small style="font-size:12px;" class="text-muted">{{b.approved_by}}</small>
+                  <small style="font-size:12px;" class="text-muted">{{b.approved_by_name}}</small>
                   {% endif %}
                   
                 </td>
@@ -131,9 +131,11 @@
 
                 <td> <div style="width: 100px; overflow-wrap: break-word !important; word-wrap: break-word !important; white-space: initial !important;" id="table-comp-name">{{b.company}}</div> </td>
                 <td>
-                  {{b.email}} <br>
+                  {{b.email}} <br> 
                   {{b.mobile}}
                 </td>
+             
+                
                 
                 <td id="td-action">
 
@@ -150,7 +152,7 @@
             
 
                   {% endif %}
-                  <a  data-toggle="modal" data-target="#BuildModal" onclick="edit_buildtable({{b.id}},'{{b.firstname}}','{{b.lastname}}','{{b.comp}}',{{b.des_id}}, '{{b.other_des}}',false )"><i style="font-size: 20px;" class="fa-solid fa-edit" ></i></a> 
+                  <a  data-toggle="modal" data-target="#BuildModal" onclick="edit_speakertable({{b.id}} ,'{{b.first_name}}','{{b.last_name}}','{{b.company}}','{{b.designation}}','{{b.country}}','{{b.traveling_from}}','{{b.outline_talk}}','{{b.retun_date_time.isoformat }}', '{{b.depature_date_time.isoformat }}' ,false )"><i style="font-size: 20px;" class="fa-solid fa-edit" ></i></a> 
                 {% if b.collected != 1 and b.print_status != 0 %}
                       <i style="font-size: 20px; color: #3d7040;" onclick="update_status(1,1,{{b.id}},true)" class="fa-duotone fa-solid fa-circle-check"></i>
                     {% endif %}
