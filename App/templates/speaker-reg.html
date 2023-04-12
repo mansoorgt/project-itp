@@ -41,7 +41,7 @@ SPEAKER REGISTRATION
 </div>
 </div>
 
-<form onsubmit="submitSpeakerForm(event)" id='speaker-reg-form' novalidate>
+<form onsubmit="submitSpeakerForm(event)" id='speaker-reg-form' >
 <div class="row mt-4">
 <div class="col-lg-3 col-md-3 col-sm-2">
     <div class="form-group mt-4">
@@ -192,6 +192,7 @@ SPEAKER REGISTRATION
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     var csrftoken = '{{ csrf_token }}';
+    
   </script>
   <script src="{% static 'js/registration.js' %}"></script>
 

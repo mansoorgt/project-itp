@@ -88,10 +88,9 @@
             </a>
           
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'tables' %}">NEW REGISTRATIONS</a>
-              <a class="dropdown-item" href="{% url 'build_pass_page' %}">BUILD PASS</a>
-              <a class="dropdown-item" href="{% url 'event_pass_page' %}">EVENT PASS</a>
-              <a class="dropdown-item" href="{% url 'vapp_pass_page' %}">VAPP PASS</a>
+              <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}">SPEAKER REGISTRATIONS</a>
+               <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}" style="pointer-events: none; cursor: default;">INVITED DELEGATES</a>
+               <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}" style="pointer-events: none; cursor: default;">APPLICANT DELEGATES</a>
             </div>
           </div>
           

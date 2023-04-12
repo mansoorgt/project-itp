@@ -15,6 +15,8 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.utils import timezone
 
+from django.db.models import OuterRef ,Subquery
+
 ##
 
 from App.models import *
@@ -311,7 +313,7 @@ class Dashboard():
     @login_required()
     def dashboard_page(request):
         
-        build_event_count=Buildpass_table.objects.all().count()
+        build_event_count=SpeakerRegistrations.objects.all().count()
         event_count=Eventpass_table.objects.all().count()
         vapp_count=Vapp_table.objects.all().count()
         all_count=build_event_count+event_count+vapp_count
@@ -368,8 +370,8 @@ class Tablepage():
         data={'all_tabs':True,'username':request.user.username,'build_table':build_table,'approved_by':approved_by,'approved_by_id':v.approved_by,'event_table':event_table,'vpp_table':vpp_table,'categorys':vapp_category.objects.all(),'build_pass_designations':build_designation.objects.all(),'event_pass_designations':eventpass_designation.objects.all(),'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])}
         return render(request,'Tables.html',data) 
     def Speakers_reg_page(request):
-        objs=SpeakerRegistrations.objects.all().order_by('-id')
-        data={'datas':objs}
+        objs=SpeakerRegistrations.objects.filter(deleted=0).annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
+        data={'datas':objs,'username':request.user.username}
         return render(request,'speaker_table_main.html',data)
     def change_category_vapp(request):
         id=request.POST.get('id')
@@ -386,16 +388,7 @@ class Tablepage():
         table=request.POST.get('table')
         id=request.POST.get('id')
         collected=request.POST.get('collected')
-        #admin    
-        if request.session['user_role'] == 1:
-            build_table_obj=Buildpass_table.objects.all().order_by('-id')
-            event_table_obj=Eventpass_table.objects.all().order_by('-id')
-            vapp_table_obj=Vapp_table.objects.all().order_by('-id')
-        #ifomeuser
-        if request.session['user_role'] == 2:
-            build_table_obj=Buildpass_table.objects.all().order_by('-id')   
-            event_table_obj=Eventpass_table.objects.all().order_by('-id')  
-            vapp_table_obj=Vapp_table.objects.all().order_by('-id')
+
             
         
         if int(table)==1:
@@ -403,36 +396,24 @@ class Tablepage():
          
 
             if collected != 'true':
-                obj=Buildpass_table.objects.get(id=id)
+                obj=SpeakerRegistrations.objects.get(id=id)
                 obj.status=status
                 if status == '1':
                     obj.approved_by=user_DB.objects.get(username=request.user.username).id
                 obj.updated_at=timezone.now()
                 obj.save()
             else:
-                obj=Buildpass_table.objects.get(id=id)
+                obj=SpeakerRegistrations.objects.get(id=id)
                 obj.collected=status
                 obj.updated_at=timezone.now()
                 obj.save()
                 
-            # build_table=[]
-            # for b in build_table_obj:
-            #     designation=build_designation.objects.get(id=b.designation_id).designation
-            #     build_table.append({'name':b.firstname+' '+b.lastname,'firstname':b.firstname,'lastname':b.lastname,'des_id':b.designation_id,'id':b.id,'UID':b.UID,'designation':designation,'comp':b.company_name,'exp_date':b.exp_date,'status':b.status,'print_status':b.print_status,'print_count':b.print_count,'other_des':b.other_designation,'created_at':b.reg_created_at,'remark':b.remark})
-        
-            # data={'build_table':build_table,'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all()}
-            # html=render_to_string('tables/build_table.html',data) 
-            obj=build_table_obj.get(id=id)
-            designation=build_designation.objects.get(id=obj.designation_id).designation
             
-            try:
-                approved_by=user_DB.objects.get(id=obj.approved_by).username
-            except:
-                approved_by='not-apporved'
-                
-            data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected,'lastname':obj.lastname,'des_id':obj.designation_id,'id':obj.id,'UID':obj.UID,'designation':designation,'comp':obj.company_name,'exp_date':obj.exp_date,'status':obj.status,'print_status':obj.print_status,'print_count':obj.print_count,'other_des':obj.other_designation,'created_at':obj.reg_created_at,'remark':obj.remark,
-              'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'user_id':int(request.session['user_id'])}
-            html=render_to_string('tables/table rows/build_table_row.html',data)
+            
+            data={'sp':SpeakerRegistrations.objects.get(id=obj.id),'approved_by_name':user_DB.objects.get(id=obj.approved_by).username}
+            # html=render_to_string('tables/build_table.html',data) 
+           
+            html=render_to_string('tables/table rows/speaker_table_row.html',data)
         
         if int(table)==2:
             
@@ -894,23 +875,15 @@ class Tablepage():
         table=request.POST.get('table')
         id=request.POST.get('id')
         
-        #admin    
-        if request.session['user_role'] == 1:
-            build_table_obj=Buildpass_table.objects.all().order_by('-id')
-            event_table_obj=Eventpass_table.objects.all().order_by('-id')
-            vapp_table_obj=Vapp_table.objects.all().order_by('-id')
-        #ifomeuser
-        if request.session['user_role'] == 2:
-            build_table_obj=Buildpass_table.objects.all().order_by('-id')   
-            event_table_obj=Eventpass_table.objects.all().order_by('-id')  
-            vapp_table_obj=Vapp_table.objects.all().order_by('-id')
+    
             
         
         if int(table)==1:
            
-            obj=Buildpass_table.objects.get(id=id)
+            obj=SpeakerRegistrations.objects.get(id=id)
             
-            obj.delete()
+            obj.deleted=1
+            obj.save()
         
             # obj=build_table_obj.get(id=id)
             # designation=build_designation.objects.get(id=obj.designation_id).designation
@@ -958,7 +931,7 @@ class Tablepage():
             #   }
             # html=render_to_string('tables/table rows/vapp_table_row.html',data)
         try:
-            build_last_data_id=Buildpass_table.objects.last().id
+            build_last_data_id=SpeakerRegistrations.objects.last().id
         except:
             build_last_data_id=0
             
@@ -976,34 +949,34 @@ class Tablepage():
         
         
     #edit submit      
-    def edit_submit_build_pass(request):
+    def edit_submit_speaker_reg(request):
         id=request.POST.get('id')
         firstname=request.POST.get('firstname')
         lastname=request.POST.get('lastname')
-        comp=request.POST.get('comp')
-        des_id=request.POST.get('des_id')
+        company=request.POST.get('companyname')
+        designation=request.POST.get('designation')
+        country=request.POST.get('country')
+        travel=request.POST.get('travel')
+        outline=request.POST.get('outline')
+        departure_date_time=request.POST.get('departure_date_time')
+        retun_date_time=request.POST.get('retun_date_time')
         
         
-        obj=Buildpass_table.objects.get(id=id)
-        obj.firstname=firstname
-        obj.lastname=lastname
-        obj.company_name=comp
-        obj.designation_id=des_id
+        obj=SpeakerRegistrations.objects.get(id=id)
+        obj.first_name=firstname
+        obj.last_name=lastname
+        obj.company=company
+        obj.designation=designation
+        obj.country=country
+        obj.traveling_from=travel
+        obj.outline_talk=outline
+        obj.depature_date_time=departure_date_time
+        obj.retun_date_time=retun_date_time
+        
         obj.updated_at=timezone.now()
-        if des_id == '0':
-            
-            other_des=request.POST.get('other_des')
-            obj.other_designation=other_des
             
         obj.save()
         
-        if request.session['user_role'] == 1:
-            build_table_obj=Buildpass_table.objects.all().order_by('-id')
-            
-        #ifomeuser
-        if request.session['user_role'] == 2:
-            build_table_obj=Buildpass_table.objects.all().order_by('-id')   
-            
             
         
         # build_table=[]
@@ -1013,15 +986,14 @@ class Tablepage():
         
         # data={'build_table':build_table,'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'user_id':int(request.session['user_id'])}
         # html=render_to_string('tables/build_table.html',data)
-        obj=build_table_obj.get(id=id)
-        designation=build_designation.objects.get(id=obj.designation_id).designation
-        try:
-            approved_by=user_DB.objects.get(id=obj.approved_by).username
-        except:
-            approved_by='not-apporved'
-        data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected,'lastname':obj.lastname,'des_id':obj.designation_id,'id':obj.id,'UID':obj.UID,'designation':designation,'comp':obj.company_name,'exp_date':obj.exp_date,'status':obj.status,'print_status':obj.print_status,'print_count':obj.print_count,'other_des':obj.other_designation,'created_at':obj.reg_created_at,'remark':obj.remark,
-              'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'user_id':int(request.session['user_id'])}
-        html=render_to_string('tables/table rows/build_table_row.html',data)
+        obj=SpeakerRegistrations.objects.get(id=id)
+        # designation=build_designation.objects.get(id=obj.designation_id).designation
+        # try:
+        #     approved_by=user_DB.objects.get(id=obj.approved_by).username
+        # except:
+        #     approved_by='not-apporved'
+        data={'sp':obj,'approved_by_name':user_DB.objects.get(id=obj.approved_by).username}
+        html=render_to_string('tables/table rows/speaker_table_row.html',data)
         return JsonResponse({'table_html':html})
     
     def edit_bulk(request):
@@ -1321,8 +1293,8 @@ class Tablepage():
         table=request.POST.get('table')
         
         if int(table)==1:
-            obj=Buildpass_table.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.UID,'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'lastname':obj.lastname,'other':obj.other_designation,'mobile':obj.mobile,'email':obj.email,'created_at':obj.reg_created_at.date(),'comp':obj.company_name,'des_id':obj.designation_id,'other_des':obj.other_designation,'des':build_designation.objects.get(id=obj.designation_id).designation,'status':obj.status,'remark':obj.remark}
+            obj=SpeakerRegistrations.objects.get(id=id)
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'travel':obj.traveling_from,'outline':obj.outline_talk,'depature_time':obj.depature_date_time.strftime("%d-%m-%y %I:%M %p"),'return_time':obj.retun_date_time.strftime("%d-%m-%y %I:%M %p"),'depature_time_iso':obj.depature_date_time,'return_time_iso':obj.retun_date_time,'country':obj.country,'ksa_visa':obj.ksa_visa}
         
         if int(table)==2:
             obj=Eventpass_table.objects.get(id=id)
@@ -1331,13 +1303,13 @@ class Tablepage():
                 id_proof=obj.id_proof_img.url
                 
             else:
-                id_proof='https://t4.ftcdn.net/jpg/04/00/24/31/360_F_400243185_BOxON3h9avMUX10RsDkt3pJ8iQx72kS3.jpg'
+                id_proof='https://seuclick.com/imagens/loading.gif?%3E'
                 
             if obj.id_proof_back_img:
                 id_proof_back=obj.id_proof_back_img.url
                 
             else:
-                id_proof_back='https://t4.ftcdn.net/jpg/04/00/24/31/360_F_400243185_BOxON3h9avMUX10RsDkt3pJ8iQx72kS3.jpg'
+                id_proof_back='https://seuclick.com/imagens/loading.gif?%3E'
             if obj.exp_date:
                 exp_date=obj.exp_date
             else:
@@ -1395,7 +1367,7 @@ class Tablepage():
         
         if int(Table)==1:
             print('svaves')
-            obj=Buildpass_table.objects.get(id=id)
+            obj=SpeakerRegistrations.objects.get(id=id)
             obj.remark=value
             obj.save()
         if int(Table)==2:
