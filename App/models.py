@@ -29,6 +29,7 @@ class SpeakerRegistrations(models.Model):
     approved_by=models.IntegerField(null=True)
     collected=models.IntegerField(null=True)
     print_status=models.IntegerField(null=True)
+    remark=models.TextField(default='',null=True)
     
     deleted=models.IntegerField(default=0)
     class Meta:

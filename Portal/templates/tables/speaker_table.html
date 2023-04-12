@@ -115,7 +115,7 @@
                 </td>
                 
                 <td class="py-1" id="build-uid">
-                     <div class="uid">{{b.id}}</div>
+                     <div class="uid">SPK{{b.id}}</div>
                 <br>
                   {% if b.collected == 1 %}
                   <span class="badge badge-info">Collected</span>
@@ -203,7 +203,7 @@
 
                   
                 </td>
-                <td><textarea name="" class="form-control" id="build-remark" style="width:150px;" onkeyup="chnage_remark(1,{{b.id}},this)">{% if b.remark != None %} {{b.remark}} {% endif %}</textarea></td>
+                <td><textarea name="" class="form-control" id="build-remark" style="width:150px;" onchange="chnage_remark(1,{{b.id}},this)">{% if b.remark != None %} {{b.remark}} {% endif %}</textarea></td>
               </tr>
               {% endfor %}
             </tbody>

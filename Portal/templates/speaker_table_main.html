@@ -1089,6 +1089,7 @@ p {
                                                                     <p class="m-b-10 f-w-600">Outline Talking</p>
                                                                     <h6 class="text-muted f-w-400" id="profile-outline">98979989898</h6>
                                                                 </div>
+                                                               
                                                                     
                                                                       <div class="col-md-6 col-sm-6">
                                                                         <p class="m-b-10 f-w-600">DEPATURE DATE AND TIME</p>
@@ -1098,6 +1099,10 @@ p {
                                                                       <p class="m-b-10 f-w-600">RETURN DATE AND TIME</p>
                                                                       <h6 class="text-muted f-w-400" id="profile-return-date-time">98979989898</h6>
                                                                   </div>
+                                                                  <div class="col-md-6 col-sm-6">
+                                                                    <p class="m-b-10 f-w-600">KSA VISA</p> 
+                                                                    <h6 class="text-muted f-w-400" id="profile-ksa-visa"></h6>
+                                                                </div>
                                                                       <div class="col-md-6 col-sm-6" id='vehicle-num'>
                                                                         <p class="m-b-10 f-w-600" >Vehicle Number </p>
                                                                         <h6 class="text-muted f-w-400" id="profile-vehicle-num">98979989898</h6>
@@ -1119,7 +1124,7 @@ p {
                                                                         <p class="m-b-10 f-w-600">ID Expiry Date</p>
                                                                         <h6 class="text-muted f-w-400" id="profile-exp-date">new-date</h6>
                                                                     </div>
-                                                                     
+                                                                   
                                                                       </div>
                                                                     </div>
                                                                     <div id='id-photo-hover-div'>
@@ -3014,6 +3019,13 @@ function ExportToExcel_vapp(type, fn, dl) {
            document.getElementById('profile_edit-vapp').style.display='none'
            document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,data.travel,data.outline,data.return_time_iso,data.depature_time_iso,true)}
            
+           if (data.ksa_visa == 0){
+            document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-xmark text-danger font-weight-bold"></i>`
+           }
+           else{
+            document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-check text-success font-weight-bold"></i>`
+
+           }
          
           
           if(data.des_id == 0){
@@ -3163,7 +3175,7 @@ function ExportToExcel_vapp(type, fn, dl) {
 
       if (table ==1 ){
         var build_array=$("[id='build-uid'] .uid")
-        qid='BUP'+String(id)
+        qid='SPK'+String(id)
 
         for (let i = 0; i < build_array.length; i++) {
           
@@ -3234,7 +3246,7 @@ function previous_profile(table,id){
 
 if (table ==1 ){
   var build_array=$("[id='build-uid'] .uid")
-  qid='BUP'+String(id)
+  qid='SPK'+String(id)
 
   for (let i = 0; i < build_array.length; i++) {
     

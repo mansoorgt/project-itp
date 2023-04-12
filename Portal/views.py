@@ -313,7 +313,7 @@ class Dashboard():
     @login_required()
     def dashboard_page(request):
         
-        build_event_count=Buildpass_table.objects.all().count()
+        build_event_count=SpeakerRegistrations.objects.all().count()
         event_count=Eventpass_table.objects.all().count()
         vapp_count=Vapp_table.objects.all().count()
         all_count=build_event_count+event_count+vapp_count
@@ -371,7 +371,7 @@ class Tablepage():
         return render(request,'Tables.html',data) 
     def Speakers_reg_page(request):
         objs=SpeakerRegistrations.objects.filter(deleted=0).annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
-        data={'datas':objs}
+        data={'datas':objs,'username':request.user.username}
         return render(request,'speaker_table_main.html',data)
     def change_category_vapp(request):
         id=request.POST.get('id')
@@ -1294,7 +1294,7 @@ class Tablepage():
         
         if int(table)==1:
             obj=SpeakerRegistrations.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'travel':obj.traveling_from,'outline':obj.outline_talk,'depature_time':obj.depature_date_time.strftime("%d-%m-%y %I:%M %p"),'return_time':obj.retun_date_time.strftime("%d-%m-%y %I:%M %p"),'depature_time_iso':obj.depature_date_time,'return_time_iso':obj.retun_date_time,'country':obj.country}
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'travel':obj.traveling_from,'outline':obj.outline_talk,'depature_time':obj.depature_date_time.strftime("%d-%m-%y %I:%M %p"),'return_time':obj.retun_date_time.strftime("%d-%m-%y %I:%M %p"),'depature_time_iso':obj.depature_date_time,'return_time_iso':obj.retun_date_time,'country':obj.country,'ksa_visa':obj.ksa_visa}
         
         if int(table)==2:
             obj=Eventpass_table.objects.get(id=id)
@@ -1367,7 +1367,7 @@ class Tablepage():
         
         if int(Table)==1:
             print('svaves')
-            obj=Buildpass_table.objects.get(id=id)
+            obj=SpeakerRegistrations.objects.get(id=id)
             obj.remark=value
             obj.save()
         if int(Table)==2:
