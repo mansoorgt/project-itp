@@ -71,14 +71,16 @@ font-weight: bold;
 .register-box {
     height: 300px;
     width: 200px;
-    background-color: #161618; /* replace with your desired background color */
+    background-color: transparent; /* replace with your desired background color */
     transition: all 0.3s ease; /* this will make the transition smooth */
     border-radius: 10px;
+    border: 1px solid darkgray;
   
   }
   
   .register-box:hover {
-    background-color:transparent; /* replace with your desired hover background color */
+    background-color: #161618; /* replace with your desired background color */
+ /* replace with your desired hover background color */
     transform: scale(1.05); /* this will make the box slightly larger on hover */
   }
   .reg-text {
