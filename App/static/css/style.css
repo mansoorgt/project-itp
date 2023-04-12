@@ -7,19 +7,78 @@ a{
     text-decoration: none !important;
 }
 
+/* registration form start */
+.form-group label
+{
+  color: white;
+
+}
+.form-group input
+{
+  background-color: darkgray;
+  border-color: darkgray;
+}
+label
+{
+  color: white;
+  font-weight: bold;
+}
+
+/* registration form end */
+
+
+/* navbar login button start */
+
+.log-in:hover
+{
+background-color: black !important;
+border: black;
+color: white !important;
+font-weight: bold;
+}
+
+/* navbar login button end */
+
+/* register heading */
+.glow {
+  color: white;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 0px #0ff, 0 0 50px #0ff, 0 0 100px #0ff;
+
+  border: 5px solid white;
+  border-radius: 10px;
+ 
+}
+
+@keyframes glowing {
+  0% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff, 0 0 80px #0ff, 0 0 90px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;
+  
+  }
+  
+  50% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff, 0 0 80px #0ff, 0 0 90px #0ff, 0 0 100px #0ff, 0 0 200px #0ff;
+  
+  }
+  
+  100% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff, 0 0 80px #0ff, 0 0 90px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;
+   
+  }
+}
+/* register heading end */
 /* register box start */
 
 .register-box {
     height: 300px;
     width: 200px;
-    background-color: #7277c4; /* replace with your desired background color */
+    background-color: #161618; /* replace with your desired background color */
     transition: all 0.3s ease; /* this will make the transition smooth */
     border-radius: 10px;
   
   }
   
   .register-box:hover {
-    background-color: #5058cc; /* replace with your desired hover background color */
+    background-color:transparent; /* replace with your desired hover background color */
     transform: scale(1.05); /* this will make the box slightly larger on hover */
   }
   .reg-text {
@@ -44,7 +103,7 @@ a{
 
 input::placeholder {
     font-size: 11px; /* replace with your desired font size */
-    color: darkgray;
+    color: white !important;
   }
 
 /* register page design end */
