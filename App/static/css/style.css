@@ -66,6 +66,39 @@ font-weight: bold;
   }
 }
 /* register heading end */
+
+/* register submit button */
+
+.submit-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.submit-btn:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.submit-btn:hover .btn-icon {
+  transform: translateX(100%);
+}
+.submit-btn .btn-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+.submit-btn .btn-icon i {
+  transform: translateX(-50%);
+}
+
+
+/* register submit button */
 /* register box start */
 
 .register-box {
