@@ -2,6 +2,7 @@
 function submitSpeakerForm(e) {
    
     e.preventDefault()
+
     var ksa_visa=$('input[name=ksa-visa]:checked', '#speaker-reg-form').val()
     console.log(ksa_visa)
     var m_form=new FormData($('#speaker-reg-form')[0])
@@ -41,19 +42,27 @@ function submitSpeakerForm(e) {
 }
 
 
-function send_speaker_registration_mail(id) {
+/// extras
 
+$(document).ready(function () {
+  $("#country").select2({
+    placeholder: "Select a country",
+  templateResult: formatCountry,
+    data: isoCountries,
+    theme:'bootstrap-5',
+   
+  });
 
-
-
-  // $.ajax({
-  //   type: "POST",
-  //   url: "send_speaker_reg_success_mail",
-  //   data: {reg_id:id,csrfmiddlewaretoken:csrftoken},
-  //   dataType: "json",
-  //   success: function (response) {
-      
-  //   }
-  // });
+ 
   
-}
+});
+
+
+function formatCountry (country) {
+  if (!country.id) { return country.text; }
+  var country = $(
+    '<span class="flag-icon flag-icon-'+ country.iso.toLowerCase() +' flag-icon-squared"></span>' +
+    '<span class="flag-text">'+ country.text+"</span>"
+  );
+  return country;
+};

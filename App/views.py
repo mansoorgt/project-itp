@@ -38,7 +38,6 @@ class ReginstraionForms():
 
         return JsonResponse({'reg_id':obj.id})
     
-    
     def send_speaker_registration_succcess_mail(request):
         
         data=json.loads(request.body)
@@ -57,5 +56,5 @@ class ReginstraionForms():
             msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email])
             msg.attach_alternative(html_contect,"text/html")
             msg.send()
-            print("good email")
+            
         return JsonResponse({})
