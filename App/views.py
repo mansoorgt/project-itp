@@ -56,5 +56,5 @@ class ReginstraionForms():
             msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email])
             msg.attach_alternative(html_contect,"text/html")
             msg.send()
-            
+            print('Succes mail sended')
         return JsonResponse({})

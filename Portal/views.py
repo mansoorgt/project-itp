@@ -7,8 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.db.models import Q
-from django.core.mail import EmailMultiAlternatives
-from project_Itp import settings
+from django.core.mail import EmailMultiAlternatives,EmailMessage
+from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 import datetime
 from django.core.exceptions import ValidationError
@@ -369,6 +369,7 @@ class Tablepage():
         
         data={'all_tabs':True,'username':request.user.username,'build_table':build_table,'approved_by':approved_by,'approved_by_id':v.approved_by,'event_table':event_table,'vpp_table':vpp_table,'categorys':vapp_category.objects.all(),'build_pass_designations':build_designation.objects.all(),'event_pass_designations':eventpass_designation.objects.all(),'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])}
         return render(request,'Tables.html',data) 
+    @login_required
     def Speakers_reg_page(request):
         objs=SpeakerRegistrations.objects.filter(deleted=0).annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
         data={'datas':objs,'username':request.user.username}
@@ -408,9 +409,12 @@ class Tablepage():
                 obj.updated_at=timezone.now()
                 obj.save()
                 
+            try:
+                approved_by=user_DB.objects.get(id=obj.approved_by).username
+            except:
+                approved_by='not-apporved'
             
-            
-            data={'sp':SpeakerRegistrations.objects.get(id=obj.id),'approved_by_name':user_DB.objects.get(id=obj.approved_by).username}
+            data={'sp':SpeakerRegistrations.objects.get(id=obj.id),'approved_by_name':approved_by}
             # html=render_to_string('tables/build_table.html',data) 
            
             html=render_to_string('tables/table rows/speaker_table_row.html',data)
@@ -988,11 +992,11 @@ class Tablepage():
         # html=render_to_string('tables/build_table.html',data)
         obj=SpeakerRegistrations.objects.get(id=id)
         # designation=build_designation.objects.get(id=obj.designation_id).designation
-        # try:
-        #     approved_by=user_DB.objects.get(id=obj.approved_by).username
-        # except:
-        #     approved_by='not-apporved'
-        data={'sp':obj,'approved_by_name':user_DB.objects.get(id=obj.approved_by).username}
+        try:
+            approved_by=user_DB.objects.get(id=obj.approved_by).username
+        except:
+            approved_by='not-apporved'
+        data={'sp':obj,'approved_by_name':approved_by}
         html=render_to_string('tables/table rows/speaker_table_row.html',data)
         return JsonResponse({'table_html':html})
     
@@ -1392,10 +1396,10 @@ class Tablepage():
             
         for i in id_array:
             if int(table)==1:
-                obj=Buildpass_table.objects.get(id=i)
+                obj=SpeakerRegistrations.objects.get(id=i)
                 obj.remark=reason
                 obj.save()
-                data={'uid':obj.UID,'mobile':obj.mobile,'name':obj.firstname+' '+obj.lastname,'created_at':obj.reg_created_at,'reg':'Build Pass','reason':reason}
+                data={'uid':'SPK-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker','reason':reason}
             if int(table)==2:
                 obj=Eventpass_table.objects.get(id=i)
                 obj.remark=reason
@@ -1416,19 +1420,21 @@ class Tablepage():
                 html_contect=render_to_string("email/email_reject.html",data)
                 email_from = settings.EMAIL_HOST_USER
                 subject = 'Application Has Been Rejected ! '
+                #msg=EmailMessage(subject=subject,from_email=email_from,to=[obj.email],body='TESTXXX')
                 msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email])
                 msg.attach_alternative(html_contect,"text/html")
                 msg.send()
                 print("good email")
                 
-        if int(table)==1:
-            data=Tablepage.update_front_page(request,1)
-        if int(table)==2:
-            data=Tablepage.update_front_page(request,2)
-        if int(table)==3:
-            data=Tablepage.update_front_page(request,3)
+        # if int(table)==1:
+        #     data=Tablepage.update_front_page(request,1)
+        # if int(table)==2:
+        #     data=Tablepage.update_front_page(request,2)
+        # if int(table)==3:
+        #     data=Tablepage.update_front_page(request,3)
+    
         
-        return JsonResponse(data)
+        return JsonResponse({})
         
         #approved mail send
     def send_approved_mail(request):
@@ -1440,9 +1446,9 @@ class Tablepage():
             
         for i in id_array:
             if int(table)==1:
-                obj=Buildpass_table.objects.get(id=i)
+                obj=SpeakerRegistrations.objects.get(id=i)
 
-                data={'uid':obj.UID,'mobile':obj.mobile,'name':obj.firstname+' '+obj.lastname,'created_at':obj.reg_created_at,'reg':'Build Pass'}
+                data={'uid':'SPK-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}
             if int(table)==2:
                 obj=Eventpass_table.objects.get(id=i)
                 data={'uid':obj.UID,'mobile':obj.mobile,'name':obj.firstname+' '+obj.lastname,'reg':'Event Pass'}
@@ -1459,7 +1465,9 @@ class Tablepage():
                 html_contect=render_to_string("email/email_approved.html",data)
                 email_from = settings.EMAIL_HOST_USER
                 subject = 'Application Has Been Approved '
-                msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email])
+                #msg=EmailMessage(subject=subject,from_email=email_from,to=[obj.email],body='TESTXXX')
+                
+                msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email],)
                 msg.attach_alternative(html_contect,"text/html")
                 msg.send()
                 print("good email")
@@ -1467,31 +1475,24 @@ class Tablepage():
         return JsonResponse({'data':'data'})
     
     def update_front_page(request,table):
-        #admin    
-        if request.session['user_role'] == 1:
-            build_table_obj=Buildpass_table.objects.all().order_by('-id')
-            event_table_obj=Eventpass_table.objects.all().order_by('-id')
-            vapp_table_obj=Vapp_table.objects.all().order_by('-id')
-        #ifomeuser
-        if request.session['user_role'] == 2:
-            build_table_obj=Buildpass_table.objects.all().order_by('-id')   
-            event_table_obj=Eventpass_table.objects.all().order_by('-id')  
-            vapp_table_obj=Vapp_table.objects.all().order_by('-id')
+        # #admin    
+        # if request.session['user_role'] == 1:
+        #     build_table_obj=Buildpass_table.objects.all().order_by('-id')
+        #     event_table_obj=Eventpass_table.objects.all().order_by('-id')
+        #     vapp_table_obj=Vapp_table.objects.all().order_by('-id')
+        # #ifomeuser
+        # if request.session['user_role'] == 2:
+        #     build_table_obj=Buildpass_table.objects.all().order_by('-id')   
+        #     event_table_obj=Eventpass_table.objects.all().order_by('-id')  
+        #     vapp_table_obj=Vapp_table.objects.all().order_by('-id')
             
         
         if int(table)==1:
             
-            build_table=[]
-            for b in build_table_obj:
-                designation=build_designation.objects.get(id=b.designation_id).designation
-                try:
-                    approved_by=user_DB.objects.get(id=b.approved_by).username
-                except:
-                    approved_by='not-apporved'
-                build_table.append({'name':b.firstname+' '+b.lastname,'approved_by':approved_by,'approved_by_id':b.approved_by,'firstname':b.firstname,'lastname':b.lastname,'des_id':b.designation_id,'id':b.id,'UID':b.UID,'designation':designation,'comp':b.company_name,'exp_date':b.exp_date,'status':b.status,'print_status':b.print_status,'print_count':b.print_count,'other_des':b.other_designation,'created_at':b.reg_created_at,'remark':b.remark})
+            objs=SpeakerRegistrations.objects.filter(deleted=0).annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
+            data={'datas':objs,'username':request.user.username}
         
-            data={'build_table':build_table,'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'user_id':int(request.session['user_id'])}
-            html=render_to_string('tables/build_table.html',data) 
+            html=render_to_string('tables/speaker_table.html',data) 
         
         if int(table)==2:
             
@@ -1596,16 +1597,7 @@ class Tablepage():
     def get_new_data(request):
         
         
-        #admin    
-        if request.session['user_role'] == 1:
-            build_table_obj=Buildpass_table.objects.all().order_by('-id')
-            event_table_obj=Eventpass_table.objects.all().order_by('-id')
-            vapp_table_obj=Vapp_table.objects.all().order_by('-id')
-        #ifomeuser
-        if request.session['user_role'] == 2:
-            build_table_obj=Buildpass_table.objects.all().order_by('-id')   
-            event_table_obj=Eventpass_table.objects.all().order_by('-id')  
-            vapp_table_obj=Vapp_table.objects.all().order_by('-id')
+        speaker_reginstations_all=SpeakerRegistrations.objects.filter(deleted=0).all()
         
         table=request.GET.get('table')
         
@@ -1624,25 +1616,26 @@ class Tablepage():
         vapp_last_row_id=0
         
         
+        
+        
         if int(table)==1 or int(table)==0:
             last_row_id=request.GET.get('build_last_row_id')
             print(last_row_id)
-            last_obj=Buildpass_table.objects.last()
+            last_obj=SpeakerRegistrations.objects.last()
             if int(last_obj.id) != int(last_row_id):
-                new_data=build_table_obj.filter(id__range=(last_row_id,last_obj.id))
+                new_data=speaker_reginstations_all.filter(id__range=(last_row_id,last_obj.id))
                 
                 for i in new_data[:1]:
                     
-                    obj=build_table_obj.get(id=i.id)
-                    tr="<tr id='BU-"+str(i.id)+"'>"
-                    designation=build_designation.objects.get(id=obj.designation_id).designation
+                    obj=speaker_reginstations_all.get(id=i.id)
+                    tr="<tr id='SP-"+str(i.id)+"'>"
+                    
                     try:
                         approved_by=user_DB.objects.get(id=obj.approved_by).username
                     except:
                         approved_by='not-apporved'
-                    data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected,'lastname':obj.lastname,'des_id':obj.designation_id,'id':obj.id,'UID':obj.UID,'designation':designation,'comp':obj.company_name,'exp_date':obj.exp_date,'status':obj.status,'print_status':obj.print_status,'print_count':obj.print_count,'other_des':obj.other_designation,'created_at':obj.reg_created_at,'remark':obj.remark,
-                    'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'user_id':int(request.session['user_id'])}
-                    html=render_to_string('tables/table rows/build_table_row.html',data) 
+                    data={'sp':obj,'approved_by_name':approved_by}
+                    html=render_to_string('tables/table rows/speaker_table_row.html',data) 
                     new_html=tr+html+'</tr>'  
                     build_new_html.append(new_html)
                     
@@ -1652,26 +1645,25 @@ class Tablepage():
                 
                 build_new_data=False
 
-            updated_data=build_table_obj.filter(updated_at__range=[timezone.now()-timezone.timedelta(seconds=5),timezone.now()])
+            updated_data=speaker_reginstations_all.filter(updated_at__range=[timezone.now()-timezone.timedelta(seconds=5),timezone.now()])
            
                 
             for i in updated_data:
                 
-                obj=build_table_obj.get(id=i.id)
-                tr="<tr id='BU-"+str(i.id)+"'>"
-                designation=build_designation.objects.get(id=obj.designation_id).designation
+                obj=speaker_reginstations_all.get(id=i.id)
+                tr="<tr id='SP-"+str(i.id)+"'>"
+                # designation=build_designation.objects.get(id=obj.designation_id).designation
                 try:
                     approved_by=user_DB.objects.get(id=obj.approved_by).username
                 except:
                     approved_by='not-apporved'
-                data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected,'lastname':obj.lastname,'des_id':obj.designation_id,'id':obj.id,'UID':obj.UID,'designation':designation,'comp':obj.company_name,'exp_date':obj.exp_date,'status':obj.status,'print_status':obj.print_status,'print_count':obj.print_count,'other_des':obj.other_designation,'created_at':obj.reg_created_at,'remark':obj.remark,
-                'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'user_id':int(request.session['user_id'])}
-                html=render_to_string('tables/table rows/build_table_row.html',data) 
+                data={'sp':obj,'approved_by_name':approved_by}
+                html=render_to_string('tables/table rows/speaker_table_row.html',data) 
                 new_html=tr+html+'</tr>'  
                 build_new_html.append(new_html)
                 build_updated_id.append(i.id)
                 build_new_data=True
-                build_last_row_id=Buildpass_table.objects.last().id
+                build_last_row_id=SpeakerRegistrations.objects.last().id
             
                 
         if int(table)==2 or int(table)== 0:
@@ -1827,7 +1819,7 @@ class Tablepage():
                 online_list.append(u.username)
                 
         return online_list     
-    
+     
 class Report():
     def report_page(request):
         build_designations=build_designation.objects.all()
