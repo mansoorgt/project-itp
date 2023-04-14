@@ -1623,9 +1623,9 @@ class Tablepage():
             print(last_row_id)
             last_obj=SpeakerRegistrations.objects.last()
             if int(last_obj.id) != int(last_row_id):
-                new_data=speaker_reginstations_all.filter(id__range=(last_row_id,last_obj.id))
+                new_data=speaker_reginstations_all.filter(id__range=(int(last_row_id)+1,last_obj.id))
                 
-                for i in new_data[:1]:
+                for i in new_data:
                     
                     obj=speaker_reginstations_all.get(id=i.id)
                     tr="<tr id='SP-"+str(i.id)+"'>"

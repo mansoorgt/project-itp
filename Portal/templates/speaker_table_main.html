@@ -3739,14 +3739,17 @@ success: function (data) {
   }
   $('#online-list').html(online_list_html)
  
+  console.log(data.new_html.build_updated_id)
+  console.log(data.new_html.build_html)
   if (data.new_data.build_new_data==true){
-            console.log('have new build')
 
             for (let i = 0; i < data.new_html.build_html.length; i++) {
               console.log(data.new_html.build_updated_id[i])
               console.log($('#SP-'+data.new_html.build_updated_id[i]))
+              
               $('table.build').DataTable().row('#SP-'+data.new_html.build_updated_id[i]).remove().draw()
               $('table.build').DataTable().order([2,'desc']).row.add($(data.new_html.build_html[i])).draw(false)
+
               
             }
             
@@ -3759,7 +3762,8 @@ success: function (data) {
             $('table.build').DataTable().page(current_build_page).draw('page')
             build_last_data_id=data.last_row_id.build_row_id
            //$('table.build').DataTable().draw();
-        }
+
+  }
 
 
 
