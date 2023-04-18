@@ -50,8 +50,9 @@ $(document).ready(function () {
   templateResult: formatCountry,
     data: isoCountries,
     theme:'bootstrap-5',
+    
    
-  });
+  })
 
  
   
