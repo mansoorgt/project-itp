@@ -188,39 +188,7 @@
   // sound while hover
 
 
-  const myDivs = document.querySelectorAll(".register-box");
-const hoverSound = new Audio("../static/hover.mp3");
-const clickSound = new Audio("../static/click.wav");
-
-myDivs.forEach(function(myDiv) {
-  hoverSound.addEventListener("loadeddata", function() {
-    myDiv.addEventListener("mouseover", function() {
-      hoverSound.currentTime = 0;
-      hoverSound.play();
-    });
-  });
-  
-  if (hoverSound.readyState >= 2) {
-    myDiv.addEventListener("mouseover", function() {
-      hoverSound.currentTime = 0;
-      hoverSound.play();
-    });
-  }
-
-  clickSound.addEventListener("loadeddata", function() {
-    myDiv.addEventListener("click", function() {
-      clickSound.currentTime = 0;
-      clickSound.play();
-    });
-  });
-
-  if (clickSound.readyState >= 2) {
-    myDiv.addEventListener("click", function() {
-      clickSound.currentTime = 0;
-      clickSound.play();
-    });
-  }
-});
+ 
 
 </script>
 
