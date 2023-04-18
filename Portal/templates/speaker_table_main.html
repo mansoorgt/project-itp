@@ -1444,34 +1444,59 @@ $(window).on('load', function(){
       build_last_data_id=Number(build_last_data_id.slice(3));
       console.log(build_last_data_id)
 
-      //load_new_data()
+      load_new_data()
 
-      // var interval=setInterval ( function () {
+      var interval=setInterval ( function () {
 
-      //   load_new_data()
+        load_new_data()
 
-      // }
+      }
  
-      // ,5000)
+      ,5000)
  
  
 });
-function load_new_data(table) {
+// function load_new_data(table) {
   
-  var last_row_id=0
-  if (table==1){
-    last_row_id=build_last_data_id
-  }
-  $.ajax({
-    type: "GET",
-    url: "{% url 'get_new_data' %}",
-    data:{last_row_id:last_row_id,table:table,csrfmiddlewaretoken:'{{ csrf_token }}'},
-    dataType: "json",
-    success: function (data) {
-      console.log(data)
-    }
-  });
-}
+//   var last_row_id=0
+
+//   if (table==1){
+//     last_row_id=build_last_data_id
+//   }
+
+//   $.ajax({
+//     type: "GET",
+//     url: "{% url 'get_new_data' %}",
+//     data:{last_row_id:last_row_id,table:table,csrfmiddlewaretoken:'{{ csrf_token }}'},
+//     dataType: "json",
+//     success: function (data) {
+      
+//       if (data.new_data.build_new_data==true){
+//             console.log('have new build')
+
+//             for (let i = 0; i < data.new_html.build_html.length; i++) {
+//               console.log(data.new_html.build_updated_id[i])
+//               console.log($('#SP-'+data.new_html.build_updated_id[i]))
+//               $('table.build').DataTable().row('#SP-'+data.new_html.build_updated_id[i]).remove().draw()
+//               $('table.build').DataTable().order([2,'desc']).row.add($(data.new_html.build_html[i])).draw(false)
+              
+//             }
+            
+           
+//           //$('#build-table tbody').prepend(data.new_html)
+        
+//             $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+//             $('table.build').DataTable().search(search_build_val).draw();
+           
+//             $('table.build').DataTable().page(current_build_page).draw('page')
+//             build_last_data_id=data.last_row_id.build_row_id
+//            //$('table.build').DataTable().draw();
+//         }
+
+
+//     }
+//   });
+// }
 
 
   
@@ -1700,12 +1725,12 @@ minBuildDate = new DateTime($('#build-min'), {
           }
           if (status == 1 ){
             id_array=[id]
-          //send_approved_mail(id_array,table)
+          send_approved_mail(id_array,table)
          }
-           if (status == 2){
-            id_array=[id]
-            //send_rejection_mail(id_array,table)
-           }
+          //  if (status == 2){
+          //   id_array=[id]
+          //   send_rejection_mail(id_array,table)
+          //  }
 
            if (status == 1){
             document.getElementById('profile-status-label').className=''
@@ -2782,9 +2807,9 @@ function update_front_page(table) {
          if (status == 1 ){
           send_approved_mail(id_array,table)
          }
-         if (status == 2 ){
-          send_rejection_mail(id_array,table)
-         }
+        //  if (status == 2 ){
+        //   send_rejection_mail(id_array,table)
+        //  }
          
         //  $('table.display').DataTable();
         }
@@ -3446,35 +3471,36 @@ var table=0
       data: {id_array:id_array,reason:reason,table:table,csrfmiddlewaretoken:'{{ csrf_token }}'},
       dataType: "json",
       success: function (data) {
-        if(table == 1){
+        // if(table == 1){
            
-           $('#build-table-div').replaceWith(data.table_html);
-           $('table.build').DataTable().page.len(current_build_page_lenght).draw();
-           $('table.build').DataTable().search(search_build_val).draw();
+        
+        //    $('#build-table-div').replaceWith(data.table_html);
+        //    $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+        //    $('table.build').DataTable().search(search_build_val).draw();
            
-           $('table.build').DataTable().page(current_build_page).draw('page')
-         }
-         if(table == 2){
+        //    $('table.build').DataTable().page(current_build_page).draw('page')
+        //  }
+        //  if(table == 2){
            
-          $('#event-table-div').replaceWith(data.table_html);
-           document.getElementById('event-table-div').classList.add('show')
-           document.getElementById('event-table-div').classList.add('active')
-           $('table.event').DataTable().page.len(current_event_page_lenght).draw();
-           $('table.event').DataTable().search(search_event_val).draw();
+        //   $('#event-table-div').replaceWith(data.table_html);
+        //    document.getElementById('event-table-div').classList.add('show')
+        //    document.getElementById('event-table-div').classList.add('active')
+        //    $('table.event').DataTable().page.len(current_event_page_lenght).draw();
+        //    $('table.event').DataTable().search(search_event_val).draw();
            
-           $('table.event').DataTable().page(current_event_page).draw('page')
-        }
+        //    $('table.event').DataTable().page(current_event_page).draw('page')
+        // }
 
-        if(table == 3){
+        // if(table == 3){
            
-           $('#vapp-table-div').replaceWith(data.table_html);
-            document.getElementById('vapp-table-div').classList.add('show')
-            document.getElementById('vapp-table-div').classList.add('active')
-            $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
-            $('table.vapp').DataTable().search(search_vapp_val).draw();
+        //    $('#vapp-table-div').replaceWith(data.table_html);
+        //     document.getElementById('vapp-table-div').classList.add('show')
+        //     document.getElementById('vapp-table-div').classList.add('active')
+        //     $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
+        //     $('table.vapp').DataTable().search(search_vapp_val).draw();
             
-            $('table.vapp').DataTable().page(current_vapp_page).draw('page')
-         }
+        //     $('table.vapp').DataTable().page(current_vapp_page).draw('page')
+        //  }
       }
     });
   }
@@ -3713,11 +3739,17 @@ success: function (data) {
   }
   $('#online-list').html(online_list_html)
  
+  console.log(data.new_html.build_updated_id)
+  console.log(data.new_html.build_html)
   if (data.new_data.build_new_data==true){
-    for (let i = 0; i < data.new_html.build_html.length; i++) {
-              console.log($('#BU-'+data.new_html.build_updated_id[i]))
-              $('table.build').DataTable().row('#BU-'+data.new_html.build_updated_id[i]).remove().draw()
+
+            for (let i = 0; i < data.new_html.build_html.length; i++) {
+              console.log(data.new_html.build_updated_id[i])
+              console.log($('#SP-'+data.new_html.build_updated_id[i]))
+              
+              $('table.build').DataTable().row('#SP-'+data.new_html.build_updated_id[i]).remove().draw()
               $('table.build').DataTable().order([2,'desc']).row.add($(data.new_html.build_html[i])).draw(false)
+
               
             }
             
@@ -3729,6 +3761,8 @@ success: function (data) {
            
             $('table.build').DataTable().page(current_build_page).draw('page')
             build_last_data_id=data.last_row_id.build_row_id
+           //$('table.build').DataTable().draw();
+
   }
 
 

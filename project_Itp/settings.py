@@ -144,3 +144,5 @@ EMAIL_HOST_USER='contact@infoeventz.com'
 EMAIL_HOST_PASSWORD='contact@2022'
 EMAIL_PORT = 465    
 EMAIL_USE_SSL = True
+
+LOGIN_URL='/portal'

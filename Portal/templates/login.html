@@ -102,6 +102,9 @@
   
 
   function validate_login() {
+
+
+
     var username=document.getElementById('username')
     var password=document.getElementById('password')
 
@@ -129,7 +132,18 @@
       dataType: "json",
       success: function (data) {
         if (data.login){
-          window.location.replace('{% url "dashboard" %}');
+          var urlPrams=new URLSearchParams(window.location.search);
+          
+          if (urlPrams.get('next') != null){
+
+            window.location.replace(urlPrams.get('next'))
+          }
+          else{
+            window.location.replace('{% url "dashboard" %}');
+
+          }
+          
+          
         }
         else{
           document.getElementById('login-failed').style.display='block'
