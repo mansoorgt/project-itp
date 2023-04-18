@@ -15,6 +15,8 @@ def viewRegistraionPge(request):
 class ReginstraionForms():
     def speakerForm(request):
         return render(request,'speaker-reg.html')
+    def delegates(request):
+        return render(request,'delegates.html')
     def submitSpeakerForm(request):
         first_name=request.POST.get('first-name')
         last_name=request.POST.get('last-name')
@@ -37,6 +39,8 @@ class ReginstraionForms():
                                                 outline_talk=outline_talk,passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),updated_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)
 
         return JsonResponse({'reg_id':obj.id})
+    def invitedDeligates(request):
+        return render(request,'invited-delegates.html')
     
     def send_speaker_registration_succcess_mail(request):
         

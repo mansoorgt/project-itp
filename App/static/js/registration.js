@@ -66,3 +66,20 @@ function formatCountry (country) {
   );
   return country;
 };
+
+
+// slide up and down
+
+$(document).ready(function() {
+  if ($('#attendyes').prop('checked')) {
+    $('#previous-forum').slideDown();
+  }
+  
+  $('#attendyes').click(function() {
+    $('#previous-forum').slideDown();
+  });
+  
+  $('#attendno').click(function() {
+    $('#previous-forum').slideUp();
+  });
+});

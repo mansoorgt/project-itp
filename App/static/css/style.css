@@ -1,7 +1,98 @@
+
+/* hidden div start */
+
+.hidden {
+  display: none;
+}
+
+
+/* hidden div end */
+/* file selector button start*/
+.select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered .select2-selection__placeholder
+{
+    color:white !important;
+}
+.select2-container .select2-selection--single .select2-selection__rendered
+{
+    padding-left:0px !important;
+}
+.myform-control
+{
+    display: block;
+    width: 100%;
+border-radius:5px;
+  color:white;
+  height:40px;
+
+}
+.form-check-input:checked
+{
+    background-color: #1c8090 !important;
+    border-color: #1c8090 !important;
+}
+
+input[type="file"]::file-selector-button {
+
+  background-color: #1c8090;
+  color:white;
+  padding:8px;
+
+}
+input::file-selector-button:hover {
+  background-color:  #095966;
+  cursor:pointer;
+}
+
+.btn-light
+{
+    background-color: #1c8090 !important;
+    border-color:#1c8090 !important;
+    color: white !important;
+    
+}
+.btn-light:hover
+{
+     background-color: #095966 !important;
+      border-color:#095966 !important;
+      color:white !important;
+}
+/* file selector button end */
+
+
+
+
+/* scrollbar design start */
+
+/* Set the width and height of the scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3d3d3d;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #4d4d4d;
+}
+
+
+/* scrollbar design end */
+
+
 /* index page design start */
 body{
 
     font-family: 'Anuphan', sans-serif !important;
+    overflow-x: hidden;
 }
 a{
     text-decoration: none !important;
@@ -15,7 +106,7 @@ a{
 }
 .form-group input:focus
 {
-  background: darkgray !important;
+  background: #666461 !important;
 }
 .form-control
 {
@@ -23,30 +114,37 @@ a{
 }
 .form-group input
 {
-  background-color: darkgray;
-  border-color: darkgray;
+  background-color: #666461;
+  border-color: #666461;
+ 
+    letter-spacing: 1px;
 }
 .form-group textarea
 {
-  background-color: darkgray;
-  border-color: darkgray;
+  background-color: #666461;
+  border-color:#666461;
   color: white !important;
+  height:100px;
+ 
+    letter-spacing: 1px;
 }
 .form-group textarea:focus
 {
-  background-color: darkgray;
-  border-color: darkgray;
+  background-color: #666461;
+  border-color: #666461;
  
 }
 
 label
 {
   color: white;
-  font-weight: bold;
+  
 }
 .select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered
 {
   color: white !important;
+    letter-spacing: 1px;
+   
 }
 /* registration form end */
 
@@ -64,31 +162,9 @@ font-weight: bold;
 /* navbar login button end */
 
 /* register heading */
-.glow {
-  color: white;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 0px #0ff, 0 0 50px #0ff, 0 0 100px #0ff;
 
-  border: 5px solid white;
-  border-radius: 10px;
- 
-}
 
-@keyframes glowing {
-  0% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff, 0 0 80px #0ff, 0 0 90px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;
-  
-  }
-  
-  50% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff, 0 0 80px #0ff, 0 0 90px #0ff, 0 0 100px #0ff, 0 0 200px #0ff;
-  
-  }
-  
-  100% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff, 0 0 80px #0ff, 0 0 90px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;
-   
-  }
-}
+
 /* register heading end */
 
 /* register submit button */
@@ -164,6 +240,13 @@ input::placeholder {
     font-size: 11px; /* replace with your desired font size */
     color: white !important;
   }
+  
+  .form-group::placeholder
+  {
+      font-size:11px !important;
+      
+  }
+  
   textarea::placeholder
   {
     color:white !important;
@@ -171,25 +254,36 @@ input::placeholder {
   }
   .select2-container .select2-selection--single
   {
-    background: darkgray !important;
-    border-color: darkgray !important;
+    background: #666461 !important;
+    border-color: #666461 !important;
+ 
+    font-size:1 rem;
   }
 
 /* register page design end */
 
 
 @media (max-width: 425px) {
+    .navbar-brand img
+    {
+        margin-left:0px !important;
+    }
 .desk-index.d-flex
 {
     display:none !important;
     
+}
+.mob-reg-text
+{
+font-size:20px !important;
 }
 .mobile-index-reg
 {
     width: 330px;
     height: 50px;
    border-radius: 10px;
-    background-color: #7277c4;
+    background-color: transparent;
+    border:1px solid white;
     animation: slide-in 0.5s ease-out forwards;
 }
 
