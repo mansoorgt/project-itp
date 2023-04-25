@@ -67,7 +67,7 @@
 </div>
 
 <div class="container">
-<form onsubmit="submitSpeakerForm(event)" id='speaker-reg-form'>
+<form onsubmit="submitApplicantForm(event)" id='applicant-reg-form' novalidate>
 
 <div class="row">
 <div class="d-flex justify-content-center">
@@ -194,14 +194,6 @@
 </div>
 
 
-
-
-
-
-
-
-
-
 <div class="row">
 
 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -250,7 +242,7 @@
       
         <div class="form-group mt-4">
             <label for="exampleInputEmail1">Reason To Attend</label>
-      <textarea class="form-control" id="outline-talk" name="outline-talk" ></textarea>
+      <textarea class="form-control" id="reason-attend" name="reason-attend" ></textarea>
           </div>
         
       
@@ -264,21 +256,17 @@
  <br>
         <label for="exampleInputEmail1">Interested in</label>
         <br>
+
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+          <input class="form-check-input" type="checkbox" name="Interested" checked id="inlineCheckbox1" value="1">
           <label class="form-check-label" for="inlineCheckbox1">1</label>
         </div>
+        
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+          <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox2" value="0">
           <label class="form-check-label" for="inlineCheckbox2">2</label>
         </div>
     
-
-
-
-  
-
-
 
   </div>
 
@@ -304,11 +292,6 @@
 
 
 </div>
-
-
-
-
-
 
 
 </form>

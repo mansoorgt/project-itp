@@ -7,6 +7,11 @@ def speaker_directory_path(instance, filename):
     print(instance)
     return 'speakerReginstration/{0}/{1}'.format(instance.mobile, filename)
 
+def invited_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    print(instance)
+    return 'invitedReginstration/{0}/{1}'.format(instance.mobile, filename)
+
 class SpeakerRegistrations(models.Model):
     first_name=models.TextField(max_length=200,null=True)
     last_name=models.TextField(max_length=200,null=True)
@@ -34,3 +39,28 @@ class SpeakerRegistrations(models.Model):
     deleted=models.IntegerField(default=0)
     class Meta:
         db_table='app_speakerregistrations'
+        
+class InvitedRegistrations(models.Model):
+    first_name=models.TextField(max_length=200,null=True)
+    last_name=models.TextField(max_length=200,null=True)
+    designation=models.TextField(max_length=200,null=True)
+    company=models.TextField(max_length=200,null=True)
+    email=models.TextField(max_length=200,null=True)
+    mobile=models.TextField(max_length=200,null=True)
+    country=models.TextField(max_length=200,null=True)
+    
+    passport_copy=models.FileField(upload_to=invited_directory_path)
+    photo_upload=models.FileField(upload_to=invited_directory_path)
+    ksa_visa=models.IntegerField(null=True)
+    
+    status=models.IntegerField(null=True)
+    created_at=models.DateTimeField(null=True)
+    updated_at=models.DateTimeField(null=True)
+    approved_by=models.IntegerField(null=True)
+    collected=models.IntegerField(null=True)
+    print_status=models.IntegerField(null=True)
+    remark=models.TextField(default='',null=True)
+    
+    deleted=models.IntegerField(default=0)
+    class Meta:
+        db_table='app_invitedregistrations'

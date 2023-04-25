@@ -41,6 +41,64 @@ function submitSpeakerForm(e) {
     
 }
 
+function submitInvitedForm(e) {
+  console.log(ksa_visa)
+  e.preventDefault()
+
+  var ksa_visa=$('input[name=ksa-visa]:checked', '#invated-reg-form').val()
+  
+  var m_form=new FormData($('#invated-reg-form')[0])
+  m_form.append('ksa-visa',ksa_visa)
+  m_form.append('csrfmiddlewaretoken',csrftoken)
+
+  $.ajax({
+      type: "POST",
+      url: "submitInvitedform",
+      data: m_form,
+      processData: false,
+      contentType: false,
+      dataType: "json",
+      success: function (res) {
+
+        fetch('send_invited_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
+        body:JSON.stringify({'reg_id':res.reg_id})})
+
+          Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: 'Your registration has been submited',
+              showConfirmButton: false,
+              timer: 1500
+
+            })
+
+            setTimeout(() => {
+              $('#invated-reg-form')[0].reset()
+              window.location.href=window.location.origin
+
+            }, 2000);
+          
+      }
+  });
+  
+}
+
+function submitApplicantForm(e) {
+
+  e.preventDefault()
+  var m_form=new FormData($('#applicant-reg-form')[0])
+  inspectForm(m_form)
+  
+}
+
+//debug purpose only not use in production 
+function inspectForm(m_form) {
+  
+  for (const [key, value] of m_form.entries()) {
+    console.log(key,'=',value);
+  }
+
+}
 
 /// extras
 

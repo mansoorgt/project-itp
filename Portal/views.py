@@ -374,6 +374,13 @@ class Tablepage():
         objs=SpeakerRegistrations.objects.filter(deleted=0).annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
         data={'datas':objs,'username':request.user.username}
         return render(request,'speaker_table_main.html',data)
+    
+    @login_required
+    def invited_reg_page(request):
+        objs=InvitedRegistrations.objects.filter(deleted=0).annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
+        data={'datas':objs,'username':request.user.username}
+        return render(request,'invited_table_main.html',data)
+    
     def change_category_vapp(request):
         id=request.POST.get('id')
         value=request.POST.get('value')
@@ -394,8 +401,6 @@ class Tablepage():
         
         if int(table)==1:
            
-         
-
             if collected != 'true':
                 obj=SpeakerRegistrations.objects.get(id=id)
                 obj.status=status
@@ -421,37 +426,28 @@ class Tablepage():
         
         if int(table)==2:
             
-        
-            
             if collected != 'true':
-                obj=Eventpass_table.objects.get(id=id)
+                obj=InvitedRegistrations.objects.get(id=id)
                 obj.status=status
-                obj.updated_at=timezone.now()
                 if status == '1':
                     obj.approved_by=user_DB.objects.get(username=request.user.username).id
+                obj.updated_at=timezone.now()
                 obj.save()
             else:
-                obj=Eventpass_table.objects.get(id=id)
+                obj=InvitedRegistrations.objects.get(id=id)
                 obj.collected=status
                 obj.updated_at=timezone.now()
                 obj.save()
-        
-            # event_table=[]
-            # for e in event_table_obj:
-            #     designation=eventpass_designation.objects.get(id=e.designation_id).designation
-            #     #img=eventpass_image_db.objects.get()
-            #     event_table.append({'name':e.firstname+' '+e.lastname,'firstname':e.firstname,'lastname':e.lastname,'des_id':e.designation_id,'UID':e.UID,'id':e.id,'designation':designation,'comp':e.company_name,'exp_date':e.exp_date,'user_img':e.file,'status':e.status,'print_status':e.print_status,'print_count':e.print_count,'other_des':e.other_designation,'created_at':e.reg_created_at,'remark':e.remark})
-        
-            # data={'event_table':event_table,'role_id':int(request.session['user_role'])}
-            # html=render_to_string('tables/event_table.html',data)     
-            obj=event_table_obj.get(id=id)
-            designation=eventpass_designation.objects.get(id=obj.designation_id).designation
+                
             try:
                 approved_by=user_DB.objects.get(id=obj.approved_by).username
             except:
                 approved_by='not-apporved'
-            m_data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname, 'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected, 'lastname':obj.lastname,'des_id':obj.designation_id,'UID':obj.UID,'id':obj.id,'designation':designation,'comp':obj.company_name,'exp_date':obj.exp_date,'user_img':obj.file,'status':obj.status,'print_status':obj.print_status,'print_count':obj.print_count,'other_des':obj.other_designation,'created_at':obj.reg_created_at,'remark':obj.remark,'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'id_proof':obj.id_proof,'user_id':int(request.session['user_id'])}
-            html=render_to_string('tables/table rows/event_table_row.html',m_data)
+            
+            data={'sp':InvitedRegistrations.objects.get(id=obj.id),'approved_by_name':approved_by}
+            # html=render_to_string('tables/build_table.html',data) 
+           
+            html=render_to_string('tables/table rows/invited_table_row.html',data)
         
         if int(table)==3:
             
@@ -1000,6 +996,47 @@ class Tablepage():
         html=render_to_string('tables/table rows/speaker_table_row.html',data)
         return JsonResponse({'table_html':html})
     
+    def edit_submit_invited_reg(request):
+        id=request.POST.get('id')
+        firstname=request.POST.get('firstname')
+        lastname=request.POST.get('lastname')
+        company=request.POST.get('companyname')
+        designation=request.POST.get('designation')
+        country=request.POST.get('country')
+     
+        
+        
+        obj=InvitedRegistrations.objects.get(id=id)
+        obj.first_name=firstname
+        obj.last_name=lastname
+        obj.company=company
+        obj.designation=designation
+        obj.country=country
+        
+        
+        obj.updated_at=timezone.now()
+            
+        obj.save()
+        
+            
+        
+        # build_table=[]
+        # for b in build_table_obj:
+        #     designation=build_designation.objects.get(id=b.designation_id).designation
+        #     build_table.append({'name':b.firstname+' '+b.lastname,'firstname':b.firstname,'lastname':b.lastname,'des_id':b.designation_id,'id':b.id,'UID':b.UID,'designation':designation,'comp':b.company_name,'exp_date':b.exp_date,'status':b.status,'print_status':b.print_status,'print_count':b.print_count,'other_des':b.other_designation,'created_at':b.reg_created_at,'remark':b.remark})
+        
+        # data={'build_table':build_table,'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'user_id':int(request.session['user_id'])}
+        # html=render_to_string('tables/build_table.html',data)
+        obj=InvitedRegistrations.objects.get(id=id)
+        # designation=build_designation.objects.get(id=obj.designation_id).designation
+        try:
+            approved_by=user_DB.objects.get(id=obj.approved_by).username
+        except:
+            approved_by='not-apporved'
+        data={'sp':obj,'approved_by_name':approved_by}
+        html=render_to_string('tables/table rows/invited_table_row.html',data)
+        return JsonResponse({'table_html':html})
+    
     def edit_bulk(request):
         select=request.POST.get('select')
         other_des=request.POST.get('other_des')
@@ -1296,33 +1333,16 @@ class Tablepage():
         id=request.POST.get('id')
         table=request.POST.get('table')
         
+        
+        print(table,'table int ')
         if int(table)==1:
             obj=SpeakerRegistrations.objects.get(id=id)
             data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'travel':obj.traveling_from,'outline':obj.outline_talk,'depature_time':obj.depature_date_time.strftime("%d-%m-%y %I:%M %p"),'return_time':obj.retun_date_time.strftime("%d-%m-%y %I:%M %p"),'depature_time_iso':obj.depature_date_time,'return_time_iso':obj.retun_date_time,'country':obj.country,'ksa_visa':obj.ksa_visa}
         
         if int(table)==2:
-            obj=Eventpass_table.objects.get(id=id)
-            
-            if obj.id_proof_img:
-                id_proof=obj.id_proof_img.url
-                
-            else:
-                id_proof='https://seuclick.com/imagens/loading.gif?%3E'
-                
-            if obj.id_proof_back_img:
-                id_proof_back=obj.id_proof_back_img.url
-                
-            else:
-                id_proof_back='https://seuclick.com/imagens/loading.gif?%3E'
-            if obj.exp_date:
-                exp_date=obj.exp_date
-            else:
-                exp_date='Expiry date not available'
-                
-            print(obj.other_designation)
+            obj=InvitedRegistrations.objects.get(id=id)
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'country':obj.country,'ksa_visa':obj.ksa_visa}
         
-            data={'id':obj.id,'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'lastname':obj.lastname,'exp_date':exp_date,'uid':obj.UID,'mobile':obj.mobile,'id_proof_back':id_proof_back,'email':obj.email,'created_at':obj.reg_created_at.date(),'comp':obj.company_name,'des_id':obj.designation_id,'other_des':obj.other_designation,'des':eventpass_designation.objects.get(id=obj.designation_id).designation,
-                  'nationality':obj.nationality,'id_proof':obj.id_proof,'id_cat':obj.id_proof_cat,'dp':obj.file.url,'id_proof_img':id_proof,'status':obj.status,'remark':obj.remark}
         if int(table)==3:
             obj=Vapp_table.objects.get(id=id)
             
@@ -1667,56 +1687,51 @@ class Tablepage():
             
                 
         if int(table)==2 or int(table)== 0:
-            last_row_id=request.GET.get('event_last_row_id')
-            last_obj=Eventpass_table.objects.last()
+            last_row_id=request.GET.get('build_last_row_id')
+            print(last_row_id)
+            last_obj=InvitedRegistrations.objects.last()
             if int(last_obj.id) != int(last_row_id):
-                new_data=event_table_obj.filter(id__range=(last_row_id,last_obj.id))
+                new_data=speaker_reginstations_all.filter(id__range=(int(last_row_id)+1,last_obj.id))
                 
-                for i in new_data[:1]:
+                for i in new_data:
                     
-                   
-                    tr="<tr id='EV-"+str(i.id)+"'>"
+                    obj=speaker_reginstations_all.get(id=i.id)
+                    tr="<tr id='IN-"+str(i.id)+"'>"
                     
-                    obj=event_table_obj.get(id=i.id)
-                    designation=eventpass_designation.objects.get(id=obj.designation_id).designation
                     try:
                         approved_by=user_DB.objects.get(id=obj.approved_by).username
                     except:
                         approved_by='not-apporved'
-                    m_data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected,'lastname':obj.lastname,'des_id':obj.designation_id,'UID':obj.UID,'id':obj.id,'designation':designation,'comp':obj.company_name,'exp_date':obj.exp_date,'user_img':obj.file,'status':obj.status,'print_status':obj.print_status,'print_count':obj.print_count,'other_des':obj.other_designation,'created_at':obj.reg_created_at,'remark':obj.remark,'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'id_proof':obj.id_proof,'user_id':int(request.session['user_id'])}
-                    html=render_to_string('tables/table rows/event_table_row.html',m_data)
-
-                    new_html=tr+html+'</tr>'        
-                    event_new_html.append(new_html)
+                    data={'sp':obj,'approved_by_name':approved_by}
+                    html=render_to_string('tables/table rows/invited_table_row.html',data) 
+                    new_html=tr+html+'</tr>'  
+                    build_new_html.append(new_html)
                     
-                event_new_data=True
-                event_last_row_id=event_table_obj
-                
+                build_new_data=True
+                build_last_row_id=last_obj.id
             else:
                 
-                event_new_data=False
+                build_new_data=False
+
+            updated_data=speaker_reginstations_all.filter(updated_at__range=[timezone.now()-timezone.timedelta(seconds=5),timezone.now()])
+           
                 
-            updated_data=event_table_obj.filter(updated_at__range=[timezone.now()-timezone.timedelta(seconds=5),timezone.now()])
             for i in updated_data:
                 
-                tr="<tr id='EV-"+str(i.id)+"'>"
-                    
-                obj=event_table_obj.get(id=i.id)
-                designation=eventpass_designation.objects.get(id=obj.designation_id).designation
+                obj=speaker_reginstations_all.get(id=i.id)
+                tr="<tr id='IN-"+str(i.id)+"'>"
+                # designation=build_designation.objects.get(id=obj.designation_id).designation
                 try:
                     approved_by=user_DB.objects.get(id=obj.approved_by).username
                 except:
                     approved_by='not-apporved'
-                    
-                m_data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected,'lastname':obj.lastname,'des_id':obj.designation_id,'UID':obj.UID,'id':obj.id,'designation':designation,'comp':obj.company_name,'exp_date':obj.exp_date,'user_img':obj.file,'status':obj.status,'print_status':obj.print_status,'print_count':obj.print_count,'other_des':obj.other_designation,'created_at':obj.reg_created_at,'remark':obj.remark,'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'id_proof':obj.id_proof,'user_id':int(request.session['user_id'])}
-                html=render_to_string('tables/table rows/event_table_row.html',m_data)
-
-                new_html=tr+html+'</tr>'        
-                event_new_html.append(new_html)
-                event_updated_id.append(i.id)
-                event_new_data=True
-
-                event_last_row_id=Eventpass_table.objects.last().id
+                data={'sp':obj,'approved_by_name':approved_by}
+                html=render_to_string('tables/table rows/invited_table_row.html',data) 
+                new_html=tr+html+'</tr>'  
+                build_new_html.append(new_html)
+                build_updated_id.append(i.id)
+                build_new_data=True
+                build_last_row_id=InvitedRegistrations.objects.last().id
                 
                 
         if int(table)==3 or int(table)== 0:
