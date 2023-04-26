@@ -488,7 +488,7 @@ p {
         <!-- build event TABLE -->
 
         {% block 'buildtable' %}
-        {% include 'tables/speaker_table.html' %}  
+        {% include 'tables/applicant_table.html' %}  
         {% endblock 'buildtable' %}
 
         <!-- events TABLE -->
@@ -639,17 +639,7 @@ p {
                     />
                   </div>
                 </div>
-                <div class="col-md-6 col-sm-6" id="edit-build-pass-other-des-div">
-                  <div class="form-group">
-                    <label for="exampleInputUsername1">TRAVELING FROM</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="edit-speaker-traveling-from"
-                      placeholder="Enter TRAVELING FROM"
-                    />
-                  </div>
-                </div>
+             
 
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group">
@@ -662,7 +652,7 @@ p {
                     />
                   </div>
                 </div>
-                <div class="col-md-6 col-sm-6">
+                <!-- <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <label for="exampleInputUsername1">OUTLINE OF TALKING POINTS</label>
                     <input
@@ -672,30 +662,8 @@ p {
                       placeholder="Enter OUTLINE OF TALKING POINTS"
                     />
                   </div>
-                </div>
-                
-                <div class="col-md-6 col-sm-6">
-                  <div class="form-group">
-                    <label for="exampleInputUsername1">DEPATURE DATE AND TIME</label>
-                    <input
-                      type="datetime-local"
-                      class="form-control"
-                      id="edit-speaker-depature"
-                      placeholder="Enter OUTLINE OF TALKING POINTS"
-                    />
-                  </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="form-group">
-                    <label for="exampleInputUsername1">RETURN DATE AND TIME</label>
-                    <input
-                      type="datetime-local"
-                      class="form-control"
-                      id="edit-speaker-return-date"
-                      placeholder="Enter Retun Date"
-                    />
-                  </div>
-                </div>
+                </div> -->
+              
               </div>
             </form>
           </div>
@@ -969,6 +937,7 @@ p {
                   </div>
                 </div>
                 
+                
               </div>
             </form>
           </div>
@@ -1081,28 +1050,18 @@ p {
                                                                         <p class="m-b-10 f-w-600">Country</p>
                                                                         <h6 class="text-muted f-w-400" id="profile-country">98979989898</h6>
                                                                     </div>
-                                                                    <div class="col-md-6 col-sm-6">
-                                                                      <p class="m-b-10 f-w-600">Traveling From</p>
-                                                                      <h6 class="text-muted f-w-400" id="profile-travel">98979989898</h6>
-                                                                  </div>
-                                                                  <div class="col-md-6 col-sm-6">
-                                                                    <p class="m-b-10 f-w-600">Outline Talking</p>
-                                                                    <h6 class="text-muted f-w-400" id="profile-outline">98979989898</h6>
-                                                                </div>
-                                                               
                                                                     
-                                                                      <div class="col-md-6 col-sm-6">
-                                                                        <p class="m-b-10 f-w-600">DEPATURE DATE AND TIME</p>
-                                                                        <h6 class="text-muted f-w-400" id="profile-depature-date-time">98979989898</h6>
-                                                                    </div>
-                                                                    <div class="col-md-6 col-sm-6">
-                                                                      <p class="m-b-10 f-w-600">RETURN DATE AND TIME</p>
-                                                                      <h6 class="text-muted f-w-400" id="profile-return-date-time">98979989898</h6>
-                                                                  </div>
+                                                               
+                                                                   
                                                                   <div class="col-md-6 col-sm-6">
                                                                     <p class="m-b-10 f-w-600">KSA VISA</p> 
                                                                     <h6 class="text-muted f-w-400" id="profile-ksa-visa"></h6>
                                                                 </div>
+
+                                                                <div class="col-md-6 col-sm-6" id="reason-for-attend-div">
+                                                                  <p class="m-b-10 f-w-600">Reason for Attend</p> 
+                                                                  <textarea class="text-muted form-control f-w-400" id="profile-reason-attend" readonly></textarea>
+                                                              </div>
                                                                       <div class="col-md-6 col-sm-6" id='vehicle-num'>
                                                                         <p class="m-b-10 f-w-600" >Vehicle Number </p>
                                                                         <h6 class="text-muted f-w-400" id="profile-vehicle-num">98979989898</h6>
@@ -1703,26 +1662,21 @@ minBuildDate = new DateTime($('#build-min'), {
           if(table == 2){
             
           //  $('#event-table-div').replaceWith(data.table_html);
-            document.getElementById('event-table-div').classList.add('show')
-            document.getElementById('event-table-div').classList.add('active')
-            $('table.event').DataTable().page.len(current_event_page_lenght).draw();
-            $('table.event').DataTable().search(search_event_val).draw();
-           
-            $('table.event').DataTable().page(current_event_page).draw('page')
-            $('#EV-'+id).html(data.table_html)
+          $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+            $('table.build').DataTable().search(search_build_val).draw();
+            $('table.build').DataTable().page(current_build_page).draw('page')
+            $('#IN-'+id).html(data.table_html)
          }
 
          if(table == 3){
             
-            // $('#vapp-table-div').replaceWith(data.table_html);
-             document.getElementById('vapp-table-div').classList.add('show')
-             document.getElementById('vapp-table-div').classList.add('active')
-             $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
-             $('table.vapp').DataTable().search(search_vapp_val).draw();
-             
-             $('table.vapp').DataTable().page(current_vapp_page).draw('page')
-             $('#VA-'+id).html(data.table_html)
-          }
+            //  $('#event-table-div').replaceWith(data.table_html);
+            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+              $('table.build').DataTable().search(search_build_val).draw();
+              $('table.build').DataTable().page(current_build_page).draw('page')
+              $('#AP-'+id).html(data.table_html)
+           }
+
           if (status == 1 ){
             id_array=[id]
           send_approved_mail(id_array,table)
@@ -1995,26 +1949,26 @@ minBuildDate = new DateTime($('#build-min'), {
           }
           if(table == 2){
             
-          //  $('#event-table-div').replaceWith(data.table_html);
-            document.getElementById('event-table-div').classList.add('show')
-            document.getElementById('event-table-div').classList.add('active')
-            $('table.event').DataTable().rows('#EV-'+id).remove().draw();
-            $('table.event').DataTable().page.len(current_event_page_lenght).draw();
-            $('table.event').DataTable().search(search_event_val).draw();
+            var tr = $('#'+id)
+            // $('#build-table-div').replaceWith(data.table_html);
             
-            $('table.event').DataTable().page(current_event_page).draw('page')
-            
+            $('table.build').DataTable().rows('#IN-'+id).remove().draw();
+            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+            $('table.build').DataTable().search(search_build_val).draw();
+           
+            $('table.build').DataTable().page(current_build_page).draw('page')
          }
 
          if(table == 3){
           
-            // $('#vapp-table-div').replaceWith(data.table_html);
-             document.getElementById('vapp-table-div').classList.add('show')
-             document.getElementById('vapp-table-div').classList.add('active')
-             $('table.vapp').DataTable().rows('#VA-'+id).remove().draw();
-             $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
-             $('table.vapp').DataTable().search(search_vapp_val).draw();
-             $('table.vapp').DataTable().page(current_vapp_page).draw('page')
+          var tr = $('#'+id)
+            // $('#build-table-div').replaceWith(data.table_html);
+            
+            $('table.build').DataTable().rows('#AP-'+id).remove().draw();
+            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+            $('table.build').DataTable().search(search_build_val).draw();
+           
+            $('table.build').DataTable().page(current_build_page).draw('page')
              
           }
 
@@ -2022,12 +1976,12 @@ minBuildDate = new DateTime($('#build-min'), {
      
       
       //event last
-      event_last_data_id=data.event_last_row_data_id
+      event_last_data_id=data.invited_last_row_data_id
       
 
       //vapp last
 
-      vapp_last_data_id=data.vapp_last_row_data_id
+      vapp_last_data_id=data.applicant_last_row_data_id
 
           $('table.display').DataTable();
      
@@ -2223,7 +2177,7 @@ function update_front_page(table) {
     edit_build_id=0
     var req_build_profile=false
     
-    function edit_speakertable(id,firstname,lastname,companyname,designation,country,travel,outline,return_date_time,depature_date_time,req_profile) {
+    function edit_speakertable(id,firstname,lastname,companyname,designation,country,req_profile) {
       edit_build_id=id
       req_build_profile=req_profile
       document.getElementById('edit-speaker-first-name').value=firstname
@@ -2231,14 +2185,12 @@ function update_front_page(table) {
       document.getElementById('edit-speaker-comp').value=companyname
       document.getElementById('edit-speaker-designation').value=designation
       document.getElementById('edit-speaker-country').value=country
-      document.getElementById('edit-speaker-traveling-from').value=travel
-      document.getElementById('edit-speaker-outline-talking').value=outline
 
-      console.log(depature_date_time,'-',return_date_time)
+      // document.getElementById('edit-speaker-outline-talking').value=outline
 
 
-       $('#edit-speaker-depature').val(new Date(depature_date_time).toISOString().slice(0,16))
-       $('#edit-speaker-return-date').val(new Date(return_date_time).toISOString().slice(0,16))
+      //  $('#edit-speaker-depature').val(new Date(depature_date_time).toISOString().slice(0,16))
+      //  $('#edit-speaker-return-date').val(new Date(return_date_time).toISOString().slice(0,16))
      
     }
 
@@ -2268,10 +2220,10 @@ function update_front_page(table) {
       companyname=document.getElementById('edit-speaker-comp').value
       designation=document.getElementById('edit-speaker-designation').value
       country=document.getElementById('edit-speaker-country').value
-      travel=document.getElementById('edit-speaker-traveling-from').value
-      outline=document.getElementById('edit-speaker-outline-talking').value
-      depature_date_time=$('#edit-speaker-depature').val()
-      return_date_time=$('#edit-speaker-return-date').val()
+      // travel=document.getElementById('edit-speaker-traveling-from').value
+  
+      // depature_date_time=$('#edit-speaker-depature').val()
+      // return_date_time=$('#edit-speaker-return-date').val()
      
       var current_build_page_lenght=$("select[name='build-table_length']").val();
 
@@ -2287,14 +2239,11 @@ function update_front_page(table) {
       m_data.append('companyname',companyname)
       m_data.append('designation',designation)
       m_data.append('country',country)
-      m_data.append('travel',travel)
-      m_data.append('outline',outline)
-      m_data.append('departure_date_time',depature_date_time)
-      m_data.append('retun_date_time',return_date_time)
+      
       m_data.append('csrfmiddlewaretoken','{{ csrf_token }}')
       $.ajax({
         type: "POST",
-        url: "{% url 'edit_submit_speaker_reg' %}",
+        url: "{% url 'edit_submit_applicant_reg' %}",
         data:m_data,
         processData:false,
         contentType: false,
@@ -2303,7 +2252,7 @@ function update_front_page(table) {
           
 
           $('#BuildModal').modal('hide');
-          $('#SP-'+edit_build_id).html(data.table_html)
+          $('#AP-'+edit_build_id).html(data.table_html)
           // $('#build-table-div').replaceWith(data.table_html);
           
           var table = $('#build-table').DataTable();
@@ -2313,7 +2262,7 @@ function update_front_page(table) {
           
           if (req_build_profile==true){
             
-            get_profile_details(1,edit_build_id)
+            get_profile_details(3,edit_build_id)
           }
           
       
@@ -3014,6 +2963,8 @@ function ExportToExcel_vapp(type, fn, dl) {
 
           
           if (table==1){
+
+
             document.getElementById('profile-verf-div').style.display='none'
             document.getElementById('id-data-div').style.display='none'
             document.getElementById('id-photo-hover-div').style.display='block'
@@ -3060,104 +3011,52 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('profile-des').innerHTML=data.des
           }
 
-          }
+
+
+        }
 
           if (table==2){
-          document.getElementById('profile-verf-div').style.display='block'
-          document.getElementById('id-photo-hover-div').style.display='block'
-          document.getElementById('id-data-div').style.display='block'
+
+
+            document.getElementById('profile-verf-div').style.display='none'
+            document.getElementById('id-data-div').style.display='none'
+            document.getElementById('id-photo-hover-div').style.display='block'
           document.getElementById('profile-user-name').innerHTML=data.name
           document.getElementById('profile-email').innerHTML=data.email
           document.getElementById('profile-mobile').innerHTML=data.mobile
           document.getElementById('profile-comp').innerHTML=data.comp
           document.getElementById('profile-created').innerHTML=data.created_at
-          document.getElementById('id-data').innerHTML=data.id_proof
-          document.getElementById('profile-nation').innerHTML=data.nationality
-          document.getElementById('download-id-proof').href=data.id_proof_img
           document.getElementById('vehicle-num').style.display='none'
-          document.getElementById('profile-dp').src=data.dp
-          document.getElementById('profile-exp-date').innerHTML=data.exp_date
-
-          document.getElementById('id-photo-img').src=data.id_proof_img
-          // document.getElementById('id-photo-img-hover').src=data.id_proof_img
-          
-          document.getElementById('vapp-type-div').style.display='none'
+          document.getElementById('profile-dp').src=data.profile_image
+          document.getElementById('id-photo-img-back-div').style.display='none'
           document.getElementById('mulkiya-img-back-div').style.display='none'
+          document.getElementById('vapp-type-div').style.display='none'
+          document.getElementById('id-photo-img').src=data.passport
+          document.getElementById('download-id-proof').href=data.passport
           document.getElementById('profile-next-btn').onclick=function(){ next_profile(2,data.id) }
           document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(2,data.id) }
-          document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,2,data.id); update_status_profile(data.status,data.remark); }
-          document.getElementById("profile-reject-btn").onclick=function() {   send_rejection_mail([data.id],2,false)  }
-        
-          document.getElementById('profile_edit-event').style.display='block'
-          document.getElementById('profile_edit-build').style.display='none'
-          document.getElementById('profile_edit-vapp').style.display='none'
-          document.getElementById('profile_edit-event').onclick=function(){edit_eventtable(data.id,data.firstname,data.lastname,data.comp,data.des_id,data.other_des,data.exp_date,true)}
-         
-          if(Number(data.id_cat) == 1){
-            document.getElementById('id-proof-lable').innerHTML='Emirates ID'
-            document.getElementById('id-image-lable').innerHTML='Emirates ID Front'
+           document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,2,data.id); update_status_profile(data.status,data.remark); }
+           document.getElementById("profile-reject-btn").onclick=function() {  send_rejection_mail([data.id],2,false)  }
 
-            document.getElementById('id-photo-img-back-div').style.display='block'
-            document.getElementById('id-photo-img-back').src=data.id_proof_back
-            // document.getElementById('id-photo-img-back-hover').src=data.id_proof_back
-            document.getElementById('download-id-back-proof').href=data.id_proof_back
+            document.getElementById('profile-country').innerHTML=data.country
 
-          }
-          else{
-            document.getElementById('id-proof-lable').innerHTML='Passport'
-            document.getElementById('id-image-lable').innerHTML='Passport'
-            document.getElementById('id-photo-img-back-div').style.display='none'
-          }
 
-          if(data.des_id == 0){id-data-div
-            document.getElementById('profile-des').innerHTML=data.other_des
-          }
-          else{
-            document.getElementById('profile-des').innerHTML=data.des
-          }
-
-          }
-
-          if (table==3){
-          document.getElementById('id-photo-hover-div').style.display='block'
-          document.getElementById('profile-verf-div').style.display='none'
-          document.getElementById('id-data-div').style.display='none'
-          document.getElementById('profile-user-name').innerHTML=data.name
-          document.getElementById('profile-email').innerHTML=data.email
-          document.getElementById('profile-mobile').innerHTML=data.mobile
-          document.getElementById('profile-comp').innerHTML=data.comp
-          document.getElementById('vapp-type-div').style.display='block'
-          document.getElementById('type-lable').innerHTML=data.type
-          document.getElementById('profile-created').innerHTML=data.created_at
-          document.getElementById('vehicle-num').style.display='block'
-          document.getElementById('profile-vehicle-num').innerHTML=data.vehicle_num
-          document.getElementById('profile-dp').src='https://img.icons8.com/bubbles/100/000000/user.png'
-          document.getElementById('id-image-lable').innerHTML='Emirates ID Front'
-          document.getElementById('mulkiya-img').src=data.mulkya
-          // document.getElementById('mulkiya-img-hover').src=data.mulkya
-
-          document.getElementById('download-id-mulkya-proof').href=data.mulkya
-          document.getElementById('id-photo-img').src=data.id_proof
-          // document.getElementById('id-photo-img-hover').src=data.id_proof
-          document.getElementById('download-id-proof').href=data.id_proof
-          
-          document.getElementById('id-photo-img-back').src=data.id_proof_back
-          // document.getElementById('id-photo-img-back-hover').src=data.id_proof_back
-          document.getElementById('download-id-back-proof').href=data.id_proof_back
-          document.getElementById('profile-next-btn').onclick=function(){ next_profile(3,data.id) }
-          document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(3,data.id) }
-          document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,3,data.id); }
-          document.getElementById("profile-reject-btn").onclick=function() {   send_rejection_mail([data.id],3  ,false)  }
-           
-            document.getElementById('mulkiya-img-back-div').style.display='block'
-
-            document.getElementById('profile_edit-build').style.display='none'
+           document.getElementById('profile_edit-build').style.display='block'
            document.getElementById('profile_edit-event').style.display='none'
-           document.getElementById('profile_edit-vapp').style.display='block'
-           console.log(data.id,data.firstname,data.lastname,data.vehicle_num,data.mobile,data.comp,data.type,data.exp_date,data.approved_date)
-           document.getElementById('profile_edit-vapp').onclick=function(){  edit_vapptable(data.id,data.firstname,data.lastname,data.vehicle_num,data.mobile,data.comp,data.category_id,data.exp_date,data.approved_date,true)}
+           document.getElementById('profile_edit-vapp').style.display='none'
+           document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,true)}
            
-            
+           if (data.ksa_visa == 0){
+            document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-xmark text-danger font-weight-bold"></i>`
+           }
+           else{
+            document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-check text-success font-weight-bold"></i>`
+
+           }
+
+           
+         
+          
           if(data.des_id == 0){
             document.getElementById('profile-des').innerHTML=data.other_des
           }
@@ -3165,10 +3064,66 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('profile-des').innerHTML=data.des
           }
 
+        }
 
+
+          if (table==3){
+
+
+            document.getElementById('profile-verf-div').style.display='none'
+            document.getElementById('id-data-div').style.display='none'
+            document.getElementById('id-photo-hover-div').style.display='block'
+            document.getElementById('profile-user-name').innerHTML=data.name
+            document.getElementById('profile-email').innerHTML=data.email
+            document.getElementById('profile-mobile').innerHTML=data.mobile
+            document.getElementById('profile-comp').innerHTML=data.comp
+            document.getElementById('profile-created').innerHTML=data.created_at
+            document.getElementById('vehicle-num').style.display='none'
+            document.getElementById('profile-dp').src=data.profile_image
+            document.getElementById('id-photo-img-back-div').style.display='none'
+            document.getElementById('mulkiya-img-back-div').style.display='none'
+            document.getElementById('vapp-type-div').style.display='none'
+            document.getElementById('id-photo-img').src=data.passport
+            document.getElementById('download-id-proof').href=data.passport
+            document.getElementById('profile-next-btn').onclick=function(){ next_profile(3,data.id) }
+            document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(3,data.id) }
+            document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,3,data.id); update_status_profile(data.status,data.remark); }
+            document.getElementById("profile-reject-btn").onclick=function() {  send_rejection_mail([data.id],3,false)  }
+
+            document.getElementById('profile-country').innerHTML=data.country
+
+
+            document.getElementById('profile_edit-build').style.display='block'
+            document.getElementById('profile_edit-event').style.display='none'
+            document.getElementById('profile_edit-vapp').style.display='none'
+            document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,true)}
+
+            if (data.ksa_visa == 0){
+            document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-xmark text-danger font-weight-bold"></i>`
+            }
+            else{
+            document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-check text-success font-weight-bold"></i>`
+
+            }
+
+            if (data.pre_attand==1){
+            document.getElementById('reason-for-attend-div').style.display='block'
+            $('#profile-reason-attend').val(data.reason_attend)
           
+          }
+           else{
+            document.getElementById('reason-for-attend-div').style.display='none'
+           }
 
-        } 
+
+            if(data.des_id == 0){
+            document.getElementById('profile-des').innerHTML=data.other_des
+            }
+            else{
+            document.getElementById('profile-des').innerHTML=data.des
+            }
+
+            }
         }
       });
       
@@ -3221,45 +3176,46 @@ function ExportToExcel_vapp(type, fn, dl) {
        
       }
       if (table ==2 ){
-        var event_array=$("[id='event-uid'] .uid")
-        qid='EVP'+String(id)
-       
-        for (let i = 0; i < event_array.length; i++) {
-         
-          if (String(event_array[i].innerHTML)==qid){
-              if (event_array[i+1]!=null){
-                next_id=event_array[i+1].innerHTML.substring(3)
-                console.log(next_id)
-                get_profile_details(2,next_id) 
-              }
-              else{
-                document.getElementById('profile-next-btn').style.display='none'
-              }
-              
-              break;
-          }
-         
-        }
-       
-      }
-      if (table ==3 ){
-        var vapp_array=$("[id='vapp-uid'] .uid")
-        qid='VAP'+String(id)
+        var build_array=$("[id='build-uid'] .uid")
+        qid='INV'+String(id)
 
-        for (let i = 0; i < vapp_array.length; i++) {
+        for (let i = 0; i < build_array.length; i++) {
           
-          if (String(vapp_array[i].innerHTML)==qid){
-            if (vapp_array[i+1]!=null){
-              next_id=vapp_array[i+1].innerHTML.substring(3)
-              get_profile_details(3,next_id) 
-              
+          if (String(build_array[i].innerHTML)==qid){
+            if (build_array[i+1]!=null){
+              next_id=build_array[i+1].innerHTML.substring(3)
+              get_profile_details(2,next_id) 
             }
             else{
               document.getElementById('profile-next-btn').style.display='none'
             }
             break;
+           
           }
-         
+        
+        
+        }
+       
+      }
+      if (table ==3 ){
+        var build_array=$("[id='build-uid'] .uid")
+        qid='APL'+String(id)
+
+        for (let i = 0; i < build_array.length; i++) {
+          
+          if (String(build_array[i].innerHTML)==qid){
+            if (build_array[i+1]!=null){
+              next_id=build_array[i+1].innerHTML.substring(3)
+              get_profile_details(3,next_id) 
+            }
+            else{
+              document.getElementById('profile-next-btn').style.display='none'
+            }
+            break;
+           
+          }
+        
+        
         }
        
       }
@@ -3292,45 +3248,46 @@ if (table ==1 ){
  
 }
 if (table ==2 ){
-  var event_array=$("[id='event-uid'] .uid")
-  qid='EVP'+String(id)
- 
-  for (let i = 0; i < event_array.length; i++) {
-   
-    if (String(event_array[i].innerHTML)==qid){
-        if (event_array[i-1]!=null){
-          prs_id=event_array[i-1].innerHTML.substring(3)
-          
-          get_profile_details(2,prs_id) 
-        }
-        else{
-          document.getElementById('profile-prs-btn').style.display='none'
-        }
-        
-        break;
-    }
-   
-  }
- 
-}
-if (table ==3 ){
-  var vapp_array=$("[id='vapp-uid'] .uid")
-  qid='VAP'+String(id)
+  var build_array=$("[id='build-uid'] .uid")
+  qid='INV'+String(id)
 
-  for (let i = 0; i < vapp_array.length; i++) {
+  for (let i = 0; i < build_array.length; i++) {
     
-    if (String(vapp_array[i].innerHTML)==qid){
-      if (vapp_array[i-1]!=null){
-        prs_id=vapp_array[i-1].innerHTML.substring(3)
-        get_profile_details(3,prs_id) 
-        
+    if (String(build_array[i].innerHTML)==qid){
+      if (build_array[i-1]!=null){
+        prs_id=build_array[i-1].innerHTML.substring(3)
+        get_profile_details(2,prs_id) 
       }
       else{
         document.getElementById('profile-prs-btn').style.display='none'
       }
       break;
+     
     }
-   
+  
+  
+  }
+ 
+}
+if (table ==3 ){
+  var build_array=$("[id='build-uid'] .uid")
+  qid='APL'+String(id)
+
+  for (let i = 0; i < build_array.length; i++) {
+    
+    if (String(build_array[i].innerHTML)==qid){
+      if (build_array[i-1]!=null){
+        prs_id=build_array[i-1].innerHTML.substring(3)
+        get_profile_details(3,prs_id) 
+      }
+      else{
+        document.getElementById('profile-prs-btn').style.display='none'
+      }
+      break;
+     
+    }
+  
+  
   }
  
 }
@@ -3710,10 +3667,10 @@ function load_new_data() {
   
       var last_row_id=0
 
-build_last_row_id=build_last_data_id
+      build_last_row_id=build_last_data_id
 
 
-var current_build_page=$('table.build').DataTable().page.info().page
+      var current_build_page=$('table.build').DataTable().page.info().page
 
 
       var search_build_val=$('#build-table_filter input').val();
@@ -3725,7 +3682,7 @@ var current_build_page=$('table.build').DataTable().page.info().page
 $.ajax({
 type: "GET",
 url: "{% url 'get_new_data' %}",
-data:{build_last_row_id:build_last_row_id,table:1,csrfmiddlewaretoken:'{{ csrf_token }}'},
+data:{build_last_row_id:build_last_row_id,table:2,csrfmiddlewaretoken:'{{ csrf_token }}'},
 dataType: "json",
 success: function (data) {
   // clearInterval(interval);
@@ -3734,24 +3691,20 @@ success: function (data) {
   for (let u = 0; u < data.online_list.length; u++) {
     online_list_html+=`<div class="sidebar-bg-options"><div class="img-ss rounded-circle bg-success border mr-3"></div>${data.online_list[u]}</div>`
     
-    
-    
   }
   $('#online-list').html(online_list_html)
  
-  console.log(data.new_html.build_updated_id)
-  console.log(data.new_html.build_html)
+
   if (data.new_data.build_new_data==true){
 
-            for (let i = 0; i < data.new_html.build_html.length; i++) {
-              console.log(data.new_html.build_updated_id[i])
-              console.log($('#SP-'+data.new_html.build_updated_id[i]))
-              
-              $('table.build').DataTable().row('#SP-'+data.new_html.build_updated_id[i]).remove().draw()
-              $('table.build').DataTable().order([2,'desc']).row.add($(data.new_html.build_html[i])).draw(false)
+      for (let i = 0; i < data.new_html.build_html.length; i++) {
+   
+        
+        $('table.build').DataTable().row('#IN-'+data.new_html.build_updated_id[i]).remove().draw()
+        $('table.build').DataTable().order([2,'desc']).row.add($(data.new_html.build_html[i])).draw(false)
 
-              
-            }
+        
+      }
             
            
           //$('#build-table tbody').prepend(data.new_html)

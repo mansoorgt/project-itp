@@ -38,6 +38,7 @@ urlpatterns = [
     path('del_reg',views.Tablepage.del_registration,name='del_reg'),
     path('edit_submit_speaker_reg',views.Tablepage.edit_submit_speaker_reg,name='edit_submit_speaker_reg'),
     path('edit_submit_invivted_reg',views.Tablepage.edit_submit_invited_reg,name='edit_submit_invivted_reg'),
+    path('edit_submit_applicant_reg',views.Tablepage.edit_submit_applicant_reg,name='edit_submit_applicant_reg'),
     path('edit_submit_eventtable',views.Tablepage.edit_submit_event_pass,name='edit_submit_eventtable'),
     path('edit_submit_vapptable',views.Tablepage.edit_submit_vapp_pass,name='edit_submit_vapptable'),
     path('upate_bulk_status',views.Tablepage.update_bulk_status,name='upate_bulk_status'),
@@ -66,6 +67,7 @@ urlpatterns = [
     path('get_new_data',views.Tablepage.get_new_data,name='get_new_data'),
     path('speakers_registrations_page',views.Tablepage.Speakers_reg_page,name='speaker_registrations_page'),
     path('invited_registrations_page',views.Tablepage.invited_reg_page,name='invited_registrations_page'),
+    path('applicant_registrations_page',views.Tablepage.applicant_reg_page,name='applicant_registrations_page'),
     # path('event_pass_page',views.Tablepage.event_table_page,name='event_pass_page'),
     # path('vapp_pass_page',views.Tablepage.vapp_table_page,name='vapp_pass_page'),
     

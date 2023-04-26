@@ -87,8 +87,45 @@ function submitApplicantForm(e) {
 
   e.preventDefault()
   var m_form=new FormData($('#applicant-reg-form')[0])
+  m_form.append('csrfmiddlewaretoken',csrftoken)
+
+  var intrested_list=[]
+  $("input:checkbox[name=type]:checked").each(function(){
+    intrested_list.push($(this).val());
+  });
+
   inspectForm(m_form)
-  
+  $.ajax({
+      type: "POST",
+      url: "submitApplicantform",
+      data: m_form,
+      processData: false,
+      contentType: false,
+      dataType: "json",
+      success: function (res) {
+
+        // fetch('send_applicant_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
+        // body:JSON.stringify({'reg_id':res.reg_id})})
+        send_mail('send_applicant_reg_success_mail',res.reg_id)
+        
+          Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: 'Your registration has been submited',
+              showConfirmButton: false,
+              timer: 1500
+
+            })
+
+            setTimeout(() => {
+              $('#applicant-reg-form')[0].reset()
+              window.location.href=window.location.origin
+
+            }, 2000);
+          
+      }
+  });
+
 }
 
 //debug purpose only not use in production 
@@ -100,6 +137,18 @@ function inspectForm(m_form) {
 
 }
 
+function send_mail(url,reg_id) {
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {reg_id:reg_id,'csrfmiddlewaretoken':csrftoken},
+    dataType: "json",
+    success: function (response) {
+      
+    }
+  });
+  
+}
 /// extras
 
 $(document).ready(function () {

@@ -7,7 +7,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-from django.conf import settings
+from project_Itp import settings
 from django.utils.html import strip_tags
 from django.core import mail
 def viewRegistraionPge(request):
@@ -91,6 +91,9 @@ class ReginstraionForms():
 
         return JsonResponse({'reg_id':obj.id})
     
+    
+    
+    
     def send_invited_registration_succcess_mail(request):
         
         data=json.loads(request.body)
@@ -117,4 +120,48 @@ class ReginstraionForms():
     #aplicant form
     def ApplicantDelegates(request):
         return render(request,'applicant-delegates.html') 
+    
+    def submitApplicateDelegates(request):
+        first_name=request.POST.get('first-name')
+        last_name=request.POST.get('last-name')
+        designation=request.POST.get('designation')
+        company=request.POST.get('company')
+        email=request.POST.get('email')
+        mobile=request.POST.get('mobile')
+        country=request.POST.get('country')
+        passport_copy=request.FILES.get('passport-copy')
+        photo_upload=request.FILES.get('photo-upload')
+        ksa_visa=request.POST.get('ksa-visa')
+        attended_pre=request.POST.get('attend')
+        reason_to_attend=request.POST.get('reason-attend')
+        
+        obj=ApplicantRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,
+                                                 email=email,mobile=mobile,country=country,ksa_visa=ksa_visa,pre_attand=attended_pre,reason_to_attend=reason_to_attend,
+                                                 passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)
+        return JsonResponse({'reg_id':obj.id})
+    
+    def send_applicant_registration_succcess_mail(request):
+        print('commed')
+       # data=json.loads(request.body)
+        #id=data['reg_id']
+        id=request.POST.get('reg_id')
+        obj=ApplicantRegistrations.objects.get(id=id)
+        
+       
+        try:
+            validate_email(obj.email)
+        except ValidationError as e:
+            print("bad email, details:", e)
+        else:
+            
+            html_contect=render_to_string("email/invited_reg_success.html")
+            email_from = settings.EMAIL_HOST_USER
+            subject = 'Your applicant registration has been submited'
+
+            mail.send_mail(subject, strip_tags(html_contect), from_email=email_from,recipient_list=[obj.email], html_message=html_contect,fail_silently=False)
+    
+           
+            print('Succes mail sended')
+        return JsonResponse({})
+    
     

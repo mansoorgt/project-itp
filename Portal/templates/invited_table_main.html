@@ -317,7 +317,7 @@ p {
               <!-- <a class="dropdown-item" href="{% url 'tables' %}">NEW REGISTRATIONS</a> -->
               <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}">SPEAKER REGISTRATIONS</a>
               <a class="dropdown-item" href="{% url 'invited_registrations_page' %}" >INVITED DELEGATES</a>
-               <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}" style="pointer-events: none; cursor: default;">APPLICANT DELEGATES</a>
+               <a class="dropdown-item" href="{% url 'applicant_registrations_page' %}">APPLICANT DELEGATES</a>
               
             </div>
           </div>
@@ -1946,26 +1946,26 @@ minBuildDate = new DateTime($('#build-min'), {
           }
           if(table == 2){
             
-          //  $('#event-table-div').replaceWith(data.table_html);
-            document.getElementById('event-table-div').classList.add('show')
-            document.getElementById('event-table-div').classList.add('active')
-            $('table.event').DataTable().rows('#EV-'+id).remove().draw();
-            $('table.event').DataTable().page.len(current_event_page_lenght).draw();
-            $('table.event').DataTable().search(search_event_val).draw();
+            var tr = $('#'+id)
+            // $('#build-table-div').replaceWith(data.table_html);
             
-            $('table.event').DataTable().page(current_event_page).draw('page')
-            
+            $('table.build').DataTable().rows('#IN-'+id).remove().draw();
+            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+            $('table.build').DataTable().search(search_build_val).draw();
+           
+            $('table.build').DataTable().page(current_build_page).draw('page')
          }
 
          if(table == 3){
           
-            // $('#vapp-table-div').replaceWith(data.table_html);
-             document.getElementById('vapp-table-div').classList.add('show')
-             document.getElementById('vapp-table-div').classList.add('active')
-             $('table.vapp').DataTable().rows('#VA-'+id).remove().draw();
-             $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
-             $('table.vapp').DataTable().search(search_vapp_val).draw();
-             $('table.vapp').DataTable().page(current_vapp_page).draw('page')
+          var tr = $('#'+id)
+            // $('#build-table-div').replaceWith(data.table_html);
+            
+            $('table.build').DataTable().rows('#AP-'+id).remove().draw();
+            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+            $('table.build').DataTable().search(search_build_val).draw();
+           
+            $('table.build').DataTable().page(current_build_page).draw('page')
              
           }
 

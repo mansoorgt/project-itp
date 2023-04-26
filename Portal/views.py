@@ -380,6 +380,12 @@ class Tablepage():
         objs=InvitedRegistrations.objects.filter(deleted=0).annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
         data={'datas':objs,'username':request.user.username}
         return render(request,'invited_table_main.html',data)
+    @login_required
+    def applicant_reg_page(request):
+        objs=ApplicantRegistrations.objects.filter(deleted=0).annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
+        data={'datas':objs,'username':request.user.username}
+        return render(request,'applicant_table_main.html',data)
+    
     
     def change_category_vapp(request):
         id=request.POST.get('id')
@@ -451,46 +457,28 @@ class Tablepage():
         
         if int(table)==3:
             
-            
             if collected != 'true':
-                obj=Vapp_table.objects.get(id=id)
+                obj=ApplicantRegistrations.objects.get(id=id)
                 obj.status=status
-                obj.updated_at=timezone.now()
                 if status == '1':
                     obj.approved_by=user_DB.objects.get(username=request.user.username).id
+                obj.updated_at=timezone.now()
                 obj.save()
             else:
-                obj=Vapp_table.objects.get(id=id)
+                obj=ApplicantRegistrations.objects.get(id=id)
                 obj.collected=status
                 obj.updated_at=timezone.now()
                 obj.save()
                 
-            # obj=Vapp_table.objects.get(id=id)
-            # obj.status=status
-            # obj.updated_at=timezone.now()
-            # if status == '1':
-            #         print(status,'change')
-            #         obj.approved_date=datetime.date.today()
-            #         obj.exp_date=datetime.datetime.now()+datetime.timedelta(days=7)
-            
-
-            # vpp_table=[]
-            # for v in vapp_table_obj:
-            #     category=vapp_category.objects.get(id=v.category_id).category
-            #     vpp_table.append({'name':v.firstname+' '+v.lastname,'firstname':v.firstname,'lastname':v.lastname,'UID':v.UID,'id':v.id,'category':category,'comp':v.company_name,'exp_date':v.exp_date,'approved_date':v.approved_date,'vehicle_number':v.vehicle_number,'status':v.status,'mobile':v.mobile_number,'print_status':v.print_status,'print_count':v.print_count,'category_id':v.category_id,'created_at':v.reg_created_at,'remark':v.remark})
-        
-            # data={'vpp_table':vpp_table,'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])}
-            # html=render_to_string('tables/vapp_table.html',data)     
-            obj=vapp_table_obj.get(id=id)
-            category=vapp_category.objects.get(id=obj.category_id).category
             try:
                 approved_by=user_DB.objects.get(id=obj.approved_by).username
             except:
                 approved_by='not-apporved'
-            data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected,'lastname':obj.lastname,'UID':obj.UID,'id':obj.id,'category':category,'comp':obj.company_name,'exp_date':obj.exp_date,'approved_date':obj.approved_date,'vehicle_number':obj.vehicle_number,'status':obj.status,'mobile':obj.mobile_number,'print_status':obj.print_status,'print_count':obj.print_count,'category_id':obj.category_id,'created_at':obj.reg_created_at,'remark':obj.remark
-              ,'categorys':vapp_category.objects.all(),'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])
-              }
-            html=render_to_string('tables/table rows/vapp_table_row.html',data)    
+            
+            data={'sp':ApplicantRegistrations.objects.get(id=obj.id),'approved_by_name':approved_by}
+            # html=render_to_string('tables/build_table.html',data) 
+           
+            html=render_to_string('tables/table rows/applicant_table_row.html',data)    
         
         return JsonResponse({'table_html':html})
     #update cheked box 
@@ -893,10 +881,11 @@ class Tablepage():
             
         
         if int(table)==2:
+           
+            obj=InvitedRegistrations.objects.get(id=id)
             
-            obj=Eventpass_table.objects.get(id=id)
-            
-            obj.delete()
+            obj.deleted=1
+            obj.save()
         
             # event_table=[]
             # for e in event_table_obj:
@@ -912,10 +901,11 @@ class Tablepage():
             # html=render_to_string('tables/table rows/event_table_row.html',{'data':m_data})    
         
         if int(table)==3:
-            
-            obj=Vapp_table.objects.get(id=id)
            
-            obj.delete()
+            obj=ApplicantRegistrations.objects.get(id=id)
+            
+            obj.deleted=1
+            obj.save()
         
             # vpp_table=[]
             # for v in vapp_table_obj:
@@ -936,16 +926,16 @@ class Tablepage():
             build_last_data_id=0
             
         try:
-            event_last_data_id=Eventpass_table.objects.last().id
+            invited_last_data_id=Eventpass_table.objects.last().id
         except:
-            event_last_data_id=0
+            invited_last_data_id=0
             
         try:
-            vapp_last_data_id=Vapp_table.objects.last().id
+            applicant_last_data_id=Vapp_table.objects.last().id
         except:
-            vapp_last_data_id=0
+            applicant_last_data_id=0
             
-        return JsonResponse({'build_last_row_data_id':build_last_data_id,'event_last_row_data_id':event_last_data_id,'vapp_last_row_data_id':vapp_last_data_id,})  
+        return JsonResponse({'build_last_row_data_id':build_last_data_id,'invited_last_row_data_id':invited_last_data_id,'applicant_last_row_data_id':applicant_last_data_id,})  
         
         
     #edit submit      
@@ -1035,6 +1025,47 @@ class Tablepage():
             approved_by='not-apporved'
         data={'sp':obj,'approved_by_name':approved_by}
         html=render_to_string('tables/table rows/invited_table_row.html',data)
+        return JsonResponse({'table_html':html})
+    
+    def edit_submit_applicant_reg(request):
+        id=request.POST.get('id')
+        firstname=request.POST.get('firstname')
+        lastname=request.POST.get('lastname')
+        company=request.POST.get('companyname')
+        designation=request.POST.get('designation')
+        country=request.POST.get('country')
+     
+        
+        
+        obj=ApplicantRegistrations.objects.get(id=id)
+        obj.first_name=firstname
+        obj.last_name=lastname
+        obj.company=company
+        obj.designation=designation
+        obj.country=country
+        
+        
+        obj.updated_at=timezone.now()
+            
+        obj.save()
+        
+            
+        
+        # build_table=[]
+        # for b in build_table_obj:
+        #     designation=build_designation.objects.get(id=b.designation_id).designation
+        #     build_table.append({'name':b.firstname+' '+b.lastname,'firstname':b.firstname,'lastname':b.lastname,'des_id':b.designation_id,'id':b.id,'UID':b.UID,'designation':designation,'comp':b.company_name,'exp_date':b.exp_date,'status':b.status,'print_status':b.print_status,'print_count':b.print_count,'other_des':b.other_designation,'created_at':b.reg_created_at,'remark':b.remark})
+        
+        # data={'build_table':build_table,'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'user_id':int(request.session['user_id'])}
+        # html=render_to_string('tables/build_table.html',data)
+        obj=ApplicantRegistrations.objects.get(id=id)
+        # designation=build_designation.objects.get(id=obj.designation_id).designation
+        try:
+            approved_by=user_DB.objects.get(id=obj.approved_by).username
+        except:
+            approved_by='not-apporved'
+        data={'sp':obj,'approved_by_name':approved_by}
+        html=render_to_string('tables/table rows/applicant_table_row.html',data)
         return JsonResponse({'table_html':html})
     
     def edit_bulk(request):
@@ -1344,33 +1375,9 @@ class Tablepage():
             data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'country':obj.country,'ksa_visa':obj.ksa_visa}
         
         if int(table)==3:
-            obj=Vapp_table.objects.get(id=id)
-            
-            if obj.mulkya:
-                mulkya=obj.mulkya.url
-                
-            else:
-                mulkya='https://t4.ftcdn.net/jpg/04/00/24/31/360_F_400243185_BOxON3h9avMUX10RsDkt3pJ8iQx72kS3.jpg'
-            
-            if obj.emirates_id:
-                id_proof=obj.emirates_id.url
-                
-            else:
-                id_proof='https://t4.ftcdn.net/jpg/04/00/24/31/360_F_400243185_BOxON3h9avMUX10RsDkt3pJ8iQx72kS3.jpg'
-                
-            if obj.emirates_id_back:
-                id_proof_back=obj.emirates_id_back.url
-                
-            else:
-                id_proof_back='https://t4.ftcdn.net/jpg/04/00/24/31/360_F_400243185_BOxON3h9avMUX10RsDkt3pJ8iQx72kS3.jpg'
-                
-            if obj.vehicle_type_id:
-                vapp_type=vapp_vehicle_type.objects.get(id=obj.vehicle_type_id).type
-            else:
-                vapp_type='Not-selected'
-                
-
-            data={'id':obj.id,'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'lastname':obj.lastname,'exp_date':obj.exp_date,'approved_date':obj.approved_date,'uid':obj.UID,'id_proof_back':id_proof_back,'mulkya':mulkya,'id_proof':id_proof,'mobile':obj.mobile_number,'email':obj.email,'created_at':obj.reg_created_at.date(),'comp':obj.company_name,'des':vapp_category.objects.get(id=obj.category_id).category,'category_id':obj.category_id,'vehicle_num':obj.vehicle_number,'status':obj.status,'remark':obj.remark,'type':vapp_type}
+            obj=ApplicantRegistrations.objects.get(id=id)
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'pre_attand':obj.pre_attand,'reason_attend':obj.reason_to_attend}
+         
         return JsonResponse(data)
 
     def get_img_urls(request):
@@ -1421,16 +1428,15 @@ class Tablepage():
                 obj.save()
                 data={'uid':'SPK-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker','reason':reason}
             if int(table)==2:
-                obj=Eventpass_table.objects.get(id=i)
+                obj=InvitedRegistrations.objects.get(id=i)
                 obj.remark=reason
                 obj.save()
-                data={'uid':obj.UID,'mobile':obj.mobile,'name':obj.firstname+' '+obj.lastname,'reg':'Event Pass','reason':reason}
+                data={'uid':'INV-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'invited','reason':reason}
             if int(table)==3:
-                print(i)
-                obj=Vapp_table.objects.get(id=i)
+                obj=ApplicantRegistrations.objects.get(id=i)
                 obj.remark=reason
                 obj.save()
-                data={'uid':obj.UID,'name':obj.firstname+' '+obj.lastname,'reg':'Vehicle Pass','reason':reason}    
+                data={'uid':'APL-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Applicant','reason':reason}   
             try:
                 validate_email(obj.email)
             except ValidationError as e:
@@ -1470,12 +1476,13 @@ class Tablepage():
 
                 data={'uid':'SPK-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}
             if int(table)==2:
-                obj=Eventpass_table.objects.get(id=i)
-                data={'uid':obj.UID,'mobile':obj.mobile,'name':obj.firstname+' '+obj.lastname,'reg':'Event Pass'}
+                obj=InvitedRegistrations.objects.get(id=i)
+
+                data={'uid':'INV-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}
             if int(table)==3:
-                print(i)
-                obj=Vapp_table.objects.get(id=i)
-                data={'uid':obj.UID,'name':obj.firstname+' '+obj.lastname,'mobile':obj.mobile_number,'reg':'Vehicle Pass'}    
+                obj=ApplicantRegistrations.objects.get(id=i)
+                
+                data={'uid':'APL-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}   
             try:
                 validate_email(obj.email)
             except ValidationError as e:
