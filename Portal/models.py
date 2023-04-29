@@ -2,7 +2,7 @@
 import os
 from unicodedata import category, name
 from django.db import models
-
+import uuid
 # Create your models here.
 
 
@@ -122,5 +122,21 @@ class vapp_category(models.Model):
     category=models.CharField(max_length=200,null=True,blank=False)
     class Meta:
         db_table='webapp_vapp_category'
-#permisisons
-   
+        
+import secrets
+import string
+def generate_code():
+    alphabet = '123456789'
+    code = ''.join(secrets.choice(alphabet) for i in range(6))
+    if Unique_reg_code.objects.filter(code=code).exists():
+        
+        return generate_code
+      
+    return code
+
+class Unique_reg_code(models.Model):
+    
+    code = models.CharField(max_length=6, unique=True, default=generate_code)
+    used=models.IntegerField(null=True,default=0)
+    class Meta:
+        db_table='app_unique_reg_code'

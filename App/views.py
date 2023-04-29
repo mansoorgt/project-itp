@@ -10,6 +10,7 @@ from django.core.validators import validate_email
 from project_Itp import settings
 from django.utils.html import strip_tags
 from django.core import mail
+from Portal.models import Unique_reg_code
 def viewRegistraionPge(request):
     return render(request,'registration.html')
 
@@ -65,8 +66,11 @@ class ReginstraionForms():
     
     #invited applicant form
     def InvitedDeligates(request):
-        return render(request,'invited-delegates.html')
-    
+        
+        m_occupations=occupations.objects.filter(status=1)
+        data={'occupations':m_occupations}
+        return render(request,'invited-delegates.html',data)
+
     def submitInvitedDeligateForm(request):
     
         first_name=request.POST.get('first-name')
@@ -81,17 +85,22 @@ class ReginstraionForms():
         # depature_date_time=request.POST.get('depature-date-time')
        
         # outline_talk=request.POST.get('outline-talk')
+        attended_pre=request.POST.get('attend')
         passport_copy=request.FILES.get('passport-copy')
         photo_upload=request.FILES.get('photo-upload')
         ksa_visa=request.POST.get('ksa-visa')
-
-        obj=InvitedRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,
-                                                 email=email,mobile=mobile,country=country,ksa_visa=ksa_visa,
+        urc_code=request.POST.get('urc-code')
+        occupation=request.POST.get('occupation')
+        intrested=request.POST.get('intrested_in')
+        
+        obj=InvitedRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,urc_code=urc_code,
+                                                 email=email,mobile=mobile,country=country,ksa_visa=ksa_visa,occupation=occupation,intrested_in=intrested,pre_attend=attended_pre,
                                                  passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)
 
+        
+        Unique_reg_code.objects.filter(code=urc_code).update(used=1)
+        
         return JsonResponse({'reg_id':obj.id})
-    
-    
     
     
     def send_invited_registration_succcess_mail(request):
@@ -119,7 +128,9 @@ class ReginstraionForms():
     
     #aplicant form
     def ApplicantDelegates(request):
-        return render(request,'applicant-delegates.html') 
+        m_occupations=occupations.objects.filter(status=1)
+        data={'occupations':m_occupations}
+        return render(request,'applicant-delegates.html',data) 
     
     def submitApplicateDelegates(request):
         first_name=request.POST.get('first-name')
@@ -133,11 +144,15 @@ class ReginstraionForms():
         photo_upload=request.FILES.get('photo-upload')
         ksa_visa=request.POST.get('ksa-visa')
         attended_pre=request.POST.get('attend')
-        reason_to_attend=request.POST.get('reason-attend')
+        occupation=request.POST.get('occupation')
+        intrested=request.POST.get('intrested_in')
+        
         
         obj=ApplicantRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,
-                                                 email=email,mobile=mobile,country=country,ksa_visa=ksa_visa,pre_attand=attended_pre,reason_to_attend=reason_to_attend,
+                                                 email=email,mobile=mobile,country=country,ksa_visa=ksa_visa,pre_attend=attended_pre,occupation=occupation,intrested_in=intrested,
                                                  passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)
+    
+        
         return JsonResponse({'reg_id':obj.id})
     
     def send_applicant_registration_succcess_mail(request):
@@ -164,4 +179,25 @@ class ReginstraionForms():
             print('Succes mail sended')
         return JsonResponse({})
     
-    
+    def check_urc_valid(request):
+        data=json.loads(request.body)
+        #id=data['reg_id']
+        code =data['code']
+        
+        valid=False
+        reason=''
+        if Unique_reg_code.objects.filter(code=code).exists():
+            if (Unique_reg_code.objects.get(code=code).used == 0):
+                   valid=True
+            else:
+                valid=False
+                reason='This Code Already Used'
+        else:
+            valid=False
+            reason='This Code Not Exists'
+            
+        
+        
+        
+        return JsonResponse({'valid':valid,'reason':reason})
+        

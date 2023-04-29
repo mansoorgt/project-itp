@@ -1372,7 +1372,7 @@ class Tablepage():
         
         if int(table)==2:
             obj=InvitedRegistrations.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'country':obj.country,'ksa_visa':obj.ksa_visa}
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'intrested':obj.intrested_in}
         
         if int(table)==3:
             obj=ApplicantRegistrations.objects.get(id=id)
@@ -1841,7 +1841,30 @@ class Tablepage():
                 online_list.append(u.username)
                 
         return online_list     
-     
+    
+    
+    @login_required
+    def create_unique(request):
+       
+        data={}
+        new_count_html=''
+        if request.GET.get('count') != None:
+            count=request.GET.get('count')
+            
+            for i in range(0,int(count)):
+            
+                obj=Unique_reg_code.objects.create()
+            
+                new_count_html+='<tr> <td>'+obj.code+' </td> </tr>'
+                
+            data['new_codes_tr']=new_count_html
+
+            return JsonResponse(data)
+        else:
+            data['new_codes_tr']=new_count_html
+            return render(request,'exstends/unique_code_generator.html',data)
+       
+    
 class Report():
     def report_page(request):
         build_designations=build_designation.objects.all()

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {%csrf_token%}
+
+<input type="number" placeholder="how many" id="count-inp" name="count" required> 
+<button type="button" onclick="onSbmit()" >Submit</button>
+
+<button onclick="download_ecxel()">DOWNLOAD ECXEL</button>
+<p id="status"></p>
+<table id="myTable">
+    <thead>
+        <td>Code</td>
+    </thead>
+    <tbody id="new-counts">
+        <!-- {% for i in new_codes %}
+        <tr>
+            <td>{{i.ur_code}}</td>
+        </tr>
+        {% endfor %} -->
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+<script>
+
+function onSbmit() {
+    
+    if ($('#count-inp').val()==''){
+        $('#status').html('please enter count ')
+        return false
+    }
+    $('#status').html('Loading.........')
+    $.ajax({
+        type: "GET",
+        url: " {% url 'create_unique_page' %}",
+        data: {count:$('#count-inp').val()},
+        dataType: "json",
+        success: function (response) {
+
+            $('#count-inp').val(null)
+            console.log(document.getElementById('new-counts'))
+            document.getElementById('new-counts').innerHTML=response.new_codes_tr
+          //  $('#new-counts').html(response.new_codes_tr)
+
+          $('#status').html('Done :}')
+        }
+    });
+}
+
+function download_ecxel() {
+    type='xlsx'
+    var data = document.getElementById('myTable');
+ var excelFile = XLSX.utils.table_to_book(data, {sheet: "sheet1"});
+ XLSX.write(excelFile, { bookType: type, bookSST: true, type: 'base64' });
+ XLSX.writeFile(excelFile, 'URC-codes.' + type);
+}
+    
+</script>
+</body>
+</html>

@@ -26,12 +26,38 @@
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
     <link href="https://fonts.cdnfonts.com/css/acumin-pro" rel="stylesheet">
+    
+    
+        <style>
+  #video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+       opacity: 0.5;
+    }
+
+</style>
+    
+    
 </head>
-  <body>
-
-  </head>
+ 
   <body style="background-color: black; font-family: 'Acumin Pro', sans-serif !important;"">
-
+      <video autoplay muted loop id="video-background"  preload="auto" playsinline>
+         <source  src="../static/bg-mob.mp4" type="video/mp4">
+       <source src="../static/bg.webm" type="video/webm">
+       
+      <source src="../static/bg.webp" type="video/webp">
+   
+   
+      <!-- add more <source> elements for different video formats -->
+    </video>
+    
+    
+    
+    
     <!-- navbar section start -->
 
     <nav class="navbar navbar-expand-lg shadow navbar-light bg-transparent">
@@ -53,9 +79,19 @@
 <div  style="margin-top:-30px ;">
 
 <div class="row">
+
+  <div class="d-flex justify-content-center bg-main-pos-invited" style="">
+
+    <div class="col-md-6 col-sm-12 col-lg-6 bg-main-deligate" style="">
+  
+    </div>
+  
+  </div>
+
+
   <div class="col-md-12  d-flex justify-content-center">
     <div class="col-md-6">
-      <h1 class="mt-5 text-center text-white font-weight-bold glow">INVITED DELEGATES</h1>
+      <h1 class="mt-5 text-center text-white font-weight-bold glow">DELEGATE REGISTRATION</h1>
     </div>
   </div>
 </div>
@@ -67,11 +103,11 @@
 </div>
 
 <div class="container">
-<form onsubmit="submitApplicantForm(event)" id='applicant-reg-form' >
+<form onsubmit="submitApplicantForm(event)" id='applicant-reg-form'>
 
 <div class="row">
 <div class="d-flex justify-content-center">
-  <div class="col-md-5">
+  <div class="col-md-6" style="">
     <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="form-group mt-4">
@@ -103,6 +139,9 @@
 </div>
 
 
+
+
+
 <div class="col-lg-12 col-md-12 col-sm-12">
   <div class="form-group mt-4">
     <label for="exampleInputEmail1">Company</label>
@@ -110,6 +149,28 @@
 
     </div>
 </div>
+
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+  
+  <div class="form-group mt-4">
+    <label for="exampleInputEmail1">Select an Occupation</label>
+    <select  name="occupation" id="occupation" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+      <option value="" selected disabled>Select an Occupation</option>
+
+      {% for o in occupations %}
+      <option value="{{o.id}}">{{o.occupation_name}}</option>
+      {% endfor %}
+
+    </select>
+  </div>
+
+
+
+</div>
+
+
+
 </div>
 
 <div class="row">
@@ -194,6 +255,14 @@
 </div>
 
 
+
+
+
+
+
+
+
+
 <div class="row">
 
 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -216,11 +285,55 @@
 
 </div>
 
+    <div class="row">
 
+  <div class="col-lg-12 col-md-12 col-sm-12">
+  
+      <label class="mt-4" for="exampleInputEmail1">Areas of Interest</label>
+      <br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Interested" checked id="inlineCheckbox1" value="1">
+        <label class="form-check-label" for="inlineCheckbox1">Financing Esports & Gaming
+        </label>
+      </div>
+        <br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox2" value="2">
+        <label class="form-check-label" for="inlineCheckbox2">Health in Gaming & Esports
+        </label>
+      </div>
+      <br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox2" value="3">
+        <label class="form-check-label" for="inlineCheckbox2">Academics in Esports & Gaming
+
+        </label>
+      </div>
+      <br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox2" value="4">
+        <label class="form-check-label" for="inlineCheckbox2">Regulation of Esports & Gaming 
+
+        </label>
+      </div>
+      <br>
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox2" value="5">
+        <label class="form-check-label" for="inlineCheckbox2">Game Development
+
+        </label>
+      </div>
+  
+  
+  
+  </div>
+  
+  
+  </div>
 
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12">
-    <label class="mt-4" for="exampleInputEmail2">Did You Attended previous Next World Forum?</label>
+    <label class="mt-4" for="exampleInputEmail2">Did you attend the previous Next World Forum?</label>
     <br>
     <div class="form-check form-check-inline mt-2">
       <input class="form-check-input" type="radio" name="attend" id="attendyes"  value="1">
@@ -233,42 +346,7 @@
   </div>
 </div>
 
-  <div id="previous-forum" class="hidden">
 
-
-    <div class="row">
-
-      <div class="col-lg-12 col-md-12 col-sm-12">
-      
-        <div class="form-group mt-4">
-            <label for="exampleInputEmail1">Reason To Attend</label>
-      <textarea class="form-control" id="reason-attend" name="reason-attend" ></textarea>
-          </div>
-        
-      
-      
-      </div>
-      
-      
-      </div>
-
-
- <br>
-        <label for="exampleInputEmail1">Interested in</label>
-        <br>
-
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" name="Interested" checked id="inlineCheckbox1" value="1">
-          <label class="form-check-label" for="inlineCheckbox1">1</label>
-        </div>
-        
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox2" value="0">
-          <label class="form-check-label" for="inlineCheckbox2">2</label>
-        </div>
-    
-
-  </div>
 
 
 <div class="row">
@@ -294,6 +372,11 @@
 </div>
 
 
+
+
+
+
+
 </form>
 </div>
 <div class="row">
@@ -307,8 +390,8 @@
 
 <!-- footer  start-->
 
-<footer class="d-flex flex-wrap justify-content-between align-items-center mt-5 ">
-  <p class="text-center col-md-12 mb-0 text-white" style="font-size:10px;">© 2023 INFOEVENTZ</p>
+<footer class="mt-5 ">
+  <p class="text-center col-md-12 mb-0 text-white footer-text" style="font-size:10px;"><a class="text-white" href="https://infoeventz.com/"  target="_blank"> © 2023 INFOEVENTZ </a></p>
 
  
 </footer>

@@ -45,6 +45,7 @@ urlpatterns = [
     path('get_profile_details',views.Tablepage.get_profile_details,name='get_profile_details'),
     path('change_remark',views.Tablepage.change_remark,name='change_remark'),
     path('bulk_edit',views.Tablepage.edit_bulk,name='bulk_edit'),
+    
     #send email 
         path('send_rejection_mail',views.Tablepage.send_reason_mail,name='send_rejection_mail'),
         path('send_approved_mail',views.Tablepage.send_approved_mail,name='send_approved_mail'),
@@ -74,5 +75,8 @@ urlpatterns = [
     #report 
     
     path('report',views.Report.report_page,name='report'),
-    path('reportGetData',views.Report.getReportData,name='reportGetData')
+    path('reportGetData',views.Report.getReportData,name='reportGetData'),
+    
+  
+    path('create_unique_page',views.Tablepage.create_unique,name='create_unique_page')
 ]
