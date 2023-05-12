@@ -1,0 +1,359 @@
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ITP EVENT</title>
+<!-- custom style -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+<!-- custom style -->
+<link rel="icon" type="image/x-icon" href="https://i.imgur.com/smCe6Ae.png"/>
+<!-- font style -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300&display=swap" rel="stylesheet">
+<!-- font style -->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+  <!-- extras select 2  -->
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
+    <link href="https://fonts.cdnfonts.com/css/acumin-pro" rel="stylesheet">
+</head>
+  <body>
+
+  </head>
+  <body style="background-color: black; font-family: 'Acumin Pro', sans-serif !important;"">
+
+    <!-- navbar section start -->
+
+    <nav class="navbar navbar-expand-lg shadow navbar-light bg-transparent">
+      <div class="container-fluid">
+        <a class="navbar-brand p-1 order-0" href="{% url 'registration' %}"><img class="img-fluid" src="../static/img/logo.png" style="width:50%; margin-left: 30px;"></a>
+        <button class="navbar-toggler btn btn-outline-light order-12" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse order-11" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="portal"><button type="button" class="btn btn-outline-light log-in" style="border-width: 3px;" >LOGIN <i class='bx bx-log-in'></i></button></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+<div>
+<div  style="margin-top:-30px ;">
+
+<div class="row">
+  <div class="col-md-12  d-flex justify-content-center">
+    <div class="col-md-6">
+      <h1 class="mt-5 text-center text-white font-weight-bold glow">SPEAKER REGISTRATION</h1>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+  <img class="img-fluid" src="../static/img/banorg (1).png">
+</div>
+</div>
+
+<div class="container">
+<form onsubmit="submitSpeakerForm(event)" id='speaker-reg-form'>
+
+<div class="row">
+<div class="d-flex justify-content-center">
+  <div class="col-md-5">
+    <div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="form-group mt-4">
+      <label for="exampleInputEmail1">First Name</label>
+        <input type="text" class="form-control"  name="first-name" id="first-name"  aria-describedby="emailHelp"  required>
+      
+      </div>
+</div>
+
+
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+  <div class="form-group mt-4">
+    <label for="exampleInputEmail1">Second Name</label>
+      <input type="text" class="form-control" name="last-name" id="last-name" aria-describedby="emailHelp"  required>
+
+    </div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12">
+  <div class="form-group mt-4">
+    <label for="exampleInputEmail1">Designation</label>
+      <input type="text" class="form-control" name="designation" id="designation" aria-describedby="emailHelp"  required>
+
+    </div>
+</div>
+
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+  <div class="form-group mt-4">
+    <label for="exampleInputEmail1">Company</label>
+      <input type="text" class="form-control" name="company" id="company" aria-describedby="emailHelp" placeholder="" required>
+
+    </div>
+</div>
+</div>
+
+<div class="row">
+
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="form-group mt-4">
+      <label for="exampleInputEmail1">Email</label>
+        <input type="email"  class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
+
+      </div>
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="form-group mt-4">
+      <label for="exampleInputEmail1"> Mobile Number</label>
+        <input type="text" class="form-control" name="mobile"  id="mobile" aria-describedby="emailHelp"  required>
+
+      </div>
+</div>
+
+
+</div>
+
+<div class="row">
+
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="form-group mt-4">
+        <label for="exampleInputEmail1">Country Of Residence</label>
+        <select  class="form-control " name="country" id="country" aria-describedby="emailHelp" required>
+          </select>
+      </div>
+</div>
+
+
+</div>
+
+
+<div class="row">
+
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="form-group mt-4">
+        <label for="exampleInputEmail1">City Travelling From</label>
+        <input type="text" class="form-control" id="traveling-from" name="traveling-from" aria-describedby="emailHelp"  required>
+
+      </div>
+</div>
+
+
+
+</div>
+
+
+<div class="row">
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+
+
+    <div class="form-group mt-4">
+        <label for="exampleInputEmail1">Departure Date and Time</label>
+        <input type="datetime-local" class="form-control" name="depature-date-time" id='depature-date-time' aria-describedby="emailHelp" required>
+
+      </div>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="row">
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+
+
+ <div class="form-group mt-4">
+        <label for="exampleInputEmail1">Return Date and Time</label>
+        <input type="datetime-local" class="form-control" id="retun-date-time" name="retun-date-time" aria-describedby="emailHelp" required>
+
+      </div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="row">
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+
+  <div class="form-group mt-4">
+        <label for="exampleInputEmail1">Passport Copy</label>
+        <input type="file" class="myform-control" id="passport-copy" name="passport-copy" accept="image/png, image/jpeg" aria-describedby="emailHelp" required>
+
+      </div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="row">
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+
+    <div class="form-group mt-4">
+        <label for="exampleInputEmail1">Photo Upload</label>
+        <input type="file" class="myform-control" id="photo-upload" name="photo-upload" accept="image/png, image/jpeg" aria-describedby="emailHelp" required>
+
+      </div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="row">
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+
+  <div class="form-group mt-4">
+      <label for="exampleInputEmail1">Outline Of Talking Points</label>
+<textarea class="form-control" id="outline-talk" name="outline-talk" ></textarea>
+    </div>
+  
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="row">
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+
+    <label class="mt-4" for="exampleInputEmail1">KSA VISA</label>
+    <br>
+    <div class="form-check form-check-inline mt-2 ">
+        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio1" checked value="1">
+        <label class="form-check-label" for="inlineRadio1">YES</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio2" value="0">
+        <label class="form-check-label" for="inlineRadio2">NO</label>
+      </div>
+
+
+
+</div>
+
+
+</div>
+
+
+<div class="row">
+<div class="col-md-3 mt-4 mb-3">
+
+<<<<<<< HEAD
+  <button type="submit" class="btn btn-light btn-lg">
+=======
+  <button type="submit" class="btn btn-light btn-lg submit-btn">
+>>>>>>> 502cf9300f68a68996b2d96d0ba6987753b56aed
+    Submit
+  
+  </button>
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+</form>
+</div>
+<div class="row">
+<div class="col-md-12">
+  <img class="img-fluid" src="../static/img/banorg-flip.png">
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- footer  start-->
+
+<footer class="d-flex flex-wrap justify-content-between align-items-center mt-5 ">
+  <p class="text-center col-md-12 mb-0 text-white" style="font-size:10px;">© 2023 INFOEVENTZ</p>
+
+ 
+</footer>
+
+
+
+<!-- footer end -->
+
+
+  </body>
+  <script
+  src="https://code.jquery.com/jquery-3.6.4.js"
+  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    var csrftoken = '{{ csrf_token }}';
+    
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="{% static 'js/countrys.js' %}"></script>
+  <script src="{% static 'js/registration.js' %}"></script>
+
+
+  </html>

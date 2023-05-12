@@ -26,11 +26,36 @@
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
     <link href="https://fonts.cdnfonts.com/css/acumin-pro" rel="stylesheet">
-</head>
-  <body>
+    
+    
+    <style>
+  #video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      opacity: 0.5;
+    }
 
-  </head>
-  <body style="background-color: black; font-family: 'Acumin Pro', sans-serif !important;"">
+</style>
+    
+    
+</head>
+ 
+
+
+  <body style="background-color: black;  font-family: 'Acumin Pro', sans-serif !important;"">
+      <video autoplay muted loop id="video-background" preload="auto" playsinline>
+         <source  src="../static/bg-mob.mp4" type="video/mp4">
+       <source src="../static/bg.webm" type="video/webm">
+       
+      <source src="../static/bg.webp" type="video/webp">
+   
+   
+      <!-- add more <source> elements for different video formats -->
+    </video>
 
     <!-- navbar section start -->
 
@@ -53,6 +78,17 @@
 <div  style="margin-top:-30px ;">
 
 <div class="row">
+
+
+  <div class="d-flex justify-content-center bg-main-pos-speaker" style="">
+
+    <div class="col-md-6 col-sm-12 col-lg-6 bg-main-speaker" style="">
+  
+    </div>
+  
+  </div>
+
+
   <div class="col-md-12  d-flex justify-content-center">
     <div class="col-md-6">
       <h1 class="mt-5 text-center text-white font-weight-bold glow">SPEAKER REGISTRATION</h1>
@@ -71,7 +107,7 @@
 
 <div class="row">
 <div class="d-flex justify-content-center">
-  <div class="col-md-5">
+  <div class="col-md-6" style="">
     <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="form-group mt-4">
@@ -85,7 +121,7 @@
 
 <div class="col-lg-12 col-md-12 col-sm-12">
   <div class="form-group mt-4">
-    <label for="exampleInputEmail1">Second Name</label>
+    <label for="exampleInputEmail1">Last Name</label>
       <input type="text" class="form-control" name="last-name" id="last-name" aria-describedby="emailHelp"  required>
 
     </div>
@@ -286,11 +322,7 @@
 <div class="row">
 <div class="col-md-3 mt-4 mb-3">
 
-<<<<<<< HEAD
   <button type="submit" class="btn btn-light btn-lg">
-=======
-  <button type="submit" class="btn btn-light btn-lg submit-btn">
->>>>>>> 502cf9300f68a68996b2d96d0ba6987753b56aed
     Submit
   
   </button>
@@ -328,8 +360,8 @@
 
 <!-- footer  start-->
 
-<footer class="d-flex flex-wrap justify-content-between align-items-center mt-5 ">
-  <p class="text-center col-md-12 mb-0 text-white" style="font-size:10px;">© 2023 INFOEVENTZ</p>
+<footer class=" mt-5 ">
+  <p class="text-center col-md-12 mb-0 text-white footer-text" style="font-size:10px;"><a class="text-white" href="https://infoeventz.com/" target="_blank">© 2023 INFOEVENTZ</a></p>
 
  
 </footer>

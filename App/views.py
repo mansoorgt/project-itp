@@ -191,10 +191,10 @@ class ReginstraionForms():
                    valid=True
             else:
                 valid=False
-                reason='This Code Already Used'
+                reason='This code already used'
         else:
             valid=False
-            reason='This Code Not Exists'
+            reason='This code not exists'
             
         
         

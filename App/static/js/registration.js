@@ -58,7 +58,8 @@ async function submitInvitedForm(e) {
    // $('#code-inp').focus()
    
     $('#code-message').html(code_message)
-    
+    $('.unique-code-div').show()
+    $('.main-div').hide()
     return false
 
   }
@@ -78,7 +79,7 @@ async function submitInvitedForm(e) {
   });
 
   m_form.append('intrested_in',JSON.stringify(intrested_list))
-
+  m_form.append('urc-code',$('#code-inp').val())
   $.ajax({
       type: "POST",
       url: "submitInvitedform",
@@ -224,19 +225,30 @@ async function check_code_is_valid(code) {
 }
 
 function check_code_is_valid_button() {
-  
+
+ 
+
   check_code_is_valid($('#code-inp').val()).then(res => {
 
     if (res.valid){
       //forward
-        $('#unique-code-div').css('display','none')
-        $('#main-div').css('display','block')
-        
+      $('.unique-code-div').hide()
+      $('.main-div').show()
+         $('#invited-head').show()
+
     }
     else{
       //give error meesage 
-      $('#unique-code-div').css('display','none')
-      $('#main-div').css('display','block')
+      text_reason_1=`Please note the access code you have entered is invalid or has already been used.` 
+
+      text_reason_2= `If you require any assistance, please contact invitations@nextwrld.sa`
+
+      $('#code-message').html(text_reason_1)
+    //   $('#code-message-2').html(text_reason_2)
+      
+      $('.unique-code-div').show()
+      $('.main-div').hide()
+       $('#invited-head').hide()
     }
 
   })

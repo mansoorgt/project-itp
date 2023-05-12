@@ -31,7 +31,7 @@ class SpeakerRegistrations(models.Model):
     passport_copy=models.FileField(upload_to=speaker_directory_path)
     photo_upload=models.FileField(upload_to=speaker_directory_path)
     ksa_visa=models.IntegerField(null=True)
-    
+    print_count=models.IntegerField(null=True,blank=False,default=0)
     status=models.IntegerField(null=True)
     created_at=models.DateTimeField(null=True)
     updated_at=models.DateTimeField(null=True)
@@ -59,7 +59,7 @@ class InvitedRegistrations(models.Model):
     passport_copy=models.FileField(upload_to=invited_directory_path)
     photo_upload=models.FileField(upload_to=invited_directory_path)
     ksa_visa=models.IntegerField(null=True)
-    
+    print_count=models.IntegerField(null=True,blank=False,default=0)
     status=models.IntegerField(null=True)
     created_at=models.DateTimeField(null=True)
     updated_at=models.DateTimeField(null=True)
@@ -81,7 +81,7 @@ class ApplicantRegistrations(models.Model):
     mobile=models.TextField(max_length=200,null=True)
     country=models.TextField(max_length=200,null=True)
     pre_attend=models.IntegerField(null=True)
-    
+    print_count=models.IntegerField(null=True,blank=False,default=0)
     occupation=models.IntegerField(null=True)
     intrested_in=models.CharField( max_length=200,null=True)
     

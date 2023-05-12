@@ -67,7 +67,9 @@
                 </td>
                 <td>
                 
-                  
+                  {% if sp.status == 1  or sp.status == 2 %}
+                  <button style="border: none; background: transparent;" onclick="undo_status(1,{{sp.id}})"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+                  {% endif %}
 
                  
                   <!-- superadmin -->

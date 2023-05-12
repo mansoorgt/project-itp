@@ -1,6 +1,7 @@
 
 {% load static %}
 
+
 <div class="tab-pane fade  show active " id="build-table-div" role="tabpanel">
   <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
@@ -161,7 +162,9 @@
                 </td>
                 <td>
                 
-                  
+                  {% if b.status == 1  or b.status == 2 %}
+                  <button style="border: none; background: transparent;" onclick="undo_status(3,{{b.id}})"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+                  {% endif %}
 
                  
                   <!-- superadmin -->

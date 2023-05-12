@@ -1,12 +1,84 @@
 
-/* hidden div start */
+.access-div
+{
+  height: 420px;
+  border-radius:10px; 
+margin-top: 30px;
+  background-color: black;
+  z-index: -1;
+  position:absolute;
 
-.hidden {
-  display: none;
+}
+.access-reg
+{
+  padding-right: 40px;
+  border-radius:10px;
+   padding-left: 40px;
+   padding-top:40px;
+   background:black;
+   margin-bottom:20px;
+   flex: auto;
+   justify-content:center;
+}
+/*black box in the background start*/
+
+.bg-main-pos-speaker
+{
+  position: absolute; 
+  z-index: -1;
+  margin-left: 15px;
+}
+
+.bg-main-speaker
+{
+  height:1550px; 
+  z-index: -1;
+   background-color: black;
+    padding: 20px;
+     border-radius:10px ;
 }
 
 
-/* hidden div end */
+.bg-main-pos-invited
+{
+  position: absolute; 
+  z-index: -1;
+  margin-left: 15px;
+}
+
+.bg-main-invited
+{
+  height:1600px; 
+  z-index: -1;
+   background-color: black;
+    padding: 20px;
+     border-radius:10px ;
+}
+
+
+.bg-main-deligate
+{
+  height:1480px; 
+  z-index: -1;
+   background-color: black;
+    padding: 20px;
+     border-radius:10px ;
+}
+
+
+
+/*black box in the background end*/
+
+.hidden{
+    display:none;
+        width: 660px;
+    padding-right: 40px;
+        margin-left: -45px;
+    background: black;
+    padding-left: 40px;
+}
+
+
 /* file selector button start*/
 .select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered .select2-selection__placeholder
 {
@@ -58,7 +130,26 @@ input::file-selector-button:hover {
 }
 /* file selector button end */
 
+/*select style start*/
 
+
+.form-group select
+{
+  background-color: #666461;
+  border-color: #666461;
+  height: 40px;
+ font-size: 15px;
+ color:white;
+    letter-spacing: 1px;
+}
+select::placeholder
+{
+  font-size: 10px !important;
+}
+
+
+
+/*select style end*/
 
 
 /* scrollbar design start */
@@ -118,19 +209,6 @@ a{
   border-color: #666461;
  
     letter-spacing: 1px;
-}
-.form-group select
-{
-  background-color: #666461;
-  border-color: #666461;
-  height: 40px;
- font-size: 15px;
- color:white;
-    letter-spacing: 1px;
-}
-select::placeholder
-{
-  font-size: 10px !important;
 }
 .form-group textarea
 {
@@ -269,14 +347,84 @@ input::placeholder {
   {
     background: #666461 !important;
     border-color: #666461 !important;
- 
+
     font-size:1 rem;
   }
 
 /* register page design end */
 
 
-@media (max-width: 425px) {
+@media (max-width: 565px)  {
+
+    
+        /* access div start */
+.access-div
+{
+  height: 340px;
+  margin-top:20px;
+  border-radius:10px; 
+width: 390px;
+  background-color: black;
+  z-index: -1;
+  position:absolute !important;
+}
+
+.access-reg
+{
+  padding-right: 40px;
+   padding-left: 40px;
+   margin-top: 20px;
+}
+
+/* access div end */
+    
+    
+    .hidden
+    {
+        width:450px;
+    
+        padding-right:0px;
+    }
+    
+    /*black box on the background start*/
+    
+    .bg-main-pos-invited
+{
+ margin-top: 20px !important;
+}
+
+.bg-main-invited
+{
+  padding: 220px;
+    height: 1380px;
+}
+.bg-main-deligate
+{
+  padding: 220px;
+    height: 1380px;
+}
+    
+    
+      .bg-main-speaker
+  {
+    padding: 220px;
+    height: 1450px;
+  }
+  .bg-main-pos-speaker
+  {
+    left:5px;
+    margin-top: 20px !important;
+  }
+    
+    
+    /*black box on the background end*/
+    .footer-text
+    {
+          display: flex;
+    justify-content: center;
+    align-items: center;
+        
+    }
     .navbar-brand img
     {
         margin-left:0px !important;
@@ -306,7 +454,38 @@ font-size:20px !important;
 
 
 
-@media (min-width: 768px) { 
+@media (min-width:565.90px) and (max-width: 768px)  { 
+    
+    
+
+    
+.access-div
+{
+  height: 450px;
+  margin-top:20px;
+  border-radius:10px; 
+width: 450px !important;
+  background-color: black;
+  z-index: -1;
+  position:absolute !important;
+}
+
+.access-reg
+{
+  padding-right: 0px;
+   padding-left: 0px;
+   margin-top: 20px;
+}
+
+/* access div end */
+    
+    
+    
+    
+ .hidden
+ {
+         width: 410px;
+ }
 
 .mobile-index.d-flex
 {
@@ -319,7 +498,7 @@ font-size:20px !important;
 }
  }
 
-@media (min-width: 992px) {
+@media (min-width:769.90px) and (max-width: 990px)  {
     .mobile-index.d-flex
     {
         display:none !important;

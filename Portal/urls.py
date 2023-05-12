@@ -64,7 +64,8 @@ urlpatterns = [
     #update front page
     path('update_front_page',views.Tablepage.update_front_page_in_ajax,name='update_front_page'),
     path('update_bulk_print_page',views.Tablepage.update_bulk_print_page,name='update_bulk_print_page'),
-    
+    path('undo_status',views.Tablepage.undo_status,name='undo_status'),
+    path('send_undo_mail',views.Tablepage.send_undo_mail,name='send_undo_mail'),
     path('get_new_data',views.Tablepage.get_new_data,name='get_new_data'),
     path('speakers_registrations_page',views.Tablepage.Speakers_reg_page,name='speaker_registrations_page'),
     path('invited_registrations_page',views.Tablepage.invited_reg_page,name='invited_registrations_page'),

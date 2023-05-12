@@ -611,7 +611,7 @@ class Tablepage():
     
         if int(table)==1:
            
-            obj=Buildpass_table.objects.get(id=id)
+            obj=SpeakerRegistrations.objects.get(id=id)
             
             if request.POST.get('reset')=='true':
                 
@@ -628,27 +628,19 @@ class Tablepage():
             obj.updated_at=timezone.now()
             
             obj.save()
-            obj=build_table_obj.get(id=id)
-            designation=build_designation.objects.get(id=obj.designation_id).designation
+
             try:
                 approved_by=user_DB.objects.get(id=obj.approved_by).username
             except:
                 approved_by='not-apporved'
-                
-            data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected,'lastname':obj.lastname,'des_id':obj.designation_id,'id':obj.id,'UID':obj.UID,'designation':designation,'comp':obj.company_name,'exp_date':obj.exp_date,'status':obj.status,'print_status':obj.print_status,'print_count':obj.print_count,'other_des':obj.other_designation,'created_at':obj.reg_created_at,'remark':obj.remark,
-              'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'user_id':int(request.session['user_id'])}
-            html=render_to_string('tables/table rows/build_table_row.html',data)
-            #build_table=[]
-            # for b in build_table_obj:
-            #     designation=build_designation.objects.get(id=b.designation_id).designation
-                
-            #     build_table.append({'name':b.firstname+' '+b.lastname,'firstname':b.firstname,'lastname':b.lastname,'des_id':b.designation_id,'id':b.id,'UID':b.UID,'designation':designation,'comp':b.company_name,'exp_date':b.exp_date,'status':b.status,'print_status':b.print_status,'print_count':b.print_count,'other_des':b.other_designation,'created_at':b.reg_created_at,'remark':b.remark})
-            # data={'build_table':build_table,'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])}
-            # html=render_to_string('tables/build_table.html',data) 
+            data={'sp':obj,'approved_by_name':approved_by}
+            html=render_to_string('tables/table rows/speaker_table_row.html',data)
+           
+            
        
         if int(table)==2:
             
-            obj=Eventpass_table.objects.get(id=id)
+            obj=InvitedRegistrations.objects.get(id=id)
             if request.POST.get('reset')=='true':
                 if obj.print_count == 1:
                     
@@ -662,26 +654,19 @@ class Tablepage():
             obj.updated_at=timezone.now()
             obj.save()
         
-            # event_table=[]
-            # for e in event_table_obj:
-            #     designation=eventpass_designation.objects.get(id=e.designation_id).designation
-            #     #img=eventpass_image_db.objects.get()
-            #     event_table.append({'name':e.firstname+' '+e.lastname,'firstname':e.firstname,'lastname':e.lastname,'des_id':e.designation_id,'UID':e.UID,'id':e.id,'designation':designation,'comp':e.company_name,'exp_date':e.exp_date,'user_img':e.file,'status':e.status,'print_status':e.print_status,'print_count':e.print_count,'other_des':e.other_designation,'created_at':e.reg_created_at,'remark':e.remark})
-        
-            # data={'event_table':event_table,'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])}
-            # html=render_to_string('tables/event_table.html',data)     
-            obj=event_table_obj.get(id=id)
+       
+            # obj=InvitedRegistrations.objects.get(id=id)
+            # designation=build_designation.objects.get(id=obj.designation_id).designation
             try:
                 approved_by=user_DB.objects.get(id=obj.approved_by).username
             except:
                 approved_by='not-apporved'
-            designation=eventpass_designation.objects.get(id=obj.designation_id).designation
-            m_data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected,'lastname':obj.lastname,'des_id':obj.designation_id,'UID':obj.UID,'id':obj.id,'designation':designation,'comp':obj.company_name,'exp_date':obj.exp_date,'user_img':obj.file,'status':obj.status,'print_status':obj.print_status,'print_count':obj.print_count,'other_des':obj.other_designation,'id_proof':obj.id_proof,'created_at':obj.reg_created_at,'remark':obj.remark,'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'id_proof':obj.id_proof,'user_id':int(request.session['user_id'])}
-            html=render_to_string('tables/table rows/event_table_row.html',m_data)
+            data={'sp':obj,'approved_by_name':approved_by}
+            html=render_to_string('tables/table rows/invited_table_row.html',data)
        
         if int(table)==3:
             
-            obj=Vapp_table.objects.get(id=id)
+            obj=ApplicantRegistrations.objects.get(id=id)
             if request.POST.get('reset')=='true':
                 if obj.print_count == 1:
                     
@@ -694,25 +679,17 @@ class Tablepage():
                 obj.print_count+=1
             obj.updated_at=timezone.now()
             obj.save()
-        
-            # vpp_table=[]
-            # for v in vapp_table_obj:
-            #     category=vapp_category.objects.get(id=v.category_id).category
-            #     vpp_table.append({'name':v.firstname+' '+v.lastname,'firstname':v.firstname,'lastname':v.lastname,'UID':v.UID,'id':v.id,'category':category,'comp':v.company_name,'exp_date':v.exp_date,'approved_date':v.approved_date,'vehicle_number':v.vehicle_number,'status':v.status,'mobile':v.mobile_number,'print_status':v.print_status,'print_count':v.print_count,'category_id':v.category_id,'created_at':v.reg_created_at,'remark':v.remark})    
-        
-            # data={'categorys':vapp_category.objects.all(),'vpp_table':vpp_table,'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])}
-            # html=render_to_string('tables/vapp_table.html',data) 
-            obj=vapp_table_obj.get(id=id)
-            category=vapp_category.objects.get(id=obj.category_id).category
+            
+            
+            # designation=build_designation.objects.get(id=obj.designation_id).designation
             try:
                 approved_by=user_DB.objects.get(id=obj.approved_by).username
             except:
                 approved_by='not-apporved'
-            data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected,'lastname':obj.lastname,'UID':obj.UID,'id':obj.id,'category':category,'comp':obj.company_name,'exp_date':obj.exp_date,'approved_date':obj.approved_date,'vehicle_number':obj.vehicle_number,'status':obj.status,'mobile':obj.mobile_number,'print_status':obj.print_status,'print_count':obj.print_count,'category_id':obj.category_id,'created_at':obj.reg_created_at,'remark':obj.remark
-              ,'categorys':vapp_category.objects.all(),'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])
-              }
-            html=render_to_string('tables/table rows/vapp_table_row.html',data)        
+            data={'sp':obj,'approved_by_name':approved_by}
+            html=render_to_string('tables/table rows/applicant_table_row.html',data)      
         
+       
         return JsonResponse({'table_html':html})
     #vapp print
     def print_vapp_vip_id(request,id):
@@ -1500,7 +1477,37 @@ class Tablepage():
                 print("good email")
             
         return JsonResponse({'data':'data'})
-    
+    def send_undo_mail(request):
+        
+        id=request.GET.get('id')
+        table=request.GET.get('table')
+        
+        if int(table)==1:
+            obj=SpeakerRegistrations.objects.get(id=id)
+        if int(table)==2:
+            obj=InvitedRegistrations.objects.get(id=id)
+        if int(table)==3:
+            obj=ApplicantRegistrations.objects.get(id=id)
+            
+            
+            
+        try:
+            validate_email(obj.email)
+        except ValidationError as e:
+            print("bad email, details:", e)
+        else:
+            
+            html_contect=render_to_string("email/test_mail.html",{'content':'Undo mail'})
+            email_from = settings.EMAIL_HOST_USER
+            subject = 'Application status Has been Undo'
+            #msg=EmailMessage(subject=subject,from_email=email_from,to=[obj.email],body='TESTXXX')
+            
+            msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email],)
+            msg.attach_alternative(html_contect,"text/html")
+            msg.send()
+            print("good email")
+            
+        return JsonResponse({})
     def update_front_page(request,table):
         # #admin    
         # if request.session['user_role'] == 1:
@@ -1842,6 +1849,51 @@ class Tablepage():
                 
         return online_list     
     
+    def undo_status(request):
+        id=request.POST.get('id')
+        table=request.POST.get('table')
+        
+        
+        
+        
+        if int(table)==1:
+            obj=SpeakerRegistrations.objects.get(id=id)
+            obj.status=0
+            obj.save()
+            try:
+                approved_by=user_DB.objects.get(id=obj.approved_by).username
+            except:
+                approved_by='not-apporved'
+            data={'sp':obj,'approved_by_name':approved_by}
+            html=render_to_string('tables/table rows/speaker_table_row.html',data)
+            
+            return JsonResponse({'table_html':html}) 
+    
+        if int(table)==2:
+            obj=InvitedRegistrations.objects.get(id=id)
+            obj.status=0
+            obj.save()
+            try:
+                approved_by=user_DB.objects.get(id=obj.approved_by).username
+            except:
+                approved_by='not-apporved'
+            data={'sp':obj,'approved_by_name':approved_by}
+            html=render_to_string('tables/table rows/invited_table_row.html',data)
+            return JsonResponse({'table_html':html}) 
+
+        if int(table)==3:
+            obj=ApplicantRegistrations.objects.get(id=id)
+            obj.status=0
+            obj.save()
+            try:
+                approved_by=user_DB.objects.get(id=obj.approved_by).username
+            except:
+                approved_by='not-apporved'
+            data={'sp':obj,'approved_by_name':approved_by}
+            html=render_to_string('tables/table rows/applicant_table_row.html',data)   
+            return JsonResponse({'table_html':html}) 
+            
+        
     
     @login_required
     def create_unique(request):

@@ -1,0 +1,202 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ITP EVENT</title>
+<!-- custom style -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!-- custom style -->
+<!-- title icon  -->
+<link rel="icon" type="image/x-icon" href="https://i.imgur.com/smCe6Ae.png" />
+
+<!-- title icon -->
+<!-- font style -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300&display=swap" rel="stylesheet">
+<!-- font style -->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  </head>
+  <body style="background-color: black;">
+    <!-- navbar section start -->
+
+
+    <nav class="navbar navbar-expand-lg shadow navbar-light bg-transparent nav-border-top ">
+      <div class="container-fluid">
+        <a class="navbar-brand p-1 order-0" href="#"><img class="img-fluid" src="../static/img/logo.png" style="width:50%; margin-left: 30px;"></a>
+        <button class="navbar-toggler btn btn-outline-light order-12" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse order-11" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="portal"><button type="button" class="btn btn-outline-light log-in" style="border-width: 3px;" >LOGIN <i class='bx bx-log-in'></i></button></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+<div class="nav-border-left" style="background: url('../static/img/bg-main1.jpg'); background-size: cover;">
+<div class="container" style="margin-top: -30px;">
+    <div class="row">
+<div class="col-md-12  d-flex justify-content-center">
+  <div class="col-md-3">
+    <h1 class="mt-5 text-center text-white font-weight-bold glow">REGISTER</h1>
+  </div>
+</div>
+    </div>
+<!-- mobile view start-->
+<div class="mobile-index d-flex justify-content-center p-5">
+<div class="row">
+<div class="col-md-12 mt-3">
+<div class="mobile-index-reg">
+  <div class="d-flex flex-row">
+    <div class="p-1">
+
+      <img class="img-fluid ml-3" src="{% static 'img/megaphone.png' %}" style="width: 65%;">
+    </div>
+    <a href="{% url 'speakerForm' %}">    
+      
+      <div class="p-2">
+
+
+<h4 class="text-center text-white font-weight-bold">SPEAKERS</h4>
+
+    </div>
+  </a>
+
+
+  </div>
+
+
+</div>
+</div>
+
+<div class="col-md-12 mt-3">
+  <div class="mobile-index-reg">
+    <div class="d-flex flex-row">
+      <div class="p-1">
+  
+        <img class="img-fluid ml-3" src="{% static 'img/invitation.png' %}" style="width: 65%;">
+      </div>
+    
+
+        <div class="p-2">
+  <h4 class="text-center text-white font-weight-bold">INVITED DELEGATES</h4>
+  
+      </div>
+
+
+
+  
+    </div>
+  </div>
+  </div>
+
+
+
+  <div class="col-md-12 mt-3">
+    <div class="mobile-index-reg">
+      <div class="d-flex flex-row">
+        <div class="p-1">
+    
+          <img class="img-fluid ml-3" src="{% static  'img/application.png' %}" style="width: 65%;">
+        </div>
+        <div class="p-2">
+    <h4 class="text-center text-white font-weight-bold">APPLICANT DELEGATES
+    </h4>
+    
+        </div>
+    
+      </div>
+    </div>
+    </div>
+</div>
+</div>
+
+
+
+
+<!-- mobile view end  -->
+
+<div class="desk-index d-flex justify-content-center" style="padding: 50px;">
+
+
+
+
+    <div class="p-2">
+
+<a href="{% url 'speakerForm' %}"><div class="register-box">
+<div class="d-flex justify-content-center p-5">
+<img class="img-fluid" src="{% static 'img/megaphone.png' %}">
+
+</div>
+<div class="d-flex justify-content-center">
+   <h3 class="reg-text text-white font-weight-bold">SPEAKERS</h3>
+    
+    </div>
+</div></a>
+
+
+    </div>
+    <div class="p-2">
+        <div class="register-box">
+          <a href="{% url 'InvitedDelegates' %}">
+            <div class="d-flex justify-content-center p-5">
+                <img class="img-fluid" src="{% static 'img/invitation.png' %}">
+                
+                </div>
+                <div class="d-flex justify-content-center">
+                   <h3 class="text-center reg-text text-white font-weight-bold">INVITED DELEGATES</h3>
+                    
+                    </div>
+                    </a>
+        </div>
+    </div>
+    <div class="p-2">
+        <div class="register-box">
+            <div class="d-flex justify-content-center p-5">
+                <img class="img-fluid" src="{% static 'img/application.png' %} ">
+                
+                </div>
+                <div class="d-flex justify-content-center">
+                   <h3 class="text-center reg-text text-white font-weight-bold">APPLICANT DELEGATES</h3>
+                    
+                    </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+  <!-- navbar section end -->
+
+<!-- footer  start-->
+
+<footer class="d-flex flex-wrap justify-content-between align-items-center  ">
+  <p class="text-center col-md-12 mb-0 text-white">© 2023 INFOEVENTS</p>
+
+ 
+</footer>
+
+
+
+<!-- footer end -->
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+<script>
+  // sound while hover
+
+
+ 
+
+</script>
+
+</html>

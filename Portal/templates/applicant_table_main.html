@@ -1633,6 +1633,21 @@ minBuildDate = new DateTime($('#build-min'), {
   <script>
     function update_status(status,table,id,collected=false) {
 
+      var warning_msg=(status == 1 )?'are you sure to approve ':'are you sure to reject'
+      warning_msg=(collected)?'are you sure the card is collected':warning_msg
+
+
+      Swal.fire({
+      title: 'Are you sure?',
+      text: warning_msg,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
       var current_build_page=$('table.build').DataTable().page.info().page
       //var current_event_page=$('table.event').DataTable().page.info().page
       //var current_vapp_page=$('table.vapp').DataTable().page.info().page
@@ -1707,6 +1722,9 @@ minBuildDate = new DateTime($('#build-min'), {
           $('table.display').DataTable();
         }
       });
+
+    }
+    })
     }
 
     function update_print_status(table,id) {
@@ -1756,13 +1774,10 @@ minBuildDate = new DateTime($('#build-min'), {
          if(table == 3){
             
             // $('#vapp-table-div').replaceWith(data.table_html);
-             document.getElementById('vapp-table-div').classList.add('show')
-             document.getElementById('vapp-table-div').classList.add('active')
-             $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
-             $('table.vapp').DataTable().search(search_vapp_val).draw();
-            
-             $('table.vapp').DataTable().page(current_vapp_page).draw('page')
-             $('#VA-'+id).html(data.table_html)
+            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+              $('table.build').DataTable().search(search_build_val).draw();
+              $('table.build').DataTable().page(current_build_page).draw('page')
+              $('#AP-'+id).html(data.table_html)
           }
            
           $('table.display').DataTable();
@@ -1815,13 +1830,10 @@ minBuildDate = new DateTime($('#build-min'), {
          if(table == 3){
             
             // $('#vapp-table-div').replaceWith(data.table_html);
-             document.getElementById('vapp-table-div').classList.add('show')
-             document.getElementById('vapp-table-div').classList.add('active')
-             $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
-             $('table.vapp').DataTable().search(search_vapp_val).draw();
-            
-             $('table.vapp').DataTable().page(current_vapp_page).draw('page')
-             $('#VA-'+id).html(data.table_html)
+            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+            $('table.build').DataTable().search(search_build_val).draw();
+            $('table.build').DataTable().page(current_build_page).draw('page')
+            $('#AP-'+id).html(data.table_html)
           }
            
           $('table.display').DataTable();
@@ -3731,7 +3743,42 @@ success: function (data) {
 
 
 }
+function undo_status(table,id){
+  console.log(table,id)
+  var current_build_page=$('table.build').DataTable().page.info().page
 
+
+      var search_build_val=$('#build-table_filter input').val();
+
+      
+      var current_build_page_lenght=$("select[name='build-table_length']").val();
+
+  $.ajax({
+    type: "POST",
+    url: "{% url 'undo_status' %}",
+    data: {id:id,table:table,csrfmiddlewaretoken:'{{ csrf_token }}'},
+    dataType: "json",
+    success: function (data) {
+      if(table == 3){
+           
+           // $('#build-table-div').replaceWith(data.table_html);
+           $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+           $('table.build').DataTable().search(search_build_val).draw();
+           $('table.build').DataTable().page(current_build_page).draw('page')
+           $('#AP-'+id).html(data.table_html)
+
+
+
+         }
+         $.ajax({type: "GET",url: "{% url 'send_undo_mail' %}",data: {id:id,table:table},dataType: "json",
+
+          success: function (response) {
+            
+          }});
+    }
+  });
+
+}
   
   </script>
   
