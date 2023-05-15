@@ -86,7 +86,7 @@ DATABASES = {
         'NAME'    : env('DATABASE_NAME'),                 # <-- UPDATED line 
         'USER'    : env('DATABASE_USER'),                        # <-- UPDATED line
         'PASSWORD': env('DATABASE_PASS'),              # <-- UPDATED line
-        'HOST'    : 'localhost',                # <-- UPDATED line
+        'HOST'    : env('DATABASE_HOST'),                # <-- UPDATED line
         'PORT'    : '3306',
         'OPTIONS': {
             'sql_mode': 'traditional',
