@@ -86,7 +86,7 @@ DATABASES = {
         'NAME'    : env('DATABASE_NAME'),                 # <-- UPDATED line 
         'USER'    : env('DATABASE_USER'),                        # <-- UPDATED line
         'PASSWORD': env('DATABASE_PASS'),              # <-- UPDATED line
-        'HOST'    : 'localhost',                # <-- UPDATED line
+        'HOST'    : env('DATABASE_HOST'),                # <-- UPDATED line
         'PORT'    : '3306',
         'OPTIONS': {
             'sql_mode': 'traditional',
@@ -132,9 +132,9 @@ USE_TZ = True
 
 import os
 
-STATIC_URL = '/registration/static/'
+STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR,'assets')
+STATIC_ROOT = os.path.join(BASE_DIR, "assets")
 MEDIA_URL = '/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
