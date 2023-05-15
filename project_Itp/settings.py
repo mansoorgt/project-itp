@@ -132,9 +132,9 @@ USE_TZ = True
 
 import os
 
-STATIC_URL = '/registration/static/'
+STATIC_URL = '/registration/registration/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR,'assets')
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = '/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
