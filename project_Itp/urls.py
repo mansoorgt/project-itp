@@ -18,9 +18,9 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('registraion/admin/', admin.site.urls),
     path('registraion/',include('App.urls')),
-    path('portal/',include('Portal.urls'))
+    path('registraion/portal/',include('Portal.urls'))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
