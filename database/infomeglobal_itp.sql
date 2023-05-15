@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2023 at 07:01 AM
+-- Generation Time: May 15, 2023 at 07:34 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -20,6 +20,136 @@ SET time_zone = "+00:00";
 --
 -- Database: `infomeglobal_itp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_applicantregistrations`
+--
+
+CREATE TABLE `app_applicantregistrations` (
+  `id` bigint(20) NOT NULL,
+  `first_name` longtext DEFAULT NULL,
+  `last_name` longtext DEFAULT NULL,
+  `designation` longtext DEFAULT NULL,
+  `company` longtext DEFAULT NULL,
+  `email` longtext DEFAULT NULL,
+  `mobile` longtext DEFAULT NULL,
+  `country` longtext DEFAULT NULL,
+  `pre_attend` int(11) DEFAULT NULL,
+  `passport_copy` varchar(100) NOT NULL,
+  `photo_upload` varchar(100) NOT NULL,
+  `ksa_visa` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime(6) DEFAULT NULL,
+  `updated_at` datetime(6) DEFAULT NULL,
+  `approved_by` int(11) DEFAULT NULL,
+  `collected` int(11) DEFAULT NULL,
+  `print_status` int(11) DEFAULT NULL,
+  `remark` longtext DEFAULT NULL,
+  `deleted` int(11) NOT NULL,
+  `occupation` int(11) DEFAULT NULL,
+  `intrested_in` varchar(200) DEFAULT NULL,
+  `print_count` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `app_applicantregistrations`
+--
+
+INSERT INTO `app_applicantregistrations` (`id`, `first_name`, `last_name`, `designation`, `company`, `email`, `mobile`, `country`, `pre_attend`, `passport_copy`, `photo_upload`, `ksa_visa`, `status`, `created_at`, `updated_at`, `approved_by`, `collected`, `print_status`, `remark`, `deleted`, `occupation`, `intrested_in`, `print_count`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, 0, '2023-04-28 11:19:43.346612', NULL, 0, 0, 0, '', 0, NULL, '[\"1\"]', 0),
+(2, 'awdaw', 'dawdawd', 'awdaw', 'dawdawd', 'wda2@g.cv', '2313', 'Algeria', 0, 'ApplicantReginstration/2313/WhatsApp_Image_2023-04-25_at_13.00.44.jpg', 'ApplicantReginstration/2313/WhatsApp_Image_2023-04-25_at_13.10.54.jpg', 1, 1, '2023-04-28 11:21:11.388497', '2023-05-11 07:31:50.951428', 3, 0, 0, '', 0, 8, '[\"1\"]', 1),
+(3, 'mannsoor', 'jj', 'jjj', 'jj', 'mans@gf.com', '21731278', 'Albania', 1, 'ApplicantReginstration/21731278/WhatsApp_Image_2023-04-25_at_13.10.54.jpg', 'ApplicantReginstration/21731278/WhatsApp_Image_2023-04-25_at_13.00.44.jpg', 0, 0, '2023-04-28 11:22:06.289928', NULL, 0, 0, 0, '', 0, 7, '[\"1\",\"0\",\"0\",\"0\",\"0\"]', 0),
+(4, 'wda', 'adawd', 'awdawd', 'awdawd', 'wd@g.c', '133', 'Afghanistan', 1, 'ApplicantReginstration/133/WhatsApp_Image_2023-04-25_at_13.00.44.jpg', 'ApplicantReginstration/133/WhatsApp_Image_2023-04-25_at_13.10.54.jpg', 1, 0, '2023-04-28 11:32:14.138657', '2023-05-11 10:40:04.943643', 3, 0, 1, '', 0, 8, '[\"1\",\"2\",\"3\",\"4\",\"5\"]', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_invitedregistrations`
+--
+
+CREATE TABLE `app_invitedregistrations` (
+  `id` bigint(20) NOT NULL,
+  `first_name` longtext DEFAULT NULL,
+  `last_name` longtext DEFAULT NULL,
+  `designation` longtext DEFAULT NULL,
+  `company` longtext DEFAULT NULL,
+  `email` longtext DEFAULT NULL,
+  `mobile` longtext DEFAULT NULL,
+  `country` longtext DEFAULT NULL,
+  `passport_copy` varchar(100) NOT NULL,
+  `photo_upload` varchar(100) NOT NULL,
+  `ksa_visa` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime(6) DEFAULT NULL,
+  `updated_at` datetime(6) DEFAULT NULL,
+  `approved_by` int(11) DEFAULT NULL,
+  `collected` int(11) DEFAULT NULL,
+  `print_status` int(11) DEFAULT NULL,
+  `remark` longtext DEFAULT NULL,
+  `deleted` int(11) NOT NULL,
+  `intrested_in` varchar(200) DEFAULT NULL,
+  `occupation` int(11) DEFAULT NULL,
+  `pre_attend` int(11) DEFAULT NULL,
+  `urc_code` varchar(200) DEFAULT NULL,
+  `print_count` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `app_invitedregistrations`
+--
+
+INSERT INTO `app_invitedregistrations` (`id`, `first_name`, `last_name`, `designation`, `company`, `email`, `mobile`, `country`, `passport_copy`, `photo_upload`, `ksa_visa`, `status`, `created_at`, `updated_at`, `approved_by`, `collected`, `print_status`, `remark`, `deleted`, `intrested_in`, `occupation`, `pre_attend`, `urc_code`, `print_count`) VALUES
+(1, 'mansoor', 'k', 'dev', 'infome', 'man@g.com', '123', 'India', 'invitedReginstration/123/wp6773941-minimalist-pc-wallpapers.jpg', 'invitedReginstration/123/1303831.jpg', 1, 1, '2023-04-18 07:14:27.299361', '2023-04-19 09:21:27.607261', 9, 0, 0, '', 0, NULL, NULL, NULL, NULL, 0),
+(2, 'test', 'test', 'test', 'test', 'mansoorgt007@gmail.com', '12233', 'Afghanistan', 'invitedReginstration/12233/783px-Test-Logo.svg.png', 'invitedReginstration/12233/783px-Test-Logo.svg_hJkyRih_1.png', 1, 2, '2023-04-18 07:27:43.149245', '2023-04-19 09:20:22.973757', 0, 0, 0, '', 0, NULL, NULL, NULL, NULL, 0),
+(3, 'ss', 'sss', 'ss', 'ss', 'mansoorgt007@gmail.com', '12', 'Afghanistan', 'invitedReginstration/12/blue-sky-clouds-watercolor-texture-background.jpg', 'invitedReginstration/12/unnamed.png', 0, 1, '2023-04-18 07:30:06.538982', '2023-04-19 09:19:56.206023', 9, 0, 0, '', 0, NULL, NULL, NULL, NULL, 0),
+(4, 'mansoor', 'muhammed', 'de', 'eda', 'mansoor22@fc.c', '2e', 'American Samoa', 'invitedReginstration/2e/colorful-illustration-test-word-260nw-1438324490.png', 'invitedReginstration/2e/783px-Test-Logo.svg.png', 1, 1, '2023-04-18 10:28:50.074158', '2023-04-19 09:46:27.473589', 9, 0, 0, '', 0, NULL, NULL, NULL, NULL, 0),
+(5, 'test mansoor k', '12', 'awda', 'awda', 'awd@g.v', '234', 'Algeria', 'invitedReginstration/234/783px-Test-Logo.svg.png', 'invitedReginstration/234/colorful-illustration-test-word-260nw-1438324490.png', 1, 1, '2023-04-19 07:44:24.030755', '2023-04-19 09:50:59.058355', 9, 0, 0, '', 0, NULL, NULL, NULL, NULL, 0),
+(6, 'wdad', 'awdaw', 'dawdawd', 'awd', 'mansoordev000@gmail.com', 'awd', 'Andorra', 'invitedReginstration/awd/colorful-illustration-test-word-260nw-1438324490.png', 'invitedReginstration/awd/783px-Test-Logo.svg.png', 1, 0, '2023-04-25 07:20:23.956088', NULL, 0, 0, 0, '', 0, NULL, NULL, NULL, NULL, 0),
+(7, 'anf', 'kanka', 'kasnf', 'awdad', 'dawd@c.c', '13412', 'Afghanistan', 'invitedReginstration/13412/783px-Test-Logo.svg.png', 'invitedReginstration/13412/colorful-illustration-test-word-260nw-1438324490.png', 1, 0, '2023-04-28 05:45:10.854095', NULL, 0, 0, 0, '', 0, NULL, NULL, NULL, NULL, 0),
+(8, 'mansoor', 'kkk', 'dev', 'de', 'test@f.com', '2131', 'Aland Islands', 'invitedReginstration/2131/783px-Test-Logo.svg.png', 'invitedReginstration/2131/colorful-illustration-test-word-260nw-1438324490.png', 1, 0, '2023-04-28 06:05:23.227059', NULL, 0, 0, 0, '', 0, NULL, NULL, NULL, NULL, 0),
+(9, '', '', '', '', '', '', '', '', '', 1, 0, '2023-04-28 06:19:49.363929', NULL, 0, 0, 0, '', 0, NULL, NULL, NULL, NULL, 0),
+(10, 'dawdawd', 'awdaw', 'dawda', 'wdawd', 'awdad@fc.c', '132', 'Algeria', 'invitedReginstration/132/colorful-illustration-test-word-260nw-1438324490.png', 'invitedReginstration/132/783px-Test-Logo.svg.png', 1, 0, '2023-04-28 06:21:09.696347', NULL, 0, 0, 0, '', 0, NULL, NULL, NULL, NULL, 0),
+(11, 'adwaw', 'dadaw', 'dada', 'wdad', 'awdaw@g.com', '123', 'American Samoa', 'invitedReginstration/123/783px-Test-Logo.svg.png', 'invitedReginstration/123/colorful-illustration-test-word-260nw-1438324490.png', 1, 0, '2023-04-28 06:25:39.180066', NULL, 0, 0, 0, '', 0, NULL, NULL, NULL, NULL, 0),
+(12, 'adwa', 'awda', 'wdawd', 'awdawd', 'awd@gf.com', '131231', 'Aland Islands', 'invitedReginstration/131231/WhatsApp_Image_2023-04-25_at_13.00.44.jpg', 'invitedReginstration/131231/WhatsApp_Image_2023-04-25_at_13.10.54.jpg', 1, 0, '2023-04-28 10:44:21.549688', NULL, 0, 0, 0, '', 0, NULL, 2, NULL, NULL, 0),
+(13, 'adwaw', 'dawdaw', 'dawd', 'awdawd', 'adwa@f.com', '1232', 'Algeria', 'invitedReginstration/1232/WhatsApp_Image_2023-04-25_at_13.10.54.jpg', 'invitedReginstration/1232/WhatsApp_Image_2023-04-25_at_13.10.54_2QHnqPH.jpg', 1, 0, '2023-04-28 10:45:36.829990', NULL, 0, 0, 0, '', 0, '[\"1\",\"0\"]', 6, NULL, NULL, 0),
+(14, 'efaw', 'awdaw', 'awdawdaw', 'wda', 'awdwa@f.com', '2313', 'Afghanistan', 'invitedReginstration/2313/WhatsApp_Image_2023-04-25_at_13.00.44.jpg', 'invitedReginstration/2313/WhatsApp_Image_2023-04-25_at_13.10.54.jpg', 1, 0, '2023-04-28 11:02:56.248071', NULL, 0, 0, 0, '', 0, '[\"1\",\"2\",\"3\"]', 7, 0, NULL, 0),
+(15, 'dawdawdaw', 'dawd', 'wdawd', 'wda', 'awdaw@f.com', '21', 'Algeria', 'invitedReginstration/21/WhatsApp_Image_2023-04-25_at_13.00.44_FsOLrc7.jpg', 'invitedReginstration/21/WhatsApp_Image_2023-04-25_at_13.10.54_2SkaNrY.jpg', 1, 0, '2023-04-28 11:06:30.571208', NULL, 0, 0, 0, '', 0, '[\"1\",\"2\",\"3\"]', 10, 0, '868179', 0),
+(16, 'wdawdaw', 'dawdaw', 'awdaw', 'dawd', 'dwad@cc.co', '23412', 'Albania', 'invitedReginstration/23412/WhatsApp_Image_2023-04-25_at_13.00.44.jpg', 'invitedReginstration/23412/WhatsApp_Image_2023-04-25_at_13.10.54.jpg', 1, 0, '2023-04-28 11:12:18.864381', NULL, 0, 0, 0, '', 0, '[\"1\",\"3\",\"4\"]', 2, 1, '451758', 0),
+(17, 'mansor', 'kjk', 'dev', 'inf', 'mansoor@gf.com', '213', 'Albania', 'invitedReginstration/213/colorful-illustration-test-word-260nw-1438324490.png', 'invitedReginstration/213/783px-Test-Logo.svg.png', 1, 0, '2023-04-29 06:53:03.577668', NULL, 0, 0, 0, '', 0, '[\"1\",\"3\",\"4\"]', 1, 0, NULL, 0),
+(18, 'awdaw', 'dawda', 'wdawd', 'awdawd', 'awdawd@f.com', '213', 'Albania', 'invitedReginstration/213/colorful-illustration-test-word-260nw-1438324490_dGnsfQn.png', 'invitedReginstration/213/783px-Test-Logo.svg_RMuYYnV.png', 1, 0, '2023-04-29 06:55:07.395110', '2023-05-11 10:38:19.735920', 3, 0, 1, '', 0, '[\"1\"]', 5, 0, '193172', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_occupations`
+--
+
+CREATE TABLE `app_occupations` (
+  `id` bigint(20) NOT NULL,
+  `occupation_name` varchar(200) DEFAULT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `app_occupations`
+--
+
+INSERT INTO `app_occupations` (`id`, `occupation_name`, `status`) VALUES
+(1, 'Government Authority', 1),
+(2, 'Gaming Center Owner', 1),
+(3, 'Tournament Organiser', 1),
+(4, 'Startup in Gaming', 1),
+(5, 'Developer/Lab', 1),
+(6, 'Team Owner', 1),
+(7, 'Broadcaster', 1),
+(8, 'Incubator', 1),
+(9, 'Publisher', 1),
+(10, 'Investor', 1),
+(11, 'Agency', 1),
+(12, 'Media', 1),
+(13, 'Other', 1);
 
 -- --------------------------------------------------------
 
@@ -48,30 +178,67 @@ CREATE TABLE `app_speakerregistrations` (
   `created_at` datetime(6) DEFAULT NULL,
   `print_status` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `updated_at` datetime(6) DEFAULT NULL
+  `updated_at` datetime(6) DEFAULT NULL,
+  `deleted` int(11) NOT NULL,
+  `remark` longtext DEFAULT NULL,
+  `print_count` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `app_speakerregistrations`
 --
 
-INSERT INTO `app_speakerregistrations` (`id`, `first_name`, `last_name`, `designation`, `company`, `email`, `mobile`, `country`, `traveling_from`, `retun_date_time`, `outline_talk`, `passport_copy`, `photo_upload`, `depature_date_time`, `ksa_visa`, `approved_by`, `collected`, `created_at`, `print_status`, `status`, `updated_at`) VALUES
-(1, 'awdaw', 'awdawd', '', '', '', '', '', '', '2023-04-21 16:10:00.000000', '', 'user_None/wallpaperflare.com_wallpaper_2.jpg', 'user_None/wallpaperflare.com_wallpaper_1.jpg', '2023-04-22 16:10:00.000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'awdaw', 'awdawd', 'fawf', 'awfawf', 'awfa', 'wfawfa', 'awfaw', 'awfawf', '2023-04-21 16:10:00.000000', '', 'speakerReginstration/awdaw/wallpaperflare.com_wallpaper_2.jpg', 'speakerReginstration/awdaw/wallpaperflare.com_wallpaper_1.jpg', '2023-04-22 16:10:00.000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'mansoor', 'k', 'fawf', 'awfawf', 'awfa', 'wfawfa', 'awfaw', 'awfawf', '2023-04-21 16:10:00.000000', '', 'speakerReginstration/mansoor/wallpaperflare.com_wallpaper_2.jpg', 'speakerReginstration/mansoor/wallpaperflare.com_wallpaper_1.jpg', '2023-04-22 16:10:00.000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'mansoor', 'k', 'fawf', 'awfawf', 'awfa', 'wfawfa', 'awfaw', 'awfawf', '2023-04-21 16:10:00.000000', '', 'speakerReginstration/mansoork/wallpaperflare.com_wallpaper_2.jpg', 'speakerReginstration/mansoork/wallpaperflare.com_wallpaper_1.jpg', '2023-04-22 16:10:00.000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'mansoor', 'k', 'developer', 'infome', 'mansoor@gmail.cpm', '12345', 'india', 'dubai', '2023-04-22 16:25:00.000000', 'noo', 'speakerReginstration/mansoor/wallpaperflare.com_wallpaper_1_9xPWxZp.jpg', 'speakerReginstration/mansoor/wallpaperflare.com_wallpaper_1_sKzWEEX.jpg', '2023-04-26 16:25:00.000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'TEST', 'last', 'kochi', 'infome', 'emial@emial.com', '1234`', 'india', '121', '2023-05-02 16:43:00.000000', 'nop', 'speakerReginstration/TEST/783px-Test-Logo.svg.png', 'speakerReginstration/TEST/colorful-illustration-test-word-260nw-1438324490.webp', '2023-04-14 16:43:00.000000', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'TEST', 'last', 'kochi', 'infome', 'emial@emial.com', '1234`', 'india', '121', '2023-05-02 16:43:00.000000', 'nop', 'speakerReginstration/TEST/783px-Test-Logo.svg_58PEhST.png', 'speakerReginstration/TEST/colorful-illustration-test-word-260nw-1438324490_x3Uq7N4.webp', '2023-04-14 16:43:00.000000', 0, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 'TEST', 'last', 'kochi', 'infome', 'emial@emial.com', '1234`', 'india', '121', '2023-05-02 16:43:00.000000', 'nop', 'speakerReginstration/None/783px-Test-Logo.svg.png', 'speakerReginstration/None/colorful-illustration-test-word-260nw-1438324490.webp', '2023-04-14 16:43:00.000000', 0, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 'adfaw', 'dadawdawd', '213', 'adaw', 'awda@gm.v', '1231', 'awda', 'awda', '2023-04-06 16:48:00.000000', 'adw', 'speakerReginstration/1231/783px-Test-Logo.svg.png', 'speakerReginstration/1231/783px-Test-Logo.svg_8QciVzw.png', '2023-04-15 16:48:00.000000', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(10, 'dwad', 'awdawd', 'awdaw', 'awdaw', '1231@f.co', 'dwad', 'awdadw', 'awdawd', '2023-04-25 17:13:00.000000', 'awdawd', 'speakerReginstration/dwad/colorful-illustration-test-word-260nw-1438324490.webp', 'speakerReginstration/dwad/783px-Test-Logo.svg.png', '2023-04-08 17:13:00.000000', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(11, 'dwada', 'dawdawd', 'awdawd', '2131', 'dawd@f.c', 'awdawd', 'awdad', 'wawd', '2023-04-05 17:15:00.000000', 'awdad', 'speakerReginstration/awdawd/colorful-illustration-test-word-260nw-1438324490.webp', 'speakerReginstration/awdawd/colorful-illustration-test-word-260nw-1438324490_u6ncqbS.webp', '2023-04-15 19:15:00.000000', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, '', '', '', '', '', '', '', '', '2023-04-15 17:16:00.000000', '', '', '', '2023-04-23 17:16:00.000000', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(13, '', '', '', '', '', '', '', '', '2023-04-22 17:17:00.000000', '', '', '', '2023-04-29 17:17:00.000000', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, '', '', '', '', '', '', '', '', '2023-04-13 17:18:00.000000', '', '', '', '2023-04-09 17:17:00.000000', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(15, 'adwawd', 'awdawd', 'awdaw', '213a', 'awdad@#g.c', 'awda', 'wdawd', 'awdaw', '2023-04-19 17:20:00.000000', 'awdaw', 'speakerReginstration/awda/colorful-illustration-test-word-260nw-1438324490.webp', 'speakerReginstration/awda/783px-Test-Logo.svg.png', '2023-04-15 17:20:00.000000', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(16, 'mansoor', 'kk', 'dev', 'infome', 'email.com', '12345', 'dubai', 'kochi', '2023-04-10 10:19:00.000000', 'ooo', 'speakerReginstration/12345/colorful-illustration-test-word-260nw-1438324490.webp', 'speakerReginstration/12345/783px-Test-Logo.svg.png', '2023-04-10 10:19:00.000000', 1, 0, 0, '2023-04-10 04:49:43.350122', 0, 0, '2023-04-10 04:49:43.350122');
+INSERT INTO `app_speakerregistrations` (`id`, `first_name`, `last_name`, `designation`, `company`, `email`, `mobile`, `country`, `traveling_from`, `retun_date_time`, `outline_talk`, `passport_copy`, `photo_upload`, `depature_date_time`, `ksa_visa`, `approved_by`, `collected`, `created_at`, `print_status`, `status`, `updated_at`, `deleted`, `remark`, `print_count`) VALUES
+(56, 'test', 'test', 'dev', 'infome', 'mans@g.c', '213', 'Afghanistan', 'adwawd', '2023-04-26 11:22:00.000000', 'test', 'speakerReginstration/213/colorful-illustration-test-word-260nw-1438324490.png', 'speakerReginstration/213/783px-Test-Logo.svg.png', '2023-04-15 11:22:00.000000', 1, 0, 0, '2023-04-14 05:52:45.083227', 0, 0, NULL, 0, '', 0),
+(57, 'adwawd', 'awdaw', 'dawdawdawd', 'awdawd', 'awda@f.v', '123', 'Afghanistan', 'adwadw', '2023-04-25 11:23:00.000000', 'test', 'speakerReginstration/123/colorful-illustration-test-word-260nw-1438324490.png', 'speakerReginstration/123/783px-Test-Logo.svg.png', '2023-04-08 11:23:00.000000', 1, 0, 0, '2023-04-14 05:53:18.643536', 0, 0, NULL, 0, '', 0),
+(58, 'test', 'dwadwa', 'dawdaw', 'dawdawdaw', 'da@f.c', '213a', 'Afghanistan', 'awdawd', '2023-04-19 11:24:00.000000', 'tea', 'speakerReginstration/213a/colorful-illustration-test-word-260nw-1438324490.png', 'speakerReginstration/213a/783px-Test-Logo.svg.png', '2023-04-13 11:23:00.000000', 1, 0, 0, '2023-04-14 05:54:11.482199', 0, 0, NULL, 0, '', 0),
+(59, 'awd', 'awdaw', 'dawd', 'ad', 'adw@f.c', '2131', 'Afghanistan', 'awdawd', '2023-04-29 11:28:00.000000', 'wdad', 'speakerReginstration/2131/colorful-illustration-test-word-260nw-1438324490.png', 'speakerReginstration/2131/783px-Test-Logo.svg.png', '2023-04-22 11:28:00.000000', 1, 0, 0, '2023-04-14 05:58:57.101491', 0, 0, NULL, 0, '', 0),
+(60, 'dwa', 'dadaw', 'dawdaw', 'dawda', 'dwa@a.com', 'awd', 'Afghanistan', 'awdad', '2023-05-05 11:30:00.000000', 'awda', 'speakerReginstration/awd/783px-Test-Logo.svg_yUnGsSW.png', 'speakerReginstration/awd/783px-Test-Logo.svg_lUlerYn.png', '2023-04-14 02:30:00.000000', 1, 3, 0, '2023-04-14 06:00:25.949112', 0, 1, '2023-04-14 06:06:08.685203', 0, '', 0),
+(61, 'aawd', 'awdawdaw', 'awdawd', 'awdad', 'awd@a.c', '1231', 'Afghanistan', 'awdawd', '2023-04-08 11:31:00.000000', 'wdad', 'speakerReginstration/1231/783px-Test-Logo.svg.png', 'speakerReginstration/1231/colorful-illustration-test-word-260nw-1438324490.png', '2023-04-15 01:31:00.000000', 1, 3, 0, '2023-04-14 06:01:34.321529', 0, 1, '2023-04-14 06:05:02.523601', 0, '', 0),
+(62, 'awda', 'wdawdawd', 'awda', '1231', 'awdaw@d.com', 'awdawd', 'Afghanistan', 'adwawd', '2023-04-14 11:32:00.000000', 'dawd', 'speakerReginstration/awdawd/783px-Test-Logo.svg.png', 'speakerReginstration/awdawd/colorful-illustration-test-word-260nw-1438324490.png', '2023-04-15 11:32:00.000000', 1, 3, 0, '2023-04-14 06:02:54.067566', 0, 1, '2023-04-14 06:04:36.141773', 0, '', 0),
+(63, 'adawd', 'awdad', 'awdawd', 'awdaw', 'wda@f.c', '123', 'Afghanistan', 'awdawd', '2023-04-15 11:34:00.000000', 'teada', 'speakerReginstration/123/783px-Test-Logo.svg_jdIletj.png', 'speakerReginstration/123/colorful-illustration-test-word-260nw-1438324490_wv4cf8v.png', '2023-04-15 11:34:00.000000', 1, 3, 0, '2023-04-14 06:04:14.909285', 0, 1, '2023-04-14 06:05:24.100010', 0, '', 0),
+(64, 'adwa', 'dwad', 'awdawd', 'awdawd', 'awdawd@c.cp', 'awdawd', 'Afghanistan', 'awdawd', '2023-03-31 11:37:00.000000', 'teadwa', 'speakerReginstration/awdawd/783px-Test-Logo.svg_46UmFa2.png', 'speakerReginstration/awdawd/colorful-illustration-test-word-260nw-1438324490_mqOiE8p.png', '2023-03-31 11:37:00.000000', 1, 3, 0, '2023-04-14 06:07:20.156676', 0, 1, '2023-05-11 06:17:44.827534', 0, '', 0),
+(65, 'awdw', 'dawda', 'dawdawd', 'awd', 'daw@gf.c', 'awd', 'Afghanistan', 'awdaw', '2023-04-07 11:43:00.000000', 'tea', 'speakerReginstration/awd/783px-Test-Logo.svg_1mTc2JX.png', 'speakerReginstration/awd/colorful-illustration-test-word-260nw-1438324490.png', '2023-04-28 11:43:00.000000', 1, 0, 0, '2023-04-14 06:13:44.594629', 0, 0, NULL, 0, '', 0),
+(66, 'dawdaw', 'dawdd', 'awdawd', 'adwaw', 'dwa@gco.c', '13123', 'Afghanistan', 'awdawd', '2023-04-27 11:45:00.000000', 'teadw', 'speakerReginstration/13123/colorful-illustration-test-word-260nw-1438324490.png', 'speakerReginstration/13123/783px-Test-Logo.svg.png', '2023-04-26 11:45:00.000000', 1, 0, 0, '2023-04-14 06:15:57.007634', 0, 0, NULL, 0, '', 0),
+(67, 'awda', 'wdawd', 'awdaw', 'awd', 'dwa@d.c', '231', 'Afghanistan', 'awdawd', '2023-04-28 11:50:00.000000', 'wadaw', 'speakerReginstration/231/colorful-illustration-test-word-260nw-1438324490.png', 'speakerReginstration/231/783px-Test-Logo.svg.png', '2023-04-22 11:50:00.000000', 1, 0, 0, '2023-04-14 06:20:52.541968', 0, 0, NULL, 0, '', 0),
+(68, '123', '132123', 'awdawd', 'awda', 'dwa@g.c', '2131', 'Afghanistan', 'awdawd', '2023-04-23 11:51:00.000000', 'wdada', 'speakerReginstration/2131/colorful-illustration-test-word-260nw-1438324490_6UbFjFk.png', 'speakerReginstration/2131/783px-Test-Logo.svg_ChJYfPu.png', '2023-04-22 11:51:00.000000', 1, 3, 0, '2023-04-14 06:22:05.784226', 0, 1, '2023-04-14 06:26:40.957847', 0, '', 0),
+(69, 'TEST ', 'TEST', 'adwawd', 'Wd', 'WD@a.com', 'awdawd', 'Afghanistan', 'adwawd', '2023-04-21 11:53:00.000000', 'teadw', 'speakerReginstration/awdawd/colorful-illustration-test-word-260nw-1438324490_wA6OsLZ.png', 'speakerReginstration/awdawd/783px-Test-Logo.svg_JW74tTR.png', '2023-04-28 11:53:00.000000', 1, 0, 0, '2023-04-14 06:23:57.862663', 0, 0, NULL, 0, '', 0),
+(70, '12', '21', 'wadad', 'awdawd', 'dwa@gmail.com', 'awdaw', 'Afghanistan', 'awdad', '2023-04-16 11:57:00.000000', 'wada', 'speakerReginstration/awdaw/783px-Test-Logo.svg.png', 'speakerReginstration/awdaw/colorful-illustration-test-word-260nw-1438324490.png', '2023-04-16 11:57:00.000000', 1, 0, 0, '2023-04-14 06:27:20.443407', 0, 0, NULL, 0, '', 0),
+(71, 'awd', 'awdawd', 'awda', 'awda', '12313@daw.co', 'adwa', 'Afghanistan', 'awdawd', '2023-04-19 12:24:00.000000', 'test', 'speakerReginstration/adwa/colorful-illustration-test-word-260nw-1438324490.png', 'speakerReginstration/adwa/783px-Test-Logo.svg.png', '2023-04-22 12:24:00.000000', 1, 0, 0, '2023-04-14 06:55:08.163898', 0, 0, NULL, 0, '', 0),
+(72, 'wdaw', 'dawdaw', 'daw21', '33', 'mansoorgt007@gmail.com', '21', 'Afghanistan', 'awdawd', '2023-04-28 12:29:00.000000', 'awda', 'speakerReginstration/21/colorful-illustration-test-word-260nw-1438324490.png', 'speakerReginstration/21/783px-Test-Logo.svg.png', '2023-04-13 12:29:00.000000', 1, 3, 0, '2023-04-14 06:59:42.703414', 0, 1, '2023-04-14 07:00:47.037939', 0, '', 0),
+(73, 'awdawd', 'wdawd', 'awdaw', 'dawd', 'mansoorgt007@gmail.com', 'adawd', 'Afghanistan', 'awdawd', '2023-04-22 12:32:00.000000', 'awdaw', 'speakerReginstration/adawd/colorful-illustration-test-word-260nw-1438324490.png', 'speakerReginstration/adawd/783px-Test-Logo.svg.png', '2023-04-29 12:32:00.000000', 1, 0, 0, '2023-04-14 07:02:42.035617', 0, 0, NULL, 0, '', 0),
+(74, 'awdawd', 'awdaw', 'dawd', 'awd', 'mansoorgt007@gmail.com', '2131', 'Afghanistan', 'awda', '2023-04-15 12:33:00.000000', 'awda', 'speakerReginstration/2131/colorful-illustration-test-word-260nw-1438324490_z03qftF.png', 'speakerReginstration/2131/783px-Test-Logo.svg_Yjx0uVH.png', '2023-04-15 12:33:00.000000', 1, 3, 0, '2023-04-14 07:03:39.037190', 1, 0, '2023-05-11 10:06:00.855395', 0, '', 1),
+(75, 'awdaw', 'awdawd', 'dawd', 'awdawd', 'mansoorgt007@gmail.com', '131', 'Afghanistan', 'awdad', '2023-04-29 12:34:00.000000', 'wda', 'speakerReginstration/131/colorful-illustration-test-word-260nw-1438324490.png', 'speakerReginstration/131/783px-Test-Logo.svg.png', '2023-04-22 12:34:00.000000', 1, 0, 0, '2023-04-14 07:04:46.510317', 0, 0, NULL, 0, '', 0),
+(76, 'ad', 'dsw', 'dwas', 'wds', 'mansoorgt007@gmail.com', '213', 'Afghanistan', 'adwawd', '2023-04-29 12:38:00.000000', 'tes', 'speakerReginstration/213/colorful-illustration-test-word-260nw-1438324490_blkbDmS.png', 'speakerReginstration/213/783px-Test-Logo.svg_gzY4E32.png', '2023-04-22 12:38:00.000000', 1, 3, 1, '2023-04-14 07:08:15.149868', 1, 0, '2023-05-11 11:03:37.735791', 0, '', 1),
+(77, 'mansoo', 'kk', 'm', 'm', 'mansp@d.com', '2313', 'Algeria', NULL, NULL, '', 'speakerReginstration/2313/783px-Test-Logo.svg.png', 'speakerReginstration/2313/colorful-illustration-test-word-260nw-1438324490.png', NULL, 1, 0, 0, '2023-04-19 04:58:32.868356', 0, 2, '2023-05-11 06:09:17.214899', 0, 'dawd', 0),
+(78, 'awdawd', 'awdawd', 'awdawd', 'awdawd', 'awd@g.c', '231', 'Andorra', NULL, NULL, '', 'speakerReginstration/231/783px-Test-Logo.svg_MS5HNZg.png', 'speakerReginstration/231/colorful-illustration-test-word-260nw-1438324490_dR52CM1.png', NULL, 1, 3, 0, '2023-04-19 04:59:04.836331', 0, 1, '2023-05-11 06:01:17.391130', 0, '', 1),
+(79, 'dawd', 'awdad', 'adw', 'dwad', 'dadawd@gmai.com', '213', 'Algeria', NULL, NULL, NULL, 'speakerReginstration/213/WhatsApp_Image_2023-04-25_at_13.10.54.jpg', 'speakerReginstration/213/WhatsApp_Image_2023-04-25_at_13.00.44.jpg', NULL, 0, 3, 0, '2023-04-28 11:14:43.555623', 0, 0, '2023-05-11 10:04:45.577456', 0, 'awdad', 0),
+(80, 'dawdawd', 'awdawd', 'awdaw', 'dawda', 'awd@gf.cpom', 'awdad', 'Algeria', NULL, NULL, NULL, 'speakerReginstration/awdad/WhatsApp_Image_2023-04-25_at_13.00.44.jpg', 'speakerReginstration/awdad/WhatsApp_Image_2023-04-25_at_13.10.54.jpg', NULL, 0, 3, 0, '2023-04-28 11:18:12.231621', 0, 1, '2023-05-11 10:02:17.696013', 0, 'dwad', 0),
+(81, 'dwada', 'wdawd', 'awdawd', 'awdawd', 'wda@f.com', '12313', 'American Samoa', '12313', '2023-05-11 11:18:00.000000', 'adwad', 'speakerReginstration/12313/8338913298_be76c338-3765-4901-99eb-51ac545fa865.png', 'speakerReginstration/12313/techquinox.png', '2023-05-11 11:17:00.000000', 1, 3, 1, '2023-05-11 05:48:14.963367', 1, 1, '2023-05-11 10:04:36.278728', 0, '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_unique_reg_code`
+--
+
+CREATE TABLE `app_unique_reg_code` (
+  `id` bigint(20) NOT NULL,
+  `used` int(11) DEFAULT NULL,
+  `code` varchar(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `app_unique_reg_code`
+--
+
+INSERT INTO `app_unique_reg_code` (`id`, `used`, `code`) VALUES
+(1, 1, '193172'),
+(2, 0, '486942'),
+(3, 0, '917776'),
+(4, 0, '175775'),
+(5, 0, '834284'),
+(6, 0, '314887');
 
 -- --------------------------------------------------------
 
@@ -177,7 +344,27 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (61, 'Can add vapp_category', 16, 'add_vapp_category'),
 (62, 'Can change vapp_category', 16, 'change_vapp_category'),
 (63, 'Can delete vapp_category', 16, 'delete_vapp_category'),
-(64, 'Can view vapp_category', 16, 'view_vapp_category');
+(64, 'Can view vapp_category', 16, 'view_vapp_category'),
+(65, 'Can add invited registrations', 17, 'add_invitedregistrations'),
+(66, 'Can change invited registrations', 17, 'change_invitedregistrations'),
+(67, 'Can delete invited registrations', 17, 'delete_invitedregistrations'),
+(68, 'Can view invited registrations', 17, 'view_invitedregistrations'),
+(69, 'Can add applicant registrations', 18, 'add_applicantregistrations'),
+(70, 'Can change applicant registrations', 18, 'change_applicantregistrations'),
+(71, 'Can delete applicant registrations', 18, 'delete_applicantregistrations'),
+(72, 'Can view applicant registrations', 18, 'view_applicantregistrations'),
+(73, 'Can add occupations', 19, 'add_occupations'),
+(74, 'Can change occupations', 19, 'change_occupations'),
+(75, 'Can delete occupations', 19, 'delete_occupations'),
+(76, 'Can view occupations', 19, 'view_occupations'),
+(77, 'Can add unique_reg_code', 20, 'add_unique_reg_code'),
+(78, 'Can change unique_reg_code', 20, 'change_unique_reg_code'),
+(79, 'Can delete unique_reg_code', 20, 'delete_unique_reg_code'),
+(80, 'Can view unique_reg_code', 20, 'view_unique_reg_code'),
+(81, 'Can add unique_reg_code', 21, 'add_unique_reg_code'),
+(82, 'Can change unique_reg_code', 21, 'change_unique_reg_code'),
+(83, 'Can delete unique_reg_code', 21, 'delete_unique_reg_code'),
+(84, 'Can view unique_reg_code', 21, 'view_unique_reg_code');
 
 -- --------------------------------------------------------
 
@@ -205,14 +392,15 @@ CREATE TABLE `auth_user` (
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
 (3, 'pbkdf2_sha256$260000$kEMoj2q7rNhsOdVnPUnACm$MQGgmU2BL8Z4Q2eqjnNbsPRMc4nIURs2y3iAFbwLBcY=', '2023-02-18 17:47:21.266579', 0, 'Shadin', '', '', '', 0, 1, '2022-10-28 06:40:47.000000'),
-(4, 'pbkdf2_sha256$320000$wX10yxIahwlGVkvoRg94Tz$/BEZ49GWsj3AlkbDGjtiM99OfalRtb4AVYskxHtXatw=', '2023-04-10 04:12:01.271934', 1, 'Don', '', '', '', 1, 1, '2022-10-28 06:42:35.000000'),
+(4, 'pbkdf2_sha256$320000$0P4AfA8UUqhaVh0oAQxI2Q$BgzJKqIAwyDZohji+PbatIe+VYjBsPNt2un9ka/eVFE=', '2023-05-12 08:46:11.351752', 1, 'Don', '', '', '', 1, 1, '2022-10-28 06:42:35.000000'),
 (5, 'pbkdf2_sha256$260000$vWw4L3pvPY9T76HhlsbD3m$sAS7jd3zXbdLvtcu4lH6ieONcv1qHfgTItDkaNYZYjM=', '2022-12-08 11:21:30.432329', 0, 'INFOMEUSER', '', '', '', 0, 1, '2022-10-28 06:43:30.989289'),
 (6, 'pbkdf2_sha256$320000$vK0FIygQJY5kKhKjAb3Xrv$O8uFCD5zi2fWRYDa7fVmNFOxV/sshT/KAFtW6FqFNvQ=', '2022-10-29 11:27:02.148632', 0, 'MOTNSUPERADMIN', '', '', '', 0, 1, '2022-10-28 06:45:09.963050'),
 (7, 'pbkdf2_sha256$260000$VaT263MscyQ2onyDYXdlxk$8FI0PHN0IcQCRJONfStJtCHv7nyr7WTHEI6RkU99E+o=', '2023-02-06 06:43:29.902750', 0, 'sreenath', '', '', '', 0, 1, '2022-11-10 07:15:59.000000'),
 (8, 'pbkdf2_sha256$260000$ktl3W5WS9fTEks6jEHCkX0$osFXYFLcytw+2PZqM6bGFnkDWGK7jDBcceL3KAEwKmg=', '2023-03-20 08:40:53.718193', 0, 'Uvais', '', '', '', 0, 1, '2022-11-10 09:48:08.000000'),
-(9, 'pbkdf2_sha256$260000$KtU38A4cL5fgQB4Y86Nura$1Mdlm3DJsgczBLIicNGcBGlTbSUctebu4mwc4bSVoD0=', '2023-03-29 10:12:46.006200', 1, 'mansoorgt700', '', '', '', 1, 1, '2023-01-25 10:23:48.562317'),
+(9, 'pbkdf2_sha256$320000$xJwKCsMgwrReJGkuwkgaSp$97gT0XIYA/iBuH0cX3aG5WMsCZRIz6fWcxMikEmQzGQ=', '2023-04-11 07:22:16.404945', 1, 'mansoorgt700', '', '', '', 1, 1, '2023-01-25 10:23:48.562317'),
 (10, 'pbkdf2_sha256$260000$J6gkC2t0r3zjiu0ERTtHCO$AmOlCKzBu1vHvC10WRjoRYQOGhLIcHck0WRgg/m0UYo=', '2023-02-09 11:44:05.415635', 0, 'kochi_dev', '', '', '', 0, 1, '2023-01-30 11:05:03.237720'),
-(11, 'pbkdf2_sha256$260000$W2i6yLhsSTOHnKDKySlrdf$csqW3ohehoO20kUDFVeySLxoC5DLLXdTmrvhLs6qyZA=', '2023-03-14 10:32:06.131550', 0, 'dazadmin', '', '', '', 0, 1, '2023-02-01 11:37:30.500357');
+(11, 'pbkdf2_sha256$260000$W2i6yLhsSTOHnKDKySlrdf$csqW3ohehoO20kUDFVeySLxoC5DLLXdTmrvhLs6qyZA=', '2023-03-14 10:32:06.131550', 0, 'dazadmin', '', '', '', 0, 1, '2023-02-01 11:37:30.500357'),
+(12, 'pbkdf2_sha256$260000$6tLt3ewHxynFHDwTfG1Uby$3Vw7bg4mQhK/PMshSqP3A6kAzk0fK718ycFvvGgyB0w=', '2023-04-19 05:54:58.298201', 0, 'admin', 'admin', '-', 'mansoorgt007@gmail.com', 0, 1, '2023-04-11 07:13:56.000000');
 
 -- --------------------------------------------------------
 
@@ -255,6 +443,14 @@ CREATE TABLE `django_admin_log` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `django_admin_log`
+--
+
+INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
+(18, '2023-04-11 07:13:57.329396', '12', 'admin', 1, '[{\"added\": {}}]', 4, 4),
+(19, '2023-04-11 07:22:42.281571', '12', 'admin', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\"]}}]', 4, 9);
+
 -- --------------------------------------------------------
 
 --
@@ -273,7 +469,11 @@ CREATE TABLE `django_content_type` (
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (1, 'admin', 'logentry'),
+(18, 'App', 'applicantregistrations'),
+(17, 'App', 'invitedregistrations'),
+(19, 'App', 'occupations'),
 (7, 'App', 'speakerregistrations'),
+(21, 'App', 'unique_reg_code'),
 (3, 'auth', 'group'),
 (2, 'auth', 'permission'),
 (4, 'auth', 'user'),
@@ -283,6 +483,7 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (13, 'Portal', 'eventpass_designation'),
 (12, 'Portal', 'eventpass_image_db'),
 (11, 'Portal', 'eventpass_table'),
+(20, 'Portal', 'unique_reg_code'),
 (8, 'Portal', 'user_db'),
 (16, 'Portal', 'vapp_category'),
 (14, 'Portal', 'vapp_table'),
@@ -330,7 +531,48 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (21, 'App', '0003_alter_speakerregistrations_table', '2023-04-05 10:52:07.697113'),
 (22, 'App', '0004_alter_speakerregistrations_table', '2023-04-05 10:52:29.543435'),
 (23, 'App', '0005_speakerregistrations_ksa_visa', '2023-04-05 11:11:40.144612'),
-(24, 'App', '0006_speakerregistrations_approved_by_and_more', '2023-04-10 04:36:07.382777');
+(24, 'App', '0006_speakerregistrations_approved_by_and_more', '2023-04-10 04:36:07.382777'),
+(25, 'App', '0007_speakerregistrations_deleted', '2023-04-10 06:01:59.074985'),
+(26, 'App', '0008_speakerregistrations_remark', '2023-04-11 07:09:30.809515'),
+(27, 'App', '0009_invitedregistrations', '2023-04-18 07:13:56.272261'),
+(28, 'App', '0010_applicantregistrations', '2023-04-25 06:23:03.435180'),
+(29, 'App', '0011_rename_reaso_to_attend_applicantregistrations_reason_to_attend', '2023-04-25 06:24:59.113144'),
+(30, 'App', '0012_occupations', '2023-04-26 04:38:28.270613'),
+(31, 'Portal', '0001_initial', '2023-04-27 07:16:28.389349'),
+(32, 'App', '0013_unique_reg_code', '2023-04-27 07:17:31.078335'),
+(33, 'Portal', '0002_delete_unique_reg_code', '2023-04-27 07:17:31.152316'),
+(34, 'App', '0014_alter_unique_reg_code_urcode_and_more', '2023-04-27 07:19:38.409867'),
+(35, 'App', '0015_alter_unique_reg_code_urcode', '2023-04-27 07:19:38.579610'),
+(36, 'App', '0016_delete_unique_reg_code', '2023-04-27 07:19:38.606609'),
+(37, 'App', '0017_unique_reg_code', '2023-04-27 07:19:51.594872'),
+(38, 'App', '0018_alter_unique_reg_code_urcode', '2023-04-27 07:50:26.799718'),
+(39, 'App', '0019_alter_unique_reg_code_urcode', '2023-04-27 07:53:30.939635'),
+(40, 'App', '0020_alter_unique_reg_code_urcode', '2023-04-27 07:57:50.718696'),
+(41, 'App', '0021_remove_unique_reg_code_urcode_unique_reg_code_id', '2023-04-27 08:01:46.675604'),
+(42, 'App', '0022_remove_unique_reg_code_id_unique_reg_code_u_id', '2023-04-27 08:01:46.803832'),
+(43, 'App', '0023_alter_unique_reg_code_u_id', '2023-04-27 08:01:54.459551'),
+(44, 'App', '0024_delete_unique_reg_code', '2023-04-27 08:02:28.706113'),
+(45, 'App', '0025_unique_reg_code', '2023-04-27 08:02:48.528005'),
+(46, 'App', '0026_alter_unique_reg_code_id', '2023-04-27 08:05:59.354713'),
+(47, 'App', '0027_delete_unique_reg_code', '2023-04-27 08:08:26.329207'),
+(48, 'Portal', '0003_unique_reg_code', '2023-04-27 08:08:41.353614'),
+(49, 'Portal', '0004_delete_unique_reg_code', '2023-04-27 08:09:21.987003'),
+(50, 'Portal', '0005_unique_reg_code', '2023-04-27 08:10:38.465918'),
+(51, 'Portal', '0006_remove_unique_reg_code_id_and_more', '2023-04-27 08:17:53.431570'),
+(52, 'Portal', '0007_rename_ur_code_unique_reg_code_id', '2023-04-27 08:17:53.620952'),
+(53, 'Portal', '0008_delete_unique_reg_code', '2023-04-27 08:17:53.650480'),
+(54, 'Portal', '0009_unique_reg_code', '2023-04-27 08:18:15.277695'),
+(55, 'Portal', '0010_alter_unique_reg_code_id', '2023-04-27 08:19:42.168119'),
+(56, 'Portal', '0011_delete_unique_reg_code', '2023-04-27 08:24:23.300946'),
+(57, 'Portal', '0012_unique_reg_code', '2023-04-27 08:29:07.092520'),
+(58, 'Portal', '0013_unique_reg_code_used', '2023-04-27 08:33:13.115836'),
+(59, 'Portal', '0014_unique_reg_code_code', '2023-04-27 12:26:12.664742'),
+(60, 'Portal', '0015_remove_unique_reg_code_ur_code', '2023-04-27 12:31:50.176576'),
+(61, 'App', '0028_remove_applicantregistrations_reason_to_attend_and_more', '2023-04-28 10:37:43.388015'),
+(62, 'App', '0029_rename_pre_attand_applicantregistrations_pre_attend_and_more', '2023-04-28 11:01:13.734848'),
+(63, 'App', '0030_invitedregistrations_urc_code', '2023-04-28 11:06:17.497820'),
+(64, 'App', '0031_applicantregistrations_print_count_and_more', '2023-05-11 05:37:41.366012'),
+(65, 'App', '0032_alter_applicantregistrations_print_count_and_more', '2023-05-11 05:44:51.444676');
 
 -- --------------------------------------------------------
 
@@ -352,6 +594,7 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 ('01r1dgxfi9leym7wsweywhtu3viwtf1z', '.eJxVjsEKgzAQRP8l5yDJJmr12Hu_oIjsJmu1lQhRC6X03xuLB3sZmH2zw7xFi-vSt-vMsR28qIUR8ngjdA8OG_B3DLcpc1NY4kDZFsl2OmeXyfN43rN_BT3OffpWecmq6kzlDJ20sdQhWTpRqdgBcEGAeVFYpY3LK3DgsQNDyuUITImk0l9dnEYWtd7dtthIwU8OSzItxogvUV-tVlYmMY0UtA6jP0KwADKJ3kQ1ny9M71MU:1pBbo1:SRUQ7pK2lZQMHshPWkmxfougop8kSdr-YDeZF7U4GtU', '2023-01-14 13:21:45.881516'),
 ('04286q3seum6v4qwgb11l74vet6sylw2', '.eJxVjDsOwjAQBe_iGlm72LFxSvqcIVqvFxyIbCmfCnF3EpQC2jfz5qV6Wpfcr7NM_ZBUqxp1-t0i8VPKDtKDyr1qrmWZhqh3RR901l1NMl4P9y-Qac7bW6xj35BwsAYs4E1ADBgIKURvU6RG0IALVsA7wQuhQ_QYDDMbCbJFv7mpjqLa8_sD_8w8Fw:1os373:45QVcJaD9sLB9WiD2ItLfWwj30FeM1HI5h5PSs_mP9s', '2022-11-21 14:28:33.631065'),
 ('07mli5401th9pcx1artpb33cyutvdtau', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1p1XDk:y3cPsIgpysBqoYhF4bf01J8QRhODtTbY4WW40pQEvz4', '2022-12-17 18:26:40.099032'),
+('0h17z5z51p41ybgz27pqik9cqweddiyv', '.eJxVjr0OwjAMhN8lM4qU5r8jO89QObZLClUipe2EeHda1AE2n-_u073EANuah23hNkwkemHE5feXAJ9cDoMeUO5VYi1rm5I8IvJ0F3mrxPP1zP4BMix5byvlY3LWMI6JENniaCNoBqUje_KWUlSdDqBt9PsdtHNkOm9cQhV8t0O_uFZnFr061bFYvz8eTkBi:1pnC4m:waFU1IXS5S6QdaK-btFRR5SS8wic6SS8T63mvyRqlX0', '2023-04-28 05:34:24.733379'),
 ('0ni4wfly2h1wrm3uzh5s938i0j8o3pae', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p0n18:mbqi7QTh1HIoV891WWI77JUBpOXmhCQnD9C38QHEpDU', '2022-12-15 17:06:34.140640'),
 ('0oqlz0woenliqmhuslhvzdxd3sno2t46', '.eJxVjr0OgzAMhN8lcxU1PyaBsTvPgJzYFFpEJAJT1XdvqDK0m8939-leYsBjn4Yj8zbMJDphxeX3FzA-eT0NeuB6TzKmdd_mIM-IrG6WfSJebjX7B5gwT6VtGqfHaFiRChxca1yDwYAHHpGQCGwE0MgO0Fv25Ww1QXv1QBi0VQX6xW1pYdGpqs7F5v0BIJlAqg:1phq4w:FowYBG3ORj9GiLLy86ApRssYOZs-X8vuhWiUmwDwxf8', '2023-04-13 11:04:26.260518'),
 ('0zg1zyps9vy4uz0rf4bveeo4nhb7t9t5', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1otlyv:NrIhjJGxRlyoXkcCgfhv-SwkU3VHjlpqCUwYHB8o8bo', '2022-11-26 08:35:17.118086'),
@@ -360,7 +603,9 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 ('1p6qnoq2upk3k3ayopwafrryo1fmyzjq', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p2UsQ:NWYMLLqa53tMu5Cf9sYBP7lAK2tOpikHjbYrIFbORng', '2022-12-20 10:08:38.425281'),
 ('24yiium0qujy7itdbmc3rvnybm79tixj', '.eJxVjsEKgzAQRP8l5yAxazR67L1fUER2k221FQNRC6X03xuLh3oZmH2zw7xFh-vSd-vMsRu8aAQI-X8jdA-eNuDvON1C5sK0xIGyLZLtdM7OwfN42rOHgh7nPn2zrh243DBTYcGo2lm8Fl5pIqtKQMxVZbWlqwWqLJSKyPhSOQZGX2pOpb-6GEYWTb67bbGRgtZh9Ml0GCO-RHPJoa5lkqqVgp88LQdoCpBJdPv5As5_UoA:1pU06C:whWUIlT47zHSJ4zjCddF9xuG_1uhLJ5hWkpOhCzkkRc', '2023-03-06 06:56:32.807894'),
 ('25zfi1b1u9gcrhwyg17u0k7bqm0bpcpb', 'e30:1ooJIS:EX2V5o9WlCaxmSUEfW7Z9IHHYuKwbWuT49FZT1Sw5o4', '2022-11-11 06:56:52.688593'),
+('2ihzah66azzhwott2a1tdlo8nzik7tk6', '.eJxVjssOgjAQRf-la9MwTCktS_d-A5l2poISmvBYGf9dMF3o8r5O7kv1tG9Dv6-y9COrThl1-fUCxafMZ8APmu9Zxzxvyxj0WdElXfUts0zX0v0DDLQOx9olrqiOEiMCVKaJCaw0hK2zngF8a7D2bKpgkJML0Lg2JEbjyQcrhAf0i1vyJKqDos7H-P4AAN9ASQ:1pwycB:NEFkXxwZcaOuMJGVdr0qPsWTCnCVk19Ta-lazmtmfr0', '2023-05-25 05:13:19.168406'),
 ('2jummuajt2ycmgtlgxhkfwtg3oygr2zu', '.eJxVjsEKgzAQRP8lZxETN7Hx2Hu_oIhssptqKwpRC6X03xuLh3oZmHmzw75Fi-vStevMse1J1OIksv_MoX_wuAG643ibcj-NS-xdvlXync75ZSIeznv3MNDh3KVrcNKRITSkKgXKgwNC0KARrAm6tJiC0hsNFWkMXASuArJV1knFFtPoby5OA4ta7m772GTCrf1AybQYI75EfZVQQJak3EQ2meAnj8uxYVWCVjafL40wU9I:1pU1GZ:LOp8wH-fUhRJOZwDXXMpalv9kK6UwfVg_vLOZrlsLME', '2023-03-06 08:11:19.615512'),
+('3ajhczduaygx5a86jaekfgf32tdoc5se', '.eJxVjssOgjAQRf-la9P0TcvSvd9AZjqtoIQmFFbGfxdMF7q8r5P7YgPs2zjsNa3DRKxnUrHLr4kQn2k5E3rAci88lmVbJ-Rnhbe08luhNF9b9w8wQh2PtbKaAiIqKVCg90I7k11nIXuXvDaQbbbOGR-ysCoE6oQwFDWlToHU5oB-cWuZE-tlU-fl8P4A_vo_xQ:1pp0mQ:1Hg4-ES22k4ov0Gh2-ze3YXorsX9mFTsxIh__jaoFbw', '2023-05-03 05:54:58.329450'),
 ('3ay2nugvg993m3b49pobhk53f1h1yk37', '.eJxVjk0OgjAQhe_StWmYotMOS_eegUw7raCEJhRWxrsLpgtdvr8v76V63tah30pc-lFUpwDU6df0HJ5xPhJ58HzPOuR5XUavj4quadG3LHG61u4fYOAy7OsWgJKz6FGcESNeMIExHLxFTudGrCMCaRgFrcAFnSOOgYliQ20wO_SLW_IUVQdVHZfd-wMqTECR:1pc1ws:t81UsiSwoePqi1Jv42nIa34uxa2qf591_Bdlc_Yz49U', '2023-03-28 10:32:06.140519'),
 ('3iirio5kj127a1zzr3e1x48z470hub6l', '.eJxVjsuqgzAQht8l6yBxxnhbdt8nKEVmkvHoqShELZTSd29SXLSbD_75L8xTdbRvQ7evErrRq1ah0t83JneTORn-n-a_JXPLvIWRsxTJDnfNzouX6XRkfwYGWofYNrYS0_TYOOQ6x4J74oJrrow4ACkZyJZlYXJ0tgEHnnpANs4SCEcnjn7mwjKJavNDpY9RK97HyUfRUQj0UO0FsKl1RJVQJtgETMivWsld5u27gICgEQCurzcA-1Yx:1p3xl8:vXXv4LSXDRdSCVR5CDhj2eEZp00RJn3j7tvjsARDcRI', '2022-12-24 11:11:10.094388'),
 ('3ovd07yltsz2of87s9x95gvcrd8zx4za', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p0n16:-n0GylobUQ6x9g4jsbnHzKWgpnI7Q4ZPIzC_2_jrpEs', '2022-12-15 17:06:32.296147'),
@@ -374,6 +619,7 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 ('6ei7kwelrevh8gho312b5ncz30lgx8y0', '.eJxVjssOgjAQRf-la9O0HVoGlu79BjLTDoISmvBYGf9dMF3o8r5O7kt1tG9Dt6-ydGNSrQJ1-fWY4lPmM0gPmu9Zxzxvy8j6rOiSrvqWk0zX0v0DDLQOx1pcEyFaL8IVgjdNROqrZBwzmgBE1tTokHsErhGCYfYpmCgglIKTA_rFLXkS1dqizsf-_QENVkCb:1pMo8A:Zkln8uLnqSvbltT5jKCCq04H2AqdjQQBdO56OABjYTM', '2023-02-14 10:44:50.323865'),
 ('6rucmshik6wvjip2p870odq8h25q2r1n', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1p36fD:U30irquH6Tpd_e9Z5cr5tXX06IiBiJBKguyQoVXYog8', '2022-12-22 02:29:31.893399'),
 ('6yim17sezxuvujq2v1d5uede3p6lrxwn', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1p8Mcf:EKrkPHgGTWHyawPqNeFO4gbrmtCVb3_GmiteJsDc5Vo', '2023-01-05 14:32:37.390544'),
+('76inc7mwub7aatb7oedh780jkplhag1j', '.eJxVjssOwiAQRf-FtSEMBQpduvcbmgFmpNqUpI-V8d9tTRe6vK-T-xI9bmvpt4XmfsiiE6DF5deMmJ40HUl-4HSvMtVpnYcoj4o800Xeaqbxenb_AAWXsq8NsiNF3qnkLAcOmjxgBGDWbLlJwMgmQkZvszJWad82SjM2xrZahR36xc11JNHBqY7L4f0BPsxAdg:1pm8Lc:SMKXhHH3BXiOm3ayz5tk5w7Qzz6J37ZGj-bKJTmD0cc', '2023-04-25 07:23:24.542189'),
 ('7c5vhlv9doqnt9jph7zjiwyfk3wao82b', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1p3VXq:zir7VvFj-lTvBJ9ifOEWSGD96xaACr9GB7HDnYEnDbU', '2022-12-23 05:03:34.496483'),
 ('7d8bui3qtpw4czeqxwcv0e9du9yo3yh0', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p0n19:AwLambbzkKqtwjFFdlxwBT-NNkALmhYVRdiMREpdErU', '2022-12-15 17:06:35.268769'),
 ('7e7unt5zowj2u9qf03tbvze48ct8aozr', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1ovZ47:8w4Q4yiGMMPBUB_xY38zjUHTcIuYvH_ovglcV6lfOVQ', '2022-12-01 07:12:03.852197'),
@@ -396,11 +642,13 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 ('ewbchix7npw2hk4fg04pp2hwjg4hebhm', '.eJxVjDsOwjAQBe_iGlm72LFxSvqcIVqvFxyIbCmfCnF3EpQC2jfz5qV6Wpfcr7NM_ZBUqxp1-t0i8VPKDtKDyr1qrmWZhqh3RR901l1NMl4P9y-Qac7bW6xj35BwsAYs4E1ADBgIKURvU6RG0IALVsA7wQuhQ_QYDDMbCbJFv7mpjqLa8_sD_8w8Fw:1oqytP:a-_sne5k7VkuaPbHrlEvqz0E18XDe9ns2VAxSmtfzZU', '2022-11-18 15:46:03.045889'),
 ('exyjm5h4if933h37ty0g32aw5ufoilo9', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1pADR8:adAa4-Lc1UALNmIr6PrnT-nE_Ch20oLbfNeuq48F394', '2023-01-10 17:08:22.359749'),
 ('f0r810h4ozj6bk9jg5cituf7sbvaspxh', '.eJxVjk0OgjAQhe_StWk6TJEOS_ecgUzbqaCEJhRWxrsLhoUu39-X91I9b-vQb0WWfoyqVVZdfj3P4SnzEcQHz_esQ57XZfT6qOgzLbrLUabb2f0DDFyGfY0hUEg1OiGICJTqRirjU8QoyYL3V0PkLKA1aCqAip1tgBpkYkcQdugXt-RJVAunOh7j-wPrDz-L:1phT3K:PyjkWGbD__UsO-VsTJu3S5dcX_zxq-t9EgORWryMQSs', '2023-04-12 10:29:14.848241'),
+('ff2gfdg266t3uvlyqrrqygupu6o58ab9', '.eJxVjssOgjAQRf-la9MwTCktS_d-A5l2poISmvBYGf9dMF3o8r5O7kv1tG9Dv6-y9COrThl1-fUCxafMZ8APmu9Zxzxvyxj0WdElXfUts0zX0v0DDLQOx9olrqiOEiMCVKaJCaw0hK2zngF8a7D2bKpgkJML0Lg2JEbjyQcrhAf0i1vyJKqDos7H-P4AAN9ASQ:1pseRN:IvRMPOOQoYgV24P-w4DV5lCbxWer2rbBA4VleOujDrw', '2023-05-13 06:52:17.666318'),
 ('fhhkwe21qt5ce7yjfcl9s0e2t6jctap9', '.eJxVjk0OgjAQhe_StWmYotMOS_eegUw7raCEJhRWxrsLpgtdvr8v76V63tah30pc-lFUpwDU6df0HJ5xPhJ58HzPOuR5XUavj4quadG3LHG61u4fYOAy7OsWgJKz6FGcESNeMIExHLxFTudGrCMCaRgFrcAFnSOOgYliQ20wO_SLW_IUVQdVHZfd-wMqTECR:1pViKY:GAJpvqwkw7hKSMIRAsFNCBH7EejcQpXUvbj6PUBdepM', '2023-03-11 00:22:26.339369'),
 ('fv6h6ytsnu3foc5i0z8g5uoy8fvo8xuf', '.eJxVzsEKgzAMBuB36VmkTa1Wj7vvCcaQpMbpNhSqDsbYu68ZHrbLB-mf_uSlWtzWod0Wju3YqUZZlf2-EYYbTxJ0V5wucx7maY0j5bKS7-mSH-eO74d9969gwGVIv7WrWNe9rYMlb2xBPVJBnirNAYBLAnRlWWhjg6shQIc9WNLBITClJJV-6-J8Z9WYfZKLbab4wdOahhZjxKdqTuB8nSW8UAml4IRCsAIIRtDn9wfiqFFX:1p3F3K:ompFkpIAmdXJxIwztknVjnl8TXfdGgRtz74Ut02C7LU', '2022-12-22 11:26:58.678830'),
 ('g0mwcvfx3n0bf1x7e9ttarh2r9qh6i6d', '.eJxVjk0OgjAQhe_StWk6TJEOS_ecgUzbqaCEJhRWxrsLhoUu39-X91I9b-vQb0WWfoyqVVZdfj3P4SnzEcQHz_esQ57XZfT6qOgzLbrLUabb2f0DDFyGfY0hUEg1OiGICJTqRirjU8QoyYL3V0PkLKA1aCqAip1tgBpkYkcQdugXt-RJVAunOh7j-wPrDz-L:1pOEjQ:pKXgENpP6LDhM1yHrRFWQqEE4kqzuZR8A0pI0UxPFEk', '2023-02-18 09:21:12.312238'),
 ('g7polu7fg1532ljgflpwqqunugk2hy1n', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1p4GRC:qf3vEk6uZ9M9KOw3LGSdv4Cux694dqN9VMq392JqFjU', '2022-12-25 07:07:50.080452'),
 ('g95slfj34s3i2a0d5c0wzwf5o4b0m2hg', '.eJxVjDsOwjAQBe_iGlm72LFxSvqcIVqvFxyIbCmfCnF3EpQC2jfz5qV6Wpfcr7NM_ZBUqxp1-t0i8VPKDtKDyr1qrmWZhqh3RR901l1NMl4P9y-Qac7bW6xj35BwsAYs4E1ADBgIKURvU6RG0IALVsA7wQuhQ_QYDDMbCbJFv7mpjqLa8_sD_8w8Fw:1osiRA:A7ykd0ucZllo__KE54york9QLJPkynI1f3n5VHzKELw', '2022-11-23 10:36:04.935160'),
+('g9mrwekn91d8c3kg1xoni8i6945yyq7e', '.eJxVjk0OgyAQhe_CuiHCgEaX3fcMZIYZqq2RRHTV9O7VhkW7fH9f3ksF3Lcx7EXWMLEalFOXX48wPmU5A37gcs865mVbJ9JnRde06Ftmma-1-wcYsYzH2rA4AEJrkKz45J2NDI1NXePQ9UKGOHbUCXmyTe_FCbeQTIKEsWU4oF_cmmdRg6nqfAzvDzORQUk:1prFR3:08pR4R-G6_T3sp6H3ygzNb2iVN6H8WXu1DyTlWbcDRk', '2023-05-09 09:58:09.255519'),
 ('glj3wla89o73yp0jmndmk6vpvpreees4', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p0n19:AwLambbzkKqtwjFFdlxwBT-NNkALmhYVRdiMREpdErU', '2022-12-15 17:06:35.245825'),
 ('gtdxp8db06uv8stz9chbhctlr49oqrin', '.eJxVjssOgjAQRf-la9O0HVoGlu79BjLTDoISmvBYGf9dMF3o8r5O7kt1tG9Dt6-ydGNSrQJ1-fWY4lPmM0gPmu9Zxzxvy8j6rOiSrvqWk0zX0v0DDLQOx1pcEyFaL8IVgjdNROqrZBwzmgBE1tTokHsErhGCYfYpmCgglIKTA_rFLXkS1dqizsf-_QENVkCb:1pMoE5:eWXJaC9wMvAI-M3A3mr9zduRQBDLUoRvRfVml3Hft9c', '2023-02-14 10:50:57.781533'),
 ('h72s78xkzk2xj6fxlr313dqzjv9ukvzv', '.eJxVjDsOwjAQBe_iGlm72LFxSvqcIVqvFxyIbCmfCnF3EpQC2jfz5qV6Wpfcr7NM_ZBUqxp1-t0i8VPKDtKDyr1qrmWZhqh3RR901l1NMl4P9y-Qac7bW6xj35BwsAYs4E1ADBgIKURvU6RG0IALVsA7wQuhQ_QYDDMbCbJFv7mpjqLa8_sD_8w8Fw:1orBHT:CNIxagnkZv-_KXLKbQahkGtCzJu332q0z8Y0txlaqa4', '2022-11-19 04:59:43.827677'),
@@ -408,6 +656,7 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 ('h8ymivr3ja9kc73vgpo5haimp9lddkm9', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p0n17:w4w7YoPCPKZ3ErQWSKttKJCabOzSBcqm4OCDG7D8viY', '2022-12-15 17:06:33.845260'),
 ('hnhpxx0sw4g88agfokao7up5wj0c0p5p', '.eJxVjssOgjAQRf-la9O0HVoGlu79BjLTDoISmvBYGf9dMF3o8r5O7kt1tG9Dt6-ydGNSrQJ1-fWY4lPmM0gPmu9Zxzxvy8j6rOiSrvqWk0zX0v0DDLQOx1pcEyFaL8IVgjdNROqrZBwzmgBE1tTokHsErhGCYfYpmCgglIKTA_rFLXkS1dqizsf-_QENVkCb:1pMoBx:lXj5UpCy-8d2eZEUcru7pPgkuF_e0EuPNXOHYPaHjug', '2023-02-14 10:48:45.805356'),
 ('hnz1wzpnv00dsk3g4nk1501jgdx6kn8w', '.eJxVjDsOwjAQBe_iGlm72LFxSvqcIVqvFxyIbCmfCnF3EpQC2jfz5qV6Wpfcr7NM_ZBUqxp1-t0i8VPKDtKDyr1qrmWZhqh3RR901l1NMl4P9y-Qac7bW6xj35BwsAYs4E1ADBgIKURvU6RG0IALVsA7wQuhQ_QYDDMbCbJFv7mpjqLa8_sD_8w8Fw:1oqaPb:djnZVYHn9JhLpxXmfLv-akmTzL176mYb646MiRaZ3kM', '2022-11-17 13:37:39.217691'),
+('hov25tlomxodx7fy0xortwj81z5ymmlw', '.eJxVjk0OgyAQhe_CuiHCgEaX3fcMZIYZqq2RRHTV9O7VhkW7fH9f3ksF3Lcx7EXWMLEalFOXX48wPmU5A37gcs865mVbJ9JnRde06Ftmma-1-wcYsYzH2rA4AEJrkKz45J2NDI1NXePQ9UKGOHbUCXmyTe_FCbeQTIKEsWU4oF_cmmdRg6nqfAzvDzORQUk:1prGTV:dWDIbZSmLMDjtPc90ICCYgMg76AITE1roOmbi5IEkBc', '2023-05-09 11:04:45.902267'),
 ('i2jyzpqvaowqcc46cu0mgk05k2r0d5l9', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p0n19:AwLambbzkKqtwjFFdlxwBT-NNkALmhYVRdiMREpdErU', '2022-12-15 17:06:35.457744'),
 ('icm5ewvjljg1kgby6zabjdyhlfp8v7ul', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1p03Q1:3JYSPv4odV_DeLTD-mV8xEawIMq6HRUiqHjgGg0CLlw', '2022-12-13 16:25:13.683596'),
 ('icqpq65nva4xwcgq13gzukf0wtaneiit', '.eJxVjEEOgyAQRe_CuiEwYEGX3XsGMjBDtTWSiK6a3r3auGi3_73_XiLgtg5hq7yEkUQnjLj8bhHTk-cD0APne5GpzOsyRnko8qRV9oV4up3uX2DAOuxvlSznpAkaE9lZp7FF0G32KmVlU4arAkvGQcPOgVHKQHbMnhprfUS_R7-5pUwsOv3-AAgmPBY:1opjbp:vUw_M_BWEOTQ3oNxC7E3AtDTavAfvi-4tNPZNH1Cugs', '2022-11-15 05:14:45.656144'),
@@ -415,8 +664,10 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 ('ioufiuss8i14v1e8pzu27yxqv4qpi2ef', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1p4fuU:9IGO5n8q6abxOLSrPHAmQup3QOZ-VRjtU2sm_Hit9RA', '2022-12-26 10:19:46.580200'),
 ('iybkzdgbwfjd8e9pa53rq5idshjapmes', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p0n16:-n0GylobUQ6x9g4jsbnHzKWgpnI7Q4ZPIzC_2_jrpEs', '2022-12-15 17:06:32.427618'),
 ('jlhu4oojsvvnygknmebs33m6v13l4mj3', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1p0eRt:kx9EioBfj-kIu-7bzJmYDw3qnxIeFnfLVp1PHmZ65hA', '2022-12-15 07:57:37.297184'),
+('k9p0g9j0et7ynll4xppfew9x2l6nplpj', '.eJxVjssOwiAQRf-FtSEMBQpduvcbmgFmpNqUpI-V8d9tTRe6vK-T-xI9bmvpt4XmfsiiE6DF5deMmJ40HUl-4HSvMtVpnYcoj4o800Xeaqbxenb_AAWXsq8NsiNF3qnkLAcOmjxgBGDWbLlJwMgmQkZvszJWad82SjM2xrZahR36xc11JNHBqY7L4f0BPsxAdg:1pmqz0:x55cM3orMl1EgAUkgi_9A9oXJfpxcdT6F4BNex9esWA', '2023-04-27 07:03:02.075281'),
 ('kflxh1c6j2m6z6gu0bw2qr911xodx1w6', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p0n17:w4w7YoPCPKZ3ErQWSKttKJCabOzSBcqm4OCDG7D8viY', '2022-12-15 17:06:33.257507'),
 ('kwdsbgjnwt4nqw1cbaha7vsemjvya7we', '.eJxVjk0OwiAQhe_C2hChA5Uu3XsGMjCDVJuSlHZlvLvUdKHL9_flvYTHbc1-q7z4kcQgLuL06wWMT573gB4434uMZV6XMci9Io-0ylshnq5H9w-Qsea2hqACWUJLutegIwQgBAMGwdlkOofN6KI10JPBxOfEfUJ22gWl2WGDfnFLmVgM6lD7Y_v-ACfHQQ4:1peB4X:fZB9h3f05RWbYeo6WHP4FHNWoqNA7iLjw8ne9Wm8w9Q', '2023-04-03 08:40:53.725355'),
+('kxj6enbrge943ulc5t939lurs4fg15xo', '.eJxVjssOwiAQRf-FtSEMBQpduvcbmgFmpNqUpI-V8d9tTRe6vK-T-xI9bmvpt4XmfsiiE6DF5deMmJ40HUl-4HSvMtVpnYcoj4o800Xeaqbxenb_AAWXsq8NsiNF3qnkLAcOmjxgBGDWbLlJwMgmQkZvszJWad82SjM2xrZahR36xc11JNHBqY7L4f0BPsxAdg:1pmSUl:-npx77kH-fVCQ9XW8RYal41iAQjXikkf3K1xgrf4zSM', '2023-04-26 04:54:11.181923'),
 ('lqutvw3dbi1oz0gq8h5g974tbsjksmke', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p0n17:w4w7YoPCPKZ3ErQWSKttKJCabOzSBcqm4OCDG7D8viY', '2022-12-15 17:06:33.915173'),
 ('m6ryb221xyg1mjnt0dspwfwxhq9palp9', '.eJxVjDsOwjAQBe_iGlm72LFxSvqcIVqvFxyIbCmfCnF3EpQC2jfz5qV6Wpfcr7NM_ZBUqxp1-t0i8VPKDtKDyr1qrmWZhqh3RR901l1NMl4P9y-Qac7bW6xj35BwsAYs4E1ADBgIKURvU6RG0IALVsA7wQuhQ_QYDDMbCbJFv7mpjqLa8_sD_8w8Fw:1oqytQ:TxNqrTLVUMBmg4cmFiwzm7MfQT5HAL7rN21N8blhGRA', '2022-11-18 15:46:04.489124'),
 ('m758srrzkr12gcbeh88wmpmo6wh8h5a8', '.eJxVjsEOgjAQRP-l54Z0aZEuR-9-gSFk2y6CEiAFTYzx3y2Gg14mmZ2Zl32Jhu5r19wXjk0fRCWMkL83R_7G4xaEK42XKfPTuMbeZVsl29MlO02Bh-Pe_QN0tHRprb1H3xbaMkLQgG1Rcq5cG3Tg1oBzB4VoDWijtMoBcrKmBCw1IVkEn6BfXJwGFhXsbvtYS8EPHtdkGoqRnqI6Q9rKJCrJAWspHjTPvwVbSGvq9wdeYVFG:1paF7M:m16CijkHdDOLT7eIyxHdBXUMzUSRaU5vXPFhXhiPChs', '2023-03-23 12:11:32.833016'),
@@ -425,11 +676,13 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 ('n0v82609ycpjpvhkmrwwbp4ijhkxcpko', '.eJxVjDsOwyAQBe9CHSHD8rPL9DmDtSwQnFggGbuKcvfYkYukfTNvXmzEbc3j1uIyToENDNjld_NIz1gOEB5Y7pVTLesyeX4o_KSN32qI8_V0_wIZW97fHqxMqMGSJoXOOEHSx5SMdwSBqAdUDpK1TkjTWSATUzAdWOw1KDJ79Jtb6hzZIN4fIrg8jw:1os0Xq:rN6-6KwjoOeRR1EsooU9mTxDcZRMSl4OxVXyfzCjNe0', '2022-11-21 11:44:02.193577'),
 ('n6p8na9evxk2cyjidrcpygzh0j7a05kq', '.eJxVjMsOgjAUBf-la9O0t8VSl-75BnJfCGpoQmFl_HclYaHbMzPnZXrc1rHfqi79JOZiojn9boT80HkHcsf5ViyXeV0msrtiD1ptV0Sf18P9Oxixjt-aOHFCgkEDNbEBQBUg4Mbj4AJnF5M4l9sovs1ZPSOl7M5CmnwECeb9Af4nOCE:1ooJ8P:tTrEMnSBGumYqgkprvgVY0g7YW8__l5JembcS_RffRc', '2022-11-11 06:46:29.626952'),
 ('nbdcuxdtq7px2gncfopuftuogbm4hcj3', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p0n14:qJThgV6mU5mEZQjItecDxYMyYeSSExcKPSr8PKLLJW0', '2022-12-15 17:06:30.729724'),
+('ncy76mn3dhl07n62t0cvm23xq8doylvu', '.eJxVjr0OwjAMhN8lM4qU5r8jO89QObZLClUipe2EeHda1AE2n-_u073EANuah23hNkwkemHE5feXAJ9cDoMeUO5VYi1rm5I8IvJ0F3mrxPP1zP4BMix5byvlY3LWMI6JENniaCNoBqUje_KWUlSdDqBt9PsdtHNkOm9cQhV8t0O_uFZnFr061bFYvz8eTkBi:1pmpZL:CpCbcUJQBe2pUsnth00FY7y7rJrGHa-t9gUiKaLWDeQ', '2023-04-27 05:32:27.847632'),
 ('nsl6zz7fp051guzwn0ssrus2tuj4xx97', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p090E:TMYrd-demPcZF8piVxMMGnwvh78tfdqE8KF4Mki6O6c', '2022-12-13 22:22:58.832938'),
 ('o6suv8r6py4r08mqylmlsvjjllv2n3u1', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1otivu:6H_dmyU5al_PiAGMDzQc7eIdULGcUY6w5ckr1xa0UtU', '2022-11-26 05:19:58.572591'),
 ('ohl5kisk3qw3e6hs825aqel5ztjldzfo', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1oxNqV:BWDxgkWTB7nMtpquAqADfyzG37lEwNiYNNO8AMZNse8', '2022-12-06 07:37:31.717707'),
 ('osd2d997snkhwq56z9zxo82q16u1ifu9', '.eJxVjksOwjAMRO-SNYpSu0k_S_acobIdlxaqRupnhbg7LcoClp438-SX6Wjfhm5fdenGaFqD5vKbMclT5xPEB833ZCXN2zKyPSs209XeUtTpmrt_goHW4Vg7X6lremwEuS6w5J645JorpwKggYF8CKUrUHwDApF6QHbiCZQPcki_uiVNatoiX-fH-P4AAMpAWg:1p5D0X:m_3nAl64QnBUz4OsndRwiA9ta90zPsgJzhT21DDzBCk', '2022-12-27 21:40:13.044662'),
 ('p0f8vtgtkf4roe4jgrykbsg689w8yo5t', '.eJxVjrkOwjAQRP_FtWX5yPpISc8XIGT5JIEolpykQIh_x0EpoJhidmaf5oWs29bBbkuqdoyoR4Dw78278EjzHsS7m2-FhDKvdfRkr5AjXci5xDSdju4fYHDL0L4zlSnokEGLTiZmQGrlgXuac_DcMJaNZioKriE4YAqS1CwoBkb4LrncoF9cLVNCPT_cvrjDyG_jFJuxrlb3RP1FUI4FZU0Uc2Oa9PX9AZ0QStM:1owMQ6:aLXJHGV0NKpyVVUQeJOufJKtInhxMSq73NFzt-7TtoY', '2022-12-03 11:54:02.985033'),
+('p76jeujrp9uaahz1b3vzubapiw5i5s4y', '.eJxVjssOgjAQRf-la9MwTCktS_d-A5l2poISmvBYGf9dMF3o8r5O7kv1tG9Dv6-y9COrThl1-fUCxafMZ8APmu9Zxzxvyxj0WdElXfUts0zX0v0DDLQOx9olrqiOEiMCVKaJCaw0hK2zngF8a7D2bKpgkJML0Lg2JEbjyQcrhAf0i1vyJKqDos7H-P4AAN9ASQ:1pxOPj:2FMhs48Gil55gcmQ-JwCmiRStXeZ5Zqctr_Jw0zKzg0', '2023-05-26 08:46:11.374256'),
 ('p9tw7jywdf5q6w9yxm2iiwy47frbhyra', '.eJxVjDsOwjAQBe_iGlnrRP4sJT1nsNbrNQ4gR4qTCnF3iJQC2jcz76UibWuNW5clTlmd1aBOv1sifkjbQb5Tu82a57YuU9K7og_a9XXO8rwc7t9BpV6_NbtsgYAxsHhnPaORYNGMBCEYi55Tkjx6ccZBKQNQIV8kByGQhKjeH-W7OHg:1onzkt:b_KdASLYHYfSzCqYKY4yg_YVofxxWSOk_BrBOzmL4Lw', '2022-11-10 10:04:55.439235'),
 ('pd8qimt356qaelxiqfxrp2045rqthr16', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p0n18:mbqi7QTh1HIoV891WWI77JUBpOXmhCQnD9C38QHEpDU', '2022-12-15 17:06:34.777130'),
 ('pqvh5sbhte9z8nvgbocc50k0t051vvkf', '.eJxVjk0OgjAQhe_StWk6TJEOS_ecgUzbqaCEJhRWxrsLhoUu39-X91I9b-vQb0WWfoyqVVZdfj3P4SnzEcQHz_esQ57XZfT6qOgzLbrLUabb2f0DDFyGfY0hUEg1OiGICJTqRirjU8QoyYL3V0PkLKA1aCqAip1tgBpkYkcQdugXt-RJVAunOh7j-wPrDz-L:1pZ5jc:fQuKBw1ExrTD0M9YbTrdZf1SrkSwONYz5Ay-UQ5ESfg', '2023-03-20 07:58:16.034320'),
@@ -451,7 +704,7 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 ('ux5b7237efkcr9ldeqqsxt8vzx38rjf7', '.eJxVjDsOwjAQBe_iGlm72LFxSvqcIVqvFxyIbCmfCnF3EpQC2jfz5qV6Wpfcr7NM_ZBUqxp1-t0i8VPKDtKDyr1qrmWZhqh3RR901l1NMl4P9y-Qac7bW6xj35BwsAYs4E1ADBgIKURvU6RG0IALVsA7wQuhQ_QYDDMbCbJFv7mpjqLa8_sD_8w8Fw:1osJJH:lLa-Sy84iwCbpTenhXadVv673kLEh02X2s5FvcguGmE', '2022-11-22 07:46:15.039216'),
 ('v1m7wmek92zxnzci2qrio0acxrolwdai', '.eJxVjEEOgyAQRe_CuiE4YEGX3XsGMjBDtTWSgK6a3r3auGi3_73_XsLjto5-q1z8RKIXWlx-t4DxycsB6IHLPcuYl7VMQR6KPGmVQyaeb6f7FxixjvtbRcMpNgStDmyNbbBDaLrkVEzKxARXBYa0hZatBa2UhmSZHbXGuIBuj35zJc8senh_AAgoPBc:1ooeSr:OUJthAIdrTL2pVZxNoEyblvvy1meNgMoQyt4Ekjbm9s', '2022-11-12 05:33:01.497940'),
 ('vplno12lo37jouraw8723wm34cx13vyq', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1p0n18:mbqi7QTh1HIoV891WWI77JUBpOXmhCQnD9C38QHEpDU', '2022-12-15 17:06:34.585215'),
-('wc7qyz2fv2bll8biiwr7c6bf7jib2tjm', '.eJxVjr0OwjAMhN8lM4qU5r8jO89QObZLClUipe2EeHda1AE2n-_u073EANuah23hNkwkemHE5feXAJ9cDoMeUO5VYi1rm5I8IvJ0F3mrxPP1zP4BMix5byvlY3LWMI6JENniaCNoBqUje_KWUlSdDqBt9PsdtHNkOm9cQhV8t0O_uFZnFr061bFYvz8eTkBi:1plisr:3abghhAHrBVGzNE9jrCjEF1J5wpsap2452M2QgUak_k', '2023-04-24 04:12:01.289348'),
+('w76pzgv1oaksduyrhpmzhllp8pdjcqjl', '.eJxVjssOwiAQRf-FtSEMBQpduvcbmgFmpNqUpI-V8d9tTRe6vK-T-xI9bmvpt4XmfsiiE6DF5deMmJ40HUl-4HSvMtVpnYcoj4o800Xeaqbxenb_AAWXsq8NsiNF3qnkLAcOmjxgBGDWbLlJwMgmQkZvszJWad82SjM2xrZahR36xc11JNHBqY7L4f0BPsxAdg:1pmpFj:h6SeL_lg0W2kOHBwLooty_SDoEAOVs39WTUgN398Fvc', '2023-04-27 05:12:11.782683'),
 ('wf6gknzcoyv6dg642j1i4wxfgm7lkh9l', '.eJxVjsEOgjAMht9lZ0Icuq1w9O4TGLN0aycoYWSAiTG-u8Nw0Fvb_-uX_yUsLnNrl4mT7Ug0AkTxe3Po7zysAd1wuMbSx2FOnStXpNzSqTxF4v64sX-CFqc2fwflvVaVVPUBCJQLjoDl3msDXlaAILE2TIZYkgOjvc6YAWNqCMhhl6VfXYo9i0Zu29pYF-KB45hniynhUzTny_sDJTZHeQ:1ouVI9:24CUaTBqtxj9o4U0dScbAJB7PH60SliEVMjjjgR2g14', '2022-11-28 08:58:09.908362'),
 ('wgboux0odxpqkn1b49wgwp7ntu7yrl21', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1oyhrB:QTCESwW2D1ut5Q29VqCQ30Xczci6nYzSrYREnVPJY00', '2022-12-09 23:11:41.859791'),
 ('x3ixqgb80ipczxx7l6nahz0nzzd7ks7v', '.eJxVjjkOwjAQRe_iGlkZJ-MlJT1niOzxGAeiWMpSIe5OglxA-ben_xKD37c87CsvwxhFL1Bcfr3g6cnzGcSHn-9FUpm3ZQzyrMiarvJWIk_X2v0DZL_mY50azWQpoW07zeBQWxNQhSYlCsoBJGfBxFZZJI9gkLUFMoCuDR37dEC_uKVMLHpV1fm4e38A8iVABA:1otiUT:bXH6YlmVz_8mqHtvKNoCTVNLdhmvcePGRKjXrj58W6c', '2022-11-26 04:51:37.631813'),
@@ -685,12 +938,13 @@ CREATE TABLE `webapp_user_db` (
 
 INSERT INTO `webapp_user_db` (`id`, `username`, `role`, `is_online`, `last_req_updated_time`) VALUES
 (1, 'sreenath', 1, 0, '2023-02-22 05:40:06.004083'),
-(3, 'Don', 1, 1, '2023-03-30 11:15:27.202688'),
+(3, 'Don', 1, 1, '2023-05-15 05:07:39.370126'),
 (4, 'INFOMEUSER', 2, NULL, NULL),
 (5, 'Shadin', 1, 0, '2023-02-27 08:30:24.133231'),
 (6, 'Uvais', 1, 0, '2023-03-20 08:57:21.317630'),
 (7, 'kochi_dev', 1, 0, '2023-02-25 07:05:19.988142'),
-(8, 'dazadmin', 1, 0, '2023-03-14 19:39:39.511817');
+(8, 'dazadmin', 1, 0, '2023-03-14 19:39:39.511817'),
+(9, 'admin', 1, 0, '2023-04-19 10:06:35.093313');
 
 -- --------------------------------------------------------
 
@@ -751,10 +1005,35 @@ CREATE TABLE `webapp_vapp_table` (
 --
 
 --
+-- Indexes for table `app_applicantregistrations`
+--
+ALTER TABLE `app_applicantregistrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `app_invitedregistrations`
+--
+ALTER TABLE `app_invitedregistrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `app_occupations`
+--
+ALTER TABLE `app_occupations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `app_speakerregistrations`
 --
 ALTER TABLE `app_speakerregistrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `app_unique_reg_code`
+--
+ALTER TABLE `app_unique_reg_code`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
 
 --
 -- Indexes for table `auth_group`
@@ -848,14 +1127,45 @@ ALTER TABLE `webapp_build_designation`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `webapp_user_db`
+--
+ALTER TABLE `webapp_user_db`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `app_applicantregistrations`
+--
+ALTER TABLE `app_applicantregistrations`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `app_invitedregistrations`
+--
+ALTER TABLE `app_invitedregistrations`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `app_occupations`
+--
+ALTER TABLE `app_occupations`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `app_speakerregistrations`
 --
 ALTER TABLE `app_speakerregistrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+
+--
+-- AUTO_INCREMENT for table `app_unique_reg_code`
+--
+ALTER TABLE `app_unique_reg_code`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `auth_group`
@@ -873,13 +1183,13 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -897,19 +1207,19 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- Constraints for dumped tables
