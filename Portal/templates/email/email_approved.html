@@ -1,119 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-  {% load static %}
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>MOTN Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}" />
-    <link
-      rel="stylesheet"
-      href="{% static 'vendors/ti-icons/css/themify-icons.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'vendors/css/vendor.bundle.base.css' %}"
-    />
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
+<html>
+<head>
+<title>NWF Delegate Invitation Confirmation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body  style="background-color: #fff;" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<!-- Save for Web Slices (NWF Delegate Invitation Confirmation) -->
+<table id="Table_01" align="center" width="801" height="713" border="0" cellpadding="0" cellspacing="0">
+	<tr style="line-height: 0;">
+		<td colspan="3">
+			<img src="https://itpnl.com/nfw/images/nwf-confirmation_01.jpg" width="800" height="235" alt=""></td>
+		
+	</tr>
+	<tr style="line-height: 0;">
+		<td rowspan="2">
+			<img src="https://itpnl.com/nfw/images/nwf-confirmation_02.jpg" width="101" height="405" alt=""></td>
+		<td>
+			</td>
+		<td rowspan="3">
+			<img src="https://itpnl.com/nfw/images/nwf-confirmation_04.jpg" width="109" height="406" alt=""></td>
+	
+	</tr>
+	<tr style="line-height: 0;">
+		<td height="404"  style="width:590px; height:404px; background-color:#000; color:#FFF; font:14px Arial, Helvetica, sans-serif; line-height:18px;">
+			Dear <strong style="color:#6FF">{{name}}</strong>,</p>
+<p>We are delighted that you are joining us for the Next World Forum at Four Seasons Hotel, Kingdom Centre, Riyadh, Saudi Arabia on 30-31 August 2023.</p>
+<p>Your registration has been confirmed and your attendance status is CONFIRMED. Please expect to receive your QR code required for badge collection closer to the event.</p>
+<p>All travellers to the Kingdom of Saudi Arabia require a visa. Please visit <strong style="color:#6FF"><a href="https://visa.visitsaudi.com/Registration/Verify" style="color:#6FF">https://visa.visitsaudi.com/Registration/Verify</a></strong> in advance of your travel.</p>
+<p>Attendance to the Next World Forum is free of charge, however, travel, and accommodation remain at your own expense. </p>
+<p>Please email <a href="invitations@nextwrld.sa" style="color:#6FF"><strong>invitations@nextwrld.sa</strong></a> for any further assistance.</p>
+<p>We look forward to welcoming you to the Next World.</p>
+<p>Sincerely,</p> 
+<p><strong>Next World Team</strong>
+</p></td>
+	
+	</tr>
+	<tr style="line-height: 0;">
+		<td colspan="2" rowspan="2">
+			<img src="https://itpnl.com/nfw/images/nwf-confirmation_06.jpg" width="691" height="73" alt=""></td>
 
-    <link
-      rel="stylesheet"
-      href="{% static 'vendors/ti-icons/css/themify-icons.css' %}"
-    />
-
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link
-      rel="stylesheet"
-      href="{% static 'css/vertical-layout-light/style.css' %}"
-    />
-
-    <style>
-      .location {
-        text-decoration: none !important;
-        background-color: rgba(36, 87, 226, 0.795)!important;
-        color: white !important;
-        font-weight: bold;
-        padding: 15px !important;
-        border-radius: 15px;
-      }
-      .location:hover {
-     
-    border:1px solid #0275d8;
-     
-        transition: ease-in-out !important;
-
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="col-md-12">
-        <div class="row">
-          <div style="width: 500px;" class="col">
-            <span  style="font-size: 15px; ">
-              Dear {{name}}</span> 
-              <br> <br>
-              <span style="font-size:15px; ">Your DAZ 23 {{reg}} has been approved and is now ready for collection.
-              </span>
-              
-              <br>
-              <br>
-              <br>
-              <span style=" font-size: 15px;">
-                UID : {{uid}}
-                </span>
-                <br>
-                <span style=" font-size: 15px;">Name : {{name}}</span>
-                <br>
-                <span style=" font-size: 15px;">Mobile : {{mobile}}</span>
-                <br>
-                <br>
-                <span style="font-size: 15px;">Please collect it from the Accreditation Office onsite. 
-                </span>
-                <br>
-                <br>
-                
-                
-              
-                <div style="padding-top: 15px;" class="col-md-6">
-                  <a
-                    class="location"
-                    href="https://maps.app.goo.gl/uQ3pbfbxWF9rZjsy5?g_st=iwb"
-                    style=""
-                  >
-                  
-                      <img
-                        style="margin-bottom: -10px !important;"
-                        height="20"
-                        src="https://cdn-icons-png.flaticon.com/512/2335/2335353.png"
-                      />
-                      LOCATION
-                   </a>
-                </div>
-                          <br>
-                          <br>
-                          <span style=" font-size: 15px;">Thank you.</span>  
-                          <br>
-                          <br>
-                          <span style=" font-size: 15px;">Sincerely,</span>
-                          <br>
-                          <span  style=" font-size: 15px;">DAZ 23 Accreditation Team</span>
-          </div>
-        </div>
-        <br>
-        <br>
-    
-        <div class="col-md-12" style="margin-top:5px;">
-          <a href="https://infoeventz.com/"><img width="30%" class="img-fluid" src="http://daz.infoeventz.com/static/images/daz_logo.png"></a>
-        </div>
-      </div>
-    </div>
-  </body>
+	</tr>
+	<tr style="line-height: 0;">
+		<td>
+			<img src="https://itpnl.com/nfw/images/nwf-confirmation_07.jpg" width="109" height="72" alt=""></td>
+	
+	</tr>
+</table>
+<!-- End Save for Web Slices -->
+</body>
 </html>
