@@ -52,10 +52,10 @@ class ReginstraionForms():
         except ValidationError as e:
             print("bad email, details:", e)
         else:
-            
-            html_contect=render_to_string("email/speaker_reg_success.html")
+            data={"name":obj.first_name+' '+obj.last_name}
+            html_contect=render_to_string("email/speaker_reg_success.html",data)
             email_from = settings.EMAIL_HOST_USER
-            subject = 'Your registration has been submited'
+            subject = 'Your speaker registration has been submited'
             # msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email])
             # msg.attach_alternative(html_contect,"text/html")
             
@@ -114,8 +114,8 @@ class ReginstraionForms():
         except ValidationError as e:
             print("bad email, details:", e)
         else:
-            
-            html_contect=render_to_string("email/invited_reg_success.html")
+            data={"name":obj.first_name+' '+obj.last_name}
+            html_contect=render_to_string("email/invited_reg_success.html",data)
             email_from = settings.EMAIL_HOST_USER
             subject = 'Your invited registration has been submited'
             # msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email])
@@ -169,7 +169,7 @@ class ReginstraionForms():
             print("bad email, details:", e)
         else:
             data={"name":obj.first_name+' '+obj.last_name}
-            print(data)
+ 
             html_contect=render_to_string("email/applicant_reg_success.html",data)
             email_from = settings.EMAIL_HOST_USER
             subject = 'Your applicant registration has been submited'
