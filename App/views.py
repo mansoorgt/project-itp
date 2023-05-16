@@ -168,8 +168,9 @@ class ReginstraionForms():
         except ValidationError as e:
             print("bad email, details:", e)
         else:
-            
-            html_contect=render_to_string("email/invited_reg_success.html")
+            data={"name":obj.first_name+' '+obj.last_name}
+            print(data)
+            html_contect=render_to_string("email/applicant_reg_success.html",data)
             email_from = settings.EMAIL_HOST_USER
             subject = 'Your applicant registration has been submited'
 
