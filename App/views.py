@@ -55,7 +55,7 @@ class ReginstraionForms():
             data={"name":obj.first_name+' '+obj.last_name}
             html_contect=render_to_string("email/speaker_reg_success.html",data)
             email_from = settings.EMAIL_HOST_USER
-            subject = 'Your speaker registration has been submited'
+            subject = 'Registration Status – Pending'
             # msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email])
             # msg.attach_alternative(html_contect,"text/html")
             
@@ -117,7 +117,7 @@ class ReginstraionForms():
             data={"name":obj.first_name+' '+obj.last_name}
             html_contect=render_to_string("email/invited_reg_success.html",data)
             email_from = settings.EMAIL_HOST_USER
-            subject = 'Your invited registration has been submited'
+            subject = 'Registration Status – Pending'
             # msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email])
             # msg.attach_alternative(html_contect,"text/html")
             
@@ -172,7 +172,7 @@ class ReginstraionForms():
  
             html_contect=render_to_string("email/applicant_reg_success.html",data)
             email_from = settings.EMAIL_HOST_USER
-            subject = 'Your applicant registration has been submited'
+            subject = 'Registration Status – Pending'
 
             mail.send_mail(subject, strip_tags(html_contect), from_email=email_from,recipient_list=[obj.email], html_message=html_contect,fail_silently=False)
     

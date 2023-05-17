@@ -1353,7 +1353,7 @@ class Tablepage():
         
         if int(table)==3:
             obj=ApplicantRegistrations.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'pre_attand':obj.pre_attand,'reason_attend':obj.reason_to_attend}
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'pre_attand':obj.pre_attend}
          
         return JsonResponse(data)
 
@@ -1422,7 +1422,7 @@ class Tablepage():
                 
                 html_contect=render_to_string("email/email_reject.html",data)
                 email_from = settings.EMAIL_HOST_USER
-                subject = 'Application Has Been Rejected ! '
+                subject = 'Registration Status – Update'
                 #msg=EmailMessage(subject=subject,from_email=email_from,to=[obj.email],body='TESTXXX')
                 msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email])
                 msg.attach_alternative(html_contect,"text/html")
@@ -1468,7 +1468,7 @@ class Tablepage():
                 
                 html_contect=render_to_string("email/email_approved.html",data)
                 email_from = settings.EMAIL_HOST_USER
-                subject = 'Application Has Been Approved '
+                subject = 'Registration Status - Confirmed'
                 #msg=EmailMessage(subject=subject,from_email=email_from,to=[obj.email],body='TESTXXX')
                 
                 msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email],)
