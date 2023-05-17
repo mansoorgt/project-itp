@@ -148,10 +148,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
-EMAIL_HOST='infoeventz.com'
-EMAIL_HOST_USER='contact@infoeventz.com'
-EMAIL_HOST_PASSWORD='contact@2022'
-EMAIL_PORT = 465    
+EMAIL_HOST='webmail.saudiesports.sa'
+EMAIL_HOST_USER='invitations@nextwrld.sa'
+EMAIL_HOST_PASSWORD='SEF@@123'
+EMAIL_PORT = 25   
 EMAIL_USE_SSL = True
 
 LOGIN_URL='/portal'
