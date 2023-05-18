@@ -151,17 +151,19 @@ function validate_form(form_id) {
   }).each(function() {
 
   this.addEventListener("input", function(){
- 
-   if (!this.checkValidity()){
-    $('#'+this.id+'-error').removeClass('d-none')
+    
+   if (!this.checkValidity() ){
+    $('#'+this.name+'-error').removeClass('d-none')
    }
    else{
-    $('#'+this.id+'-error').addClass('d-none')
+    $('#'+this.name+'-error').addClass('d-none')
    }
+
+
    
 
   });
-    $('#'+this.id+'-error').removeClass('d-none')
+    $('#'+this.name+'-error').removeClass('d-none')
    
   })
 
@@ -269,7 +271,7 @@ function check_file_input_size(el) {
 
 
 
-  if (el.files[0].size / (1024*1024) < 3 && el.files[0] != null ){
+  if (el.files[0].size / (1024*1024) < 30 && el.files[0] != null ){
     console.log(' no over size')
     $('#'+el.id+'-error').addClass('d-none')
     $('#'+el.id).removeClass('file-size-over')
@@ -277,7 +279,7 @@ function check_file_input_size(el) {
   }
   else{
     console.log('over size', el.id)
-    $('#'+el.id+'-error').html('The file size should not exceed 3MB')
+    $('#'+el.id+'-error').html('The file size should not exceed 30MB')
     $('#'+el.id).addClass('file-size-over')
     $('#'+el.id+'-error').removeClass('d-none')
     return false
@@ -379,3 +381,13 @@ $(document).ready(function() {
     $('#previous-forum').slideUp();
   });
 });
+
+// var input = document.querySelector("#mobile");
+// window.intlTelInput(input, {
+//   utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+
+// });
+
+// input.on("countrychange", function() {
+//   input.val('')
+// });
