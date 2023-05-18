@@ -153,15 +153,15 @@ var invalidInputs = $('#'+form_id+' :input').filter(function() {
 this.addEventListener("input", function(){
 
  if (!this.checkValidity()){
-  $('#'+this.id+'-error').removeClass('d-none')
+  $('#'+this.name+'-error').removeClass('d-none')
  }
  else{
-  $('#'+this.id+'-error').addClass('d-none')
+  $('#'+this.name+'-error').addClass('d-none')
  }
  
 
 });
-  $('#'+this.id+'-error').removeClass('d-none')
+  $('#'+this.name+'-error').removeClass('d-none')
  
 })
 
@@ -192,6 +192,7 @@ if ($("input:checkbox[name='Interested']:checked").length < 1 ){
 }
 
 
+loading_on(true)
 var m_form=new FormData($('#applicant-reg-form')[0])
 
 
@@ -217,8 +218,9 @@ $.ajax({
 
       // fetch('send_applicant_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
       // body:JSON.stringify({'reg_id':res.reg_id})})
+      loading_on(false)
       send_mail('send_applicant_reg_success_mail',res.reg_id)
-      
+     
       Swal.fire({
         position: 'top-center',
         icon: 'success',
@@ -269,7 +271,7 @@ function check_file_input_size(el) {
 
 
 
-if (el.files[0].size / (1024*1024) < 3 && el.files[0] != null ){
+if (el.files[0].size / (1024*1024) < 30 && el.files[0] != null ){
   console.log(' no over size')
   $('#'+el.id+'-error').addClass('d-none')
   $('#'+el.id).removeClass('file-size-over')
@@ -277,7 +279,7 @@ if (el.files[0].size / (1024*1024) < 3 && el.files[0] != null ){
 }
 else{
   console.log('over size', el.id)
-  $('#'+el.id+'-error').html('The file size should not exceed 3MB')
+  $('#'+el.id+'-error').html('The file size should not exceed 30MB')
   $('#'+el.id).addClass('file-size-over')
   $('#'+el.id+'-error').removeClass('d-none')
   return false
@@ -379,3 +381,26 @@ $('#attendno').click(function() {
   $('#previous-forum').slideUp();
 });
 });
+
+var input = document.querySelector("#mobile");
+var iti = window.intlTelInput(input, {
+  preferredCountries: ["ae"], // Set preferred countries here
+  separateDialCode: true,
+  initialCountry: "sa",
+  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+});
+
+function loading_on(bool) {
+
+if (bool){
+  var loadingIndicator = document.getElementById("loading-indicator");
+  loadingIndicator.classList.remove("d-none");
+}
+else{
+  var loadingIndicator = document.getElementById("loading-indicator");
+  loadingIndicator.classList.add("d-none");
+}
+
+
+
+}

@@ -31,6 +31,23 @@
     
     
         <style>
+          #loading-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    /* Add some space above the loading text */
+    #loading-indicator p {
+      margin-top: 10px;
+    }
   #video-background {
       position: fixed;
       right: 0;
@@ -262,14 +279,17 @@
   <label class="mt-4" for="exampleInputEmail1">KSA VISA</label>
   <br>
   <div class="form-check form-check-inline mt-2 ">
-      <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio1" value="1">
+      <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio1" value="1" required>
       <label class="form-check-label" for="inlineRadio1">YES</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio2" value="0">
+      <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio2" value="0" required>
       <label class="form-check-label" for="inlineRadio2">NO</label>
     </div>
-
+    <br>
+    <small id="ksa-visa-error" class="d-none" style="color: #f296a5;">
+      Please select anyone
+     </small>
 
 
 </div>
@@ -283,7 +303,7 @@
 
     <div class="row">
 
-  <div class="col-lg-12 col-md-12 col-sm-12">
+  <div class="col-lg-6 col-md-12 col-sm-12">
   
       <label class="mt-4" for="inlineCheckbox1">Areas of Interest</label>
       <br>
@@ -319,34 +339,42 @@
 
         </label>
       </div>
-  
-  
-  
-  </div>
-  <small id="Interested-error" class="d-none" style="color: #f296a5;">
-    Please select area of interest
-   </small>
+  <br>
+      <small id="Interested-error" class="d-none" style="color: #f296a5;">
+        Please select area of interest
+       </small>
   
   </div>
 
-<div class="row">
-  <div class="col-lg-12 col-md-12 col-sm-12">
+  
+   <div class="col-lg-6 col-md-12 col-sm-12">
 
     <label class="mt-4" for="attendyes">Did you attend the previous Next World Forum?</label>
     <br>
     <div class="form-check form-check-inline mt-2">
-      <input class="form-check-input" type="radio" name="attend" id="attendyes"  value="1">
+      <input class="form-check-input" type="radio" name="attend" id="attendyes"  value="1" required>
       <label class="form-check-label" for="attendyes">YES</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="attend" id="attendno"  value="0">
+      <input class="form-check-input" type="radio" name="attend" id="attendno"  value="0" required>
       <label class="form-check-label" for="attendno">NO</label>
     </div>
+    <br>
+    <small id="attend-error" class="d-none" style="color: #f296a5;">
+      Please select anyone
+     </small>
   </div>
-</div>
+
+  </div>
 
 
 
+  <div id="loading-indicator" class="d-none text-white text-center">
+    <p>Please wait...</p>
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+      </div>
 
 <div class="row">
 <div class="col-md-3 mt-4 mb-3">
@@ -421,6 +449,8 @@
         preferredCountries: ["ae"], // Set preferred countries here
         separateDialCode: true,
         initialCountry: "sa",
+        enablePlaceholder:false,  
+        autoPlaceholder:'',
         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
     });
 </script>
