@@ -1,4 +1,7 @@
-
+.iti input, .iti input[type=tel]
+{
+  width: 340px !important;
+}
 .access-div
 {
   height: 420px;
@@ -356,7 +359,10 @@ input::placeholder {
 
 @media (max-width: 565px)  {
 
-    
+  .iti input, .iti input[type=tel]
+  {
+    width: 360px !important;
+  }
         /* access div start */
 .access-div
 {
@@ -457,7 +463,10 @@ font-size:20px !important;
 @media (min-width:565.90px) and (max-width: 768px)  { 
     
     
-
+  .iti input, .iti input[type=tel]
+  {
+    width: 420px !important;
+  }
     
 .access-div
 {
