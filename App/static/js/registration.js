@@ -114,11 +114,45 @@ async function submitInvitedForm(e) {
 
 }
 
+
+function validate_form(form_id) {
+
+  
+  var invalidInputs = $('#'+form_id+' :input').filter(function() {
+    return !this.checkValidity();
+  }).each(function() {
+
+  this.addEventListener("input", function(){
+ 
+   if (!this.checkValidity()){
+    $('#'+this.id+'-error').removeClass('d-none')
+   }
+   else{
+    $('#'+this.id+'-error').addClass('d-none')
+   }
+   
+
+  });
+    $('#'+this.id+'-error').removeClass('d-none')
+   
+  })
+
+}
+
  function submitApplicantForm(e) {
 
   e.preventDefault()
 
+  if ($('#applicant-reg-form input[type="file"].file-size-over').length > 0){
+  
+    return false;
+  }
+
+
+
   var m_form=new FormData($('#applicant-reg-form')[0])
+
+
   m_form.append('csrfmiddlewaretoken',csrftoken)
 
   var intrested_list=[]
@@ -188,6 +222,27 @@ function send_mail(url,reg_id) {
 }
 /// extras
 
+function check_file_input_size(el) {
+
+
+
+
+  if (el.files[0].size / (1024*1024) < 1 && el.files[0] != null ){
+    console.log(' no over size')
+    $('#'+el.id+'-error').addClass('d-none')
+    $('#'+el.id).removeClass('file-size-over')
+    return true
+  }
+  else{
+    console.log('over size', el.id)
+    $('#'+el.id+'-error').html('please upload less than 3mb file')
+    $('#'+el.id).addClass('file-size-over')
+    $('#'+el.id+'-error').removeClass('d-none')
+    return false
+  }
+  
+  
+}
 $(document).ready(function () {
   $("#country").select2({
     placeholder: "Select a country",
@@ -196,7 +251,17 @@ $(document).ready(function () {
     theme:'bootstrap-5',
     
    
-  })
+  }).on('change', function() {
+    
+    if (!this.checkValidity()){
+      $('#'+this.id+'-error').removeClass('d-none')
+     }
+     else{
+      $('#'+this.id+'-error').addClass('d-none')
+     }
+    
+  });
+
 
  
   
