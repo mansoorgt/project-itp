@@ -48,7 +48,7 @@ margin-top: 30px;
 
 .bg-main-invited
 {
-  height:1600px; 
+  height:1000px; 
   z-index: -1;
    background-color: black;
     padding: 20px;
@@ -396,7 +396,7 @@ width: 390px;
 .bg-main-invited
 {
   padding: 220px;
-    height: 1380px;
+    height: 1000px;
 }
 .bg-main-deligate
 {
