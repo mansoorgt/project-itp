@@ -76,6 +76,10 @@ if ($('#invated-reg-form input[type="file"].file-size-over').length > 0){
   $('input[type="file"]').focus()
   return false;
 }
+if ($("input:checkbox[name='Interested']:checked").length < 1 ){
+  $("input:checkbox[name='Interested']").focus()
+  return false
+}
 
 var ksa_visa=$('input[name=ksa-visa]:checked', '#invated-reg-form').val()
 
@@ -123,7 +127,21 @@ $.ajax({
 }
 
 }
+$("input:checkbox[name='Interested']").each( function(){
 
+this.addEventListener('click',function(){
+
+  if ($("input:checkbox[name='Interested']:checked").length > 0 ){
+    $('#Interested-error').addClass('d-none')
+  }
+  else{
+   
+    $('#Interested-error').removeClass('d-none')
+    
+  }
+
+})
+});
 
 function validate_form(form_id) {
 
@@ -147,16 +165,32 @@ this.addEventListener("input", function(){
  
 })
 
+
+if ($("input:checkbox[name='Interested']:checked").length > 0 ){
+  $('#Interested-error').addClass('d-none')
+}
+else{
+ 
+  $('#Interested-error').removeClass('d-none')
+  
+}
+
 }
 
 function submitApplicantForm(e) {
 
 e.preventDefault()
 
+
 if ($('#applicant-reg-form input[type="file"].file-size-over').length > 0){
   $('input[type="file"]').focus()
   return false;
 }
+if ($("input:checkbox[name='Interested']:checked").length < 1 ){
+  $("input:checkbox[name='Interested']").focus()
+  return false
+}
+
 
 var m_form=new FormData($('#applicant-reg-form')[0])
 
@@ -252,6 +286,7 @@ else{
 
 }
 $(document).ready(function () {
+
 $("#country").select2({
   placeholder: "Select a country",
 templateResult: formatCountry,
