@@ -245,9 +245,6 @@
 
 
 
-
-
-
                   <div class="row">
 
                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -294,10 +291,13 @@
                         <label class="form-check-label" for="inlineRadio2">NO</label>
                       </div>
 
-
+                     
+                  
 
                     </div>
-
+                    <small id="ksa-visa-error" class="d-none" style="color: #f296a5;">
+                      Please select ksa visa
+                    </small>
 
                   </div>
 
@@ -356,13 +356,16 @@
                       <label class="mt-4" for="attendyes">Did you attend the previous Next World Forum?</label>
                       <br>
                       <div class="form-check form-check-inline mt-2">
-                        <input class="form-check-input" type="radio" name="attend" id="attendyes" value="1">
+                        <input class="form-check-input" type="radio" name="attend" id="attendyes" value="1" required>
                         <label class="form-check-label" for="attendyes">YES</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="attend" id="attendno" checked value="0">
+                        <input class="form-check-input" type="radio" name="attend" id="attendno"  value="0" required>
                         <label class="form-check-label" for="attendno">NO</label>
                       </div>
+                      <small id="attend-error" class="d-none" style="color: #f296a5;">
+                        Please select area of interest
+                      </small>
                     </div>
                   </div>
 
