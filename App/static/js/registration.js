@@ -243,7 +243,7 @@ function check_file_input_size(el) {
   }
   else{
     console.log('over size', el.id)
-    $('#'+el.id+'-error').html('please upload less than 3mb file')
+    $('#'+el.id+'-error').html('The file size should not exceed 3MB')
     $('#'+el.id).addClass('file-size-over')
     $('#'+el.id+'-error').removeClass('d-none')
     return false
