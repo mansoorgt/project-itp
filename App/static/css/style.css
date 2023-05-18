@@ -31,7 +31,7 @@ margin-top: 30px;
 
 .bg-main-speaker
 {
-  height:1550px; 
+  height:1000px; 
   z-index: -1;
    background-color: black;
     padding: 20px;
@@ -400,15 +400,15 @@ width: 390px;
 }
 .bg-main-deligate
 {
-  padding: 220px;
-    height: 1380px;
+  padding: 190px;
+    height: 1200px;
 }
     
     
       .bg-main-speaker
   {
     padding: 220px;
-    height: 1450px;
+    height: 1100px;
   }
   .bg-main-pos-speaker
   {
