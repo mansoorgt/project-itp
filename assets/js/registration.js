@@ -277,7 +277,7 @@ if (el.files[0].size / (1024*1024) < 3 && el.files[0] != null ){
 }
 else{
   console.log('over size', el.id)
-  $('#'+el.id+'-error').html('please upload less than 3mb file')
+  $('#'+el.id+'-error').html('The file size should not exceed 3MB')
   $('#'+el.id).addClass('file-size-over')
   $('#'+el.id+'-error').removeClass('d-none')
   return false
