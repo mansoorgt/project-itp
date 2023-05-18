@@ -235,7 +235,7 @@ function check_file_input_size(el) {
 
 
 
-  if (el.files[0].size / (1024*1024) < 1 && el.files[0] != null ){
+  if (el.files[0].size / (1024*1024) < 3 && el.files[0] != null ){
     console.log(' no over size')
     $('#'+el.id+'-error').addClass('d-none')
     $('#'+el.id).removeClass('file-size-over')
