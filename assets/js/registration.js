@@ -151,13 +151,20 @@ var invalidInputs = $('#'+form_id+' :input').filter(function() {
 }).each(function() {
 
 this.addEventListener("input", function(){
+<<<<<<< HEAD
 
  if (!this.checkValidity()){
+=======
+  
+ if (!this.checkValidity() ){
+>>>>>>> 17f6a933796508c5163adb3d6a0ddced17981fd5
   $('#'+this.name+'-error').removeClass('d-none')
  }
  else{
   $('#'+this.name+'-error').addClass('d-none')
  }
+
+
  
 
 });

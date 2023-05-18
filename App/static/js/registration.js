@@ -158,6 +158,8 @@ function validate_form(form_id) {
    else{
     $('#'+this.name+'-error').addClass('d-none')
    }
+
+
    
 
   });
@@ -382,13 +384,13 @@ $(document).ready(function() {
   });
 });
 
-var input = document.querySelector("#mobile");
-var iti = window.intlTelInput(input, {
-    preferredCountries: ["ae"], // Set preferred countries here
-    separateDialCode: true,
-    initialCountry: "sa",
-    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
-});
+// var input = document.querySelector("#mobile");
+// var iti = window.intlTelInput(input, {
+//     preferredCountries: ["ae"], // Set preferred countries here
+//     separateDialCode: true,
+//     initialCountry: "sa",
+//     utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+// });
 
 function loading_on(bool) {
 

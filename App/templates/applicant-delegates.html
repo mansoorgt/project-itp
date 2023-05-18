@@ -23,8 +23,6 @@
   <!-- extras select 2  -->
 
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
-
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
     <link href="https://fonts.cdnfonts.com/css/acumin-pro" rel="stylesheet">
@@ -229,14 +227,14 @@
 
 
 
-  <div class="col-lg-6 col-md-12 col-sm-6">
+<div class="col-lg-6 col-md-12 col-sm-6">
     <div class="form-group mt-4">
-        <label for="mobile">Mobile Number</label>
-        <input type="tel" class="form-control" name="mobile" id="mobile" aria-describedby="mobile-error" required>
+      <label for="mobile"> Mobile Number</label>
+        <input type="number" class="form-control" name="mobile"  id="mobile" aria-describedby="emailHelp"  required>
         <small id="mobile-error" class="d-none" style="color: #f296a5;">
-            Please enter the mobile number
+          Please enter the mobile number
         </small>
-    </div>
+      </div>
 </div>
 
 
@@ -296,6 +294,7 @@
 
 
 </div>
+
 
 
 
@@ -440,7 +439,8 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="{% static 'js/countrys.js' %}"></script>
   <script src="{% static 'js/registration.js' %}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+    
 
 
   <script>
