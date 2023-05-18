@@ -156,7 +156,9 @@
     <div class="form-group mt-4">
       <label for="exampleInputEmail1">First Name</label>
         <input type="text" class="form-control"  name="first-name" id="first-name"  aria-describedby="emailHelp"  required>
-      
+        <small id="first-name-error" class="d-none text-danger">
+          please fill the first name
+        </small>
       </div>
 </div>
 
@@ -166,7 +168,9 @@
   <div class="form-group mt-4">
     <label for="exampleInputEmail1">Last Name</label>
       <input type="text" class="form-control" name="last-name" id="last-name" aria-describedby="emailHelp"  required>
-
+      <small id="last-name-error" class="d-none text-danger">
+        please fill the last name
+      </small>
     </div>
 </div>
 </div>
@@ -177,7 +181,9 @@
   <div class="form-group mt-4">
     <label for="exampleInputEmail1">Designation</label>
       <input type="text" class="form-control" name="designation" id="designation" aria-describedby="emailHelp"  required>
-
+      <small id="designation-error" class="d-none text-danger">
+        please fill the Designation
+      </small>
     </div>
 </div>
 
@@ -186,7 +192,9 @@
   <div class="form-group mt-4">
     <label for="exampleInputEmail1">Company</label>
       <input type="text" class="form-control" name="company" id="company" aria-describedby="emailHelp" placeholder="" required>
-
+      <small id="company-error" class="d-none text-danger">
+        please fill the company
+      </small>
     </div>
 </div>
 
@@ -204,6 +212,9 @@
       {% endfor %}
 
     </select>
+    <small id="occupation-error" class="d-none text-danger">
+      Please select an occupation
+    </small>
   </div>
   
   
@@ -218,8 +229,10 @@
   <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="form-group mt-4">
       <label for="exampleInputEmail1">Email</label>
-        <input type="email"  class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
-
+        <input type="email"  class="form-control" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" id="email" aria-describedby="emailHelp" required>
+        <small id="email-error" class="d-none text-danger">
+          Please enter the valid email
+        </small>
       </div>
 </div>
 
@@ -227,7 +240,9 @@
     <div class="form-group mt-4">
       <label for="exampleInputEmail1"> Mobile Number</label>
         <input type="text" class="form-control" name="mobile"  id="mobile" aria-describedby="emailHelp"  required>
-
+        <small id="mobile-error" class="d-none text-danger">
+          Please enter the mobile number
+        </small>
       </div>
 </div>
 
@@ -241,6 +256,9 @@
         <label for="exampleInputEmail1">Country Of Residence</label><br>
         <select  class="form-control " name="country" data-width="100%" id="country" aria-describedby="emailHelp" required>
           </select>
+          <small id="country-error" class="d-none text-danger">
+            Please select a country
+          </small>
       </div>
 </div>
 
@@ -264,8 +282,10 @@
 
   <div class="form-group mt-4">
         <label for="exampleInputEmail1">Passport Copy</label>
-        <input type="file" class="myform-control" id="passport-copy" name="passport-copy" accept="image/png, image/jpeg" aria-describedby="emailHelp" required>
-
+        <input type="file" class="myform-control" id="passport-copy" onchange="check_file_input_size(this)" name="passport-copy" accept="image/png, image/jpeg" aria-describedby="emailHelp" required>
+        <small id="passport-copy-error" class="d-none text-danger">
+          Please upload passport photo
+        </small>
       </div>
 
 
@@ -283,8 +303,10 @@
 
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">Photo Upload</label>
-        <input type="file" class="myform-control" id="photo-upload" name="photo-upload" accept="image/png, image/jpeg" aria-describedby="emailHelp" required>
-
+        <input type="file" class="myform-control" id="photo-upload" onchange="check_file_input_size(this)" name="photo-upload" accept="image/png, image/jpeg" aria-describedby="emailHelp" required>
+        <small id="photo-upload-error" class="d-none text-danger">
+          Please upload photo
+        </small>
       </div>
 
 
@@ -387,7 +409,7 @@
 <div class="row">
 <div class="col-md-3 mt-4 mb-3">
 
-  <button type="submit" class="btn btn-light btn-lg">
+  <button type="submit" class="btn btn-light btn-lg" onclick="validate_form('invated-reg-form')">
     Submit
   
   </button>

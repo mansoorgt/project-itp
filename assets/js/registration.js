@@ -3,6 +3,11 @@ function submitSpeakerForm(e) {
    
   e.preventDefault()
 
+  if ($('#speaker-reg-form input[type="file"].file-size-over').length > 0){
+    $('input[type="file"]').focus()
+    return false;
+  }
+
   var ksa_visa=$('input[name=ksa-visa]:checked', '#speaker-reg-form').val()
   console.log(ksa_visa)
   var m_form=new FormData($('#speaker-reg-form')[0])
@@ -66,6 +71,11 @@ if (!valid){
 else{
 
 $('#code-message').html('')
+
+if ($('#invated-reg-form input[type="file"].file-size-over').length > 0){
+  $('input[type="file"]').focus()
+  return false;
+}
 
 var ksa_visa=$('input[name=ksa-visa]:checked', '#invated-reg-form').val()
 
@@ -144,11 +154,9 @@ function submitApplicantForm(e) {
 e.preventDefault()
 
 if ($('#applicant-reg-form input[type="file"].file-size-over').length > 0){
-
+  $('input[type="file"]').focus()
   return false;
 }
-
-
 
 var m_form=new FormData($('#applicant-reg-form')[0])
 
