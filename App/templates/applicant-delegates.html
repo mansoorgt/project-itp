@@ -39,6 +39,15 @@
        opacity: 0.5;
     }
 
+          
+                    input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 </style>
     
     
@@ -204,7 +213,7 @@
 <div class="col-lg-6 col-md-12 col-sm-6">
     <div class="form-group mt-4">
       <label for="mobile"> Mobile Number</label>
-        <input type="text" class="form-control" name="mobile"  id="mobile" aria-describedby="emailHelp"  required>
+        <input type="number" class="form-control" name="mobile"  id="mobile" aria-describedby="emailHelp"  required>
         <small id="mobile-error" class="d-none" style="color: #f296a5;">
           Please enter the mobile number
         </small>
@@ -319,7 +328,63 @@
 
 </div>
 
+<<<<<<< HEAD
   <div class="col-lg-6 col-md-12 col-sm-6">
+=======
+
+</div>
+
+    <div class="row">
+
+  <div class="col-lg-12 col-md-12 col-sm-12">
+  
+      <label class="mt-4" for="inlineCheckbox1">Areas of Interest</label>
+      <br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox1" value="1">
+        <label class="form-check-label" >Financing Esports & Gaming
+        </label>
+      </div>
+        <br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox2" value="2">
+        <label class="form-check-label" >Health in Gaming & Esports
+        </label>
+      </div>
+      <br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox3" value="3">
+        <label class="form-check-label">Academics in Esports & Gaming
+
+        </label>
+      </div>
+      <br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox4" value="4">
+        <label class="form-check-label">Regulation of Esports & Gaming 
+
+        </label>
+      </div>
+      <br>
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox5" value="5">
+        <label class="form-check-label" >Game Development
+
+        </label>
+      </div>
+  
+  
+  
+  </div>
+  <small id="Interested-error" class="d-none" style="color: #f296a5;">
+    Please select area of interest
+   </small>
+  
+  </div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+>>>>>>> e6505090fd193ad83ab5fe5953b739bcf86c727a
     <label class="mt-4" for="attendyes">Did you attend the previous Next World Forum?</label>
     <br>
     <div class="form-check form-check-inline mt-2">
