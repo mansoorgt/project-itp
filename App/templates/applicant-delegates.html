@@ -80,7 +80,7 @@
 
   <div class="d-flex justify-content-center bg-main-pos-invited" style="">
 
-    <div class="col-md-6 col-sm-12 col-lg-5 bg-main-deligate" style="">
+    <div class="col-md-7 col-sm-12 col-lg-7 bg-main-deligate" style="">
   
     </div>
   
@@ -105,12 +105,12 @@
 
 <div class="row">
 <div class="d-flex justify-content-center">
-  <div class="col-md-6" style="">
+  <div class="col-md-8" style="">
 
 <div style="background-color: black; padding-right: 20px; padding-left: 20px;">
 
     <div class="row">
-  <div class="col-lg-12 col-md-12 col-sm-12">
+  <div class="col-lg-6 col-md-12 col-sm-12">
     <div class="form-group mt-4">
       <label for="first-name">First Name</label>
         <input type="text" class="form-control"   name="first-name" id="first-name"   required>
@@ -125,7 +125,7 @@
 
 
 
-<div class="col-lg-12 col-md-12 col-sm-12">
+<div class="col-lg-6 col-md-12 col-sm-6">
   <div class="form-group mt-4">
     <label for="last-name">Last Name</label>
       <input type="text" class="form-control" name="last-name" id="last-name" aria-describedby="emailHelp"  required>
@@ -138,7 +138,7 @@
 
 
 <div class="row">
-<div class="col-lg-12 col-md-12 col-sm-12">
+<div class="col-lg-6 col-md-12 col-sm-6">
   <div class="form-group mt-4">
     <label for="designation">Designation</label>
       <input type="text" class="form-control" name="designation" id="designation" aria-describedby="emailHelp"  required>
@@ -152,7 +152,7 @@
 
 
 
-<div class="col-lg-12 col-md-12 col-sm-12">
+<div class="col-lg-6 col-md-12 col-sm-6">
   <div class="form-group mt-4">
     <label for="company">Company</label>
       <input type="text" class="form-control" name="company" id="company" aria-describedby="emailHelp" placeholder="" required>
@@ -161,9 +161,9 @@
       </small>
     </div>
 </div>
-
-
-<div class="col-lg-12 col-md-12 col-sm-12">
+</div>
+<div class="row">
+<div class="col-lg-6 col-md-12 col-sm-6">
   
   <div class="form-group mt-4">
     <label for="occupation">Select an Occupation</label>
@@ -184,23 +184,24 @@
 
 </div>
 
+<div class="col-lg-6 col-md-12 col-sm-6">
+  <div class="form-group mt-4">
+    <label for="email">Email</label>
+      <input type="email"  class="form-control" name="email" id="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" aria-describedby="emailHelp" required>
+      <small id="email-error" class="d-none" style="color: #f296a5;">
+        Please enter the valid email
+      </small>
+    </div>
+</div>
 
 
 </div>
 
 <div class="row">
 
-  <div class="col-lg-12 col-md-12 col-sm-12">
-    <div class="form-group mt-4">
-      <label for="email">Email</label>
-        <input type="email"  class="form-control" name="email" id="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" aria-describedby="emailHelp" required>
-        <small id="email-error" class="d-none" style="color: #f296a5;">
-          Please enter the valid email
-        </small>
-      </div>
-</div>
 
-<div class="col-lg-12 col-md-12 col-sm-12">
+
+<div class="col-lg-6 col-md-12 col-sm-6">
     <div class="form-group mt-4">
       <label for="mobile"> Mobile Number</label>
         <input type="text" class="form-control" name="mobile"  id="mobile" aria-describedby="emailHelp"  required>
@@ -211,21 +212,16 @@
 </div>
 
 
+<div class="col-lg-6 col-md-12 col-sm-6">
+  <div class="form-group mt-4">
+      <label for="country">Country Of Residence</label>
+      <select  class="form-control " name="country" id="country" aria-describedby="emailHelp" required>
+        </select>
+        <small id="country-error" class="d-none" style="color: #f296a5;">
+          Please select a country
+        </small>
+    </div>
 </div>
-
-<div class="row">
-
-  <div class="col-lg-12 col-md-12 col-sm-12">
-    <div class="form-group mt-4">
-        <label for="country">Country Of Residence</label>
-        <select  class="form-control " name="country" id="country" aria-describedby="emailHelp" required>
-          </select>
-          <small id="country-error" class="d-none" style="color: #f296a5;">
-            Please select a country
-          </small>
-      </div>
-</div>
-
 
 </div>
 
@@ -236,7 +232,7 @@
 
 <div class="row">
 
-<div class="col-lg-12 col-md-12 col-sm-12">
+<div class="col-lg-6 col-md-12 col-sm-6">
 
     <div class="form-group mt-4">
         <label for="photo-upload">Photo Upload</label>
@@ -250,6 +246,23 @@
 
 </div>
 
+<div class="col-lg-6 col-md-12 col-sm-6">
+
+  <label class="mt-4" for="exampleInputEmail1">KSA VISA</label>
+  <br>
+  <div class="form-check form-check-inline mt-2 ">
+      <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio1" value="1">
+      <label class="form-check-label" for="inlineRadio1">YES</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio2" value="0">
+      <label class="form-check-label" for="inlineRadio2">NO</label>
+    </div>
+
+
+
+</div>
+
 
 </div>
 
@@ -262,78 +275,51 @@
 
 
 
+
 <div class="row">
 
-<div class="col-lg-12 col-md-12 col-sm-12">
-
-    <label class="mt-4" for="exampleInputEmail1">KSA VISA</label>
+  <div class="col-lg-6 col-md-12 col-sm-6">
+  
+    <label class="mt-4" for="inlineCheckbox1">Areas of Interest</label>
     <br>
-    <div class="form-check form-check-inline mt-2 ">
-        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio1" checked value="1">
-        <label class="form-check-label" for="inlineRadio1">YES</label>
-      </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="Interested"  id="inlineCheckbox1" value="1">
+      <label class="form-check-label" >Financing Esports & Gaming
+      </label>
+    </div>
+      <br>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox2" value="2">
+      <label class="form-check-label" >Health in Gaming & Esports
+      </label>
+    </div>
+    <br>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox3" value="3">
+      <label class="form-check-label">Academics in Esports & Gaming
+
+      </label>
+    </div>
+    <br>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox4" value="4">
+      <label class="form-check-label">Regulation of Esports & Gaming 
+
+      </label>
+    </div>
+    <br>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio2" value="0">
-        <label class="form-check-label" for="inlineRadio2">NO</label>
-      </div>
+      <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox5" value="5">
+      <label class="form-check-label" >Game Development
+
+      </label>
+    </div>
 
 
 
 </div>
 
-
-</div>
-
-    <div class="row">
-
-  <div class="col-lg-12 col-md-12 col-sm-12">
-  
-      <label class="mt-4" for="inlineCheckbox1">Areas of Interest</label>
-      <br>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="Interested" checked id="inlineCheckbox1" value="1">
-        <label class="form-check-label" >Financing Esports & Gaming
-        </label>
-      </div>
-        <br>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox2" value="2">
-        <label class="form-check-label" >Health in Gaming & Esports
-        </label>
-      </div>
-      <br>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox3" value="3">
-        <label class="form-check-label">Academics in Esports & Gaming
-
-        </label>
-      </div>
-      <br>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox4" value="4">
-        <label class="form-check-label">Regulation of Esports & Gaming 
-
-        </label>
-      </div>
-      <br>
-        <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="Interested" id="inlineCheckbox5" value="5">
-        <label class="form-check-label" >Game Development
-
-        </label>
-      </div>
-  
-  
-  
-  </div>
-  <small id="Interested-error" class="d-none" style="color: #f296a5;">
-    Please select area of interest
-   </small>
-  
-  </div>
-
-<div class="row">
-  <div class="col-lg-12 col-md-12 col-sm-12">
+  <div class="col-lg-6 col-md-12 col-sm-6">
     <label class="mt-4" for="attendyes">Did you attend the previous Next World Forum?</label>
     <br>
     <div class="form-check form-check-inline mt-2">
@@ -341,7 +327,7 @@
       <label class="form-check-label" for="attendyes">YES</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="attend" id="attendno" checked value="0">
+      <input class="form-check-input" type="radio" name="attend" id="attendno"  value="0">
       <label class="form-check-label" for="attendno">NO</label>
     </div>
   </div>
