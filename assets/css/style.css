@@ -1,4 +1,7 @@
-
+select+.select2-container--bootstrap-5
+{
+  width:100% !important;
+}
 .iti{
   width: 100% !important;
 }
@@ -502,11 +505,15 @@ width: 450px !important;
 }
  }
 
-@media (min-width:769.90px) and (max-width: 990px)  {
+@media (min-width:769.90px) and (max-width: 1300px)  {
     .mobile-index.d-flex
     {
         display:none !important;
     }
+    .glow
+  {
+    font-size: 28px !important;
+  }
     .desk-index.d-flex
 {
     display:flex !important;
