@@ -196,7 +196,7 @@ function validate_form(form_id) {
   
   loading_on(true)
   var m_form=new FormData($('#applicant-reg-form')[0])
-
+   
 
   m_form.append('csrfmiddlewaretoken',csrftoken)
 
@@ -204,7 +204,7 @@ function validate_form(form_id) {
   $("input:checkbox[name='Interested']:checked").each(function(){
     intrested_list.push($(this).val());
   });
-
+  m_form.set('mobile',iti.getNumber())
   m_form.append('intrested_in',JSON.stringify(intrested_list))
   //inspectForm(m_form)
 
