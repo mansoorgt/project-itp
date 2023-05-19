@@ -7,12 +7,13 @@ function submitSpeakerForm(e) {
       $('input[type="file"]').focus()
       return false;
     }
-
+    loading_on(true)
     var ksa_visa=$('input[name=ksa-visa]:checked', '#speaker-reg-form').val()
     console.log(ksa_visa)
     var m_form=new FormData($('#speaker-reg-form')[0])
     m_form.append('ksa-visa',ksa_visa)
     m_form.append('csrfmiddlewaretoken',csrftoken)
+    m_form.set('mobile',iti.getNumber())
 
     $.ajax({
         type: "POST",
@@ -25,7 +26,7 @@ function submitSpeakerForm(e) {
 
           fetch('send_speaker_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
           body:JSON.stringify({'reg_id':res.reg_id})})
-
+          loading_on(false)
           Swal.fire({
             position: 'top-center',
             icon: 'success',
@@ -80,13 +81,13 @@ async function submitInvitedForm(e) {
     $("input:checkbox[name='Interested']").focus()
     return false
   }
-
+  loading_on(true)
   var ksa_visa=$('input[name=ksa-visa]:checked', '#invated-reg-form').val()
   
   var m_form=new FormData($('#invated-reg-form')[0])
   m_form.append('ksa-visa',ksa_visa)
   m_form.append('csrfmiddlewaretoken',csrftoken)
-
+  m_form.set('mobile',iti.getNumber())
   var intrested_list=[]
   $("input:checkbox[name='Interested']:checked").each(function(){
     intrested_list.push($(this).val());
@@ -105,7 +106,7 @@ async function submitInvitedForm(e) {
 
         fetch('send_invited_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
         body:JSON.stringify({'reg_id':res.reg_id})})
-
+        loading_on(false)
         Swal.fire({
           position: 'top-center',
           icon: 'success',
@@ -204,6 +205,7 @@ function validate_form(form_id) {
   $("input:checkbox[name='Interested']:checked").each(function(){
     intrested_list.push($(this).val());
   });
+  m_form.set('mobile',iti.getNumber())
 
   m_form.append('intrested_in',JSON.stringify(intrested_list))
   //inspectForm(m_form)
