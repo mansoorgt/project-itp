@@ -1,4 +1,8 @@
 
+.iti{
+  width: 100% !important;
+}
+
 .access-div
 {
   height: 420px;
@@ -31,7 +35,7 @@ margin-top: 30px;
 
 .bg-main-speaker
 {
-  height:1550px; 
+  height:1000px; 
   z-index: -1;
    background-color: black;
     padding: 20px;
@@ -48,7 +52,7 @@ margin-top: 30px;
 
 .bg-main-invited
 {
-  height:1600px; 
+  height:1000px; 
   z-index: -1;
    background-color: black;
     padding: 20px;
@@ -58,7 +62,7 @@ margin-top: 30px;
 
 .bg-main-deligate
 {
-  height:1480px; 
+  height:900px; 
   z-index: -1;
    background-color: black;
     padding: 20px;
@@ -356,7 +360,7 @@ input::placeholder {
 
 @media (max-width: 565px)  {
 
-    
+  
         /* access div start */
 .access-div
 {
@@ -396,19 +400,19 @@ width: 390px;
 .bg-main-invited
 {
   padding: 220px;
-    height: 1380px;
+    height: 1000px;
 }
 .bg-main-deligate
 {
-  padding: 220px;
-    height: 1380px;
+  padding: 190px;
+    height: 1200px;
 }
     
     
       .bg-main-speaker
   {
     padding: 220px;
-    height: 1450px;
+    height: 1100px;
   }
   .bg-main-pos-speaker
   {
@@ -457,7 +461,7 @@ font-size:20px !important;
 @media (min-width:565.90px) and (max-width: 768px)  { 
     
     
-
+ 
     
 .access-div
 {
