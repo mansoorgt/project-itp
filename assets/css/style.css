@@ -38,7 +38,7 @@ margin-top: 30px;
 
 .bg-main-speaker
 {
-  height:1000px; 
+  height:500px; 
   z-index: -1;
    background-color: black;
     padding: 20px;
@@ -414,8 +414,9 @@ width: 390px;
     
       .bg-main-speaker
   {
-    padding: 220px;
-    height: 1100px;
+    padding: 180px;
+    height: 900px;
+    margin-left:-40px;
   }
   .bg-main-pos-speaker
   {
