@@ -29,6 +29,23 @@
     
     
     <style>
+       #loading-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    /* Add some space above the loading text */
+    #loading-indicator p {
+      margin-top: 10px;
+    }
   #video-background {
       position: fixed;
       right: 0;
@@ -339,13 +356,17 @@
     <label class="mt-4" for="exampleInputEmail1">KSA VISA</label>
     <br>
     <div class="form-check form-check-inline mt-2 ">
-        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio1" checked value="1">
+        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio1" required  value="1">
         <label class="form-check-label" for="inlineRadio1">YES</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio2" value="0">
+        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio2" required value="0">
         <label class="form-check-label" for="inlineRadio2">NO</label>
       </div>
+      <br>
+      <small id="ksa-visa-error" class="d-none" style="color: #f296a5;">
+        Please select anyone
+       </small>
 
 
 
