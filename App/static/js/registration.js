@@ -107,20 +107,24 @@ async function submitInvitedForm(e) {
         fetch('send_invited_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
         body:JSON.stringify({'reg_id':res.reg_id})})
         loading_on(false)
-        Swal.fire({
-          position: 'top-center',
-          icon: 'success',
-          text: 'Thank you for registering your interest to attend Next World Forum. Please expect to receive an email from the Next World team',
-          showConfirmButton: true,
+        // Swal.fire({
+        //   position: 'top-center',
+        //   icon: 'success',
+        //   text: 'Thank you for registering your interest to attend Next World Forum. Please expect to receive an email from the Next World team',
+        //   showConfirmButton: true,
 
 
-        })
+        // })
 
-            setTimeout(() => {
-              $('#invated-reg-form')[0].reset()
-              // window.location.href=window.location.origin
+        $('#main-container').addClass('d-none')
+        $('#second-black-bg-div').addClass('d-none')
+        $('#success-div').removeClass('d-none')
 
-            }, 2000);
+        setTimeout(() => {
+          $('#invated-reg-form')[0].reset()
+          // window.location.href=window.location.origin
+
+        }, 2000);
           
       }
   });
@@ -225,14 +229,17 @@ function validate_form(form_id) {
         loading_on(false)
         send_mail('send_applicant_reg_success_mail',res.reg_id)
        
-        Swal.fire({
-          position: 'top-center',
-          icon: 'success',
-          text: 'Thank you for registering your interest to attend Next World Forum. Please expect to receive an email from the Next World team',
-          showConfirmButton: true,
+        // Swal.fire({
+        //   position: 'top-center',
+        //   icon: 'success',
+        //   text: 'Thank you for registering your interest to attend Next World Forum. Please expect to receive an email from the Next World team',
+        //   showConfirmButton: true,
 
 
-        })
+        // })
+        $('#main-container').addClass('d-none')
+        $('#second-black-bg-div').addClass('d-none')
+        $('#success-div').removeClass('d-none')
 
             setTimeout(() => {
               $('#applicant-reg-form')[0].reset()

@@ -95,7 +95,7 @@
 
   <div class="d-flex justify-content-center bg-main-pos-invited" style="">
 
-    <div class=" col-md-5 col-sm-12 col-lg-5 bg-main-invited main-div" style="display: none;">
+    <div class=" col-md-5 col-sm-12 col-lg-5 bg-main-invited main-div" id="second-black-bg-div" style="display: none;">
   
     </div>
     <div class="d-none col-md-5 col-lg-5 col-sm-5 access-div unique-code-div">
@@ -161,7 +161,7 @@
 
 <!-- access code end -->
 
-<div class=" container main-div" style="display: none;">
+<div class=" container main-div" id="main-container" style="display: none;">
 <form onsubmit="submitInvitedForm(event)" id='invated-reg-form'>
 
 <div class="row">
@@ -474,6 +474,24 @@
 
 </form>
 </div>
+
+<!-- succes message showing start -->
+<div class="d-flex justify-content-center shadow-lg  d-none" id="success-div"  >
+  <div class="col-md-6 col-lg-4 col-sm-12"> 
+  <div class="" style="background-color: black; padding: 50px; border-radius: 10px;">
+  <div class="d-flex justify-content-center mb-4">
+  <img src="{% static 'img/success_tick.png' %}">
+  </div>
+  
+  
+  <p class="text-white" style="text-align: justify;">Thank you for registering your interest to attend Next World Forum. 
+    Please expect to receive an email from the Next World team.</p>
+  </div>
+  </div>
+</div>
+  
+  <!-- success message showing end -->
+
 <div class="row">
 <div class="col-md-12">
   <img class="img-fluid" src="{% static 'img/banorg-flip.png' %}">
