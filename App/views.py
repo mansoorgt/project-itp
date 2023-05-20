@@ -171,7 +171,7 @@ class ReginstraionForms():
             data={"name":obj.first_name+' '+obj.last_name}
  
             html_contect=render_to_string("email/applicant_reg_success.html",data)
-            email_from = settings.EMAIL_HOST_USER
+            email_from = settings.DEFAULT_FROM_EMAIL
             subject = 'Registration Status – Pending'
 
             mail.send_mail(subject, strip_tags(html_contect), from_email=email_from,recipient_list=[obj.email], html_message=html_contect,fail_silently=False)
