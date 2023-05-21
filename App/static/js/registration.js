@@ -27,15 +27,18 @@ function submitSpeakerForm(e) {
           fetch('send_speaker_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
           body:JSON.stringify({'reg_id':res.reg_id})})
           loading_on(false)
-          Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            text: 'Thank you for registering your interest to attend Next World Forum. Please expect to receive an email from the Next World team',
-            showConfirmButton: true,
+          // Swal.fire({
+          //   position: 'top-center',
+          //   icon: 'success',
+          //   text: 'Thank you for registering your interest to attend Next World Forum. Please expect to receive an email from the Next World team',
+          //   showConfirmButton: true,
 
 
-          })
+          // })
 
+          $('#main-container').addClass('d-none')
+          $('#second-black-bg-div').addClass('d-none')
+          $('#success-div').removeClass('d-none')
               setTimeout(() => {
                 $('#speaker-reg-form')[0].reset()
                 // window.location.href=window.location.origin
