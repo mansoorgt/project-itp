@@ -1,3 +1,17 @@
+      .daz_menu
+      {
+        color: white !important;
+      }
+
+.card.card-tale
+{
+    background-color: #28282a !important;
+}
+.card.card-tale:hover
+{
+    background-color: #28282a;
+}
+
       .btn-info
       {
         background-color:  !important;
@@ -5,12 +19,16 @@
       /*custom btn-info style start*/
            .btn-info
       {
-        background-color: #f27830!important;
-        border: #f27830 !important;
+        background-color: rgb(44, 45, 48)!important;
+        border:black !important;
+        color: white !important;
+        font-weight: bold;
       }
       .btn-info:hover
       {
-        background-color: #e76711 !important;
+        background-color: #b7b6ca !important;
+        color: black !important;
+        font-weight: bold;
       }
 /*custom btn-info style end*/
 /* start preloader */
@@ -86,7 +104,7 @@
 }
 .auth .brand-logo img
 {
-    width: 200px !important;
+    width: 100px !important;
 }
 .bg-reg
 {
