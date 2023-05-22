@@ -57,16 +57,16 @@
   
 
 </head>
-<body>
+<body style="background-color: black;">
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo ml-3" href="https://infoeventz.com/" target="_blank" ><img style="height: 105px;" src="{% static 'images/infoevent_logo.png' %}" class="" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini"href="https://infoeventz.com/" target="_blank" ><img src="{% static 'images/infoevent_logo.png' %}" alt="logo"/></a>
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="box-shadow: none;">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center"  style="background-color: black;">
+        <a class="navbar-brand brand-logo ml-3" href="https://infoeventz.com/" target="_blank" ><img style="height: 55px;" src="{% static 'img/nxt_logo.png' %}" class="" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini"href="https://infoeventz.com/" target="_blank" ><img src="{% static 'img/nxt_logo.png' %}" alt="logo"/></a>
       </div>
       
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end" style="background-color: black;">
    
 
         <!-- navbar menu web view start -->
@@ -176,19 +176,19 @@
 
       <!-- partial -->
       <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="background-color: black;">
           <div class="row">
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Welcome {{username}}</h3>
-                  <h6 class="font-weight-normal mb-0"> <span id="greetings"></span><span class="text-primary" id="message"></span></h6>
+                  <h3 class="font-weight-bold text-white">Welcome {{username}}</h3>
+                  <h6 class="font-weight-normal mb-0 text-white"> <span id="greetings"></span><span class="text-primary" id="message"></span></h6>
                 </div>
                 <div class="col-12 col-xl-4">
                  <div class="justify-content-end d-flex">
                   <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                    <button class="btn btn-sm btn-light bg-white" type="button" id="dropdownMenuDate2">
-                     <i class="mdi mdi-calendar"></i> <span  class="badge badge-primary mr-1" id="date"></span><span class="badge badge-info" id="time"></span>
+                    <button class="btn btn-sm bg-black" type="button" id="dropdownMenuDate2">
+                     <i class="mdi mdi-calendar"></i> <span  class="badge badge-dark mr-1" id="date"></span><span class="badge badge-secondary" id="time"></span>
                     </button>
                 
                   </div>
@@ -201,7 +201,7 @@
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card tale-bg">
                 <div class="card-people mt-auto">
-                  <img src="/static/images/dashboard/people.svg"  alt="people">
+                  <img src="{% static 'images/dashboard/people.svg' %}"  alt="people">
                   <div class="weather-info">
                     <div class="d-flex">
                     
@@ -233,7 +233,7 @@
                 </div>
                 <div class="col-md-6 mb-4 stretch-card transparent">
                     
-                  <div class="card card-dark-blue">
+                  <div class="card card-tale">
                       <a href="{% url 'speaker_registrations_page' %}" style="text-decoration: none; color: white;">
                     <div class="card-body">
                       <p class="mb-4">SPEAKER REGISTRATIONS</p>
@@ -246,7 +246,7 @@
               </div>
               <div class="row">
                 <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
-                  <div class="card card-light-blue">
+                  <div class="card card-tale">
                       <a  style="text-decoration: none; color: white;">
                     <div class="card-body">
                       <p class="mb-4">Event Pass</p>
@@ -257,7 +257,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 stretch-card transparent">
-                  <div class="card card-light-danger">
+                  <div class="card card-tale">
                       <a  style="text-decoration: none; color: white;">
                     <div class="card-body">
                       <p class="mb-4">Vapp</p>
@@ -278,15 +278,10 @@
         </div>
 
 
-<div class="row">
-<div class="col-md-12">
-  <div id="chart" style="height: 300px; width: 100%;"></div>
-</div>
-</div>
 
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <footer class="footer">
+        <footer class="footer" style="background-color: black;">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023.<a href="https://www.infomeuae.com/" target="_blank">INFOME TECHNOLOGIES LLC</a>. All rights reserved.</span>
 
@@ -472,57 +467,7 @@ window.addEventListener('load', () => {
 
 </script>
 
-<script>
 
-var options = {
-          series: [{
-          data: [21, 22, 10, 28, 16, 21, 13, 30]
-        }],
-          chart: {
-          height: 350,
-          type: 'bar',
-          events: {
-            click: function(chart, w, e) {
-              // console.log(chart, w, e)
-            }
-          }
-        },
-        colors: colors,
-        plotOptions: {
-          bar: {
-            columnWidth: '45%',
-            distributed: true,
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        legend: {
-          show: false
-        },
-        xaxis: {
-          categories: [
-            ['John', 'Doe'],
-            ['Joe', 'Smith'],
-            ['Jake', 'Williams'],
-            'Amber',
-            ['Peter', 'Brown'],
-            ['Mary', 'Evans'],
-            ['David', 'Wilson'],
-            ['Lily', 'Roberts'], 
-          ],
-          labels: {
-            style: {
-              colors: colors,
-              fontSize: '12px'
-            }
-          }
-        }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-</script>
 
 </body>
 
