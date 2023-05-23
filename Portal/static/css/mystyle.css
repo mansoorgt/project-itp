@@ -1,4 +1,9 @@
-      .daz_menu
+item:active
+{
+      color:black;
+}
+
+.daz_menu
       {
         color: white !important;
       }
