@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title></title>
+  <title>NEXTWRLD</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
@@ -19,7 +19,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{% static 'images/info_logo.png' %}" />
+  <link rel="shortcut icon" href="{% static 'images/nxt_favicon.png' %}" />
   <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
   <!-- font awesome cdn start -->
 
@@ -303,7 +303,7 @@ p {
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="box-shadow: none;">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center" style="background-color: black;">
-        <a class="navbar-brand brand-logo ml-3" href="https://www.nextwrld.sa/en" target="_blank" ><img style="height: 50px;" src="{% static 'images/nxt_logo.png' %}" class="" alt="logo"/></a>
+        <a class="navbar-brand brand-logo ml-3" href="https://www.nextwrld.sa/en" target="_blank" ><img style="height: 55px;" src="{% static 'images/nxt_logo.png' %}" class="" alt="logo"/></a>
         <a class="navbar-brand brand-logo-mini" href="https://www.nextwrld.sa/en" target="_blank" ><img style="height: 50px;" src="{% static 'images/nxt_logo.png' %}" alt="logo"/></a>
       </div>
       
@@ -315,9 +315,19 @@ p {
       <a class="daz_menu" href="{% url 'dashboard' %}"><img  class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/1828/1828673.png" style="width:15% ;"><span class="font-weight-bolder m-1"> Dashboard</span></a>
       </div>
       
-        <div class="col-md-2">
-          <a class="daz_menu" href="{% url 'registration' %}" target="_blank"><img  class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/2921/2921226.png" style="width:15% ;"><span class="font-weight-bolder m-1"> Register</span></a>
+      <div class="col-md-2">
+        <div class="dropdown">
+          <button class=" dropdown-toggle" type="button" id="registrationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: none; border: none; color: white;">
+            <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/2921/2921226.png" style="width:15%">
+            <span class="font-weight-bolder m-1">Register</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="registrationDropdown">
+            <a class="dropdown-item" href="https://www.nextwrld.sa/registration/SpeakerForm" target="_blank">SPEAKER REGISTRATION</a>
+            <a class="dropdown-item" href="https://www.nextwrld.sa/registration/InvitedDelegates" target="_blank">INVITED DELEGATES</a>
+            <a class="dropdown-item" href="https://www.nextwrld.sa/registration/Applicantdelegates" target="_blank">APPLICANT DELEGATES</a>
           </div>
+        </div>
+      </div>
           <div class="col-md-2">
             <a class="daz_menu" href="{% url 'report' %}" ><img  class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/3029/3029351.png" style="width:15% ;"><span class="font-weight-bolder m-1"> Report</span></a>
             </div>
@@ -977,7 +987,7 @@ p {
         <!-- partial:partials/_footer.html -->
         <footer class="footer" style="background-color: black;">
           <div class="d-flex justify-content-center">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©2023<a href="https://www.nextwrld.sa/ens" target="_blank"> Next World Forum 2023.</a>All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©2023<a href="https://www.nextwrld.sa/en" target="_blank"> Next World Forum 2023.</a>All rights reserved.</span>
 
           </div>
         </footer>
