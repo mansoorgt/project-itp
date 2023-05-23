@@ -313,14 +313,14 @@ class Dashboard():
     @login_required()
     def dashboard_page(request):
         
-        build_event_count=SpeakerRegistrations.objects.all().count()
-        event_count=Eventpass_table.objects.all().count()
-        vapp_count=Vapp_table.objects.all().count()
-        all_count=build_event_count+event_count+vapp_count
+        speaker_count=SpeakerRegistrations.objects.all().count()
+        applicant_count=ApplicantRegistrations.objects.all().count()
+        invited_count=InvitedRegistrations.objects.all().count()
+        all_count=speaker_count+applicant_count+invited_count
         username=request.user.username
-        print(request.session['user_role'])
-        data={'username':username,'bu_count':build_event_count,'all_count':all_count,'ev_count':event_count,'vapp_count':vapp_count,'role_id':int(request.session['user_role'])}
-        return render(request,'dashboard.html',data)        
+       
+        data={'username':username,'speacker_count':speaker_count,'all_count':all_count,'applicant_count':applicant_count,'invited_count':invited_count,'role_id':int(request.session['user_role'])}
+        return render(request,'dashboard.html',data)       
 class Tablepage():
     @login_required
     def table_page(request):
