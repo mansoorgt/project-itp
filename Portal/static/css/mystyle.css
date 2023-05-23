@@ -1,6 +1,6 @@
-item:active
+.dropdown-item.active, .dropdown-item:active
 {
-      color:black !important;
+    color:black;
 }
 
 .daz_menu
