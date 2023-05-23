@@ -156,3 +156,25 @@ DEFAULT_FROM_EMAIL = 'invitations@nextwrld.sa'
 LOGIN_URL='/portal'
 
 CSRF_TRUSTED_ORIGINS=['http://beta.nextwrld.sa','https://beta.nextwrld.sa','https://www.nextwrld.sa','http://www.nextwrld.sa']
+
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
