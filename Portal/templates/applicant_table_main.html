@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>INFOEVENTZ</title>
+  <title></title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
@@ -33,6 +33,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
+    div.dataTables_wrapper div.dataTables_length label
+    {
+      color: white !important;
+    }
+    div.dataTables_wrapper div.dataTables_filter label
+    {
+      color: white !important;
+    }
+
+    div.dataTables_wrapper div.dataTables_info
+    {
+      color:white;
+    }
+
     .daz_menu:hover
   {
     color: #1CAFA0 ;
@@ -287,13 +301,13 @@ p {
   
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo ml-3" href="https://infoeventz.com/" target="_blank" ><img style="height: 100px;" src="{% static 'images/infoevent_logo.png' %}" class="" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="https://infoeventz.com/" target="_blank" ><img src="{% static 'images/infoevent_logo.png' %}" alt="logo"/></a>
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="box-shadow: none;">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center" style="background-color: black;">
+        <a class="navbar-brand brand-logo ml-3" href="https://infoeventz.com/" target="_blank" ><img style="height: 50px;" src="{% static 'images/nxt_logo.png' %}" class="" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="https://infoeventz.com/" target="_blank" ><img style="height: 50px;" src="{% static 'images/nxt_logo.png' %}" alt="logo"/></a>
       </div>
       
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end" style="background-color: black;">
    
          <!-- navbar menu web view start -->
    <div class="row ml-5 motin-menu-web">
@@ -395,7 +409,7 @@ p {
 
       <!-- partial -->
       
-      <div class="main-panel">
+      <div class="main-panel" style="background-color: black;">
         
           <div class="bar" style="position:fixed; z-index: 1; width: 100%;"  ></div>
         
@@ -961,9 +975,9 @@ p {
 <!-- Id Card Design End -->
 
         <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2022.<a href="https://www.infomeuae.com/" target="_blank">INFOME TECHNOLOGIES LLC</a>. All rights reserved.</span>
+        <footer class="footer" style="background-color: black;">
+          <div class="d-flex justify-content-center">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©2023<a href="https://www.nextwrld.sa/ens" target="_blank"> Next World Forum 2023.</a>All rights reserved.</span>
 
           </div>
         </footer>
