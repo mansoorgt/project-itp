@@ -12,6 +12,9 @@ function submitSpeakerForm(e) {
     console.log(ksa_visa)
     var m_form=new FormData($('#speaker-reg-form')[0])
     m_form.append('ksa-visa',ksa_visa)
+    
+    m_form.set('retun-date-time',moment($('#retun-date-time').val(),'DD-MM-YYYY hh:mm A ').format('YYYY-MM-DDTH:mm'))
+    m_form.set('depature-date-time',moment($('#depature-date-time').val(),'DD-MM-YYYY hh:mm A ').format('YYYY-MM-DDTH:mm'))
     m_form.append('csrfmiddlewaretoken',csrftoken)
     m_form.set('mobile',iti.getNumber())
 
@@ -213,6 +216,7 @@ function validate_form(form_id) {
     intrested_list.push($(this).val());
   });
   m_form.set('mobile',iti.getNumber())
+
 
   m_form.append('intrested_in',JSON.stringify(intrested_list))
   //inspectForm(m_form)

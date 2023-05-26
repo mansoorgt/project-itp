@@ -1,3 +1,28 @@
+
+.simplepicker-date-section 
+{
+  background-color: rgba(2,34,77,.7) !important;
+ 
+}
+.simplepicker-day-header
+{
+background-color: rgba(2,34,77) !important;
+}
+.simplepicker-btn
+{
+  border-color:rgba(2,34,77) !important;
+  color: rgba(2,34,77) !important;
+}
+.simplepicker-btn:hover
+{
+  background-color: rgba(2,34,77,.7) !important;
+ color: white !important;
+}
+.simplepicker-calender tbody .active:after
+{
+  background-color:rgba(2,34,77) !important; ;
+}
+
 select+.select2-container--bootstrap-5
 {
   width:100% !important;
