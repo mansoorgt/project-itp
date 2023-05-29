@@ -1,3 +1,13 @@
+      
+    div.dataTables_wrapper div.dataTables_info
+     {
+         color:white !important;
+     }
+     .dataTables_empty
+     {
+         color: black !important;
+     }
+
 .dropdown-item.active, .dropdown-item:active
 {
     color:black;
