@@ -1,4 +1,15 @@
-      .btn-info
+      
+    div.dataTables_wrapper div.dataTables_info
+     {
+         color:white !important;
+     }
+     .dataTables_empty
+     {
+         color: black !important;
+     }
+
+
+.btn-info
       {
         background-color:  !important;
       }
