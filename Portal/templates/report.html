@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>INFOEVENTZ-DASHBOARD</title>
+  <title>REPORT</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
@@ -19,10 +19,13 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{% static 'images/info_logo.png' %}" />
+  <link rel="shortcut icon" href="{% static 'images/nxt_favicon.png' %}" />
   <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
   
   <style>
+    label{
+      color: white !important;
+    }
     .daz_menu:hover
   {
     color: #1CAFA0 ;
@@ -60,13 +63,13 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo ml-3" href="index.html"><img style="height: 105px;" src="{% static 'images/infoevent_logo.png' %}" class="" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'images/infoevent_logo.png' %}" alt="logo"/></a>
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="box-shadow: none;">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center" style="background-color: black;">
+        <a class="navbar-brand brand-logo ml-3" href="https://www.nextwrld.sa/en" target="_blank" ><img style="height: 55px;" src="{% static 'images/nxt_logo.png' %}" class="" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="https://www.nextwrld.sa/en" target="_blank" ><img style="height: 50px;" src="{% static 'images/nxt_logo.png' %}" alt="logo"/></a>
       </div>
       
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end" style="background-color: black;">
    
 
         <!-- navbar menu web view start -->
@@ -152,10 +155,10 @@
     
       
       <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="background-color: black;">
 <div class="row">
 <div class="col-md-12 mb-5">
-<h3 class="text-center">Report</h3>
+<h3 class="text-center text-white">Report</h3>
 </div>
 </div>
 
@@ -228,7 +231,7 @@
     </form>
 <div class="row mt-5" >
   <div class="col-md-12">
-  <div class="card p-3">
+  <div class="card p-3" style="background-color: black;">
 <h3 class="text-center text-muted" style="padding: 60px;" id="no-data-lable"> NO DATA</h3>
     <div class="col-md-12" id="Table-Parent">
     </div>
@@ -254,9 +257,9 @@
       </div>
       <!-- main-panel ends -->
     </div>
-    <footer class="footer">
-      <div class="d-sm-flex justify-content-center justify-content-sm-between">
-        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023.<a href="https://www.infomeuae.com/" target="_blank">INFOME TECHNOLOGIES LLC</a>. All rights reserved.</span>
+    <footer class="footer" style="background-color: black;">
+      <div class="d-flex justify-content-center">
+        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©2023<a href="https://www.nextwrld.sa/en" target="_blank"> Next World Forum 2023.</a>All rights reserved.</span>
 
       </div>
     </footer>
