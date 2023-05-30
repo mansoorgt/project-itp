@@ -103,7 +103,7 @@
                 {% endif %}
                
                 <td class="py-1" id="td-user">
-                  <a onclick="get_profile_details(1,{{b.id}})" data-toggle="modal" data-target="#profilemodal" ><img src="{% static 'images/avatar.webp' %}" alt="image" /></a>
+                  <a><img src="{% static 'images/avatar.webp' %}" alt="image" /></a>
                 </td>
                 <td><span style="display:none;">{{b.created_at |date:'Y-m-d H:i'}}</span>{{b.created_at |date:'d-m-y P' }}
                 {% if b.status != 0 and b.approved_by != null %}
