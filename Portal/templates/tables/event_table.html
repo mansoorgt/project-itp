@@ -148,7 +148,7 @@
                     {% if e.collected != 1 and e.print_status != 0 %}
                     <i style="font-size: 20px; color: #3d7040;" onclick="update_status(1,2,{{e.id}},true)" class="fa-duotone fa-solid fa-circle-check"></i>
                   {% endif %}
-                  
+                    <a onclick="get_profile_details(2,{{e.id}})" data-toggle="modal" data-target="#profilemodal" title="view" style="cursor: pointer;"><i  style="font-size: 20px;" class="fa fa-eye" aria-hidden="true"></i></a>
                   </td>
                   <td>
                 
