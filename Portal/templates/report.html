@@ -169,9 +169,9 @@
 <label>Category</label>
 <select class="form-control" id="catogry-sel" onchange="onChangeCategory(this)" required>
   <option disabled selected value="">Select Category</option>
-  <option value="1">BUILD PASS</option>
-  <option value="2">EVENT PASS</option>
-  <option value="3">VAPP PASS</option>
+  <option value="1">SPEAKER REGISTRATIONS</option>
+  <option value="2">INVITED DELEGATES</option>
+  <option value="3">APPLICANT DELEGATESS</option>
 
 </select> 
 <div class="invalid-feedback">
@@ -188,19 +188,19 @@
     Please choose a designation
   </div>
 
-  <div class="build-designations d-none" >
+  <div class="applicant-designations d-none" >
     {% for build_des in build_designations %}
     <option value="{{build_des.id}}">{{build_des.designation}}</option>
     {% endfor %}
   </div>
   
-  <div class="event-designations d-none" >
+  <div class="invited-designations d-none" >
     {% for event_des in eventpass_designations %}
     <option value="{{event_des.id}}">{{event_des.designation}}</option>
     {% endfor %}
   </div>
 
-  <div class="vapp-designations d-none" >
+  <div class="speaker-designations d-none" >
     {% for vapp_des in  vapp_designations %}
     <option value="{{vapp_des.id}}">{{vapp_des.category}}</option>
     {% endfor %}
@@ -298,21 +298,21 @@
 
         if (sel.value == '1'){
           
-          var options=$('.build-designations').html()
+          var options=$('.speaker-designations').html()
 
           $('#designation-sel').html(options)
         }
 
         if (sel.value == '2'){
           
-          var options=$('.event-designations').html()
+          var options=$('.invited-designations').html()
 
           $('#designation-sel').html(options)
         }
 
         if (sel.value == '3'){
           
-          var options=$('.vapp-designations').html()
+          var options=$('.applicant-designations').html()
 
           $('#designation-sel').html(options)
         }
