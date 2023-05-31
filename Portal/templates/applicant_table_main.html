@@ -1657,8 +1657,8 @@ minBuildDate = new DateTime($('#build-min'), {
   <script>
     function update_status(status,table,id,collected=false) {
 
-      var warning_msg=(status == 1 )?'are you sure to approve ':'are you sure to reject'
-      warning_msg=(collected)?'are you sure the card is collected':warning_msg
+      var warning_msg=(status == 1 )?'Do you want to accept this applicant?':'Do you want to reject this applicant?'
+      warning_msg=(collected)?'Are you sure the card is collected':warning_msg
 
 
       Swal.fire({
