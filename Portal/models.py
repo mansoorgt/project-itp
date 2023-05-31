@@ -136,7 +136,7 @@ def generate_code():
 
 class Unique_reg_code(models.Model):
     
-    code = models.CharField(max_length=6, unique=True, default=generate_code)
+    code = models.CharField(max_length=200, unique=True, default=generate_code)
     used=models.IntegerField(null=True,default=0)
     class Meta:
         db_table='app_unique_reg_code'

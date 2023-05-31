@@ -11,6 +11,8 @@
     {%csrf_token%}
 
 <input type="number" placeholder="how many" id="count-inp" name="count" required> 
+<input type="number" placeholder="max-registations" id="max-reg" name="max-reg" name="count" value="1" required> 
+<input type="text" placeholder="special chareset" id="special-chareset" name="" name="count"  > 
 <button type="button" onclick="onSbmit()" >Submit</button>
 
 <button onclick="download_ecxel()">DOWNLOAD ECXEL</button>
@@ -42,7 +44,7 @@ function onSbmit() {
     $.ajax({
         type: "GET",
         url: " {% url 'create_unique_page' %}",
-        data: {count:$('#count-inp').val()},
+        data: {count:$('#count-inp').val(),max_reg:$('#max-reg').val(),sp_charset:$('#special-chareset').val()},
         dataType: "json",
         success: function (response) {
 

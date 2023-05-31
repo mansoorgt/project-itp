@@ -9,7 +9,7 @@
                 {% endif %}
                
                 <td class="py-1" id="td-user">
-                  <a onclick="get_profile_details(1,{{sp.id}})" data-toggle="modal" data-target="#profilemodal" ><img src="{% static 'images/avatar.webp' %}" alt="image" /></a>
+                  <a  ><img src="{% static 'images/avatar.webp' %}" alt="image" /></a>
                 </td>
                 <td><span style="display:none;">{{sp.created_at |date:'Y-m-d H:i'}}</span>{{sp.created_at |date:'d-m-y H:i' }}
                 {% if sp.status != 0 and sp.approved_by != null %}
@@ -62,7 +62,7 @@
                 {% if sp.collected != 1 and sp.print_status != 0 %}
                       <i style="font-size: 20px; color: #3d7040;" onclick="update_status(1,1,{{sp.id}},true)" class="fa-duotone fa-solid fa-circle-check"></i>
                     {% endif %}
-                    
+                    <a onclick="get_profile_details(1,{{sp.id}})" data-toggle="modal" data-target="#profilemodal" title="view" style="cursor: pointer;"><i  style="font-size: 20px;" class="fa fa-eye" aria-hidden="true"></i></a>
                
                 </td>
                 <td>

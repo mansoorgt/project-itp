@@ -1902,12 +1902,17 @@ class Tablepage():
         new_count_html=''
         if request.GET.get('count') != None:
             count=request.GET.get('count')
+            max_reg=request.GET.get('max_reg')
+            sp_charset=request.GET.get('sp_charset')
             
+            print(sp_charset)
             for i in range(0,int(count)):
             
-                obj=Unique_reg_code.objects.create()
-            
-                new_count_html+='<tr> <td>'+obj.code+' </td> </tr>'
+                obj=Unique_reg_code.objects.create(used=max_reg)
+                if sp_charset != '':
+                    obj.code=str( sp_charset + obj.code )
+                    obj.save()
+                new_count_html+='<tr> <td>'+ obj.code +' </td> </tr>'
                 
             data['new_codes_tr']=new_count_html
 
