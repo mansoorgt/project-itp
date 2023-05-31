@@ -73,7 +73,7 @@
  
   <body style="background-color: black; font-family: 'Acumin Pro', sans-serif !important;">
       <video autoplay muted loop id="video-background"  preload="auto" playsinline>
-         <source  src="{% static 'bg-mob.mp4' %}" type="video/mp4">
+         <source  src="{% static 'bg-video.mp4' %}" type="video/mp4">
        <source src="{% static 'bg.webm' %}" type="video/webm">
        
       <source src="{% static 'bg.webp' %}" type="video/webp">
@@ -87,7 +87,7 @@
     
     <!-- navbar section start -->
 
-    <nav class="navbar navbar-expand-lg shadow navbar-light bg-transparent">
+    <nav class="navbar navbar-expand-lg  navbar-light bg-transparent">
       <div class="container-fluid">
         <a class="navbar-brand p-1 order-0" href="{% url 'registration' %}"><img class="img-fluid" src="{% static 'img/logo.png' %}" style="width:50%; margin-left: 30px;"></a>
         <button class="navbar-toggler btn btn-outline-light order-12" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,28 +104,24 @@
 <div  style="margin-top:-30px ;">
 
 <div class="row">
-
+<!-- 
   <div class="d-flex justify-content-center bg-main-pos-invited " style="">
 
     <div class="col-md-7 col-sm-12 col-lg-7 bg-main-deligate" id="second-black-bg-div" style="">
   
     </div>
   
-  </div>
+  </div> -->
 
 
-  <div class="col-md-12  d-flex justify-content-center">
-    <div class="col-md-6">
-      <h1 class="mt-5 text-center text-white font-weight-bold glow">REGISTRATION</h1>
-    </div>
-  </div>
+
 </div>
 
-<div class="row">
+<!-- <div class="row">
 <div class="col-md-12">
   <img class="img-fluid" src="{% static 'img/banorg (1).png' %}">
 </div>
-</div>
+</div> -->
 
 <div class="container " id="main-container" >
 <form onsubmit="submitApplicantForm(event)"   id='applicant-reg-form'>
@@ -134,9 +130,12 @@
 <div class="d-flex justify-content-center">
   <div class="col-md-8" style="">
 
-<div style="background-color: black; padding-right: 20px; padding-left: 20px;">
+<div style="background-color: black; padding-right: 20px; padding-left: 20px; margin-top:50px; border-radius:10px;">
 
     <div class="row">
+          <div class="col-md-12">
+      <h1 class="mt-5 text-center text-white font-weight-bold glow">REGISTRATION</h1>
+    </div>
   <div class="col-lg-6 col-md-12 col-sm-6">
     <div class="form-group mt-4">
       <label for="first-name">First Name</label>
@@ -446,7 +445,7 @@
 
 <!-- footer  start-->
 
-<footer class=" ">
+<footer class="mt-5 mb-5 ">
   <p class="text-center col-md-12 mb-0 text-white footer-text" style="font-size:10px;"><a class="text-white" href="" > Copyright ©2023 Next World Forum 2023. All Rights Reserved. </a></p>
 
  
