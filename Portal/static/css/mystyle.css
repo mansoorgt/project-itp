@@ -4,6 +4,10 @@
     background: white !important;
 }   
 
+:where(.swal2-styled).swal2-cancel
+{
+    margin-left: 20px;
+}
 
     div.dataTables_wrapper div.dataTables_info
      {
