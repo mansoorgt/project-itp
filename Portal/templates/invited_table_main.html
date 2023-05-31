@@ -1143,7 +1143,7 @@ p {
       </div>
       <div class="modal-footer">
         <div class="col-md-12">
-        <button type="button" class="btn btn-danger float-left ml-2" id="profile-reject-btn" data-target="#reject-popup" data-toggle="modal">Reject</button>
+        <button type="button" class="btn btn-danger float-left ml-2" id="profile-reject-btn" >Reject</button>
         <button type="button" class="btn btn-warning  float-left ml-2" id="profile-apporve-btn" >Approve</button>
 
        
@@ -3007,7 +3007,7 @@ function ExportToExcel_vapp(type, fn, dl) {
           document.getElementById('profile-next-btn').onclick=function(){ next_profile(1,data.id) }
           document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(1,data.id) }
            document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,1,data.id); update_status_profile(data.status,data.remark); }
-           document.getElementById("profile-reject-btn").onclick=function() {  send_rejection_mail([data.id],1,false)  }
+           document.getElementById("profile-reject-btn").onclick=function() {  update_status(2,1,data.id)  }
             document.getElementById('profile-travel').innerHTML=data.travel
             document.getElementById('profile-outline').innerHTML=data.outline
             document.getElementById('profile-country').innerHTML=data.country
@@ -3061,7 +3061,7 @@ function ExportToExcel_vapp(type, fn, dl) {
           document.getElementById('profile-next-btn').onclick=function(){ next_profile(2,data.id) }
           document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(2,data.id) }
            document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,2,data.id); update_status_profile(data.status,data.remark); }
-           document.getElementById("profile-reject-btn").onclick=function() {  send_rejection_mail([data.id],2,false)  }
+           document.getElementById("profile-reject-btn").onclick=function() {  update_status(2,2,data.id)  }
 
             document.getElementById('profile-country').innerHTML=data.country
 
@@ -3119,7 +3119,7 @@ function ExportToExcel_vapp(type, fn, dl) {
           document.getElementById('profile-next-btn').onclick=function(){ next_profile(3,data.id) }
           document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(3,data.id) }
           document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,3,data.id); }
-          document.getElementById("profile-reject-btn").onclick=function() {   send_rejection_mail([data.id],3  ,false)  }
+          document.getElementById("profile-reject-btn").onclick=function() {   update_status(2,3,data.id)  }
            
             document.getElementById('mulkiya-img-back-div').style.display='block'
 
