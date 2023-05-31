@@ -93,14 +93,19 @@ class ReginstraionForms():
         occupation=request.POST.get('occupation')
         intrested=request.POST.get('intrested_in')
         
+        if Unique_reg_code.objects.filter(code=urc_code)[0].used == 0 :
+            return JsonResponse({'urc_code_exceed':True})
+        
         obj=InvitedRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,urc_code=urc_code,
                                                  email=email,mobile=mobile,country=country,ksa_visa=ksa_visa,occupation=occupation,intrested_in=intrested,pre_attend=attended_pre,
                                                  passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)
 
+        urc_used_count=Unique_reg_code.objects.filter(code=urc_code)[0].used - 1
         
-        Unique_reg_code.objects.filter(code=urc_code).update(used=1)
+        Unique_reg_code.objects.filter(code=urc_code).update(used=urc_used_count)
         
-        return JsonResponse({'reg_id':obj.id})
+        
+        return JsonResponse({'reg_id':obj.id,'urc_code_exceed':False})
     
     
     def send_invited_registration_succcess_mail(request):
@@ -188,11 +193,11 @@ class ReginstraionForms():
         valid=False
         reason=''
         if Unique_reg_code.objects.filter(code=code).exists():
-            if (Unique_reg_code.objects.get(code=code).used == 0):
+            if (Unique_reg_code.objects.get(code=code).used != 0):
                    valid=True
             else:
                 valid=False
-                reason='This code already used'
+                reason='This code already used or max registrations exceed'
         else:
             valid=False
             reason='This code not exists'
