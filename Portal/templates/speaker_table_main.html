@@ -1704,16 +1704,16 @@ minBuildDate = new DateTime($('#build-min'), {
       var warning_msg=(status == 1 )?'Do you want to accept this applicant?':'Do you want to reject this applicant?'
       warning_msg=(collected)?'Are you sure the card is collected':warning_msg
 
-          Swal.fire({
-      title: 'Are you sure?',
-      text: warning_msg,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes'
-    }).then((result) => {
-      if (result.isConfirmed) {
+    //       Swal.fire({
+    //   title: 'Are you sure?',
+    //   text: warning_msg,
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Yes'
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
        
     
       var current_build_page=$('table.build').DataTable().page.info().page
@@ -1796,8 +1796,8 @@ minBuildDate = new DateTime($('#build-min'), {
         }
       });
 
-    }
-    })
+    // }
+    // })
     }
 
     function update_print_status(table,id) {
