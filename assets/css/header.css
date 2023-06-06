@@ -48,31 +48,7 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'Acumin Pro Condensed';
-    src: url('../fonts/AcuminProCond-Light.eot');
-    src: local('Acumin Pro Condensed Light'), local('AcuminProCond-Light'),
-        url('../fonts/AcuminProCond-Light.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/AcuminProCond-Light.woff2') format('woff2'),
-        url('../fonts/AcuminProCond-Light.woff') format('woff'),
-        url('../fonts/AcuminProCond-Light.ttf') format('truetype'),
-        url('../fonts/AcuminProCond-Light.svg#AcuminProCond-Light') format('svg');
-    font-weight: 300;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: 'Acumin Pro Condensed';
-    src: url('../fonts/AcuminProCond-Medium.eot');
-    src: local('Acumin Pro Condensed Medium'), local('AcuminProCond-Medium'),
-        url('../fonts/AcuminProCond-Medium.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/AcuminProCond-Medium.woff2') format('woff2'),
-        url('../fonts/AcuminProCond-Medium.woff') format('woff'),
-        url('../fonts/AcuminProCond-Medium.ttf') format('truetype'),
-        url('../fonts/AcuminProCond-Medium.svg#AcuminProCond-Medium') format('svg');
-    font-weight: 500;
-    font-style: normal;
-}
 
 @font-face {
     font-family: 'Acumin Pro Condensed';
@@ -156,8 +132,12 @@
   html, body {
     font-size: 14px;
     min-height: 100%;
-    font-family: var(--font);-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;
-    min-height: 100vh;font-weight: normal;max-width: 100%;
+    font-family: var(--font) !important;
+    -ms-text-size-adjust:100% ;
+    -webkit-text-size-adjust:100%;
+    min-height: 100vh;
+    font-weight: normal;
+    max-width: 100%;
   }
   
   body {
@@ -296,7 +276,7 @@
 .header2 .nav-link > a{
     color: #fff;background: url(../img/nextwrld-menu-bg2.png) center center no-repeat;min-width: 98px;
     padding: 9px var(--f12) 7px;
-    font-size: 12px;
+    font-size: var(--f15);
     line-height:22px;
 }
 .nav-link > a > i{
@@ -759,7 +739,7 @@
     color: #000;
     min-width: 98px;
     padding: 6px var(--f12) 0px;
-    font-size: 12px;
+    font-size:var(--f15);
     line-height: 20px;
     letter-spacing: .35px;
     background: transparent;
@@ -830,7 +810,7 @@
     .header2 .nav-links{padding-right: 52px;}
     .header2 .nav-btn{padding-left: 52px;}
     .header2 .nav-links ul{padding: 18px 0px 19px;}
-    .header2 .nav-link > a{font-size:12px;min-width: 80px;padding: 6px var(--f10) 0px;}
+    .header2 .nav-link > a{font-size:var(--f15);min-width: 80px;padding: 6px var(--f10) 0px;}
 }
 @media all and (max-width:1330px){
     .header2 .logo-container{margin-right: 3vw;}
