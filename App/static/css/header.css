@@ -810,7 +810,7 @@
     .header2 .nav-links{padding-right: 52px;}
     .header2 .nav-btn{padding-left: 52px;}
     .header2 .nav-links ul{padding: 18px 0px 19px;}
-    .header2 .nav-link > a{font-size:var(--f15);min-width: 80px;padding: 6px var(--f10) 0px;}
+    .header2 .nav-link > a{font-size:var(--f15);min-width: 83px;padding: 6px var(--f10) 0px;}
 }
 @media all and (max-width:1330px){
     .header2 .logo-container{margin-right: 3vw;}
