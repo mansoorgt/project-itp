@@ -737,7 +737,7 @@
 .header2 .nav-links ul{background: url("../img/bg-menu.png") left top repeat-x;padding: 18px 20px 19px;}
 .header2 .nav-link > a {
     color: #000;
-    min-width: 98px;
+    min-width: 100px;
     padding: 6px var(--f12) 0px;
     font-size:var(--f17);
     line-height: 20px;
