@@ -706,16 +706,16 @@ class Tablepage():
     #build print
     def print_build_id(request,id):
         
-        obj=Buildpass_table.objects.get(id=id)
-        name=obj.firstname+' '+obj.lastname
-        if obj.designation_id == 0:
-            data={'name':name,'mobile':obj.mobile,'comp':obj.company_name,'des':obj.other_designation}
-        else:
-            des=build_designation.objects.get(id=obj.designation_id).designation
-            data={'name':name,'mobile':obj.mobile,'comp':obj.company_name,'des':des}
+        # obj=Buildpass_table.objects.get(id=id)
+        # name=obj.firstname+' '+obj.lastname
+        # if obj.designation_id == 0:
+        #     data={'name':name,'mobile':obj.mobile,'comp':obj.company_name,'des':obj.other_designation}
+        # else:
+        #     des=build_designation.objects.get(id=obj.designation_id).designation
+        #     data={'name':name,'mobile':obj.mobile,'comp':obj.company_name,'des':des}
         
         
-        return render(request,'prints/build pass/build_pass.html',data)
+        return render(request,'prints/build pass/build_pass.html')
     #event print
     def print_event_id(request,id):
         obj=Eventpass_table.objects.get(id=id)
