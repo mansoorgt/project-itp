@@ -715,7 +715,7 @@ class Tablepage():
         #     data={'name':name,'mobile':obj.mobile,'comp':obj.company_name,'des':des}
         
         
-        return render(request,'prints/speaker/speaker_badge.html')
+        return render(request,'prints/speaker/speaker_print.html')
     #event print
     def print_event_id(request,id):
         obj=Eventpass_table.objects.get(id=id)
