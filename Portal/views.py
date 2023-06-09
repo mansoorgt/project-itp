@@ -313,9 +313,9 @@ class Dashboard():
     @login_required()
     def dashboard_page(request):
         
-        speaker_count=SpeakerRegistrations.objects.all().count()
-        applicant_count=ApplicantRegistrations.objects.all().count()
-        invited_count=InvitedRegistrations.objects.all().count()
+        speaker_count=SpeakerRegistrations.objects.filter(deleted=0).count()
+        applicant_count=ApplicantRegistrations.objects.filter(deleted=0).count()
+        invited_count=InvitedRegistrations.objects.filter(deleted=0).count()
         all_count=speaker_count+applicant_count+invited_count
         username=request.user.username
        

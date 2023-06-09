@@ -737,9 +737,9 @@
 .header2 .nav-links ul{background: url("../img/bg-menu.png") left top repeat-x;padding: 18px 20px 19px;}
 .header2 .nav-link > a {
     color: #000;
-    min-width: 98px;
+    min-width: 100px;
     padding: 6px var(--f12) 0px;
-    font-size:var(--f15);
+    font-size:var(--f17);
     line-height: 20px;
     letter-spacing: .35px;
     background: transparent;
@@ -810,7 +810,7 @@
     .header2 .nav-links{padding-right: 52px;}
     .header2 .nav-btn{padding-left: 52px;}
     .header2 .nav-links ul{padding: 18px 0px 19px;}
-    .header2 .nav-link > a{font-size:var(--f15);min-width: 80px;padding: 6px var(--f10) 0px;}
+    .header2 .nav-link > a{font-size:var(--f15);min-width: 83px;padding: 6px var(--f10) 0px;}
 }
 @media all and (max-width:1330px){
     .header2 .logo-container{margin-right: 3vw;}
@@ -822,7 +822,7 @@
     .header2 .nav-links{padding-right: 52px;}
     .header2 .nav-btn{padding-left: 52px;}
     .header2 .nav-links ul{padding: 18px 0px 19px;}
-    .header2 .nav-link > a{font-size: 12px;min-width: 80px;padding: 6px var(--f10) 0px;}
+    .header2 .nav-link > a{font-size: var(--f15);min-width: 80px;padding: 6px var(--f10) 0px;}
     .header2 .social a {
         margin: 0 2px;
     }
@@ -841,7 +841,7 @@
         padding: 14px 0px 16px;
     }
     .header2 .nav-link > a {
-        font-size: 12px;
+        font-size: var(--f15);
         min-width: 78px;
         padding: 8px 2px 5px;
     }
@@ -854,7 +854,7 @@
     .header2 .logo-container, .header-right{max-width: 170px;}
     
     .header2 .nav-link > a {
-        font-size: 12px;
+        font-size: var(--f14);
         min-width: 71px;
         padding: 8px 2px 5px;
     }
