@@ -4,16 +4,16 @@ import uuid
 
 def speaker_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    print(instance)
+    
     return 'speakerReginstration/{0}/{1}'.format(instance.mobile, filename)
 
 def invited_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    print(instance)
+    
     return 'invitedReginstration/{0}/{1}'.format(instance.mobile, filename)
 def applicant_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    print(instance)
+   
     return 'ApplicantReginstration/{0}/{1}'.format(instance.mobile, filename)
 
 class SpeakerRegistrations(models.Model):
