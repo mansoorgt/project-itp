@@ -1929,13 +1929,24 @@ class Tablepage():
             max_reg=request.GET.get('max_reg')
             sp_charset=request.GET.get('sp_charset')
             
-    
+            unique=request.GET.get('unique_bool')
+            print(unique)
             for i in range(0,int(count)):
             
                 obj=Unique_reg_code.objects.create(used=max_reg)
                 if sp_charset != '':
                     obj.code=str( sp_charset + obj.code )
                     obj.save()
+                
+                if unique == 'false':
+                    
+                    if i <= 9:
+                        code_num=str(0)+str(i)
+                    else:
+                        code_num=str(i)    
+                    obj.code=str( sp_charset + code_num )
+                    obj.save()
+                    
                 new_count_html+='<tr> <td>'+ obj.code +' </td> </tr>'
                 
             data['new_codes_tr']=new_count_html
