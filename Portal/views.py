@@ -1905,7 +1905,7 @@ class Tablepage():
             max_reg=request.GET.get('max_reg')
             sp_charset=request.GET.get('sp_charset')
             
-            print(sp_charset)
+    
             for i in range(0,int(count)):
             
                 obj=Unique_reg_code.objects.create(used=max_reg)
