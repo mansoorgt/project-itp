@@ -8,13 +8,14 @@
     <title>Speaker Registration</title>
 <!-- custom style -->
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 <!-- custom style -->
 <link rel="icon" type="image/x-icon" href="{% static 'images/nxt_favicon.png' %}"/>
 <!-- font style -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300&display=swap" rel="stylesheet">
+
 <!-- font style -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -71,7 +72,7 @@
  
 
 
-  <body style="background-color: black;  font-family: 'Acumin Pro', sans-serif !important;"">
+  <body style="background-color: black; ">
       <video autoplay muted loop id="video-background" preload="auto" playsinline>
          <source  src="{% static 'bg-video.mp4' %}" type="video/mp4">
        <source src="{% static 'bg.webm' %}" type="video/webm">
@@ -84,7 +85,7 @@
 
     <!-- navbar section start -->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+<!--     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
       <div class="container-fluid">
         <a class="navbar-brand p-1 order-0" href="https://www.nextwrld.sa/en"><img class="img-fluid" src="{% static 'img/logo.png' %}" style="width:50%; margin-left: 30px;"></a>
         <button class="navbar-toggler btn btn-outline-light order-12" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,7 +97,85 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
+                                        
+<!--    new nav start                                      -->
+                                        
+                                        
+       <header class="header2">
+      <input type="checkbox" name="" id="check">
+  
+      <div class="hamburger-menu-container">
+          <div class="hamburger-menu">
+              <div></div>
+          </div>
+      </div>
+  
+      <div class="logo-container">
+          <h3 class="logo"><a href="https://www.nextwrld.sa/en"><img src="https://www.nextwrld.sa/assets/img/nextwrld-logo.png" alt="NEXT WRLD" class="img-fluid" /></a></h3>
+      </div>
+  
+      <div class="nav-btn ml-auto mr-auto">
+          <div class="nav-links">
+          <div class="right-menu justify-content-center pl-0 d-flex d-lg-none">
+              <ul class="m-0">
+  
+            
+  
+                                  </ul>
+          </div>
+              <ul>
+                  <li class="nav-link" style="--i: .6s">
+                      <a href="https://www.nextwrld.sa/en/program"><span>PROGRAM</span></a>
+                  </li>
+                  <li class="nav-link" style="--i: 0.85s">
+                      <a href="https://www.nextwrld.sa/en/speakers"><span>SPEAKERS</span></a>
+                  </li>
+                  <li class="nav-link" style="--i: 1.55s">
+                      <a href="https://www.nextwrld.sa/en/partners"><span>PARTNERS</span></a>
+                  </li>
+                  <li class="nav-link" style="--i: 1.35s">
+                      <a href="https://www.nextwrld.sa/en/news"><span>NEWS</span></a>
+                  </li>
+                  <li class="nav-link" style="--i: 1.15s">
+                      <a href="https://www.nextwrld.sa/en/about"><span>About us</span></a>
+                  </li>
+                  <li class="nav-link" style="--i: 1.85s">
+                      <a href="https://www.nextwrld.sa/en/contact-us"><span>Contact us</span></a>
+                  </li>
+              </ul>
+              <div class="social d-flex d-md-none ">
+                  <a href="https://www.instagram.com/nextwrldsa/" class="instagram" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm-53.56 126.87c-48.16,2.2 -73.46,29.3 -75.56,75.57 -1.6,35.03 -1.6,72.09 0,107.12 2.1,46.27 27.4,73.37 75.56,75.57 35.04,1.59 72.09,1.59 107.13,0 46.27,-2.12 73.36,-27.38 75.56,-75.57 1.59,-35.04 1.59,-72.07 0,-107.12 -2.16,-47.16 -28.4,-73.41 -75.56,-75.57 -35.04,-1.59 -72.09,-1.59 -107.13,0zm106.06 23.39c34.99,1.59 51.66,18.25 53.24,53.25 1.58,34.3 1.58,70.68 0,104.98 -1.63,36.01 -19.16,51.7 -53.24,53.25 -34.32,1.57 -70.67,1.57 -104.99,0 -34.09,-1.55 -51.61,-17.24 -53.25,-53.25 -1.57,-34.3 -1.57,-70.68 0,-104.98 1.55,-34.1 17.25,-51.61 53.25,-53.25 34.32,-1.57 70.67,-1.57 104.99,0zm-52.5 149.04c-23.91,0 -43.3,-19.38 -43.3,-43.3 0.01,-23.92 19.39,-43.3 43.3,-43.3 23.92,0 43.31,19.38 43.31,43.3 0,23.91 -19.39,43.3 -43.31,43.3l0 0zm0 -110.01c-36.83,0 -66.71,29.87 -66.71,66.71 0,36.84 29.87,66.71 66.71,66.71 36.85,0 66.71,-29.87 66.71,-66.71 0,-36.84 -29.86,-66.71 -66.71,-66.71zm84.94 -2.64c0,8.61 -6.98,15.6 -15.59,15.6 -8.62,0 -15.59,-6.98 -15.59,-15.59 0,-8.61 6.97,-15.59 15.59,-15.59 8.61,0 15.59,6.98 15.59,15.58z"/></g></svg></a>
+                  <a href="https://www.youtube.com/channel/UC-OFimRLY7Jxdn_SvAsCzWg" class="youtube" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm36.09 259.35l-56.53 31c-2.45,1.33 -4.66,-0.45 -4.66,-3.24l0 -63.64c0,-2.83 2.28,-4.61 4.74,-3.21l56.91 32.64c2.52,1.43 2.09,5.07 -0.46,6.45zm89.43 -36.56c0,-30.19 -24.47,-54.65 -54.65,-54.65l-141.74 0c-30.18,0 -54.65,24.46 -54.65,54.65l0 66.42c0,30.19 24.47,54.65 54.65,54.65l141.75 0c30.17,0 54.64,-24.46 54.64,-54.65l0 -66.42z"/></g></svg></a>
+                  <a href="https://twitter.com/nextwrldsa" class="twitter" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm123.09 177.13c-7.88,3.57 -16.55,5.73 -25.06,7.16 7.49,-1.26 18.57,-19.13 20.71,-26.14 0.65,-1.28 -0.28,-1.73 -1.38,-1.19 -9.49,5.09 -19.31,8.78 -29.76,11.39 -1.96,0.49 -3.13,-1.95 -4.65,-3.21 -37.09,-31.55 -92.28,0.09 -85.07,48.97 0.16,1.2 0.05,1.36 -1.03,1.2 -40.87,-6.09 -74.76,-20.71 -102.26,-52.06 -1.2,-1.36 -1.85,-1.36 -2.82,0.11 -14.48,21.7 -4.03,51.87 15.12,66.8 -0.81,0.16 -10.82,-0.92 -19.73,-5.53 -1.2,-0.76 -1.8,-0.32 -1.9,1.03 -1.21,21.24 18.14,46.06 39.2,49.67 -3.95,0.86 -8.02,1.49 -19.36,0.6 -1.41,-0.27 -1.95,0.43 -1.41,1.79 8.52,23.21 26.9,30.12 40.67,34.05 1.84,0.32 3.69,0.32 5.54,0.76 -10.06,14.95 -53.55,22.09 -70.28,20.44 -1.16,-0.17 -5.52,-0.78 -2.71,1.52 99.36,65.51 223.11,-4.6 223.11,-129.21 0,-1.61 1.9,-2.49 3.03,-3.34 5.17,-3.89 20.97,-18.14 20.97,-24.81 0,-0.66 0.08,-0.45 -0.93,0z"/></g></svg></a>
+                  <!--a href="https://www.twitch.tv/next_wrld" class="twitch" target="_blank">&nbsp;</a-->
+                  <a href="https://www.linkedin.com/company/nextwrldsa/" class="linkedin" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm-114.04 374.81l49.03 0 0 -158.41 -49.03 0 0 158.41zm24.28 -179.15c16.02,0 29,-13.1 29,-29.24 0,-16.14 -12.98,-29.23 -29,-29.23 -16.02,0 -28.99,13.09 -28.99,29.23 0,16.14 12.97,29.24 28.99,29.24zm103.13 96c0,-22.27 10.26,-35.55 29.89,-35.55 18.02,0 26.69,12.74 26.69,35.55 0,22.81 0,83.15 0,83.15l48.8 0c0,0 0,-57.87 0,-100.3 0,-42.43 -24.05,-62.95 -57.64,-62.95 -33.6,0 -47.74,26.18 -47.74,26.18l0 -21.34 -47.03 0 0 158.41 47.03 0c0,0 0,-58.75 0,-83.15z"/></g></svg></a>
+              </div>
+          </div>
+      </div>
+      <div class="header-right">
+          <div class="social d-none d-md-flex">
+              <a href="https://www.instagram.com/nextwrldsa/" class="instagram" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm-53.56 126.87c-48.16,2.2 -73.46,29.3 -75.56,75.57 -1.6,35.03 -1.6,72.09 0,107.12 2.1,46.27 27.4,73.37 75.56,75.57 35.04,1.59 72.09,1.59 107.13,0 46.27,-2.12 73.36,-27.38 75.56,-75.57 1.59,-35.04 1.59,-72.07 0,-107.12 -2.16,-47.16 -28.4,-73.41 -75.56,-75.57 -35.04,-1.59 -72.09,-1.59 -107.13,0zm106.06 23.39c34.99,1.59 51.66,18.25 53.24,53.25 1.58,34.3 1.58,70.68 0,104.98 -1.63,36.01 -19.16,51.7 -53.24,53.25 -34.32,1.57 -70.67,1.57 -104.99,0 -34.09,-1.55 -51.61,-17.24 -53.25,-53.25 -1.57,-34.3 -1.57,-70.68 0,-104.98 1.55,-34.1 17.25,-51.61 53.25,-53.25 34.32,-1.57 70.67,-1.57 104.99,0zm-52.5 149.04c-23.91,0 -43.3,-19.38 -43.3,-43.3 0.01,-23.92 19.39,-43.3 43.3,-43.3 23.92,0 43.31,19.38 43.31,43.3 0,23.91 -19.39,43.3 -43.31,43.3l0 0zm0 -110.01c-36.83,0 -66.71,29.87 -66.71,66.71 0,36.84 29.87,66.71 66.71,66.71 36.85,0 66.71,-29.87 66.71,-66.71 0,-36.84 -29.86,-66.71 -66.71,-66.71zm84.94 -2.64c0,8.61 -6.98,15.6 -15.59,15.6 -8.62,0 -15.59,-6.98 -15.59,-15.59 0,-8.61 6.97,-15.59 15.59,-15.59 8.61,0 15.59,6.98 15.59,15.58z"/></g></svg></a>
+              <a href="https://www.youtube.com/channel/UC-OFimRLY7Jxdn_SvAsCzWg" class="youtube" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm36.09 259.35l-56.53 31c-2.45,1.33 -4.66,-0.45 -4.66,-3.24l0 -63.64c0,-2.83 2.28,-4.61 4.74,-3.21l56.91 32.64c2.52,1.43 2.09,5.07 -0.46,6.45zm89.43 -36.56c0,-30.19 -24.47,-54.65 -54.65,-54.65l-141.74 0c-30.18,0 -54.65,24.46 -54.65,54.65l0 66.42c0,30.19 24.47,54.65 54.65,54.65l141.75 0c30.17,0 54.64,-24.46 54.64,-54.65l0 -66.42z"/></g></svg></a>
+              <a href="https://twitter.com/nextwrldsa" class="twitter" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm123.09 177.13c-7.88,3.57 -16.55,5.73 -25.06,7.16 7.49,-1.26 18.57,-19.13 20.71,-26.14 0.65,-1.28 -0.28,-1.73 -1.38,-1.19 -9.49,5.09 -19.31,8.78 -29.76,11.39 -1.96,0.49 -3.13,-1.95 -4.65,-3.21 -37.09,-31.55 -92.28,0.09 -85.07,48.97 0.16,1.2 0.05,1.36 -1.03,1.2 -40.87,-6.09 -74.76,-20.71 -102.26,-52.06 -1.2,-1.36 -1.85,-1.36 -2.82,0.11 -14.48,21.7 -4.03,51.87 15.12,66.8 -0.81,0.16 -10.82,-0.92 -19.73,-5.53 -1.2,-0.76 -1.8,-0.32 -1.9,1.03 -1.21,21.24 18.14,46.06 39.2,49.67 -3.95,0.86 -8.02,1.49 -19.36,0.6 -1.41,-0.27 -1.95,0.43 -1.41,1.79 8.52,23.21 26.9,30.12 40.67,34.05 1.84,0.32 3.69,0.32 5.54,0.76 -10.06,14.95 -53.55,22.09 -70.28,20.44 -1.16,-0.17 -5.52,-0.78 -2.71,1.52 99.36,65.51 223.11,-4.6 223.11,-129.21 0,-1.61 1.9,-2.49 3.03,-3.34 5.17,-3.89 20.97,-18.14 20.97,-24.81 0,-0.66 0.08,-0.45 -0.93,0z"/></g></svg></a>
+              <!--a href="https://www.twitch.tv/next_wrld" class="twitch" target="_blank">&nbsp;</a-->
+              <a href="https://www.linkedin.com/company/nextwrldsa/" class="linkedin" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm-114.04 374.81l49.03 0 0 -158.41 -49.03 0 0 158.41zm24.28 -179.15c16.02,0 29,-13.1 29,-29.24 0,-16.14 -12.98,-29.23 -29,-29.23 -16.02,0 -28.99,13.09 -28.99,29.23 0,16.14 12.97,29.24 28.99,29.24zm103.13 96c0,-22.27 10.26,-35.55 29.89,-35.55 18.02,0 26.69,12.74 26.69,35.55 0,22.81 0,83.15 0,83.15l48.8 0c0,0 0,-57.87 0,-100.3 0,-42.43 -24.05,-62.95 -57.64,-62.95 -33.6,0 -47.74,26.18 -47.74,26.18l0 -21.34 -47.03 0 0 158.41 47.03 0c0,0 0,-58.75 0,-83.15z"/></g></svg></a>
+          </div>
+          <div class="right-menu justify-content-end d-none d-lg-flex">
+              <ul class="m-0">
+  
+                  
+  
+                                  </ul>
+          </div>
+      </div>
+  </header>
+                                 
+                                        
+                                        
+                                        
+<!--            new nav end                              -->
+                                        
 <div>
 <div >
 
