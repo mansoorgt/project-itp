@@ -61,7 +61,7 @@ class ReginstraionForms():
             
             mail.send_mail(subject, strip_tags(html_contect), email_from, [obj.email], html_message=html_contect,fail_silently=False)
             #msg.send()
-            print('Succes mail sended')
+            #print('Succes mail sended')
         return JsonResponse({})
     
     #invited applicant form
@@ -128,7 +128,7 @@ class ReginstraionForms():
             
             mail.send_mail(subject, strip_tags(html_contect), email_from, [obj.email], html_message=html_contect,fail_silently=False)
             #msg.send()
-            print('Succes mail sended')
+            #print('Succes mail sended')
         return JsonResponse({})
     
     #aplicant form
@@ -182,7 +182,7 @@ class ReginstraionForms():
             mail.send_mail(subject, strip_tags(html_contect), from_email=email_from,recipient_list=[obj.email], html_message=html_contect,fail_silently=False)
     
            
-            print('Succes mail sended')
+            #print('Succes mail sended')
         return JsonResponse({})
     
     def check_urc_valid(request):
