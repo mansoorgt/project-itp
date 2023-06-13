@@ -1720,10 +1720,10 @@ minBuildDate = new DateTime($('#build-min'), {
             id_array=[id]
           send_approved_mail(id_array,table)
          }
-          //  if (status == 2){
-          //   id_array=[id]
-          //   send_rejection_mail(id_array,table)
-          //  }
+           if (status == 2){
+            id_array=[id]
+           send_rejection_mail(id_array,table)
+           }
 
            if (status == 1){
             document.getElementById('profile-status-label').className=''
@@ -3396,69 +3396,47 @@ function download_zip(urls,img_data){
  <script>
 var id_array=[];
 var table=0
- function send_rejection_mail(ids,m_table,multiple) 
-  { 
+//  function send_rejection_mail(ids,m_table,multiple) 
+//   { 
     
-    if(multiple){
+//     if(multiple){
 
-      if (m_table == 1){
-      cheked_buttons=$('input[name="build-checkbox"]:checked')
+//       if (m_table == 1){
+//       cheked_buttons=$('input[name="build-checkbox"]:checked')
 
-      }
-      if (m_table == 2){
+//       }
+//       if (m_table == 2){
 
-        cheked_buttons=$('input[name="event-checkbox"]:checked')
+//         cheked_buttons=$('input[name="event-checkbox"]:checked')
         
-      }
-      if (m_table == 3){
-        cheked_buttons=$('input[name="vapp-checkbox"]:checked')
+//       }
+//       if (m_table == 3){
+//         cheked_buttons=$('input[name="vapp-checkbox"]:checked')
         
-      }
+//       }
 
       
-      for (let i = 0; i < cheked_buttons.length; i++) {
-        id_array.push(Number(cheked_buttons[i].value))
+//       for (let i = 0; i < cheked_buttons.length; i++) {
+//         id_array.push(Number(cheked_buttons[i].value))
 
         
-      }
-      table=m_table
-    }
-    else{
-      id_array=ids
-    table=m_table
-    }
+//       }
+//       table=m_table
+//     }
+//     else{
+//       id_array=ids
+//     table=m_table
+//     }
 
-    console.log(id_array,table)
-  }
-  function send_mail() {
+//     console.log(id_array,table)
+//   }
+  function send_rejection_mail(id_array,table) {
     console.log('mail sended ',table)
 
     var reason=document.getElementById('reason-textarea').value;
     document.getElementById('reason-textarea').value='';
-    console.log(reason)
-    console.log(id_array)
-    if (id_array.length == 1){
-      
-      update_status(2,table,id_array[0])
-    }
-    else{
-      update_bulk_selected(table,2)
 
-      
-
-    }
-
-      var current_build_page=$('table.build').DataTable().page.info().page
-      //var current_event_page=$('table.event').DataTable().page.info().page
-      //var current_vapp_page=$('table.vapp').DataTable().page.info().page
-
-      var search_build_val=$('#build-table_filter input').val();
-      //var search_event_val=$('#event-table_filter input').val();
-      //var search_vapp_val=$('#vapp-table_filter input').val();
-      
-      var current_build_page_lenght=$("select[name='build-table_length']").val();
-      ///var current_event_page_lenght=$("select[name='event-table_length']").val();
-      //var current_vapp_page_lenght=$("select[name='vapp-table_length']").val();
+ 
 
     $.ajax({
       type: "POST",
@@ -3466,36 +3444,7 @@ var table=0
       data: {id_array:id_array,reason:reason,table:table,csrfmiddlewaretoken:'{{ csrf_token }}'},
       dataType: "json",
       success: function (data) {
-        // if(table == 1){
-           
-        
-        //    $('#build-table-div').replaceWith(data.table_html);
-        //    $('table.build').DataTable().page.len(current_build_page_lenght).draw();
-        //    $('table.build').DataTable().search(search_build_val).draw();
-           
-        //    $('table.build').DataTable().page(current_build_page).draw('page')
-        //  }
-        //  if(table == 2){
-           
-        //   $('#event-table-div').replaceWith(data.table_html);
-        //    document.getElementById('event-table-div').classList.add('show')
-        //    document.getElementById('event-table-div').classList.add('active')
-        //    $('table.event').DataTable().page.len(current_event_page_lenght).draw();
-        //    $('table.event').DataTable().search(search_event_val).draw();
-           
-        //    $('table.event').DataTable().page(current_event_page).draw('page')
-        // }
-
-        // if(table == 3){
-           
-        //    $('#vapp-table-div').replaceWith(data.table_html);
-        //     document.getElementById('vapp-table-div').classList.add('show')
-        //     document.getElementById('vapp-table-div').classList.add('active')
-        //     $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
-        //     $('table.vapp').DataTable().search(search_vapp_val).draw();
-            
-        //     $('table.vapp').DataTable().page(current_vapp_page).draw('page')
-        //  }
+      
       }
     });
   }
@@ -3522,6 +3471,9 @@ var table=0
         }
       });
     }
+
+   
+    
     
    </script>
 
