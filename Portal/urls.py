@@ -79,5 +79,9 @@ urlpatterns = [
     path('reportGetData',views.Report.getReportData,name='reportGetData'),
     
   
-    path('create_unique_page',views.Tablepage.create_unique,name='create_unique_page')
+    path('create_unique_page',views.Tablepage.create_unique,name='create_unique_page'),
+    
+    #create user 
+    path('create_user',views.Login.create_new_user_page,name='create_user_page'),
+    path('create_new_user',views.Login.craete_new_user,name='create_new_user')
 ]

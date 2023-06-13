@@ -309,6 +309,30 @@ class Login():
         logout(request)
         
         return redirect(Login.login_page)
+    def create_new_user_page(request):
+        return render(request,'create_user.html')
+    def craete_new_user(request):
+        name=request.POST.get('user-name')
+        email=request.POST.get('user-email')
+        password=request.POST.get('user-password')
+        
+        
+        try:
+            User.objects.create_user(username=name,email=email,password=password)
+            
+            user_id=1
+            if user_DB.objects.last():            
+                user_id=user_DB.objects.last().id + 1
+                            
+            user_DB.objects.create(id=user_id,username=name,role=1,is_online=0)
+            request.session['user_role']=1
+            data={"success":True}
+        except Exception as e :
+
+            data={"success":False,'reason':str(e)}
+            
+        
+        return JsonResponse(data)
 class Dashboard():
     @login_required()
     def dashboard_page(request):
