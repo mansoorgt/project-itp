@@ -161,7 +161,7 @@ class ReginstraionForms():
         return JsonResponse({'reg_id':obj.id})
     
     def send_applicant_registration_succcess_mail(request):
-        print('commed')
+        
        # data=json.loads(request.body)
         #id=data['reg_id']
         id=request.POST.get('reg_id')
