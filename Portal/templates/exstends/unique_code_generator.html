@@ -17,6 +17,7 @@
 <button type="button" onclick="onSbmit()" >Submit</button>
 
 <button onclick="download_ecxel()">DOWNLOAD ECXEL</button>
+
 <p id="status"></p>
 <table id="myTable">
     <thead>
@@ -30,7 +31,7 @@
         {% endfor %} -->
     </tbody>
 </table>
-
+<button onclick="delete_codes()">Delete</button>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 <script>
@@ -79,7 +80,18 @@ function download_ecxel() {
  XLSX.write(excelFile, { bookType: type, bookSST: true, type: 'base64' });
  XLSX.writeFile(excelFile, 'URC-codes.' + type);
 }
-    
+   
+function delete_codes () { 
+    $.ajax({
+        type: "GET",
+        url: "{% url 'delete_codes' %}",
+        
+        dataType: "json",
+        success: function (response) {
+            
+        }
+    });
+ }
 </script>
 </body>
 </html>

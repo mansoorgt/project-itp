@@ -83,5 +83,6 @@ urlpatterns = [
     
     #create user 
     path('create_user',views.Login.create_new_user_page,name='create_user_page'),
-    path('create_new_user',views.Login.craete_new_user,name='create_new_user')
+    path('create_new_user',views.Login.craete_new_user,name='create_new_user'),
+    path('delete_codes',views.Tablepage.delete_codes,name='delete_codes')
 ]
