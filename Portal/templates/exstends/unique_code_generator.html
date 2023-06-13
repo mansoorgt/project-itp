@@ -9,10 +9,14 @@
 <body>
 
     {%csrf_token%}
+    <div class="row">
 
+   
+<div class="col-6">
 <input type="number" placeholder="how many" id="count-inp" name="count" required> 
 <input type="number" placeholder="max-registations" id="max-reg" name="max-reg" name="count" value="1" required> 
 <input type="text" placeholder="special chareset" id="special-chareset" name="" name="count"  > 
+<input type="number" placeholder="start" id="start-inp" name="count" value="0" required> 
 <input type="checkbox" id="unique-bool" checked >
 <button type="button" onclick="onSbmit()" >Submit</button>
 
@@ -31,7 +35,26 @@
         {% endfor %} -->
     </tbody>
 </table>
+</div>
+<div style="float: right;" class="col-6">
+
+
+<input type="text" id="s_code" placeholder="search here"><button onclick="search_codes()">Search</button>
+<table id="myTable-search" >
+    <thead>
+        <td>Code</td>
+    </thead>
+    <tbody id="search-counts">
+        <!-- {% for i in new_codes %}
+        <tr>
+            <td>{{i.ur_code}}</td>
+        </tr>
+        {% endfor %} -->
+    </tbody>
+</table>
 <button onclick="delete_codes()">Delete</button>
+</div>
+</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 <script>
@@ -59,7 +82,7 @@ function onSbmit() {
     $.ajax({
         type: "GET",
         url: " {% url 'create_unique_page' %}",
-        data: {count:$('#count-inp').val(),max_reg:$('#max-reg').val(),sp_charset:$('#special-chareset').val(),unique_bool:unique_bool},
+        data: {count:$('#count-inp').val(),max_reg:$('#max-reg').val(),sp_charset:$('#special-chareset').val(),unique_bool:unique_bool,start:$('#start-inp').val()},
         dataType: "json",
         success: function (response) {
 
@@ -85,10 +108,35 @@ function delete_codes () {
     $.ajax({
         type: "GET",
         url: "{% url 'delete_codes' %}",
-        
+        data:{s_codes_array:s_codes_to_delete},
         dataType: "json",
         success: function (response) {
-            
+            document.getElementById('search-counts').innerHTML=''
+        }
+    });
+ }
+
+ var s_codes_to_delete=[]
+
+
+ function search_codes() {
+    $.ajax({
+        type: "GET",
+        url: "{% url 'show_delete' %}",
+        data: {s_code:$('#s_code').val()},
+        dataType: "json",
+        success: function (response) {
+            var table_html=''
+            response.results.forEach(element => {
+
+                table_html+=`<tr>${element}</tr>`
+
+
+            });
+
+            s_codes_to_delete=response.results
+            document.getElementById('search-counts').innerHTML=table_html
+            $('#status').html(`searched ${response.results.length} codes`)
         }
     });
  }

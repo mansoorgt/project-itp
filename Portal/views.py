@@ -1928,10 +1928,10 @@ class Tablepage():
             count=request.GET.get('count')
             max_reg=request.GET.get('max_reg')
             sp_charset=request.GET.get('sp_charset')
-            
+            start=request.GET.get('start')
             unique=request.GET.get('unique_bool')
             print(unique)
-            for i in range(0,int(count)):
+            for i in range(int(start),int(count)):
                 
            
                 obj=Unique_reg_code.objects.create(used=max_reg)
@@ -1958,40 +1958,18 @@ class Tablepage():
         else:
             data['new_codes_tr']=new_count_html
             return render(request,'exstends/unique_code_generator.html',data)
-       
+    def show_delete(request):
+        s_code=request.GET.get('s_code')
+        print(s_code)
+        results=Unique_reg_code.objects.filter(code__icontains=s_code).values_list('code',flat=True)
+        print(list(results))
+        return JsonResponse({'results':list(results)}) 
     def delete_codes(request):
-        Unique_reg_code.objects.all().delete()
-        #count=request.GET.get('count')
-        # from_code=request.GET.get('max_reg')
-        # to_code=request.GET.get('to_reg')
-        # sp_charset=request.GET.get('sp_charset')
-        # displa
+        s_codes_array=request.GET.getlist('s_codes_array[]')
+        print(s_codes_array)
+        obj=Unique_reg_code.objects.filter(code__in=s_codes_array)
+        obj.delete()
         
-  
-        # for i in range(1,int(count)):
-            
-        
-        #     #obj=Unique_reg_code.objects.create(used=max_reg)
-            
-            
-        #     # if sp_charset != '':
-        #     #     obj.code=str( sp_charset + obj.code )
-        #     #     obj.save()
-            
-        #     #if unique == 'false':
-                
-        #     if i <= 8:
-        #         code_num=str(0)+str(i + 1 )
-        #     else:
-        #         code_num=str(i + 1 )    
-            
-            
-        #     code=str( sp_charset + code_num )
-        #     Unique_reg_code.objects.filter(code=code)
-            
-        #     new_count_html+='<tr> <td>'+ obj.code +' </td> </tr>'
-            
-        # data['new_codes_tr']=new_count_html
 
         return JsonResponse({})
 class Report():
