@@ -1,7 +1,7 @@
 
 from django.urls import path 
 from .import views 
-
+from .import Essantials
 urlpatterns = [
     
 
@@ -84,5 +84,7 @@ urlpatterns = [
     #create user 
     path('create_user',views.Login.create_new_user_page,name='create_user_page'),
     path('create_new_user',views.Login.craete_new_user,name='create_new_user'),
-    path('delete_codes',views.Tablepage.delete_codes,name='delete_codes')
+    path('delete_codes',views.Tablepage.delete_codes,name='delete_codes'),
+    path('show_delete',views.Tablepage.show_delete,name='show_delete'),
+    path('check',Essantials.check,name='check')
 ]
