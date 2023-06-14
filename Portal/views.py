@@ -14,7 +14,7 @@ import datetime
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.utils import timezone
-
+from Portal.Essantials import Qrcode_generate
 from django.db.models import OuterRef ,Subquery
 
 ##
@@ -1474,16 +1474,17 @@ class Tablepage():
         for i in id_array:
             if int(table)==1:
                 obj=SpeakerRegistrations.objects.get(id=i)
-
-                data={'uid':'SPK-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}
+                qr_url=Qrcode_generate(filename='SPK-'+str(obj.id),data=obj.id).url
+                data={'uid':'SPK-'+str(obj.id),'qr_url':qr_url,'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}
             if int(table)==2:
                 obj=InvitedRegistrations.objects.get(id=i)
-
-                data={'uid':'INV-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}
+                qr_url=Qrcode_generate(filename='INV-'+str(obj.id),data=obj.id).url
+                print(qr_url)
+                data={'uid':'INV-'+str(obj.id),'qr_url':qr_url,'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}
             if int(table)==3:
                 obj=ApplicantRegistrations.objects.get(id=i)
-                
-                data={'uid':'APL-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}   
+                qr_url=Qrcode_generate(filename='APL-'+str(obj.id),data=obj.id).url
+                data={'uid':'APL-'+str(obj.id),'qr_url':qr_url,'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}   
             try:
                 validate_email(obj.email)
             except ValidationError as e:
@@ -2033,3 +2034,5 @@ class Report():
             data={'username':request.user.username,'vpp_table':vpp_table}
             Table_data = render_to_string('tables/report/rp_vapp_table.html',data)
         return JsonResponse({'Table':Table_data})
+
+
