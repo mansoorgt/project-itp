@@ -11,6 +11,7 @@ from project_Itp import settings
 from django.utils.html import strip_tags
 from django.core import mail
 from Portal.models import Unique_reg_code
+from datetime import datetime
 def viewRegistraionPge(request):
     return render(request,'registration.html')
 
@@ -28,14 +29,17 @@ class ReginstraionForms():
         mobile=request.POST.get('mobile')
         country=request.POST.get('country')
         traveling_from=request.POST.get('traveling-from')
-        retun_date_time=request.POST.get('retun-date-time')
-        depature_date_time=request.POST.get('depature-date-time')
+        retun_date_time= datetime.strptime(request.POST.get('retun-date-time'),"%d-%m-%Y %I:%M %p")
+        depature_date_time=datetime.strptime(request.POST.get('depature-date-time'),"%d-%m-%Y %I:%M %p")
        
         outline_talk=request.POST.get('outline-talk')
         passport_copy=request.FILES.get('passport-copy')
         photo_upload=request.FILES.get('photo-upload')
         ksa_visa=request.POST.get('ksa-visa')
 
+        
+        
+        
         obj=SpeakerRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,
                                                 email=email,mobile=mobile,country=country,traveling_from=traveling_from,retun_date_time=retun_date_time,depature_date_time=depature_date_time,ksa_visa=ksa_visa,
                                                 outline_talk=outline_talk,passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)

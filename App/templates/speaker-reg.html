@@ -523,16 +523,16 @@
 
     myReturnDate.on('submit', (date, readableDate) => {
       console.log('retun')
-    $('#retun-date-time').val(moment(date).format('DD-MM-YYYY hh:mm A '))
+    $('#retun-date-time').val(moment(date).format('DD-MM-YYYY hh:mm A'))
     $('#'+'retun-date-time'+'-error').addClass('d-none')
 
     });
 
     myDepartureDate.on('submit', (date, readableDate) => {
       console.log('depr')
-     $('#depature-date-time').val(moment(date).format('DD-MM-YYYY hh:mm A '))
+     $('#depature-date-time').val(moment(date).format('DD-MM-YYYY hh:mm A'))
      $('#'+'depature-date-time'+'-error').addClass('d-none')
-     console.log(moment($('#depature-date-time').val(),'DD-MM-YYYY hh:mm A ').toDate())
+     console.log(moment($('#depature-date-time').val(),'DD-MM-YYYY hh:mm A').toDate())
 
     });
 

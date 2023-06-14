@@ -13,8 +13,11 @@ function submitSpeakerForm(e) {
     var m_form=new FormData($('#speaker-reg-form')[0])
     m_form.append('ksa-visa',ksa_visa)
     
-    m_form.set('retun-date-time',moment($('#retun-date-time').val(),'DD-MM-YYYY hh:mm A ').format('YYYY-MM-DDTH:mm'))
-    m_form.set('depature-date-time',moment($('#depature-date-time').val(),'DD-MM-YYYY hh:mm A ').format('YYYY-MM-DDTH:mm'))
+    // m_form.set('retun-date-time',moment($('#retun-date-time').val(),'DD-MM-YYYY hh:mm A ').format('YYYY-MM-DDTH:mm'))
+    // m_form.set('depature-date-time',moment($('#depature-date-time').val(),'DD-MM-YYYY hh:mm A ').format('YYYY-MM-DDTH:mm'))
+    m_form.set('retun-date-time',$('#retun-date-time').val())
+    m_form.set('depature-date-time',$('#depature-date-time').val())
+    
     m_form.append('csrfmiddlewaretoken',csrftoken)
     m_form.set('mobile',iti.getNumber())
 
