@@ -1445,6 +1445,15 @@ $(window).on('load', function(){
       build_last_data_id=Number(build_last_data_id.slice(3));
       console.log(build_last_data_id)
 
+      const url = new URL(window.location.href);
+
+      // Get the search parameters from the URL
+      const searchParams = new URLSearchParams(url.search);
+
+      // Check if a specific parameter exists
+      if (searchParams.has('filter')==false) {
+       
+    
       load_new_data()
 
       var interval=setInterval ( function () {
@@ -1454,7 +1463,8 @@ $(window).on('load', function(){
       }
  
       ,5000)
- 
+
+      } 
  
 });
 // function load_new_data(table) {
