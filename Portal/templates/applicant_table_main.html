@@ -430,6 +430,19 @@ p {
 <div class="row">
   <div class="col-xl-12 col-md-12 c0l-sm-12">
  
+<div class="row">
+
+  {% if filter_bool %}
+  <div class="col-md-6 ml-5" >
+<a class="btn btn-primary filter-btn {% if page == 'applicant' %}active {% endif %}" href="{% url 'applicant_registrations_page' %}?filter=approved"  style="display: inline-block;"> Applicant Delegates </a>
+<a class="btn btn-primary filter-btn {% if page == 'invited' %}active {% endif %}" href="{% url 'invited_registrations_page' %}?filter=approved"  style="display: inline-block;"> Invited Delegates </a>
+    </div>
+    {% endif %}
+  
+</div>
+
+
+    
     <!-- <div class="nav-align-top mt-4 p-5 mb-4">
       <ul class="nav nav-pills mb-3" role="tablist">
        
@@ -3676,7 +3689,7 @@ function load_new_data() {
 $.ajax({
 type: "GET",
 url: "{% url 'get_new_data' %}",
-data:{build_last_row_id:build_last_row_id,table:2,csrfmiddlewaretoken:'{{ csrf_token }}'},
+data:{build_last_row_id:build_last_row_id,table:3,csrfmiddlewaretoken:'{{ csrf_token }}'},
 dataType: "json",
 success: function (data) {
   // clearInterval(interval);
@@ -3694,7 +3707,7 @@ success: function (data) {
       for (let i = 0; i < data.new_html.build_html.length; i++) {
    
         
-        $('table.build').DataTable().row('#IN-'+data.new_html.build_updated_id[i]).remove().draw()
+        $('table.build').DataTable().row('#AP-'+data.new_html.build_updated_id[i]).remove().draw()
         $('table.build').DataTable().order([2,'desc']).row.add($(data.new_html.build_html[i])).draw(false)
 
         

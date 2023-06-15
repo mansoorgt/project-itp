@@ -420,7 +420,16 @@ p {
         
 <div class="row">
   <div class="col-xl-12 col-md-12 c0l-sm-12">
- 
+    <div class="row">
+
+      {% if filter_bool %}
+      <div class="col-md-6 ml-5" >
+    <a class="btn btn-primary filter-btn {% if page == 'applicant' %}active {% endif %}" href="{% url 'applicant_registrations_page' %}?filter=approved"  style="display: inline-block;"> Applicant Delegates </a>
+    <a class="btn btn-primary filter-btn {% if page == 'invited' %}active {% endif %}" href="{% url 'invited_registrations_page' %}?filter=approved"  style="display: inline-block;"> Invited Delegates </a>
+        </div>
+        {% endif %}
+      
+    </div>
     <!-- <div class="nav-align-top mt-4 p-5 mb-4">
       <ul class="nav nav-pills mb-3" role="tablist">
        

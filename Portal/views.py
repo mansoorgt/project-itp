@@ -401,13 +401,28 @@ class Tablepage():
     
     @login_required
     def invited_reg_page(request):
-        objs=InvitedRegistrations.objects.filter(deleted=0).annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
-        data={'datas':objs,'username':request.user.username}
+        filter=request.GET.get('filter')
+        objs=InvitedRegistrations.objects.filter(deleted=0)
+        filter_bool=False
+        if filter == 'approved':
+            objs=objs.filter(status=1)
+            filter_bool=True
+        datas=objs.annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
+        
+        data={'datas':datas,'filter_bool':filter_bool,'filter_val':filter ,'page':'invited','username':request.user.username}
         return render(request,'invited_table_main.html',data)
     @login_required
     def applicant_reg_page(request):
-        objs=ApplicantRegistrations.objects.filter(deleted=0).annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
-        data={'datas':objs,'username':request.user.username}
+        filter=request.GET.get('filter')
+        objs=ApplicantRegistrations.objects.filter(deleted=0)
+        filter_bool=False
+        print(filter)
+        if filter== 'approved':
+            objs=objs.filter(status=1)
+            filter_bool=True
+        datas=objs.annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
+        
+        data={'datas':datas,'filter_bool':filter_bool,'filter_val':filter,'page':'applicant','username':request.user.username}
         return render(request,'applicant_table_main.html',data)
     
     
@@ -1657,6 +1672,8 @@ class Tablepage():
         
         
         speaker_reginstations_all=SpeakerRegistrations.objects.filter(deleted=0).all()
+        invited_reginstations_all=InvitedRegistrations.objects.filter(deleted=0).all()
+        applicant_reginstations_all=ApplicantRegistrations.objects.filter(deleted=0).all()
         
         table=request.GET.get('table')
         
@@ -1675,11 +1692,11 @@ class Tablepage():
         vapp_last_row_id=0
         
         
-        
+        print(table)
         
         if int(table)==1 or int(table)==0:
             last_row_id=request.GET.get('build_last_row_id')
-            print(last_row_id)
+           
             last_obj=SpeakerRegistrations.objects.last()
             if int(last_obj.id) != int(last_row_id):
                 new_data=speaker_reginstations_all.filter(id__range=(int(last_row_id)+1,last_obj.id))
@@ -1727,14 +1744,14 @@ class Tablepage():
                 
         if int(table)==2 or int(table)== 0:
             last_row_id=request.GET.get('build_last_row_id')
-            print(last_row_id)
+           
             last_obj=InvitedRegistrations.objects.last()
             if int(last_obj.id) != int(last_row_id):
-                new_data=speaker_reginstations_all.filter(id__range=(int(last_row_id)+1,last_obj.id))
+                new_data=invited_reginstations_all.filter(id__range=(int(last_row_id)+1,last_obj.id))
                 
                 for i in new_data:
-                    
-                    obj=speaker_reginstations_all.get(id=i.id)
+               
+                    obj=invited_reginstations_all.get(id=i.id)
                     tr="<tr id='IN-"+str(i.id)+"'>"
                     
                     try:
@@ -1752,12 +1769,12 @@ class Tablepage():
                 
                 build_new_data=False
 
-            updated_data=speaker_reginstations_all.filter(updated_at__range=[timezone.now()-timezone.timedelta(seconds=5),timezone.now()])
+            updated_data=invited_reginstations_all.filter(updated_at__range=[timezone.now()-timezone.timedelta(seconds=5),timezone.now()])
            
                 
             for i in updated_data:
                 
-                obj=speaker_reginstations_all.get(id=i.id)
+                obj=invited_reginstations_all.get(id=i.id)
                 tr="<tr id='IN-"+str(i.id)+"'>"
                 # designation=build_designation.objects.get(id=obj.designation_id).designation
                 try:
@@ -1774,62 +1791,51 @@ class Tablepage():
                 
                 
         if int(table)==3 or int(table)== 0:
-            last_row_id=request.GET.get('vapp_last_row_id')
-            last_obj=Vapp_table.objects.last()
+            last_row_id=request.GET.get('build_last_row_id')
+           
+            last_obj=ApplicantRegistrations.objects.last()
             if int(last_obj.id) != int(last_row_id):
-                new_data=vapp_table_obj.filter(id__range=(last_row_id,last_obj.id))
-                event_new_html=''
-                for i in new_data[:1]:
+                new_data=applicant_reginstations_all.filter(id__range=(int(last_row_id)+1,last_obj.id))
+                
+                for i in new_data:
+               
+                    obj=applicant_reginstations_all.get(id=i.id)
+                    tr="<tr id='IN-"+str(i.id)+"'>"
                     
-                   
-                    tr="<tr id='VAP-"+str(i.id)+"'>"
-                    
-                    obj=vapp_table_obj.get(id=i.id)
-                    category=vapp_category.objects.get(id=obj.category_id).category
                     try:
                         approved_by=user_DB.objects.get(id=obj.approved_by).username
                     except:
                         approved_by='not-apporved'
-                    data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected,'lastname':obj.lastname,'UID':obj.UID,'id':obj.id,'category':category,'comp':obj.company_name,'exp_date':obj.exp_date,'approved_date':obj.approved_date,'vehicle_number':obj.vehicle_number,'status':obj.status,'mobile':obj.mobile_number,'print_status':obj.print_status,'print_count':obj.print_count,'category_id':obj.category_id,'created_at':obj.reg_created_at,'remark':obj.remark
-                        ,'categorys':vapp_category.objects.all(),'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])
-                        }
-                    html=render_to_string('tables/table rows/vapp_table_row.html',data)
+                    data={'sp':obj,'approved_by_name':approved_by}
+                    html=render_to_string('tables/table rows/applicant_table_row.html',data) 
+                    new_html=tr+html+'</tr>'  
+                    build_new_html.append(new_html)
                     
-                    
-                    new_html+=tr+html+'</tr>'     
-                    vapp_new_html.append(new_html)
-                       
-                vapp_new_data=True
-                vapp_last_row_id=last_obj.id
-                
-                
-                
+                build_new_data=True
+                build_last_row_id=last_obj.id
             else:
                 
-                vapp_new_data=False
-            updated_data=vapp_table_obj.filter(updated_at__range=[timezone.now()-timezone.timedelta(seconds=5),timezone.now()])
-            print(updated_data)           
+                build_new_data=False
+
+            updated_data=applicant_reginstations_all.filter(updated_at__range=[timezone.now()-timezone.timedelta(seconds=5),timezone.now()])
+           
+                
             for i in updated_data:
-                tr="<tr id='VA-"+str(i.id)+"'>"
-                    
-                obj=vapp_table_obj.get(id=i.id)
-                category=vapp_category.objects.get(id=obj.category_id).category
+                
+                obj=applicant_reginstations_all.get(id=i.id)
+                tr="<tr id='IN-"+str(i.id)+"'>"
+                # designation=build_designation.objects.get(id=obj.designation_id).designation
                 try:
                     approved_by=user_DB.objects.get(id=obj.approved_by).username
                 except:
                     approved_by='not-apporved'
-                data={'name':obj.firstname+' '+obj.lastname,'firstname':obj.firstname,'approved_by':approved_by,'approved_by_id':obj.approved_by,'collected':obj.collected,'lastname':obj.lastname,'UID':obj.UID,'id':obj.id,'category':category,'comp':obj.company_name,'exp_date':obj.exp_date,'approved_date':obj.approved_date,'vehicle_number':obj.vehicle_number,'status':obj.status,'mobile':obj.mobile_number,'print_status':obj.print_status,'print_count':obj.print_count,'category_id':obj.category_id,'created_at':obj.reg_created_at,'remark':obj.remark
-                    ,'categorys':vapp_category.objects.all(),'role_id':int(request.session['user_role']),'user_id':int(request.session['user_id'])
-                    }
-                html=render_to_string('tables/table rows/vapp_table_row.html',data)
-                
-                
-                new_html=tr+html+'</tr>'     
-                vapp_new_html.append(new_html)
-                vapp_updated_id.append(i.id)
-                vapp_new_data=True
-
-                vapp_last_row_id=Vapp_table.objects.last().id
+                data={'sp':obj,'approved_by_name':approved_by}
+                html=render_to_string('tables/table rows/invited_table_row.html',data) 
+                new_html=tr+html+'</tr>'  
+                build_new_html.append(new_html)
+                build_updated_id.append(i.id)
+                build_new_data=True
+                build_last_row_id=ApplicantRegistrations.objects.last().id
                 
                 
         last_row={'build_row_id':build_last_row_id,'event_row_id':event_last_row_id,'vapp_row_id':vapp_last_row_id}

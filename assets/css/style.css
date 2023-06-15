@@ -1,3 +1,10 @@
+.filter-btn{
+  background-color: #0064928c;
+  }
+  .filter-btn.active{
+    background-color: #006492;
+    }
+
 select+.select2-container--bootstrap-5
 {
   width:100% !important;

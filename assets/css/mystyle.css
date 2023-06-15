@@ -1,6 +1,22 @@
+.filter-btn{
+    background-color: black;
+    border-color: #006492;
+    }
+    .filter-btn.active{
+      background-color: #006492;
+      }
 
-
-
+      .swal2-show
+      {
+      
+          background: white !important;
+      }   
+      
+      :where(.swal2-styled).swal2-cancel
+      {
+          margin-left: 20px;
+      }
+      
     div.dataTables_wrapper div.dataTables_info
      {
          color:white !important;
