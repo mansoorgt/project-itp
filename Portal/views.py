@@ -29,7 +29,7 @@ class registration():
     def test_email(request):
         return render(request,"email/email.html")
     def send_email(request,m_email,data):
-        print(m_email)
+       
         html_contect=render_to_string("email/success_email.html",data)
         email_from = settings.EMAIL_HOST_USER
         subject = 'Your Registrion has submited '
@@ -58,28 +58,28 @@ class registration():
                 event_pass=False
             else:
                 event_pass=True
-            print(event_pass)
+          
             #check existence
             if Buildpass_table.objects.filter(~Q(status=2),firstname=firstname,lastname=lastname).exists():
-                print('existes')
+               
                 return JsonResponse({'error':True})
                 
             if Eventpass_table.objects.filter(~Q(status=2),firstname=firstname,lastname=lastname) and event_pass:
-                print('existes in event pass')
+      
                 return JsonResponse({'error':True})
             
         if int(table) == 2 :
             
-            print('in event pass')
+            
             if Eventpass_table.objects.filter(~Q(status=2),firstname=firstname,lastname=lastname).exists():
-                print('existes in event pass')
+   
                 return JsonResponse({'error':True})
         
         if int(table) == 3 :
             
-            print('in vapp pass')
+        
             if Vapp_table.objects.filter(~Q(status=2),firstname=firstname,lastname=lastname).exists():
-                print('existes in event pass')
+     
                 return JsonResponse({'error':True})
             
         return JsonResponse({'error':False})
@@ -143,7 +143,7 @@ class registration():
         else:
             data={'uid':obj.UID,'mobile':obj.mobile,'name':obj.firstname+' '+obj.lastname,'created_at':obj.reg_created_at,'reg':'Build Pass'}
             registration.send_email(request,email,data)
-            print("good email")
+
             
         return JsonResponse({})
     @csrf_exempt
@@ -182,7 +182,7 @@ class registration():
             obj.id_proof_back_img=id_proof_back
         
         obj.save()
-        print(desiganation,'desss')
+ 
         if desiganation == '0':
             obj.other_designation=other_des
         obj.save()  
@@ -195,7 +195,7 @@ class registration():
         else:
             data={'uid':obj.UID,'mobile':obj.mobile,'name':obj.firstname+' '+obj.lastname,'des':eventpass_designation.objects.get(id=desiganation).designation,'reg':'Event Pass'}
             registration.send_email(request,email,data)
-            print("good email")
+    
             
         #eventpass_image_db.objects.create(pass_id=obj.id,file=file)
         
@@ -233,7 +233,7 @@ class registration():
         else:
             data={'uid':obj.UID,'mobile':obj.mobile_number,'name':obj.firstname+' '+obj.lastname,'des':vapp_category.objects.get(id=category_id).category,'reg':'Vehicle Pass'}
             registration.send_email(request,email,data)
-            print("good email")
+          
             
         return JsonResponse({})
         #obj=Buildpass_table.objects.create()
@@ -251,7 +251,7 @@ class registration():
         mobile=data[3]
         designation=data[4][0]
         comp=data[5]
-        print(designation)
+
         # if Buildpass_table.objects.filter(mobile=mobile).exists():
         #     success=False
         #     return JsonResponse({'success':success})
@@ -277,7 +277,7 @@ class registration():
         mobile=data[4]
         comp=data[5]
         category=data[6][0]
-        print(mobile)
+
         if Vapp_table.objects.filter(mobile_number=mobile).exists():
             success=False
             return JsonResponse({'success':success})
@@ -416,7 +416,7 @@ class Tablepage():
         filter=request.GET.get('filter')
         objs=ApplicantRegistrations.objects.filter(deleted=0)
         filter_bool=False
-        print(filter)
+
         if filter== 'approved':
             objs=objs.filter(status=1)
             filter_bool=True
@@ -526,7 +526,7 @@ class Tablepage():
         table=request.POST.get('table')
         #id=request.POST.get('id')
         id_array=request.POST.getlist('id_array[]')
-        print(id_array)
+ 
         #admin    
         if request.session['user_role'] == 1:
             build_table_obj=Buildpass_table.objects.all().order_by('-id')
@@ -543,7 +543,7 @@ class Tablepage():
             
             
             for i in id_array:
-                print(i)
+             
                 obj=Buildpass_table.objects.get(id=i)
                 obj.status=status
                 obj.updated_at=timezone.now()
@@ -571,7 +571,7 @@ class Tablepage():
         if int(table)==2:
             
             for i in id_array:
-                print(i)
+              
                 obj=Eventpass_table.objects.get(id=i)
                 obj.status=status
                 obj.updated_at=timezone.now()
@@ -599,13 +599,13 @@ class Tablepage():
         if int(table)==3:
             
             for i in id_array:
-                print(i)
+              
                 obj=Vapp_table.objects.get(id=i)
                 obj.status=status
                 obj.updated_at=timezone.now()
-                print(status)
+              
                 if status == '1':
-                    print(status,'change')
+                   
                     obj.approved_date=datetime.date.today()
                     obj.exp_date=datetime.datetime.now()+datetime.timedelta(days=7)
                 obj.save()
@@ -629,7 +629,7 @@ class Tablepage():
                     }
                 html=render_to_string('tables/table rows/vapp_table_row.html',data)        
                 htmls[i]=html
-        print(htmls)
+
         return JsonResponse({'table_html':html,'htmls':htmls})
     
     def update_print_status(request):
@@ -817,7 +817,7 @@ class Tablepage():
     def print_event_bulk(request):
         
         dic={}
-        print(len(request.session['event_id_array']),'lenght')
+
         lenght=0
         for d in eventpass_designation.objects.all():
             
@@ -835,7 +835,7 @@ class Tablepage():
                     lenght+=1
                     m_list.append({'name':name,'UID':obj.UID,'comp':obj.company_name,'profile':obj.file.url})
                     dic[des_name]=m_list
-                    print(des_name,'=',m_list)
+    
             #data={'name':name,'mobile':obj.mobile_number,'comp':obj.company_name,'vehicle_num':obj.vehicle_number,'date':obj.reg_created_at,'valid_from':obj.approved_date,'exp_date':obj.exp_date}
              
             # if obj.category_id==4:
@@ -846,16 +846,16 @@ class Tablepage():
             #     vip.append(data)
             
         
-        print('tttttttttttt ')
+
             
        
-        print('count',lenght)
+
         data={'dic':dic}
         return render(request,'prints/event_bulk_print.html',data)
 
     def print_build_bulk(request):
         build_print=[]
-        print(request.session['build_id_array'])
+
         for p in request.session['build_id_array']:
             obj=Buildpass_table.objects.get(id=p)
             
@@ -868,7 +868,7 @@ class Tablepage():
                 build_print.append({'name':name,'mobile':obj.mobile,'comp':obj.company_name,'des':obj.other_designation})
             else:
                 des=build_designation.objects.get(id=obj.designation_id).designation
-                print(des)
+            
                 build_print.append({'name':name,'mobile':obj.mobile,'comp':obj.company_name,'des':des})
         
         
@@ -1112,7 +1112,7 @@ class Tablepage():
                     if int(select)==0:
                         obj.other_designation=other_des
                 obj.save()
-                print('upd')
+        
             if int(table)==2:
                 obj=Eventpass_table.objects.get(id=i)
                 
@@ -1124,7 +1124,7 @@ class Tablepage():
                         obj.other_designation=other_des
                 obj.save()
             if int(table)==3:
-                print(select)
+           
                 obj=Vapp_table.objects.get(id=i)
                 obj.updated_at=timezone.now()
                 obj.company_name=comp
@@ -1247,7 +1247,7 @@ class Tablepage():
         profile_img=request.FILES.get('profile_img')
         front_id_img=request.FILES.get('front_id')
         back_id_img=request.FILES.get('back_id')
-        print(exp_date,'date-------------------------')
+        
         
         obj=Eventpass_table.objects.get(id=id)
         obj.firstname=firstname
@@ -1334,7 +1334,7 @@ class Tablepage():
         obj.category_id=cat_id
         obj.updated_at=timezone.now()
         if valid_date!='':
-            print('date emty')
+           
             obj.exp_date=valid_date
         if valid_from!='':
             obj.approved_date=valid_from
@@ -1380,8 +1380,7 @@ class Tablepage():
         id=request.POST.get('id')
         table=request.POST.get('table')
         
-        
-        print(table,'table int ')
+      
         if int(table)==1:
             obj=SpeakerRegistrations.objects.get(id=id)
             data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'travel':obj.traveling_from,'outline':obj.outline_talk,'depature_time':obj.depature_date_time.strftime("%d-%m-%y %I:%M %p"),'return_time':obj.retun_date_time.strftime("%d-%m-%y %I:%M %p"),'depature_time_iso':obj.depature_date_time,'return_time_iso':obj.retun_date_time,'country':obj.country,'ksa_visa':obj.ksa_visa}
@@ -1404,7 +1403,7 @@ class Tablepage():
     
             
             urls.append(Eventpass_table.objects.get(UID=i).file.url)
-        print(array)
+    
         return JsonResponse({'urls':urls})
     def change_remark(request):
         
@@ -1413,17 +1412,17 @@ class Tablepage():
         value=request.POST.get('value')
         
         if int(Table)==1:
-            print('svaves')
+       
             obj=SpeakerRegistrations.objects.get(id=id)
             obj.remark=value
             obj.save()
         if int(Table)==2:
-            print('svaves')
+     
             obj=Eventpass_table.objects.get(id=id)
             obj.remark=value
             obj.save()
         if int(Table)==3:
-            print('svaves')
+          
             obj=Vapp_table.objects.get(id=id)
             obj.remark=value
             obj.save()   
@@ -1466,7 +1465,7 @@ class Tablepage():
                 msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email])
                 msg.attach_alternative(html_contect,"text/html")
                 msg.send()
-                print("good email")
+               
                 
         # if int(table)==1:
         #     data=Tablepage.update_front_page(request,1)
@@ -1494,7 +1493,7 @@ class Tablepage():
             if int(table)==2:
                 obj=InvitedRegistrations.objects.get(id=i)
                 qr_url=Qrcode_generate(filename='INV-'+str(obj.id),data=obj.id).url
-                print(qr_url)
+          
                 data={'uid':'INV-'+str(obj.id),'qr_url':qr_url,'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}
             if int(table)==3:
                 obj=ApplicantRegistrations.objects.get(id=i)
@@ -1514,7 +1513,7 @@ class Tablepage():
                 msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email],)
                 msg.attach_alternative(html_contect,"text/html")
                 msg.send()
-                print("good email")
+              
             
         return JsonResponse({'data':'data'})
     def send_undo_mail(request):
@@ -1545,7 +1544,7 @@ class Tablepage():
             msg= EmailMultiAlternatives(subject,'From info-events ',email_from,[obj.email],)
             msg.attach_alternative(html_contect,"text/html")
             msg.send()
-            print("good email")
+          
             
         return JsonResponse({})
     def update_front_page(request,table):
@@ -1692,7 +1691,7 @@ class Tablepage():
         vapp_last_row_id=0
         
         
-        print(table)
+
         
         if int(table)==1 or int(table)==0:
             last_row_id=request.GET.get('build_last_row_id')
@@ -1867,7 +1866,7 @@ class Tablepage():
         
         check_time=timezone.localtime()-timezone.timedelta(seconds=8)
 
-        print(check_time)
+
         
         for u in user_DB.objects.filter(is_online=1).filter(~Q(id=userdb.id)):
            
@@ -1937,7 +1936,7 @@ class Tablepage():
             sp_charset=request.GET.get('sp_charset')
             start=request.GET.get('start')
             unique=request.GET.get('unique_bool')
-            print(unique)
+           
             for i in range(int(start),int(count)):
                 
            
@@ -1967,13 +1966,13 @@ class Tablepage():
             return render(request,'exstends/unique_code_generator.html',data)
     def show_delete(request):
         s_code=request.GET.get('s_code')
-        print(s_code)
+      
         results=Unique_reg_code.objects.filter(code__icontains=s_code).values_list('code',flat=True)
-        print(list(results))
+    
         return JsonResponse({'results':list(results)}) 
     def delete_codes(request):
         s_codes_array=request.GET.getlist('s_codes_array[]')
-        print(s_codes_array)
+       
         obj=Unique_reg_code.objects.filter(code__in=s_codes_array)
         obj.delete()
         
@@ -1990,12 +1989,12 @@ class Report():
             
         return render(request,'report.html',data)
     def getReportData(request):
-        print(request.GET)
+     
         categorySel=request.GET.get('CategorySel')
         DesignationSel=request.GET.get('DesignationSel')
         DateFrom=request.GET.get('Datefrom')
         DateTo=request.GET.get('Dateto')
-        print(DesignationSel)
+  
         if categorySel == '1':
             build_table=[] 
             build_table_obj=Buildpass_table.objects.filter(reg_created_at__range=[DateFrom,DateTo],designation_id=DesignationSel).order_by('-id')
