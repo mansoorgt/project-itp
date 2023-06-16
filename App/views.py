@@ -37,10 +37,6 @@ class ReginstraionForms():
         photo_upload=request.FILES.get('photo-upload')
         ksa_visa=request.POST.get('ksa-visa')
 
-        print(retun_date_time)
-        print(depature_date_time)
-        
-        
         obj=SpeakerRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,
                                                 email=email,mobile=mobile,country=country,traveling_from=traveling_from,retun_date_time=retun_date_time,depature_date_time=depature_date_time,ksa_visa=ksa_visa,
                                                 outline_talk=outline_talk,passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)
