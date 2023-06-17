@@ -338,12 +338,13 @@ class Dashboard():
     def dashboard_page(request):
         
         speaker_count=SpeakerRegistrations.objects.filter(deleted=0).count()
-        applicant_count=ApplicantRegistrations.objects.filter(deleted=0).count()
-        invited_count=InvitedRegistrations.objects.filter(deleted=0).count()
+        applicant_count=ApplicantRegistrations.objects.filter(deleted=0).filter(~Q(status=1)).count()
+        invited_count=InvitedRegistrations.objects.filter(deleted=0).filter(~Q(status=1)).count()
         all_count=speaker_count+applicant_count+invited_count
+        accepted_count=ApplicantRegistrations.objects.filter(deleted=0,status=1).count()+InvitedRegistrations.objects.filter(deleted=0,status=1).count()
         username=request.user.username
        
-        data={'username':username,'speacker_count':speaker_count,'all_count':all_count,'applicant_count':applicant_count,'invited_count':invited_count,'role_id':int(request.session['user_role'])}
+        data={'username':username,'speacker_count':speaker_count,'accepted_count':accepted_count,'all_count':all_count,'applicant_count':applicant_count,'invited_count':invited_count,'role_id':int(request.session['user_role'])}
         return render(request,'dashboard.html',data)       
 class Tablepage():
     @login_required
@@ -407,6 +408,9 @@ class Tablepage():
         if filter == 'approved':
             objs=objs.filter(status=1)
             filter_bool=True
+        else:
+            objs=objs.filter(~Q(status=1))
+            
         datas=objs.annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
         
         data={'datas':datas,'filter_bool':filter_bool,'filter_val':filter ,'page':'invited','username':request.user.username}
@@ -420,6 +424,9 @@ class Tablepage():
         if filter== 'approved':
             objs=objs.filter(status=1)
             filter_bool=True
+        else:
+            objs=objs.filter(~Q(status=1))
+            
         datas=objs.annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
         
         data={'datas':datas,'filter_bool':filter_bool,'filter_val':filter,'page':'applicant','username':request.user.username}
@@ -1746,7 +1753,7 @@ class Tablepage():
            
             last_obj=InvitedRegistrations.objects.last()
             if int(last_obj.id) != int(last_row_id):
-                new_data=invited_reginstations_all.filter(id__range=(int(last_row_id)+1,last_obj.id))
+                new_data=invited_reginstations_all.filter(id__range=(int(last_row_id)+1,last_obj.id)).filter(~Q(status=1))
                 
                 for i in new_data:
                
@@ -1794,7 +1801,7 @@ class Tablepage():
            
             last_obj=ApplicantRegistrations.objects.last()
             if int(last_obj.id) != int(last_row_id):
-                new_data=applicant_reginstations_all.filter(id__range=(int(last_row_id)+1,last_obj.id))
+                new_data=applicant_reginstations_all.filter(id__range=(int(last_row_id)+1,last_obj.id)).filter(~Q(status=1))
                 
                 for i in new_data:
                

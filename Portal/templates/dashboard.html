@@ -233,11 +233,11 @@
               <div class="row">
                 <div class="col-md-6 mb-4 stretch-card transparent">
                     
-                     <a  style="text-decoration: none; color: white;">
+                     <a href="{% url 'applicant_registrations_page' %}?filter=approved" style="text-decoration: none; color: white;">
                   <div class="card card-tale">
                     <div class="card-body">
-                      <p class="mb-4 text-center">TOTAL REGISTRATIONS</p>
-                      <p class="fs-30 mb-2  text-center">{{all_count}}</p>
+                      <p class="mb-4 text-center">ACCEPTED REGISTRATIONS</p>
+                      <p class="fs-30 mb-2  text-center">{{accepted_count}}</p>
                       <p class="text-center">NEXTWRLD</p>
                       
                     </div>
