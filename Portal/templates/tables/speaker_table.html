@@ -108,7 +108,7 @@
                 <td><span style="display:none;">{{b.created_at |date:'Y-m-d H:i'}}</span>{{b.created_at |date:'d-m-y P' }}
                 {% if b.status != 0 and b.approved_by != null %}
                   <br>
-                  <small style="font-size: 12px;" class="text-muted">Approved By:</small><br>
+                  <small style="font-size: 12px;" class="text-muted">{% if b.status == 1 %} Approved By: {% endif %} {% if b.status == 2 %} Rejected By: {% endif %}</small><br>
                   <small style="font-size:12px;" class="text-muted">{{b.approved_by_name}}</small>
                   {% endif %}
                   

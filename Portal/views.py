@@ -396,6 +396,7 @@ class Tablepage():
         return render(request,'Tables.html',data) 
     @login_required
     def Speakers_reg_page(request):
+   
         objs=SpeakerRegistrations.objects.filter(deleted=0).annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
         data={'datas':objs,'username':request.user.username}
         return render(request,'speaker_table_main.html',data)
@@ -456,7 +457,7 @@ class Tablepage():
             if collected != 'true':
                 obj=SpeakerRegistrations.objects.get(id=id)
                 obj.status=status
-                if status == '1':
+                if status == '1' or status == '2':
                     obj.approved_by=user_DB.objects.get(username=request.user.username).id
                 obj.updated_at=timezone.now()
                 obj.save()
@@ -481,7 +482,7 @@ class Tablepage():
             if collected != 'true':
                 obj=InvitedRegistrations.objects.get(id=id)
                 obj.status=status
-                if status == '1':
+                if status == '1' or status == '2':
                     obj.approved_by=user_DB.objects.get(username=request.user.username).id
                 obj.updated_at=timezone.now()
                 obj.save()
@@ -506,8 +507,10 @@ class Tablepage():
             if collected != 'true':
                 obj=ApplicantRegistrations.objects.get(id=id)
                 obj.status=status
-                if status == '1':
+                
+                if status == '1' or status == '2':
                     obj.approved_by=user_DB.objects.get(username=request.user.username).id
+                    
                 obj.updated_at=timezone.now()
                 obj.save()
             else:
@@ -1390,15 +1393,15 @@ class Tablepage():
       
         if int(table)==1:
             obj=SpeakerRegistrations.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'travel':obj.traveling_from,'outline':obj.outline_talk,'depature_time':obj.depature_date_time.strftime("%d-%m-%y %I:%M %p"),'return_time':obj.retun_date_time.strftime("%d-%m-%y %I:%M %p"),'depature_time_iso':obj.depature_date_time,'return_time_iso':obj.retun_date_time,'country':obj.country,'ksa_visa':obj.ksa_visa}
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'travel':obj.traveling_from,'outline':obj.outline_talk,'depature_time':obj.depature_date_time.strftime("%d-%m-%y %I:%M %p"),'return_time':obj.retun_date_time.strftime("%d-%m-%y %I:%M %p"),'depature_time_iso':obj.depature_date_time,'return_time_iso':obj.retun_date_time,'country':obj.country,'ksa_visa':obj.ksa_visa,'remark':obj.remark}
         
         if int(table)==2:
             obj=InvitedRegistrations.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'intrested':obj.intrested_in}
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'intrested':obj.intrested_in,'remark':obj.remark}
         
         if int(table)==3:
             obj=ApplicantRegistrations.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'pre_attand':obj.pre_attend}
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'pre_attand':obj.pre_attend,'remark':obj.remark}
          
         return JsonResponse(data)
 
@@ -1423,16 +1426,19 @@ class Tablepage():
             obj=SpeakerRegistrations.objects.get(id=id)
             obj.remark=value
             obj.save()
+        
         if int(Table)==2:
      
-            obj=Eventpass_table.objects.get(id=id)
+            obj=InvitedRegistrations.objects.get(id=id)
             obj.remark=value
             obj.save()
+        
         if int(Table)==3:
           
-            obj=Vapp_table.objects.get(id=id)
+            obj=ApplicantRegistrations.objects.get(id=id)
             obj.remark=value
             obj.save()   
+            
         return JsonResponse({}) 
     #email send
         # rejection mail send

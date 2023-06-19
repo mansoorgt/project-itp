@@ -3014,7 +3014,7 @@ function ExportToExcel_vapp(type, fn, dl) {
   <!-- profile -->
   <script>
     function get_profile_details(table,id) {
-      document.getElementById('profile-dp').src="https://seuclick.com/imagens/loading.gif?%3E"
+      document.getElementById('profile-dp').src="https://seuclick.com/imagens/loading.gif?%3E"  
       $.ajax({
         type: "POST",
         url: "{% url 'get_profile_details' %}",
@@ -3042,7 +3042,7 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('profile-status-label').classList.add('badge')
             document.getElementById('profile-status-label').classList.add('badge-warning')
             document.getElementById('profile-status-label').innerHTML='Approval Pending'
-            document.getElementById('profile-reason-textarea').style.display='none'
+            //document.getElementById('profile-reason-textarea').style.display='none'
           }
           if (data.status == 1){
             document.getElementById('profile-status-label').className=''
@@ -3050,17 +3050,25 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('profile-status-label').classList.add('badge-success')
             document.getElementById('profile-status-label').innerHTML='Approved'
 
-            document.getElementById('profile-reason-textarea').style.display='none'
+           // document.getElementById('profile-reason-textarea').style.display='none'
           }
           if (data.status == 2){
             document.getElementById('profile-status-label').className=''
             document.getElementById('profile-status-label').classList.add('badge')
             document.getElementById('profile-status-label').classList.add('badge-danger')
             document.getElementById('profile-status-label').innerHTML='Rejected'
-            document.getElementById('profile-reason-textarea').style.display='block'
-            document.getElementById('profile-reason-textarea').innerHTML=data.remark
+            
+            
 
           }
+
+          if (data.remark != '' ){
+            document.getElementById('profile-reason-textarea').style.display='block'
+            document.getElementById('profile-reason-textarea').innerHTML=data.remark
+          }else{
+            document.getElementById('profile-reason-textarea').style.display='none'
+          }
+
 
           
           if (table==1){

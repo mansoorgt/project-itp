@@ -14,7 +14,7 @@
                 <td><span style="display:none;">{{sp.created_at |date:'Y-m-d H:i'}}</span>{{sp.created_at |date:'d-m-y H:i' }}
                 {% if sp.status != 0 and sp.approved_by != null %}
                   <br>
-                  <small style="font-size: 12px;" class="text-muted">Approved By:</small><br>
+                  <small style="font-size: 12px;" class="text-muted">{% if sp.status == 1 %} Approved By: {% endif %} {% if sp.status == 2 %} Rejected By: {% endif %}</small><br>
                   <small style="font-size:12px;" class="text-muted">{{approved_by_name}}</small>
                   {% endif %}
                   

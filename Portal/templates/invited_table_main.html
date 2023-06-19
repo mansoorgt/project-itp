@@ -1113,12 +1113,12 @@ p {
                                                                     <div id='id-photo-hover-div'>
                                                                     <div class="row" >
                                                                     <div class="col-lg-3 col-md-3 col-sm-3" >
-                                                                      <p class="m-b-10 f-w-600" id="id-image-lable">Passport</p>
+                                                                      <!-- <p class="m-b-10 f-w-600" id="id-image-lable">Passport</p>
                                                                       <img class="img-fluid" height="50px" width="50px" id="id-photo-img" width="50px" onclick="change_image(this)" src="https://seuclick.com/imagens/loading.gif?%3E">
                                                                       <br>
                                                                       <a href="" id="download-id-proof" download="">
                                                                         <img  width="20px" src="{% static 'images/download.png' %}" class="img-fluid down_icon ml-3 mt-2" alt="">
-                                                                      </a>  
+                                                                      </a>   -->
                                                                     </div>
 
                                                                       <div class="col-lg-3 col-md-3 col-sm-3" id="id-photo-img-back-div">
@@ -2986,7 +2986,7 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('profile-status-label').classList.add('badge')
             document.getElementById('profile-status-label').classList.add('badge-warning')
             document.getElementById('profile-status-label').innerHTML='Approval Pending'
-            document.getElementById('profile-reason-textarea').style.display='none'
+            //document.getElementById('profile-reason-textarea').style.display='none'
           }
           if (data.status == 1){
             document.getElementById('profile-status-label').className=''
@@ -2994,16 +2994,24 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('profile-status-label').classList.add('badge-success')
             document.getElementById('profile-status-label').innerHTML='Approved'
 
-            document.getElementById('profile-reason-textarea').style.display='none'
+           // document.getElementById('profile-reason-textarea').style.display='block'
+           // document.getElementById('profile-reason-textarea').innerHTML=data.remark
           }
           if (data.status == 2){
             document.getElementById('profile-status-label').className=''
             document.getElementById('profile-status-label').classList.add('badge')
             document.getElementById('profile-status-label').classList.add('badge-danger')
             document.getElementById('profile-status-label').innerHTML='Rejected'
+           // document.getElementById('profile-reason-textarea').style.display='block'
+           // document.getElementById('profile-reason-textarea').innerHTML=data.remark
+
+          }
+
+          if (data.remark != '' ){
             document.getElementById('profile-reason-textarea').style.display='block'
             document.getElementById('profile-reason-textarea').innerHTML=data.remark
-
+          }else{
+            document.getElementById('profile-reason-textarea').style.display='none'
           }
 
           
@@ -3077,8 +3085,8 @@ function ExportToExcel_vapp(type, fn, dl) {
           document.getElementById('id-photo-img-back-div').style.display='none'
           document.getElementById('mulkiya-img-back-div').style.display='none'
           document.getElementById('vapp-type-div').style.display='none'
-          document.getElementById('id-photo-img').src=data.passport
-          document.getElementById('download-id-proof').href=data.passport
+         // document.getElementById('id-photo-img').src=data.passport
+          //document.getElementById('download-id-proof').href=data.passport
           document.getElementById('profile-next-btn').onclick=function(){ next_profile(2,data.id) }
           document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(2,data.id) }
            document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,2,data.id); update_status_profile(data.status,data.remark); }
@@ -3262,16 +3270,16 @@ function ExportToExcel_vapp(type, fn, dl) {
 
 function previous_profile(table,id){
 
-if (table ==1 ){
+if (table == 2 ){
   var build_array=$("[id='build-uid'] .uid")
-  qid='SPK'+String(id)
-
+  qid='INV'+String(id)
+  console.log(qid)
   for (let i = 0; i < build_array.length; i++) {
     
     if (String(build_array[i].innerHTML)==qid){
       if (build_array[i-1]!=null){
         prs_id=build_array[i-1].innerHTML.substring(3)
-        get_profile_details(1,prs_id) 
+        get_profile_details(2,prs_id) 
       }
       else{
         document.getElementById('profile-prs-btn').style.display='none'
