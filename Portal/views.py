@@ -478,7 +478,7 @@ class Tablepage():
             html=render_to_string('tables/table rows/speaker_table_row.html',data)
         
         if int(table)==2:
-            
+       
             if collected != 'true':
                 obj=InvitedRegistrations.objects.get(id=id)
                 obj.status=status
@@ -503,7 +503,7 @@ class Tablepage():
             html=render_to_string('tables/table rows/invited_table_row.html',data)
         
         if int(table)==3:
-            
+          
             if collected != 'true':
                 obj=ApplicantRegistrations.objects.get(id=id)
                 obj.status=status
@@ -1705,6 +1705,7 @@ class Tablepage():
         
         
 
+      
         
         if int(table)==1 or int(table)==0:
             last_row_id=request.GET.get('build_last_row_id')
@@ -1812,7 +1813,7 @@ class Tablepage():
                 for i in new_data:
                
                     obj=applicant_reginstations_all.get(id=i.id)
-                    tr="<tr id='IN-"+str(i.id)+"'>"
+                    tr="<tr id='AP-"+str(i.id)+"'>"
                     
                     try:
                         approved_by=user_DB.objects.get(id=obj.approved_by).username
@@ -1835,14 +1836,14 @@ class Tablepage():
             for i in updated_data:
                 
                 obj=applicant_reginstations_all.get(id=i.id)
-                tr="<tr id='IN-"+str(i.id)+"'>"
+                tr="<tr id='AP-"+str(i.id)+"'>"
                 # designation=build_designation.objects.get(id=obj.designation_id).designation
                 try:
                     approved_by=user_DB.objects.get(id=obj.approved_by).username
                 except:
                     approved_by='not-apporved'
                 data={'sp':obj,'approved_by_name':approved_by}
-                html=render_to_string('tables/table rows/invited_table_row.html',data) 
+                html=render_to_string('tables/table rows/applicant_table_row.html',data) 
                 new_html=tr+html+'</tr>'  
                 build_new_html.append(new_html)
                 build_updated_id.append(i.id)
