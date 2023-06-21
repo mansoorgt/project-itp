@@ -976,7 +976,8 @@ class Tablepage():
         outline=request.POST.get('outline')
         departure_date_time=request.POST.get('departure_date_time')
         retun_date_time=request.POST.get('retun_date_time')
-        
+        profile=request.FILES.get('profile')
+        passport=request.FILES.get('passport')
         
         obj=SpeakerRegistrations.objects.get(id=id)
         obj.first_name=firstname
@@ -989,11 +990,15 @@ class Tablepage():
         obj.depature_date_time=departure_date_time
         obj.retun_date_time=retun_date_time
         
+        if profile != None:
+            obj.photo_upload=profile
+        
+        if passport != None:
+            obj.passport_copy=passport
+            
         obj.updated_at=timezone.now()
             
         obj.save()
-        
-            
         
         # build_table=[]
         # for b in build_table_obj:
@@ -1019,7 +1024,7 @@ class Tablepage():
         company=request.POST.get('companyname')
         designation=request.POST.get('designation')
         country=request.POST.get('country')
-     
+        profile=request.FILES.get('profile-image')
         
         
         obj=InvitedRegistrations.objects.get(id=id)
@@ -1029,6 +1034,8 @@ class Tablepage():
         obj.designation=designation
         obj.country=country
         
+        if profile != None:
+            obj.photo_upload=profile
         
         obj.updated_at=timezone.now()
             
@@ -1060,9 +1067,10 @@ class Tablepage():
         company=request.POST.get('companyname')
         designation=request.POST.get('designation')
         country=request.POST.get('country')
-     
+        profile=request.FILES.get('profile-image')
         
-        
+        print(profile)
+                
         obj=ApplicantRegistrations.objects.get(id=id)
         obj.first_name=firstname
         obj.last_name=lastname
@@ -1070,7 +1078,9 @@ class Tablepage():
         obj.designation=designation
         obj.country=country
         
-        
+        if profile != None:
+            obj.photo_upload=profile
+            
         obj.updated_at=timezone.now()
             
         obj.save()
@@ -1393,15 +1403,15 @@ class Tablepage():
       
         if int(table)==1:
             obj=SpeakerRegistrations.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'travel':obj.traveling_from,'outline':obj.outline_talk,'depature_time':obj.depature_date_time.strftime("%d-%m-%y %I:%M %p"),'return_time':obj.retun_date_time.strftime("%d-%m-%y %I:%M %p"),'depature_time_iso':obj.depature_date_time,'return_time_iso':obj.retun_date_time,'country':obj.country,'ksa_visa':obj.ksa_visa,'remark':obj.remark}
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'travel':obj.traveling_from,'outline':obj.outline_talk,'depature_time':obj.depature_date_time.strftime("%d-%m-%y %I:%M %p"),'return_time':obj.retun_date_time.strftime("%d-%m-%y %I:%M %p"),'depature_time_iso':obj.depature_date_time,'return_time_iso':obj.retun_date_time,'country':obj.country,'ksa_visa':obj.ksa_visa,'remark':obj.remark,'photo_upload':str(obj.photo_upload),'passport_str':str(obj.passport_copy)}
         
         if int(table)==2:
             obj=InvitedRegistrations.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'intrested':obj.intrested_in,'remark':obj.remark}
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'intrested':obj.intrested_in,'remark':obj.remark,'photo_upload':str(obj.photo_upload)}
         
         if int(table)==3:
             obj=ApplicantRegistrations.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'pre_attand':obj.pre_attend,'remark':obj.remark}
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'pre_attand':obj.pre_attend,'remark':obj.remark,'photo_upload':str(obj.photo_upload)}
          
         return JsonResponse(data)
 

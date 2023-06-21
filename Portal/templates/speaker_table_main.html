@@ -727,6 +727,27 @@ p {
                     />
                   </div>
                 </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Profile image</label>
+                    <br />
+                    <input type="file" class="form-control d-none" accept="image/*"  id="edit-speaker-profile"/>
+            <button class="btn btn-primary btn-sm" type="button" onclick="open_edit_file_input()">Choose File</button>
+            <p style="display: inline-block;" id="edit-speaker-profile-file-name"></p>
+                  </div>
+                </div>
+
+      <div class="col-md-6 col-sm-6">
+        <div class="form-group">
+          <label for="exampleInputUsername1">Passport</label>
+          <br />
+          <input type="file" class="form-control d-none" accept="image/*"  id="edit-speaker-passport"/>
+  <button class="btn btn-primary btn-sm" type="button" onclick="open_edit_passport_file_input()">Choose File</button>
+  <p style="display: inline-block;" id="edit-speaker-passport-file-name"></p>
+        </div>
+          </div>
+
+
               </div>
             </form>
           </div>
@@ -1461,6 +1482,28 @@ p {
 
   <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom/dist/panzoom.min.js"></script>
 <script>
+function open_edit_file_input(){
+  document.getElementById('edit-speaker-profile').click()
+}
+
+document.getElementById('edit-speaker-profile').addEventListener('change' , function(){
+
+  document.getElementById('edit-speaker-profile-file-name').innerHTML=this.files[0].name
+
+
+})
+
+function open_edit_passport_file_input(){
+  document.getElementById('edit-speaker-passport').click()
+}
+
+document.getElementById('edit-speaker-passport').addEventListener('change' , function(){
+
+  document.getElementById('edit-speaker-passport-file-name').innerHTML=this.files[0].name
+
+
+})
+
 var build_last_data_id=0
 $(window).on('load', function(){
 //   console.log('lofin')
@@ -2273,7 +2316,7 @@ function update_front_page(table) {
     edit_build_id=0
     var req_build_profile=false
     
-    function edit_speakertable(id,firstname,lastname,companyname,designation,country,travel,outline,return_date_time,depature_date_time,req_profile) {
+    function edit_speakertable(id,firstname,lastname,companyname,designation,country,travel,outline,return_date_time,depature_date_time,req_profile,photo_upload,passport_copy) {
       edit_build_id=id
       req_build_profile=req_profile
       document.getElementById('edit-speaker-first-name').value=firstname
@@ -2286,6 +2329,9 @@ function update_front_page(table) {
 
       console.log(depature_date_time,'-',return_date_time)
 
+      document.getElementById('edit-speaker-profile-file-name').innerHTML=photo_upload.split('/')[photo_upload.split('/').length - 1 ]
+
+      document.getElementById('edit-speaker-passport-file-name').innerHTML=passport_copy.split('/')[passport_copy.split('/').length - 1 ]
 
        $('#edit-speaker-depature').val(new Date(depature_date_time).toISOString().slice(0,16))
        $('#edit-speaker-return-date').val(new Date(return_date_time).toISOString().slice(0,16))
@@ -2322,7 +2368,8 @@ function update_front_page(table) {
       outline=document.getElementById('edit-speaker-outline-talking').value
       depature_date_time=$('#edit-speaker-depature').val()
       return_date_time=$('#edit-speaker-return-date').val()
-     
+      new_profile_img=$('#edit-speaker-profile').prop("files")[0];
+      new_passport=$('#edit-speaker-passport').prop("files")[0];
       var current_build_page_lenght=$("select[name='build-table_length']").val();
 
       var current_page=$('#build-table').DataTable().page.info().page
@@ -2341,7 +2388,11 @@ function update_front_page(table) {
       m_data.append('outline',outline)
       m_data.append('departure_date_time',depature_date_time)
       m_data.append('retun_date_time',return_date_time)
+      m_data.append('profile',new_profile_img)
+      m_data.append('passport',new_passport)
       m_data.append('csrfmiddlewaretoken','{{ csrf_token }}')
+      document.getElementById('edit-speaker-profile').value=''
+      document.getElementById('edit-speaker-passport').value=''
       $.ajax({
         type: "POST",
         url: "{% url 'edit_submit_speaker_reg' %}",
@@ -3021,6 +3072,7 @@ function ExportToExcel_vapp(type, fn, dl) {
         data:{table:table,id:id,csrfmiddlewaretoken:'{{ csrf_token }}'} ,
         dataType: "json",
         success: function (data) {
+
           document.getElementById('preview-img').src=''
           var role_id=Number('{{role_id}}')
           document.getElementById('profile-next-btn').style.display='block'
@@ -3100,7 +3152,7 @@ function ExportToExcel_vapp(type, fn, dl) {
            document.getElementById('profile_edit-build').style.display='block'
            document.getElementById('profile_edit-event').style.display='none'
            document.getElementById('profile_edit-vapp').style.display='none'
-           document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,data.travel,data.outline,data.return_time_iso,data.depature_time_iso,true)}
+           document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,data.travel,data.outline,data.return_time_iso,data.depature_time_iso,true,data.photo_upload,data.passport_str)}
            
            if (data.ksa_visa == 0){
             document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-xmark text-danger font-weight-bold"></i>`

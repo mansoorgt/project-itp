@@ -622,7 +622,7 @@ p {
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              Edit Speaker
+              Edit Applicant
             </h5>
             <button
               type="button"
@@ -694,6 +694,26 @@ p {
                     />
                   </div>
                 </div>
+                
+                <!-- <div class="col-md-6 col-sm-6">
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Add New Profile Image</label>
+                  
+                  </div>
+
+                </div> -->
+
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Profile image</label>
+                    <br />
+                    <input type="file" class="form-control d-none" accept="image/*"  id="edit-applicant-profile"/>
+            <button class="btn btn-primary btn-sm" type="button" onclick="open_edit_file_input()">Choose File</button>
+            <p style="display: inline-block;" id="edit-applicant-profile-file-name">This is a demo.jpg</p>
+                  </div>
+                </div>
+
                 <!-- <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <label for="exampleInputUsername1">OUTLINE OF TALKING POINTS</label>
@@ -1431,6 +1451,18 @@ p {
 
   <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom/dist/panzoom.min.js"></script>
 <script>
+function open_edit_file_input(){
+  document.getElementById('edit-applicant-profile').click()
+}
+
+document.getElementById('edit-applicant-profile').addEventListener('change' , function(){
+
+  document.getElementById('edit-applicant-profile-file-name').innerHTML=this.files[0].name
+
+
+})
+
+
 var build_last_data_id=0
 $(window).on('load', function(){
 //   console.log('lofin')
@@ -1733,12 +1765,14 @@ minBuildDate = new DateTime($('#build-min'), {
          }
 
          if(table == 3){
+         
             
             //  $('#event-table-div').replaceWith(data.table_html);
             $('table.build').DataTable().page.len(current_build_page_lenght).draw();
               $('table.build').DataTable().search(search_build_val).draw();
               $('table.build').DataTable().page(current_build_page).draw('page')
               $('#AP-'+id).html(data.table_html)
+           
            }
 
           if (status == 1 ){
@@ -2240,15 +2274,20 @@ function update_front_page(table) {
     edit_build_id=0
     var req_build_profile=false
     
-    function edit_speakertable(id,firstname,lastname,companyname,designation,country,req_profile) {
+    function edit_speakertable(id,firstname,lastname,companyname,designation,country,req_profile,photo_upload) {
       edit_build_id=id
       req_build_profile=req_profile
+
+      document.getElementById('edit-applicant-profile-file-name').innerHTML=photo_upload.split('/')[photo_upload.split('/').length - 1 ]
+
+      console.log(photo_upload.split('/')[photo_upload.split('/').length - 1 ])
       document.getElementById('edit-speaker-first-name').value=firstname
       document.getElementById('edit-speaker-last-name').value=lastname
       document.getElementById('edit-speaker-comp').value=companyname
       document.getElementById('edit-speaker-designation').value=designation
       document.getElementById('edit-speaker-country').value=country
 
+      
       // document.getElementById('edit-speaker-outline-talking').value=outline
 
 
@@ -2283,6 +2322,8 @@ function update_front_page(table) {
       companyname=document.getElementById('edit-speaker-comp').value
       designation=document.getElementById('edit-speaker-designation').value
       country=document.getElementById('edit-speaker-country').value
+      profile=$('#edit-applicant-profile').prop("files")[0];
+
       // travel=document.getElementById('edit-speaker-traveling-from').value
   
       // depature_date_time=$('#edit-speaker-depature').val()
@@ -2302,6 +2343,7 @@ function update_front_page(table) {
       m_data.append('companyname',companyname)
       m_data.append('designation',designation)
       m_data.append('country',country)
+      m_data.append('profile-image',profile)
       
       m_data.append('csrfmiddlewaretoken','{{ csrf_token }}')
       $.ajax({
@@ -2313,6 +2355,8 @@ function update_front_page(table) {
         dataType: "json",
         success: function (data) {
           
+          $('#edit-applicant-profile').val(null)
+
 
           $('#BuildModal').modal('hide');
           $('#AP-'+edit_build_id).html(data.table_html)
@@ -3123,6 +3167,7 @@ function ExportToExcel_vapp(type, fn, dl) {
            document.getElementById('profile_edit-vapp').style.display='none'
            document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,true)}
            
+
            if (data.ksa_visa == 0){
             document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-xmark text-danger font-weight-bold"></i>`
            }
@@ -3131,9 +3176,6 @@ function ExportToExcel_vapp(type, fn, dl) {
 
            }
 
-           
-         
-          
           if(data.des_id == 0){
             document.getElementById('profile-des').innerHTML=data.other_des
           }
@@ -3175,7 +3217,8 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('profile_edit-build').style.display='block'
             document.getElementById('profile_edit-event').style.display='none'
             document.getElementById('profile_edit-vapp').style.display='none'
-            document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,true)}
+         
+            document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,true,data.photo_upload)}
 
             if (data.ksa_visa == 0){
             document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-xmark text-danger font-weight-bold"></i>`

@@ -152,7 +152,7 @@
             
 
                   {% endif %}
-                  <a  data-toggle="modal" data-target="#BuildModal" onclick="edit_speakertable({{b.id}} ,'{{b.first_name}}','{{b.last_name}}','{{b.company}}','{{b.designation}}','{{b.country}}','{{b.traveling_from}}','{{b.outline_talk}}','{{b.retun_date_time.isoformat }}', '{{b.depature_date_time.isoformat }}' ,false )"><i style="font-size: 20px;" class="fa-solid fa-edit" ></i></a> 
+                  <a  data-toggle="modal" data-target="#BuildModal" onclick="edit_speakertable({{b.id}} ,'{{b.first_name}}','{{b.last_name}}','{{b.company}}','{{b.designation}}','{{b.country}}','{{b.traveling_from}}','{{b.outline_talk}}','{{b.retun_date_time.isoformat }}', '{{b.depature_date_time.isoformat }}' ,false ,'{{b.photo_upload}}','{{b.passport_copy}}')"><i style="font-size: 20px;" class="fa-solid fa-edit" ></i></a> 
                 {% if b.collected != 1 and b.print_status != 0 %}
                       <i style="font-size: 20px; color: #3d7040;" onclick="update_status(1,1,{{b.id}},true)" class="fa-duotone fa-solid fa-circle-check"></i>
                     {% endif %}

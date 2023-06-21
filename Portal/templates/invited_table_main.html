@@ -609,7 +609,7 @@ p {
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              Edit Speaker
+              Edit Invited
             </h5>
             <button
               type="button"
@@ -681,6 +681,18 @@ p {
                     />
                   </div>
                 </div>
+
+
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Profile image</label>
+                    <br />
+                    <input type="file" class="form-control d-none" accept="image/*"  id="edit-invited-profile"/>
+            <button class="btn btn-primary btn-sm" type="button" onclick="open_edit_file_input()">Choose File</button>
+            <p style="display: inline-block;" id="edit-invited-profile-file-name">This is a demo.jpg</p>
+                  </div>
+                </div>
+
                 <!-- <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <label for="exampleInputUsername1">OUTLINE OF TALKING POINTS</label>
@@ -1413,6 +1425,17 @@ p {
 
   <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom/dist/panzoom.min.js"></script>
 <script>
+function open_edit_file_input(){
+  document.getElementById('edit-invited-profile').click()
+}
+
+document.getElementById('edit-invited-profile').addEventListener('change' , function(){
+
+  document.getElementById('edit-invited-profile-file-name').innerHTML=this.files[0].name
+
+
+})
+
 var build_last_data_id=0
 $(window).on('load', function(){
 //   console.log('lofin')
@@ -2222,9 +2245,13 @@ function update_front_page(table) {
     edit_build_id=0
     var req_build_profile=false
     
-    function edit_speakertable(id,firstname,lastname,companyname,designation,country,req_profile) {
+    function edit_speakertable(id,firstname,lastname,companyname,designation,country,req_profile,photo_upload) {
       edit_build_id=id
       req_build_profile=req_profile
+
+      document.getElementById('edit-invited-profile-file-name').innerHTML=photo_upload.split('/')[photo_upload.split('/').length - 1 ]
+
+
       document.getElementById('edit-speaker-first-name').value=firstname
       document.getElementById('edit-speaker-last-name').value=lastname
       document.getElementById('edit-speaker-comp').value=companyname
@@ -2265,6 +2292,7 @@ function update_front_page(table) {
       companyname=document.getElementById('edit-speaker-comp').value
       designation=document.getElementById('edit-speaker-designation').value
       country=document.getElementById('edit-speaker-country').value
+
       // travel=document.getElementById('edit-speaker-traveling-from').value
   
       // depature_date_time=$('#edit-speaker-depature').val()
@@ -2277,6 +2305,8 @@ function update_front_page(table) {
 
       var current_build_page_lenght=$("select[name='build-table_length']").val();
       
+      var new_profile=$('#edit-invited-profile').prop("files")[0];
+
       var m_data=new FormData()
       m_data.append('id',edit_build_id)
       m_data.append('firstname',firstname)
@@ -2284,8 +2314,10 @@ function update_front_page(table) {
       m_data.append('companyname',companyname)
       m_data.append('designation',designation)
       m_data.append('country',country)
+      m_data.append('profile-image',new_profile)
       
       m_data.append('csrfmiddlewaretoken','{{ csrf_token }}')
+      document.getElementById('edit-invited-profile').value=''
       $.ajax({
         type: "POST",
         url: "{% url 'edit_submit_invivted_reg' %}",
@@ -3046,7 +3078,7 @@ function ExportToExcel_vapp(type, fn, dl) {
            document.getElementById('profile_edit-build').style.display='block'
            document.getElementById('profile_edit-event').style.display='none'
            document.getElementById('profile_edit-vapp').style.display='none'
-           document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,data.travel,data.outline,data.return_time_iso,data.depature_time_iso,true)}
+           document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,data.travel,data.outline,data.return_time_iso,data.depature_time_iso,true,data.photo_upload)}
            
            if (data.ksa_visa == 0){
             document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-xmark text-danger font-weight-bold"></i>`
@@ -3098,7 +3130,7 @@ function ExportToExcel_vapp(type, fn, dl) {
            document.getElementById('profile_edit-build').style.display='block'
            document.getElementById('profile_edit-event').style.display='none'
            document.getElementById('profile_edit-vapp').style.display='none'
-           document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,true)}
+           document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,true,data.photo_upload)}
            
            if (data.ksa_visa == 0){
             document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-xmark text-danger font-weight-bold"></i>`
@@ -3156,7 +3188,7 @@ function ExportToExcel_vapp(type, fn, dl) {
            document.getElementById('profile_edit-event').style.display='none'
            document.getElementById('profile_edit-vapp').style.display='block'
            console.log(data.id,data.firstname,data.lastname,data.vehicle_num,data.mobile,data.comp,data.type,data.exp_date,data.approved_date)
-           document.getElementById('profile_edit-vapp').onclick=function(){  edit_vapptable(data.id,data.firstname,data.lastname,data.vehicle_num,data.mobile,data.comp,data.category_id,data.exp_date,data.approved_date,true)}
+           document.getElementById('profile_edit-vapp').onclick=function(){  edit_vapptable(data.id,data.firstname,data.lastname,data.vehicle_num,data.mobile,data.comp,data.category_id,data.exp_date,data.approved_date,true,data.photo_upload)}
            
             
           if(data.des_id == 0){

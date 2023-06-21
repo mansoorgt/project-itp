@@ -58,7 +58,7 @@
             
 
                   {% endif %}
-                  <a  data-toggle="modal" data-target="#BuildModal" onclick="edit_buildtable({{sp.id}},'{{sp.first_name}}','{{sp.last_name}}','{{sp.company}}','{{sp.designation}}','{{sp.country}}','{{sp.traveling_from}}','{{sp.outline_talk}}','{{sp.retun_date_time.isoformat }}', '{{sp.depature_date_time.isoformat }}',false )"><i style="font-size: 20px;" class="fa-solid fa-edit" ></i></a> 
+                  <a  data-toggle="modal" data-target="#BuildModal" onclick="edit_speakertable({{sp.id}},'{{sp.first_name}}','{{sp.last_name}}','{{sp.company}}','{{sp.designation}}','{{sp.country}}','{{sp.traveling_from}}','{{sp.outline_talk}}','{{sp.retun_date_time.isoformat }}', '{{sp.depature_date_time.isoformat }}',false ,'{{sp.photo_upload}}' ,'{{sp.passport_copy}}' )"><i style="font-size: 20px;" class="fa-solid fa-edit" ></i></a> 
                 {% if sp.collected != 1 and sp.print_status != 0 %}
                       <i style="font-size: 20px; color: #3d7040;" onclick="update_status(1,1,{{sp.id}},true)" class="fa-duotone fa-solid fa-circle-check"></i>
                     {% endif %}
@@ -68,7 +68,7 @@
                 <td>
                 
                   {% if sp.status == 1  or sp.status == 2 %}
-                  <button style="border: none; background: transparent;" onclick="undo_status(1,{{sp.id}})"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+                  <!-- <button style="border: none; background: transparent;" onclick="undo_status(1,{{sp.id}})"><i class="fa fa-repeat" aria-hidden="true"></i></button> -->
                   {% endif %}
 
                  
