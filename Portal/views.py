@@ -1456,7 +1456,7 @@ class Tablepage():
         reason=request.POST.get('reason')
         table=request.POST.get('table')
         id_array=request.POST.getlist('id_array[]')
-        
+        rejected_by_photo=request.POST.get('photo_rejection')    
         
             
         for i in id_array:
@@ -1481,7 +1481,11 @@ class Tablepage():
                 print("bad email, details:", e)
             else:
                 
-                html_contect=render_to_string("email/email_reject.html",data)
+                if rejected_by_photo == 'true':
+                    html_contect=render_to_string("email/email_reject_by_photo.html",data)
+                else:
+                    html_contect=render_to_string("email/email_reject.html",data)
+                    
                 email_from = settings.EMAIL_HOST_USER
                 subject = 'Registration Status – Update'
                 #msg=EmailMessage(subject=subject,from_email=email_from,to=[obj.email],body='TESTXXX')
