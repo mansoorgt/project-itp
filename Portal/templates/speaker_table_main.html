@@ -1746,7 +1746,7 @@ minBuildDate = new DateTime($('#build-min'), {
 
 
   <script>
-    function update_status(status,table,id,collected=false) {
+    function update_status(status,table,id,collected=false,rejcted_by_photo=false) {
       console.log(status)
 
       var warning_msg=(status == 1 )?'Do you want to accept this applicant?':'Do you want to reject this applicant?'
@@ -1819,7 +1819,7 @@ minBuildDate = new DateTime($('#build-min'), {
          }
            if (status == 2){
             id_array=[id]
-            send_rejection_mail(id_array,table)
+            send_rejection_mail(id_array,table,rejcted_by_photo)
            }
 
            if (status == 1){
@@ -3638,7 +3638,7 @@ var table=0
       });
     }
    
-    function send_rejection_mail(id_array,table) {
+    function send_rejection_mail(id_array,table,photo_rejection) {
     console.log('mail sended ',table)
 
     var reason=document.getElementById('reason-textarea').value;
@@ -3649,7 +3649,7 @@ var table=0
     $.ajax({
       type: "POST",
       url: "{% url 'send_rejection_mail' %}",
-      data: {id_array:id_array,reason:reason,table:table,csrfmiddlewaretoken:'{{ csrf_token }}'},
+      data: {id_array:id_array,reason:reason,table:table,photo_rejection:photo_rejection,csrfmiddlewaretoken:'{{ csrf_token }}'},
       dataType: "json",
       success: function (data) {
       

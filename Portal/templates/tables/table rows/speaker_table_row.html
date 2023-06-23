@@ -75,8 +75,9 @@
                   <!-- superadmin -->
                   {% if sp.status == 0 %}
                  
-                  <button class="btn btn-sm btn-warning" onclick="update_status(1,1,{{sp.id}})">Approve</button>
-                  <button class="btn btn-sm btn-danger" onclick="update_status(2,1,{{sp.id}})" >Reject</button>
+                  <button class="btn btn-sm btn-success" onclick="update_status(1,1,{{sp.id}})">Approve</button>
+                  <button class="btn btn-sm btn-warning" onclick="update_status(2,1,{{sp.id}},false,true)">Reject Photo</button> <br>
+                  <button class="btn btn-sm btn-danger mt-2" onclick="update_status(2,1,{{sp.id}})" >Reject</button>
  
                   {% endif %}
 
