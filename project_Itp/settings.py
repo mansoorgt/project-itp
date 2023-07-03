@@ -146,7 +146,7 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'securemail.sahara.com'
+EMAIL_HOST = 'smtp.saudiesports.sa'
 EMAIL_PORT = 25
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
