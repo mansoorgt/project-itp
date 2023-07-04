@@ -1999,7 +1999,7 @@ class Tablepage():
     
         return JsonResponse({'results':list(results)}) 
     def delete_codes(request):
-        s_codes_array=request.GET.getlist('s_codes_array[]')
+        s_codes_array=request.POST.getlist('s_codes_array[]')
        
         obj=Unique_reg_code.objects.filter(code__in=s_codes_array)
         obj.delete()

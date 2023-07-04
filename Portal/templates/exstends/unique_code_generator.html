@@ -106,9 +106,9 @@ function download_ecxel() {
    
 function delete_codes () { 
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "{% url 'delete_codes' %}",
-        data:{s_codes_array:s_codes_to_delete},
+        data:{s_codes_array:s_codes_to_delete,'csrfmiddlewaretoken':'{{csrf_token}}'},
         dataType: "json",
         success: function (response) {
             document.getElementById('search-counts').innerHTML=''
