@@ -1,0 +1,556 @@
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Distinguished Guest Registration</title>
+<!-- custom style -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+<!-- custom style -->
+<link rel="icon" type="image/x-icon" href="{% static 'images/nxt_favicon.png' %}"/>
+<!-- font style -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- font style -->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+  <!-- extras select 2  -->
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
+    <link href="https://fonts.cdnfonts.com/css/acumin-pro" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/simplepicker.css' %}">
+    
+    <style>
+       #loading-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    /* Add some space above the loading text */
+    #loading-indicator p {
+      margin-top: 10px;
+    }
+  #video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+          input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+</style>
+    
+    
+</head>
+ 
+
+
+  <body style="background-color: black; ">
+      <video autoplay muted loop id="video-background" preload="auto" playsinline>
+         <source  src="{% static 'bg-video.mp4' %}" type="video/mp4">
+<!--        <source src="{% static 'bg.webm' %}" type="video/webm">
+       
+      <source src="{% static 'bg.webp' %}" type="video/webp">
+    -->
+   
+      <!-- add more <source> elements for different video formats -->
+    </video>
+
+    <!-- navbar section start -->
+
+<!--     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+      <div class="container-fluid">
+        <a class="navbar-brand p-1 order-0" href="https://www.nextwrld.sa/en"><img class="img-fluid" src="{% static 'img/logo.png' %}" style="width:50%; margin-left: 30px;"></a>
+        <button class="navbar-toggler btn btn-outline-light order-12" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse order-11" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+       
+          </ul>
+        </div>
+      </div>
+    </nav> -->
+                                        
+<!--    new nav start                                      -->
+                                        
+                                        
+       <header class="header2">
+      <input type="checkbox" name="" id="check">
+  
+      <div class="hamburger-menu-container">
+          <div class="hamburger-menu">
+              <div></div>
+          </div>
+      </div>
+  
+      <div class="logo-container">
+          <h3 class="logo"><a href="https://www.nextwrld.sa/en"><img src="https://www.nextwrld.sa/assets-user/img/nextwrld-logo.png" alt="NEXT WRLD" class="img-fluid" /></a></h3>
+      </div>
+  
+      <div class="nav-btn ml-auto mr-auto">
+          <div class="nav-links">
+          <div class="right-menu justify-content-center pl-0 d-flex d-lg-none">
+              <ul class="m-0">
+  
+            
+  
+                                  </ul>
+          </div>
+              <ul>
+                  <li class="nav-link" style="--i: .6s">
+                      <a href="https://www.nextwrld.sa/en/program"><span>PROGRAM</span></a>
+                  </li>
+                  <li class="nav-link" style="--i: 0.85s">
+                      <a href="https://www.nextwrld.sa/en/speakers"><span>SPEAKERS</span></a>
+                  </li>
+                  <li class="nav-link" style="--i: 1.55s">
+                      <a href="https://www.nextwrld.sa/en/partners"><span>PARTNERS</span></a>
+                  </li>
+                  <li class="nav-link" style="--i: 1.35s">
+                      <a href="https://www.nextwrld.sa/en/news"><span>NEWS</span></a>
+                  </li>
+                  <li class="nav-link" style="--i: 1.15s">
+                      <a href="https://www.nextwrld.sa/en/about"><span>About us</span></a>
+                  </li>
+                  <li class="nav-link" style="--i: 1.85s">
+                      <a href="https://www.nextwrld.sa/en/contact-us"><span>Contact us</span></a>
+                  </li>
+              </ul>
+              <div class="social d-flex d-md-none ">
+                  <a href="https://www.instagram.com/nextwrldsa/" class="instagram" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm-53.56 126.87c-48.16,2.2 -73.46,29.3 -75.56,75.57 -1.6,35.03 -1.6,72.09 0,107.12 2.1,46.27 27.4,73.37 75.56,75.57 35.04,1.59 72.09,1.59 107.13,0 46.27,-2.12 73.36,-27.38 75.56,-75.57 1.59,-35.04 1.59,-72.07 0,-107.12 -2.16,-47.16 -28.4,-73.41 -75.56,-75.57 -35.04,-1.59 -72.09,-1.59 -107.13,0zm106.06 23.39c34.99,1.59 51.66,18.25 53.24,53.25 1.58,34.3 1.58,70.68 0,104.98 -1.63,36.01 -19.16,51.7 -53.24,53.25 -34.32,1.57 -70.67,1.57 -104.99,0 -34.09,-1.55 -51.61,-17.24 -53.25,-53.25 -1.57,-34.3 -1.57,-70.68 0,-104.98 1.55,-34.1 17.25,-51.61 53.25,-53.25 34.32,-1.57 70.67,-1.57 104.99,0zm-52.5 149.04c-23.91,0 -43.3,-19.38 -43.3,-43.3 0.01,-23.92 19.39,-43.3 43.3,-43.3 23.92,0 43.31,19.38 43.31,43.3 0,23.91 -19.39,43.3 -43.31,43.3l0 0zm0 -110.01c-36.83,0 -66.71,29.87 -66.71,66.71 0,36.84 29.87,66.71 66.71,66.71 36.85,0 66.71,-29.87 66.71,-66.71 0,-36.84 -29.86,-66.71 -66.71,-66.71zm84.94 -2.64c0,8.61 -6.98,15.6 -15.59,15.6 -8.62,0 -15.59,-6.98 -15.59,-15.59 0,-8.61 6.97,-15.59 15.59,-15.59 8.61,0 15.59,6.98 15.59,15.58z"/></g></svg></a>
+                  <a href="https://www.youtube.com/channel/UC-OFimRLY7Jxdn_SvAsCzWg" class="youtube" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm36.09 259.35l-56.53 31c-2.45,1.33 -4.66,-0.45 -4.66,-3.24l0 -63.64c0,-2.83 2.28,-4.61 4.74,-3.21l56.91 32.64c2.52,1.43 2.09,5.07 -0.46,6.45zm89.43 -36.56c0,-30.19 -24.47,-54.65 -54.65,-54.65l-141.74 0c-30.18,0 -54.65,24.46 -54.65,54.65l0 66.42c0,30.19 24.47,54.65 54.65,54.65l141.75 0c30.17,0 54.64,-24.46 54.64,-54.65l0 -66.42z"/></g></svg></a>
+                  <a href="https://twitter.com/nextwrldsa" class="twitter" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm123.09 177.13c-7.88,3.57 -16.55,5.73 -25.06,7.16 7.49,-1.26 18.57,-19.13 20.71,-26.14 0.65,-1.28 -0.28,-1.73 -1.38,-1.19 -9.49,5.09 -19.31,8.78 -29.76,11.39 -1.96,0.49 -3.13,-1.95 -4.65,-3.21 -37.09,-31.55 -92.28,0.09 -85.07,48.97 0.16,1.2 0.05,1.36 -1.03,1.2 -40.87,-6.09 -74.76,-20.71 -102.26,-52.06 -1.2,-1.36 -1.85,-1.36 -2.82,0.11 -14.48,21.7 -4.03,51.87 15.12,66.8 -0.81,0.16 -10.82,-0.92 -19.73,-5.53 -1.2,-0.76 -1.8,-0.32 -1.9,1.03 -1.21,21.24 18.14,46.06 39.2,49.67 -3.95,0.86 -8.02,1.49 -19.36,0.6 -1.41,-0.27 -1.95,0.43 -1.41,1.79 8.52,23.21 26.9,30.12 40.67,34.05 1.84,0.32 3.69,0.32 5.54,0.76 -10.06,14.95 -53.55,22.09 -70.28,20.44 -1.16,-0.17 -5.52,-0.78 -2.71,1.52 99.36,65.51 223.11,-4.6 223.11,-129.21 0,-1.61 1.9,-2.49 3.03,-3.34 5.17,-3.89 20.97,-18.14 20.97,-24.81 0,-0.66 0.08,-0.45 -0.93,0z"/></g></svg></a>
+                  <!--a href="https://www.twitch.tv/next_wrld" class="twitch" target="_blank">&nbsp;</a-->
+                  <a href="https://www.linkedin.com/company/nextwrldsa/" class="linkedin" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm-114.04 374.81l49.03 0 0 -158.41 -49.03 0 0 158.41zm24.28 -179.15c16.02,0 29,-13.1 29,-29.24 0,-16.14 -12.98,-29.23 -29,-29.23 -16.02,0 -28.99,13.09 -28.99,29.23 0,16.14 12.97,29.24 28.99,29.24zm103.13 96c0,-22.27 10.26,-35.55 29.89,-35.55 18.02,0 26.69,12.74 26.69,35.55 0,22.81 0,83.15 0,83.15l48.8 0c0,0 0,-57.87 0,-100.3 0,-42.43 -24.05,-62.95 -57.64,-62.95 -33.6,0 -47.74,26.18 -47.74,26.18l0 -21.34 -47.03 0 0 158.41 47.03 0c0,0 0,-58.75 0,-83.15z"/></g></svg></a>
+              </div>
+          </div>
+      </div>
+      <div class="header-right">
+          <div class="social d-none d-md-flex">
+              <a href="https://www.instagram.com/nextwrldsa/" class="instagram" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm-53.56 126.87c-48.16,2.2 -73.46,29.3 -75.56,75.57 -1.6,35.03 -1.6,72.09 0,107.12 2.1,46.27 27.4,73.37 75.56,75.57 35.04,1.59 72.09,1.59 107.13,0 46.27,-2.12 73.36,-27.38 75.56,-75.57 1.59,-35.04 1.59,-72.07 0,-107.12 -2.16,-47.16 -28.4,-73.41 -75.56,-75.57 -35.04,-1.59 -72.09,-1.59 -107.13,0zm106.06 23.39c34.99,1.59 51.66,18.25 53.24,53.25 1.58,34.3 1.58,70.68 0,104.98 -1.63,36.01 -19.16,51.7 -53.24,53.25 -34.32,1.57 -70.67,1.57 -104.99,0 -34.09,-1.55 -51.61,-17.24 -53.25,-53.25 -1.57,-34.3 -1.57,-70.68 0,-104.98 1.55,-34.1 17.25,-51.61 53.25,-53.25 34.32,-1.57 70.67,-1.57 104.99,0zm-52.5 149.04c-23.91,0 -43.3,-19.38 -43.3,-43.3 0.01,-23.92 19.39,-43.3 43.3,-43.3 23.92,0 43.31,19.38 43.31,43.3 0,23.91 -19.39,43.3 -43.31,43.3l0 0zm0 -110.01c-36.83,0 -66.71,29.87 -66.71,66.71 0,36.84 29.87,66.71 66.71,66.71 36.85,0 66.71,-29.87 66.71,-66.71 0,-36.84 -29.86,-66.71 -66.71,-66.71zm84.94 -2.64c0,8.61 -6.98,15.6 -15.59,15.6 -8.62,0 -15.59,-6.98 -15.59,-15.59 0,-8.61 6.97,-15.59 15.59,-15.59 8.61,0 15.59,6.98 15.59,15.58z"/></g></svg></a>
+              <a href="https://www.youtube.com/channel/UC-OFimRLY7Jxdn_SvAsCzWg" class="youtube" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm36.09 259.35l-56.53 31c-2.45,1.33 -4.66,-0.45 -4.66,-3.24l0 -63.64c0,-2.83 2.28,-4.61 4.74,-3.21l56.91 32.64c2.52,1.43 2.09,5.07 -0.46,6.45zm89.43 -36.56c0,-30.19 -24.47,-54.65 -54.65,-54.65l-141.74 0c-30.18,0 -54.65,24.46 -54.65,54.65l0 66.42c0,30.19 24.47,54.65 54.65,54.65l141.75 0c30.17,0 54.64,-24.46 54.64,-54.65l0 -66.42z"/></g></svg></a>
+              <a href="https://twitter.com/nextwrldsa" class="twitter" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm123.09 177.13c-7.88,3.57 -16.55,5.73 -25.06,7.16 7.49,-1.26 18.57,-19.13 20.71,-26.14 0.65,-1.28 -0.28,-1.73 -1.38,-1.19 -9.49,5.09 -19.31,8.78 -29.76,11.39 -1.96,0.49 -3.13,-1.95 -4.65,-3.21 -37.09,-31.55 -92.28,0.09 -85.07,48.97 0.16,1.2 0.05,1.36 -1.03,1.2 -40.87,-6.09 -74.76,-20.71 -102.26,-52.06 -1.2,-1.36 -1.85,-1.36 -2.82,0.11 -14.48,21.7 -4.03,51.87 15.12,66.8 -0.81,0.16 -10.82,-0.92 -19.73,-5.53 -1.2,-0.76 -1.8,-0.32 -1.9,1.03 -1.21,21.24 18.14,46.06 39.2,49.67 -3.95,0.86 -8.02,1.49 -19.36,0.6 -1.41,-0.27 -1.95,0.43 -1.41,1.79 8.52,23.21 26.9,30.12 40.67,34.05 1.84,0.32 3.69,0.32 5.54,0.76 -10.06,14.95 -53.55,22.09 -70.28,20.44 -1.16,-0.17 -5.52,-0.78 -2.71,1.52 99.36,65.51 223.11,-4.6 223.11,-129.21 0,-1.61 1.9,-2.49 3.03,-3.34 5.17,-3.89 20.97,-18.14 20.97,-24.81 0,-0.66 0.08,-0.45 -0.93,0z"/></g></svg></a>
+              <!--a href="https://www.twitch.tv/next_wrld" class="twitch" target="_blank">&nbsp;</a-->
+              <a href="https://www.linkedin.com/company/nextwrldsa/" class="linkedin" target="_blank"><svg height="512px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"><defs></defs><g id="Layer_x0020_1"><path class="fil0" d="M256 0c141.39,0 256,114.61 256,256 0,141.39 -114.61,256 -256,256 -141.39,0 -256,-114.61 -256,-256 0,-141.39 114.61,-256 256,-256zm-114.04 374.81l49.03 0 0 -158.41 -49.03 0 0 158.41zm24.28 -179.15c16.02,0 29,-13.1 29,-29.24 0,-16.14 -12.98,-29.23 -29,-29.23 -16.02,0 -28.99,13.09 -28.99,29.23 0,16.14 12.97,29.24 28.99,29.24zm103.13 96c0,-22.27 10.26,-35.55 29.89,-35.55 18.02,0 26.69,12.74 26.69,35.55 0,22.81 0,83.15 0,83.15l48.8 0c0,0 0,-57.87 0,-100.3 0,-42.43 -24.05,-62.95 -57.64,-62.95 -33.6,0 -47.74,26.18 -47.74,26.18l0 -21.34 -47.03 0 0 158.41 47.03 0c0,0 0,-58.75 0,-83.15z"/></g></svg></a>
+          </div>
+          <div class="right-menu justify-content-end d-none d-lg-flex">
+              <ul class="m-0">
+  
+                  
+  
+                                  </ul>
+          </div>
+      </div>
+  </header>
+                                 
+                                        
+                                        
+                                        
+<!--            new nav end                              -->
+                                        
+<div>
+<div >
+
+<div class="row">
+
+
+<!--   <div class="d-flex justify-content-center bg-main-pos-speaker" style="">
+
+    <div class="col-md-6 col-sm-12 col-lg-6 bg-main-speaker" id="second-black-bg-div" style="">
+  
+    </div>
+  
+  </div> -->
+
+
+
+</div>
+
+
+
+<div class="container" id="main-container">
+<form onsubmit="submitDistinguished(event)" id='speaker-reg-form'>
+
+<div class="row">
+<div class="d-flex justify-content-center">
+  <div class="col-md-7" style="">
+    <div style="background-color: black; padding-left: 20px; padding-right: 20px; margin-top:130px; border-radius:10px;">
+    <div class="row">
+                        <div class="col-md-12">
+      <h1 class="mt-5 text-center text-white font-weight-bold glow">DISTINGUISHED GUEST REGISTRATION</h1>
+    </div>
+  <div class="col-lg-6 col-md-12 col-sm-12">
+    <div class="form-group mt-4">
+      <label for="exampleInputEmail1">First Name</label>
+        <input type="text" class="form-control"  name="first-name" id="first-name"  aria-describedby="emailHelp"  required>
+        <small id="first-name-error" class="d-none" style="color: #f296a5;">
+          Please enter your first name
+        </small>
+      </div>
+</div>
+
+
+
+<div class="col-lg-6 col-md-12 col-sm-12">
+  <div class="form-group mt-4">
+    <label for="exampleInputEmail1">Last Name</label>
+      <input type="text" class="form-control" name="last-name" id="last-name" aria-describedby="emailHelp"  required>
+      <small id="last-name-error" class="d-none" style="color: #f296a5;">
+        Please enter your last name
+      </small>
+    </div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-lg-6 col-md-12 col-sm-12">
+  <div class="form-group mt-4">
+    <label for="exampleInputEmail1">Designation</label>
+      <input type="text" class="form-control" name="designation" id="designation" aria-describedby="emailHelp"  required>
+      <small id="designation-error" class="d-none" style="color: #f296a5;">
+        Please enter you designation
+      </small>
+    </div>
+</div>
+
+
+<div class="col-lg-6 col-md-12 col-sm-12">
+  <div class="form-group mt-4">
+    <label for="exampleInputEmail1">Company</label>
+      <input type="text" class="form-control" name="company" id="company" aria-describedby="emailHelp" placeholder="" required>
+      <small id="company-error" class="d-none" style="color: #f296a5;">
+        Please enter your company name
+      </small>
+    </div>
+</div>
+</div>
+
+<div class="row">
+
+  <div class="col-lg-6 col-md-12 col-sm-12">
+    <div class="form-group mt-4">
+      <label for="exampleInputEmail1">Email</label>
+        <input type="email"  class="form-control" name="email" id="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" aria-describedby="emailHelp" required>
+        <small id="email-error" class="d-none" style="color: #f296a5;">
+          Please enter a valid email
+        </small>
+      </div>
+</div>
+
+<div class="col-lg-6 col-md-12 col-sm-12">
+    <div class="form-group mt-4">
+      <label for="exampleInputEmail1"> Mobile Number</label>
+        <input type="tel" class="form-control" name="mobile"  id="mobile" aria-describedby="emailHelp"  required>
+        <small id="mobile-error" class="d-none" style="color: #f296a5;">
+          please enter your mobile number
+        </small>
+      </div>
+</div>
+
+
+</div>
+
+<div class="row">
+
+  <div class="col-lg-6 col-md-12 col-sm-12">
+    <div class="form-group mt-4">
+        <label for="exampleInputEmail1">Country Of Residence</label>
+        <select  class="form-control " name="country" id="country" aria-describedby="emailHelp" required>
+          </select>
+          <small id="country-error" class="d-none" style="color: #f296a5;">
+            Please enter your country of residence
+          </small>
+      </div>
+</div>
+
+  <div class="col-lg-6 col-md-12 col-sm-12">
+    <div class="form-group mt-4">
+        <label for="exampleInputEmail1">City Travelling From</label>
+        <input type="text" class="form-control" id="traveling-from" name="traveling-from" aria-describedby="emailHelp"  required>
+        <small id="traveling-from-error" class="d-none" style="color: #f296a5;">
+          Please enter a city travelling from
+        </small>
+      </div>
+</div>
+                                                                          
+</div>
+
+
+
+<div class="row">
+
+<div class="col-lg-6 col-md-12 col-sm-12">
+
+
+    <div  class="form-group mt-4">
+        <label for="exampleInputEmail1">Departure Date and Time</label>
+        <div onclick="onPressDepartureDate()">        
+        <input type="text" class="form-control" onfocus="this.blur()" style="pointer-events: none;" placeholder="dd-mm-yyyy hh-mm"  name="depature-date-time" id='depature-date-time' aria-describedby="emailHelp" required>
+      </div>
+        <small id="depature-date-time-error" class="d-none" style="color: #f296a5;">
+          Please select a departure date and time
+        </small>
+      </div>
+
+
+</div>
+
+<div class="col-lg-6 col-md-12 col-sm-12">
+
+
+ <div class="form-group mt-4">
+        <label for="exampleInputEmail1">Return Date and Time</label>
+        <div onclick="onPressReturnDate()">        
+        <input type="text" class="form-control" onfocus="this.blur()" id="retun-date-time" style="pointer-events: none;" placeholder="dd-mm-yyyy hh-mm" name="retun-date-time" aria-describedby="emailHelp" required>
+        </div>
+       <small id="retun-date-time-error" class="d-none" style="color: #f296a5;">
+          Please select a return date and time
+        </small>
+      </div>
+
+
+</div>
+
+<div class="col-md-12 col-lg-12 col-sm-12 text-white mt-4 mb-2" style="text-align:justify;">
+Please note flights are booked by the Next World team. An itinerary based on your above preferences will be shared ahead of booking for your confirmation. 
+
+  <br>
+A 3-night stay at Four Season Hotel Riyadh is provided by the Saudi Esports Federation.
+  
+</div>
+  
+</div>
+
+
+
+
+
+
+<div class="row">
+
+<div class="col-lg-6 col-md-12 col-sm-12">
+
+  <div class="form-group mt-4">
+        <label for="exampleInputEmail1">Passport Copy</label>
+        <input type="file" class="myform-control" id="passport-copy" onchange="check_file_input_size(this)" name="passport-copy" accept="image/png, image/jpeg" aria-describedby="emailHelp" required>
+        <small id="passport-copy-error" class="d-none" style="color: #f296a5;">
+          
+          Please upload the passport copy
+        </small>
+      </div>
+
+
+</div>
+
+   <div class="col-lg-6 col-md-12 col-sm-12">
+
+    <div class="form-group mt-4">
+        <label for="exampleInputEmail1">Photo Upload</label>
+        <input type="file" class="myform-control" id="photo-upload" onchange="check_file_input_size(this)" name="photo-upload" accept="image/png, image/jpeg" aria-describedby="emailHelp" required>
+        <small id="photo-upload-error" class="d-none" style="color: #f296a5;">
+         Please upload the photo
+        </small>
+ <div class=" mt-2 text-white">
+
+  Please note that the photo will be used for your delegate badge
+
+</div>
+      </div>
+
+
+
+</div>
+
+</div>
+
+
+<div class="row">
+
+
+<div class="col-lg-6 col-md-12 col-sm-12">
+
+    <label class="mt-4" for="exampleInputEmail1">Do you need KSA visa?</label>
+    <br>
+    <div class="form-check form-check-inline mt-2 ">
+        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio1" required  value="1">
+        <label class="form-check-label" for="inlineRadio1">YES</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio2" required value="0">
+        <label class="form-check-label" for="inlineRadio2">NO</label>
+      </div>
+      <br>
+      <small id="ksa-visa-error" class="d-none" style="color: #f296a5;">
+        Please select an option
+       </small>
+
+
+
+</div>
+
+</div>
+
+
+
+<div id="loading-indicator" class="d-none text-white text-center">
+  <p>Please wait...</p>
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+      </div>
+<div class="row">
+<div class="col-md-3 mt-4 mb-3">
+
+  <button type="submit" class="btn btn-light btn-lg" onclick="validate_form('speaker-reg-form')">
+    Submit
+  
+  </button>
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+</form>
+</div>
+
+<!-- succes message showing start -->
+<div class="d-flex justify-content-center shadow-lg  d-none" id="success-div" style="margin-top:130px;" >
+  <div class="col-md-6 col-lg-4 col-sm-12"> 
+  <div class="" style="background-color: black; padding: 50px; border-radius: 10px;">
+  <div class="d-flex justify-content-center mb-4">
+  <img src="{% static 'img/success_tick.png' %}">
+  </div>
+  
+  
+  <p class="text-white" style="text-align: justify;">Thank you for registering your interest to attend Next World Forum. 
+    Please expect to receive an email from the Next World team.</p>
+  </div>
+  </div>
+</div>
+  
+  <!-- success message showing end -->
+
+
+
+
+</div>
+</div>
+<div class="retundatepicker"></div>
+<div class="depaturedatepicker"></div>
+<!-- footer  start-->
+
+<footer class=" mt-5 mb-3 ">
+  <p class="text-center col-md-12 mb-0 text-white footer-text" style="font-size:10px;"><a class="text-white" >Copyright ©2023 Next World Forum 2023. All Rights Reserved.</a></p>
+
+ 
+</footer>
+
+<!-- footer end -->
+
+
+  </body>
+  <script
+  src="https://code.jquery.com/jquery-3.6.4.js"
+  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    var csrftoken = '{{ csrf_token }}';
+    
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="{% static 'js/countrys.js' %}"></script>
+  <script src="{% static 'js/registration.js' %}"></script>
+  <script src="{% static 'js/simplepicker.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" ></script>
+  <script>
+    let myDepartureDate = new SimplePicker('.depaturedatepicker',{ zIndex: 1000});
+    let myReturnDate= new SimplePicker('.retundatepicker',{ zIndex: 1000});
+
+    function onPressReturnDate() {
+      myReturnDate.open()
+    }
+    function onPressDepartureDate() {
+      myDepartureDate.open()
+    }
+
+    myReturnDate.on('submit', (date, readableDate) => {
+      console.log('retun')
+    $('#retun-date-time').val(moment(date).format('DD-MM-YYYY hh:mm A'))
+    $('#'+'retun-date-time'+'-error').addClass('d-none')
+
+    });
+
+    myDepartureDate.on('submit', (date, readableDate) => {
+      console.log('depr')
+     $('#depature-date-time').val(moment(date).format('DD-MM-YYYY hh:mm A'))
+     $('#'+'depature-date-time'+'-error').addClass('d-none')
+     console.log(moment($('#depature-date-time').val(),'DD-MM-YYYY hh:mm A').toDate())
+
+    });
+
+
+
+    var input = document.querySelector("#mobile");
+    var iti = window.intlTelInput(input, {
+        preferredCountries: ["ae"], // Set preferred countries here
+        separateDialCode: true,
+        initialCountry: "sa",
+        enablePlaceholder:false,  
+        autoPlaceholder:'',
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+    });
+
+ 
+</script>
+
+  </html>
