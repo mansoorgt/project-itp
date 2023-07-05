@@ -103,7 +103,7 @@
                <a class="dropdown-item" href="{% url 'applicant_registrations_page' %}">APPLICANT DELEGATES</a>
                <hr/>
                <a class="dropdown-item text-success" href="{% url 'applicant_registrations_page' %}?filter=approved">ACCEPTED DELEGATES</a>
-               <a class="dropdown-item text-danger" href="{% url 'applicant_registrations_page' %}?filter=approved">REJECTED DELEGATES</a>
+               <!-- <a class="dropdown-item text-danger" href="{% url 'applicant_registrations_page' %}?filter=approved">REJECTED DELEGATES</a> -->
             </div>
           </div>
           
@@ -201,10 +201,10 @@
                 </div>
 
 
-                <div class="col-12 col-xl-4">
+                <div class="d0-np col-12 col-xl-4">
                   <div class="justify-content-end d-flex">
                    <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                     <button class="btn btn-sm bg-black" type="button" id="dropdownMenuDate2">
+                     <button class="d-none btn btn-sm bg-black" type="button" id="dropdownMenuDate2">
                       <span  class="badge badge-success mr-1" style="border-radius: 5px !important;" >Accepted Delegates</span><span class="badge badge-danger" style="border-radius: 5px !important;">Rejected Delegates</span>
                      </button>
                  
@@ -246,7 +246,7 @@
             </div>
             <div class="col-md-6 grid-margin transparent mt-3">
               <div class="row">
-                <div class="col-md-6 mb-4 stretch-card transparent">
+                <div class=" d-none col-md-6 mb-4 stretch-card transparent">
                     
                      <a href="{% url 'applicant_registrations_page' %}?filter=approved" style="text-decoration: none; color: white;">
                   <div class="card card-tale">
