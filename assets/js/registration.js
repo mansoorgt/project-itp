@@ -52,6 +52,64 @@ function submitSpeakerForm(e) {
     
 }
 
+//this is speaker registrations copy so mind it 
+function submitDistinguished(e) {
+   
+  e.preventDefault()
+
+  if ($('#speaker-reg-form input[type="file"].file-size-over').length > 0){
+    $('input[type="file"]').focus()
+    return false;
+  }
+  loading_on(true)
+  var ksa_visa=$('input[name=ksa-visa]:checked', '#speaker-reg-form').val()
+  console.log(ksa_visa)
+  var m_form=new FormData($('#speaker-reg-form')[0])
+  m_form.append('ksa-visa',ksa_visa)
+  
+  m_form.set('retun-date-time',moment($('#retun-date-time').val(),'DD-MM-YYYY hh:mm A ').format('YYYY-MM-DDTH:mm'))
+  m_form.set('depature-date-time',moment($('#depature-date-time').val(),'DD-MM-YYYY hh:mm A ').format('YYYY-MM-DDTH:mm'))
+  // m_form.set('retun-date-time',$('#retun-date-time').val())
+  // m_form.set('depature-date-time',$('#depature-date-time').val())
+
+  m_form.append('csrfmiddlewaretoken',csrftoken)
+  m_form.set('mobile',iti.getNumber())
+
+  $.ajax({
+      type: "POST",
+      url: "submitDistinguishedform",
+      data: m_form,
+      processData: false,
+      contentType: false,
+      dataType: "json",
+      success: function (res) {
+
+        fetch('send_destiguished_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
+        body:JSON.stringify({'reg_id':res.reg_id})})
+        loading_on(false)
+        // Swal.fire({
+        //   position: 'top-center',
+        //   icon: 'success',
+        //   text: 'Thank you for registering your interest to attend Next World Forum. Please expect to receive an email from the Next World team',
+        //   showConfirmButton: true,
+
+
+        // })
+
+        $('#main-container').addClass('d-none')
+        $('#second-black-bg-div').addClass('d-none')
+        $('#success-div').removeClass('d-none')
+            setTimeout(() => {
+              $('#speaker-reg-form')[0].reset()
+              // window.location.href=window.location.origin
+
+            }, 2000);
+          
+      }
+  });
+  
+}
+
 async function submitInvitedForm(e) {
   e.preventDefault()
   var valid=false
