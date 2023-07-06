@@ -26,22 +26,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
   <style>
-.id_img
-{
-  border: none;
-  width: 80px;
-  height: 100px;
-}
-.log
-{
-  width: 70%;
-}
-.vapp-card
-{
-  background-color:#5fd8f8;
-  height: 700px;
 
-}
 
     body{
       -webkit-print-color-adjust:exact !important;
@@ -51,7 +36,7 @@
     @media print {
       @page {
    
-          size: 54mm 86mm ;   
+          size:85mm 60.5mm  !important;   
       
 margin: 0px;
 
@@ -86,10 +71,10 @@ margin: 0px;
 </head>
 <body>
 <!-- vapp_vip Id card Design Start -->
-<div class="col-md-6 main-vapp-card" id="section-to-print">
+<div class="col-md-6" id="section-to-print">
 
     <div style="position:absolute; left: 0px;">
-<img src="{% static 'images/daz_idcard/daz_build_new.png' %}" style="width: 100%; height: 325px; ">
+<img src="{% static 'images/daz_idcard/speaker.png' %}" style="width: 100%; ">
     </div>
 
     <!-- <div style="z-index: 100; position: absolute; top:175px; left: 18px; width: 165px; text-align: center;">
@@ -98,10 +83,10 @@ margin: 0px;
       <div style=" font-size: 12px; margin-top: 5px;">VALID UNTIL<br> FEB 28,2023</div>
     </div> -->
     
-<div style=" z-index:100; width: 145px; position: absolute; top:255px; left: 31px; text-align:center;">
+<!-- <div style=" z-index:100; width: 145px; position: absolute; top:255px; left: 31px; text-align:center;">
   <div style="font-family: 'Work Sans', sans-serif !important; font-size: 17px; font-weight: bold; color: #4F84C4;">{{des}}</div>
 
-</div>
+</div> -->
 
   </div>
   
