@@ -211,7 +211,7 @@
                   <div class="justify-content-end d-flex">
                    <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                      <button class=" btn btn-sm bg-black" type="button" id="dropdownMenuDate2">
-                      <a href="{% url 'applicant_registrations_page' %}?filter=approved"> <span  class="badge badge-success mr-1" style="border-radius: 5px !important;" >Accepted Delegates</span></a> <a href="{% url 'applicant_registrations_page' %}?filter=rejected"><span class="badge badge-danger" style="border-radius: 5px !important;">Rejected Delegates</span></a>
+                      <a href="{% url 'applicant_registrations_page' %}?filter=approved"> <span  class="badge badge-success mr-1" style="border-radius: 5px !important;" >Accepted Delegates ({{accepted_count}})</span></a> <a href="{% url 'applicant_registrations_page' %}?filter=rejected"><span class="badge badge-danger" style="border-radius: 5px !important;">Rejected Delegates ({{rejected_count}})</span></a>
                      </button>
                  
                    </div>

@@ -1100,6 +1100,10 @@ p {
                                                                     <p class="m-b-10 f-w-600">KSA VISA</p> 
                                                                     <h6 class="text-muted f-w-400" id="profile-ksa-visa"></h6>
                                                                 </div>
+                                                                <div class="col-md-6 col-sm-6">
+                                                                  <p class="m-b-10 f-w-600">National ID / Passport Number</p> 
+                                                                  <h6 class="text-muted f-w-400" id="profile-passport-id"></h6>
+                                                              </div>
                                                                       <div class="col-md-6 col-sm-6" id='vehicle-num'>
                                                                         <p class="m-b-10 f-w-600" >Vehicle Number </p>
                                                                         <h6 class="text-muted f-w-400" id="profile-vehicle-num">98979989898</h6>
@@ -3124,6 +3128,7 @@ function ExportToExcel_vapp(type, fn, dl) {
           document.getElementById('id-photo-img-back-div').style.display='none'
           document.getElementById('mulkiya-img-back-div').style.display='none'
           document.getElementById('vapp-type-div').style.display='none'
+          document.getElementById('profile-passport-id').innerHTML=data.passport_id
          // document.getElementById('id-photo-img').src=data.passport
           //document.getElementById('download-id-proof').href=data.passport
           document.getElementById('profile-next-btn').onclick=function(){ next_profile(2,data.id) }

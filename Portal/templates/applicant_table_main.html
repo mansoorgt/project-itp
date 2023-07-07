@@ -1123,6 +1123,11 @@ p {
                                                                     <h6 class="text-muted f-w-400" id="profile-ksa-visa"></h6>
                                                                 </div>
 
+                                                                <div class="col-md-6 col-sm-6">
+                                                                  <p class="m-b-10 f-w-600">National ID / Passport Number</p> 
+                                                                  <h6 class="text-muted f-w-400" id="profile-passport-id"></h6>
+                                                              </div>
+
                                                                 <div class="col-md-6 col-sm-6" id="reason-for-attend-div">
                                                                   <p class="m-b-10 f-w-600">Reason for Attend</p> 
                                                                   <textarea class="text-muted form-control f-w-400" id="profile-reason-attend" readonly></textarea>
@@ -3161,6 +3166,7 @@ function ExportToExcel_vapp(type, fn, dl) {
           document.getElementById('vapp-type-div').style.display='none'
           document.getElementById('id-photo-img').src=data.passport
           document.getElementById('download-id-proof').href=data.passport
+          document.getElementById('profile-passport-id').innerHTML=data.passport_id
           document.getElementById('profile-next-btn').onclick=function(){ next_profile(2,data.id) }
           document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(2,data.id) }
            document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,2,data.id); update_status_profile(data.status,data.remark); }
@@ -3209,6 +3215,7 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('id-photo-img-back-div').style.display='none'
             document.getElementById('mulkiya-img-back-div').style.display='none'
             document.getElementById('vapp-type-div').style.display='none'
+            document.getElementById('profile-passport-id').innerHTML=data.passport_id
             // document.getElementById('id-photo-img').src=data.passport
            // document.getElementById('id-photo-img').style.display='none'
          // document.getElementById('id-photo-img-lable').style.display='block'

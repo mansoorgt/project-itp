@@ -343,10 +343,11 @@ class Dashboard():
         Distinguished_count=DistinguishedRegistrations.objects.filter(deleted=0).filter(status=0).count()
         all_count=speaker_count+applicant_count+invited_count
         accepted_count=ApplicantRegistrations.objects.filter(deleted=0,status=1).count()+InvitedRegistrations.objects.filter(deleted=0,status=1).count()
+        rejected_count=ApplicantRegistrations.objects.filter(deleted=0,status=2).count()+InvitedRegistrations.objects.filter(deleted=0,status=2).count()
         
         username=request.user.username
        
-        data={'username':username,'speacker_count':speaker_count,'distinguished_count':Distinguished_count,'accepted_count':accepted_count,'all_count':all_count,'applicant_count':applicant_count,'invited_count':invited_count,'role_id':int(request.session['user_role'])}
+        data={'username':username,'speacker_count':speaker_count,'rejected_count':rejected_count,'distinguished_count':Distinguished_count,'accepted_count':accepted_count,'all_count':all_count,'applicant_count':applicant_count,'invited_count':invited_count,'role_id':int(request.session['user_role'])}
         return render(request,'dashboard.html',data)       
 class Tablepage():
     @login_required
@@ -1495,6 +1496,7 @@ class Tablepage():
         
         return JsonResponse({'table_html':html})
     def get_profile_details(request):
+        
         id=request.POST.get('id')
         table=request.POST.get('table')
      
@@ -1505,11 +1507,11 @@ class Tablepage():
         
         if int(table)==2:
             obj=InvitedRegistrations.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'intrested':obj.intrested_in,'remark':obj.remark,'photo_upload':str(obj.photo_upload)}
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'intrested':obj.intrested_in,'remark':obj.remark,'photo_upload':str(obj.photo_upload),'passport_id':obj.passport_id}
         
         if int(table)==3:
             obj=ApplicantRegistrations.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'pre_attand':obj.pre_attend,'remark':obj.remark,'photo_upload':str(obj.photo_upload)}
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'pre_attand':obj.pre_attend,'remark':obj.remark,'photo_upload':str(obj.photo_upload),'passport_id':obj.passport_id}
         
         if int(table)==4:
             obj=DistinguishedRegistrations.objects.get(id=id)
