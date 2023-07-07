@@ -33,7 +33,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
-    div.dataTables_wrapper div.dataTables_length label
+
+div.dataTables_wrapper div.dataTables_length label
     {
       color: white !important;
     }
@@ -46,6 +47,7 @@
     {
       color:white;
     }
+
 
     .daz_menu:hover
   {
@@ -295,7 +297,7 @@ p {
 
 
 </head>
-<body>
+<body style="background-color: black;;">
   
   
   
@@ -427,26 +429,13 @@ p {
 
       <!-- partial -->
       
-      <div class="main-panel" style="background-color: black;">
+      <div class="main-panel">
         
           <div class="bar" style="position:fixed; z-index: 1; width: 100%;"  ></div>
         
 <div class="row">
   <div class="col-xl-12 col-md-12 c0l-sm-12">
  
-<div class="row">
-
-  {% if filter_bool %}
-  <div class="col-md-6 ml-5" >
-<a class="btn btn-primary filter-btn applicant-filter-btn {% if page == 'applicant' %}active {% endif %}" href="{% url 'applicant_registrations_page' %}?filter=approved"  style="display: inline-block;"> Applicant Delegates </a>
-<a class="btn btn-primary filter-btn invited-filter-btn {% if page == 'invited' %}active {% endif %}" href="{% url 'invited_registrations_page' %}?filter=approved"  style="display: inline-block;"> Invited Delegates </a>
-    </div>
-    {% endif %}
-  
-</div>
-
-
-    
     <!-- <div class="nav-align-top mt-4 p-5 mb-4">
       <ul class="nav nav-pills mb-3" role="tablist">
        
@@ -533,7 +522,7 @@ p {
         <!-- build event TABLE -->
 
         {% block 'buildtable' %}
-        {% include 'tables/applicant_table.html' %}  
+        {% include 'tables/distiguished_table.html' %}  
         {% endblock 'buildtable' %}
 
         <!-- events TABLE -->
@@ -625,7 +614,7 @@ p {
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              Edit Applicant
+              Edit Distinguished
             </h5>
             <button
               type="button"
@@ -646,7 +635,7 @@ p {
                       type="text"
                       class="form-control"
                       id="edit-speaker-first-name"
-                      placeholder=""
+                     
                     />
                   </div>
                 </div>
@@ -657,7 +646,7 @@ p {
                       type="text"
                       class="form-control"
                       id="edit-speaker-last-name"
-                      placeholder=""
+                      
                     />
                   </div>
                 </div>
@@ -669,22 +658,32 @@ p {
                       type="text"
                       class="form-control"
                       id="edit-speaker-designation"
-                      placeholder=""
+                     
                     />
                   </div>
                 </div>
                 <div class="col-md-6 col-sm-6" id="edit-build-pass-other-des-div">
                   <div class="form-group">
-                    <label for="exampleInputUsername1">Country Of Residence</label>
+                    <label for="exampleInputUsername1">Country Of residence</label>
                     <input
                       type="text"
                       class="form-control"
                       id="edit-speaker-country"
-                      placeholder=""
+                      
                     />
                   </div>
                 </div>
-             
+                <div class="col-md-6 col-sm-6" id="edit-build-pass-other-des-div">
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Traveling From</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="edit-speaker-traveling-from"
+                      
+                    />
+                  </div>
+                </div>
 
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group">
@@ -693,30 +692,10 @@ p {
                       type="text"
                       class="form-control"
                       id="edit-speaker-comp"
-                      placeholder=""
+                      placeholder="Enter Company Name"
                     />
                   </div>
                 </div>
-                
-                <!-- <div class="col-md-6 col-sm-6">
-
-                  <div class="form-group">
-                    <label for="exampleInputUsername1">Add New Profile Image</label>
-                  
-                  </div>
-
-                </div> -->
-
-                <div class="col-md-6 col-sm-6">
-                  <div class="form-group">
-                    <label for="exampleInputUsername1">Profile Image</label>
-                    <br />
-                    <input type="file" class="form-control d-none" accept="image/*"  id="edit-applicant-profile"/>
-            <button class="btn btn-primary btn-sm" type="button" onclick="open_edit_file_input()">Choose File</button>
-            <p style="display: inline-block;" id="edit-applicant-profile-file-name">This is a demo.jpg</p>
-                  </div>
-                </div>
-
                 <!-- <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <label for="exampleInputUsername1">Outline Of Talking Points</label>
@@ -724,11 +703,54 @@ p {
                       type="text"
                       class="form-control"
                       id="edit-speaker-outline-talking"
-                      placeholder=""
+                      placeholder="Enter OUTLINE OF TALKING POINTS"
                     />
                   </div>
                 </div> -->
-              
+                
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Depature Date and Time</label>
+                    <input
+                      type="datetime-local"
+                      class="form-control"
+                      id="edit-speaker-depature"
+                      
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Return Date and Time</label>
+                    <input
+                      type="datetime-local"
+                      class="form-control"
+                      id="edit-speaker-return-date"
+                      
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Profile image</label>
+                    <br />
+                    <input type="file" class="form-control d-none" accept="image/*"  id="edit-speaker-profile"/>
+            <button class="btn btn-primary btn-sm" type="button" onclick="open_edit_file_input()">Choose File</button>
+            <p style="display: inline-block;" id="edit-speaker-profile-file-name"></p>
+                  </div>
+                </div>
+
+      <div class="col-md-6 col-sm-6">
+        <div class="form-group">
+          <label for="exampleInputUsername1">Passport</label>
+          <br />
+          <input type="file" class="form-control d-none" accept="image/*"  id="edit-speaker-passport"/>
+  <button class="btn btn-primary btn-sm" type="button" onclick="open_edit_passport_file_input()">Choose File</button>
+  <p style="display: inline-block;" id="edit-speaker-passport-file-name"></p>
+        </div>
+          </div>
+
+
               </div>
             </form>
           </div>
@@ -1002,7 +1024,6 @@ p {
                   </div>
                 </div>
                 
-                
               </div>
             </form>
           </div>
@@ -1115,18 +1136,28 @@ p {
                                                                         <p class="m-b-10 f-w-600">Country</p>
                                                                         <h6 class="text-muted f-w-400" id="profile-country">98979989898</h6>
                                                                     </div>
-                                                                    
+                                                                    <div class="col-md-6 col-sm-6">
+                                                                      <p class="m-b-10 f-w-600">Traveling From</p>
+                                                                      <h6 class="text-muted f-w-400" id="profile-travel">98979989898</h6>
+                                                                  </div>
+                                                                  <!-- <div class="col-md-6 col-sm-6">
+                                                                    <p class="m-b-10 f-w-600">Outline Talking</p>
+                                                                    <h6 class="text-muted f-w-400" id="profile-outline">98979989898</h6>
+                                                                </div> -->
                                                                
-                                                                   
+                                                                    
+                                                                      <div class="col-md-6 col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">DEPATURE DATE AND TIME</p>
+                                                                        <h6 class="text-muted f-w-400" id="profile-depature-date-time">98979989898</h6>
+                                                                    </div>
+                                                                    <div class="col-md-6 col-sm-6">
+                                                                      <p class="m-b-10 f-w-600">RETURN DATE AND TIME</p>
+                                                                      <h6 class="text-muted f-w-400" id="profile-return-date-time">98979989898</h6>
+                                                                  </div>
                                                                   <div class="col-md-6 col-sm-6">
                                                                     <p class="m-b-10 f-w-600">KSA VISA</p> 
                                                                     <h6 class="text-muted f-w-400" id="profile-ksa-visa"></h6>
                                                                 </div>
-
-                                                                <div class="col-md-6 col-sm-6" id="reason-for-attend-div">
-                                                                  <p class="m-b-10 f-w-600">Reason for Attend</p> 
-                                                                  <textarea class="text-muted form-control f-w-400" id="profile-reason-attend" readonly></textarea>
-                                                              </div>
                                                                       <div class="col-md-6 col-sm-6" id='vehicle-num'>
                                                                         <p class="m-b-10 f-w-600" >Vehicle Number </p>
                                                                         <h6 class="text-muted f-w-400" id="profile-vehicle-num">98979989898</h6>
@@ -1154,12 +1185,12 @@ p {
                                                                     <div id='id-photo-hover-div'>
                                                                     <div class="row" >
                                                                     <div class="col-lg-3 col-md-3 col-sm-3" >
-                                                                      <!-- <p class="m-b-10 f-w-600" id="id-image-lable">Passport</p>
+                                                                      <p class="m-b-10 f-w-600" id="id-image-lable">Passport</p>
                                                                       <img class="img-fluid" height="50px" width="50px" id="id-photo-img" width="50px" onclick="change_image(this)" src="https://seuclick.com/imagens/loading.gif?%3E">
                                                                       <br>
                                                                       <a href="" id="download-id-proof" download="">
                                                                         <img  width="20px" src="{% static 'images/download.png' %}" class="img-fluid down_icon ml-3 mt-2" alt="">
-                                                                      </a>   -->
+                                                                      </a>  
                                                                     </div>
 
                                                                       <div class="col-lg-3 col-md-3 col-sm-3" id="id-photo-img-back-div">
@@ -1455,16 +1486,26 @@ p {
   <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom/dist/panzoom.min.js"></script>
 <script>
 function open_edit_file_input(){
-  document.getElementById('edit-applicant-profile').click()
+  document.getElementById('edit-speaker-profile').click()
 }
 
-document.getElementById('edit-applicant-profile').addEventListener('change' , function(){
+document.getElementById('edit-speaker-profile').addEventListener('change' , function(){
 
-  document.getElementById('edit-applicant-profile-file-name').innerHTML=this.files[0].name
+  document.getElementById('edit-speaker-profile-file-name').innerHTML=this.files[0].name
 
 
 })
 
+function open_edit_passport_file_input(){
+  document.getElementById('edit-speaker-passport').click()
+}
+
+document.getElementById('edit-speaker-passport').addEventListener('change' , function(){
+
+  document.getElementById('edit-speaker-passport-file-name').innerHTML=this.files[0].name
+
+
+})
 
 var build_last_data_id=0
 $(window).on('load', function(){
@@ -1480,12 +1521,6 @@ $(window).on('load', function(){
       build_last_data_id=Number(build_last_data_id.slice(3));
       console.log(build_last_data_id)
 
-      const url = new URL(window.location.href);
-      const searchParams = new URLSearchParams(url.search);
-
-      if (searchParams.has('filter')==false) {
-       
-    
       load_new_data()
 
       var interval=setInterval ( function () {
@@ -1495,12 +1530,7 @@ $(window).on('load', function(){
       }
  
       ,5000)
-
-    }else{
-
-      $('.applicant-filter-btn')[0].href="{% url 'applicant_registrations_page' %}?filter=0".replace(0,searchParams.get('filter'))
-      $('.invited-filter-btn')[0].href="{% url 'invited_registrations_page' %}?filter=0".replace(0,searchParams.get('filter'))
-    } 
+ 
  
 });
 // function load_new_data(table) {
@@ -1720,12 +1750,12 @@ minBuildDate = new DateTime($('#build-min'), {
 
   <script>
     function update_status(status,table,id,collected=false,rejcted_by_photo=false) {
+      console.log(status)
 
       var warning_msg=(status == 1 )?'Do you want to accept this applicant?':'Do you want to reject this applicant?'
       warning_msg=(collected)?'Are you sure the card is collected':warning_msg
 
-
-    //   Swal.fire({
+    //       Swal.fire({
     //   title: 'Are you sure?',
     //   text: warning_msg,
     //   icon: 'warning',
@@ -1734,8 +1764,9 @@ minBuildDate = new DateTime($('#build-min'), {
     //   cancelButtonColor: '#d33',
     //   confirmButtonText: 'Yes'
     // }).then((result) => {
-      // if (result.isConfirmed) {
-
+    //   if (result.isConfirmed) {
+       
+    
       var current_build_page=$('table.build').DataTable().page.info().page
       //var current_event_page=$('table.event').DataTable().page.info().page
       //var current_vapp_page=$('table.vapp').DataTable().page.info().page
@@ -1765,22 +1796,35 @@ minBuildDate = new DateTime($('#build-min'), {
           if(table == 2){
             
           //  $('#event-table-div').replaceWith(data.table_html);
-          $('table.build').DataTable().page.len(current_build_page_lenght).draw();
-            $('table.build').DataTable().search(search_build_val).draw();
-            $('table.build').DataTable().page(current_build_page).draw('page')
-            $('#IN-'+id).html(data.table_html)
+            document.getElementById('event-table-div').classList.add('show')
+            document.getElementById('event-table-div').classList.add('active')
+            $('table.event').DataTable().page.len(current_event_page_lenght).draw();
+            $('table.event').DataTable().search(search_event_val).draw();
+           
+            $('table.event').DataTable().page(current_event_page).draw('page')
+            $('#EV-'+id).html(data.table_html)
          }
 
          if(table == 3){
-         
             
-            //  $('#event-table-div').replaceWith(data.table_html);
-            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
-              $('table.build').DataTable().search(search_build_val).draw();
-              $('table.build').DataTable().page(current_build_page).draw('page')
-              $('#AP-'+id).html(data.table_html)
+            // $('#vapp-table-div').replaceWith(data.table_html);
+             document.getElementById('vapp-table-div').classList.add('show')
+             document.getElementById('vapp-table-div').classList.add('active')
+             $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
+             $('table.vapp').DataTable().search(search_vapp_val).draw();
+             
+             $('table.vapp').DataTable().page(current_vapp_page).draw('page')
+             $('#VA-'+id).html(data.table_html)
+          }
+         
+          if(table ==4){
            
-           }
+           // $('#build-table-div').replaceWith(data.table_html);
+           $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+           $('table.build').DataTable().search(search_build_val).draw();
+           $('table.build').DataTable().page(current_build_page).draw('page')
+           $('#DG-'+id).html(data.table_html)
+         }
 
           if (status == 1 ){
             id_array=[id]
@@ -1788,7 +1832,7 @@ minBuildDate = new DateTime($('#build-min'), {
          }
            if (status == 2){
             id_array=[id]
-           send_rejection_mail(id_array,table,rejcted_by_photo)
+            send_rejection_mail(id_array,table,rejcted_by_photo)
            }
 
            if (status == 1){
@@ -1814,9 +1858,7 @@ minBuildDate = new DateTime($('#build-min'), {
       });
 
     // }
-
     // })
-
     }
 
     function update_print_status(table,id) {
@@ -1866,10 +1908,13 @@ minBuildDate = new DateTime($('#build-min'), {
          if(table == 3){
             
             // $('#vapp-table-div').replaceWith(data.table_html);
-            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
-              $('table.build').DataTable().search(search_build_val).draw();
-              $('table.build').DataTable().page(current_build_page).draw('page')
-              $('#AP-'+id).html(data.table_html)
+             document.getElementById('vapp-table-div').classList.add('show')
+             document.getElementById('vapp-table-div').classList.add('active')
+             $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
+             $('table.vapp').DataTable().search(search_vapp_val).draw();
+            
+             $('table.vapp').DataTable().page(current_vapp_page).draw('page')
+             $('#VA-'+id).html(data.table_html)
           }
            
           $('table.display').DataTable();
@@ -1922,10 +1967,13 @@ minBuildDate = new DateTime($('#build-min'), {
          if(table == 3){
             
             // $('#vapp-table-div').replaceWith(data.table_html);
-            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
-            $('table.build').DataTable().search(search_build_val).draw();
-            $('table.build').DataTable().page(current_build_page).draw('page')
-            $('#AP-'+id).html(data.table_html)
+             document.getElementById('vapp-table-div').classList.add('show')
+             document.getElementById('vapp-table-div').classList.add('active')
+             $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
+             $('table.vapp').DataTable().search(search_vapp_val).draw();
+            
+             $('table.vapp').DataTable().page(current_vapp_page).draw('page')
+             $('#VA-'+id).html(data.table_html)
           }
            
           $('table.display').DataTable();
@@ -1957,7 +2005,7 @@ minBuildDate = new DateTime($('#build-min'), {
         type: "POST",
         url: "{% url 'change_remark' %}",
         data: {id:id,table:table,value:textarea.value,csrfmiddlewaretoken:'{{ csrf_token }}'},
-        dataType: "json",
+        dataType: "dataType",
         success: function () {
           
         }
@@ -2040,11 +2088,11 @@ minBuildDate = new DateTime($('#build-min'), {
       'Your requested register has been deleted',
       'success'
     )
-          if(table == 1){
+          if(table == 4){
             var tr = $('#'+id)
             // $('#build-table-div').replaceWith(data.table_html);
             
-            $('table.build').DataTable().rows('#SP-'+id).remove().draw();
+            $('table.build').DataTable().rows('#DG-'+id).remove().draw();
             $('table.build').DataTable().page.len(current_build_page_lenght).draw();
             $('table.build').DataTable().search(search_build_val).draw();
            
@@ -2053,26 +2101,26 @@ minBuildDate = new DateTime($('#build-min'), {
           }
           if(table == 2){
             
-            var tr = $('#'+id)
-            // $('#build-table-div').replaceWith(data.table_html);
+          //  $('#event-table-div').replaceWith(data.table_html);
+            document.getElementById('event-table-div').classList.add('show')
+            document.getElementById('event-table-div').classList.add('active')
+            $('table.event').DataTable().rows('#EV-'+id).remove().draw();
+            $('table.event').DataTable().page.len(current_event_page_lenght).draw();
+            $('table.event').DataTable().search(search_event_val).draw();
             
-            $('table.build').DataTable().rows('#IN-'+id).remove().draw();
-            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
-            $('table.build').DataTable().search(search_build_val).draw();
-           
-            $('table.build').DataTable().page(current_build_page).draw('page')
+            $('table.event').DataTable().page(current_event_page).draw('page')
+            
          }
 
          if(table == 3){
           
-          var tr = $('#'+id)
-            // $('#build-table-div').replaceWith(data.table_html);
-            
-            $('table.build').DataTable().rows('#AP-'+id).remove().draw();
-            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
-            $('table.build').DataTable().search(search_build_val).draw();
-           
-            $('table.build').DataTable().page(current_build_page).draw('page')
+            // $('#vapp-table-div').replaceWith(data.table_html);
+             document.getElementById('vapp-table-div').classList.add('show')
+             document.getElementById('vapp-table-div').classList.add('active')
+             $('table.vapp').DataTable().rows('#VA-'+id).remove().draw();
+             $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
+             $('table.vapp').DataTable().search(search_vapp_val).draw();
+             $('table.vapp').DataTable().page(current_vapp_page).draw('page')
              
           }
 
@@ -2080,12 +2128,12 @@ minBuildDate = new DateTime($('#build-min'), {
      
       
       //event last
-      event_last_data_id=data.invited_last_row_data_id
+      event_last_data_id=data.event_last_row_data_id
       
 
       //vapp last
 
-      vapp_last_data_id=data.applicant_last_row_data_id
+      vapp_last_data_id=data.vapp_last_row_data_id
 
           $('table.display').DataTable();
      
@@ -2281,25 +2329,25 @@ function update_front_page(table) {
     edit_build_id=0
     var req_build_profile=false
     
-    function edit_speakertable(id,firstname,lastname,companyname,designation,country,req_profile,photo_upload) {
+    function edit_speakertable(id,firstname,lastname,companyname,designation,country,travel,return_date_time,depature_date_time,req_profile,photo_upload,passport_copy) {
       edit_build_id=id
       req_build_profile=req_profile
-
-      document.getElementById('edit-applicant-profile-file-name').innerHTML=photo_upload.split('/')[photo_upload.split('/').length - 1 ]
-
-      console.log(photo_upload.split('/')[photo_upload.split('/').length - 1 ])
       document.getElementById('edit-speaker-first-name').value=firstname
       document.getElementById('edit-speaker-last-name').value=lastname
       document.getElementById('edit-speaker-comp').value=companyname
       document.getElementById('edit-speaker-designation').value=designation
       document.getElementById('edit-speaker-country').value=country
-
-      
-      // document.getElementById('edit-speaker-outline-talking').value=outline
+      document.getElementById('edit-speaker-traveling-from').value=travel
 
 
-      //  $('#edit-speaker-depature').val(new Date(depature_date_time).toISOString().slice(0,16))
-      //  $('#edit-speaker-return-date').val(new Date(return_date_time).toISOString().slice(0,16))
+      console.log(depature_date_time,'-',return_date_time)
+
+      document.getElementById('edit-speaker-profile-file-name').innerHTML=photo_upload.split('/')[photo_upload.split('/').length - 1 ]
+
+      document.getElementById('edit-speaker-passport-file-name').innerHTML=passport_copy.split('/')[passport_copy.split('/').length - 1 ]
+
+       $('#edit-speaker-depature').val(new Date(depature_date_time).toISOString().slice(0,16))
+       $('#edit-speaker-return-date').val(new Date(return_date_time).toISOString().slice(0,16))
      
     }
 
@@ -2329,13 +2377,12 @@ function update_front_page(table) {
       companyname=document.getElementById('edit-speaker-comp').value
       designation=document.getElementById('edit-speaker-designation').value
       country=document.getElementById('edit-speaker-country').value
-      profile=$('#edit-applicant-profile').prop("files")[0];
-
-      // travel=document.getElementById('edit-speaker-traveling-from').value
-  
-      // depature_date_time=$('#edit-speaker-depature').val()
-      // return_date_time=$('#edit-speaker-return-date').val()
-     
+      travel=document.getElementById('edit-speaker-traveling-from').value
+      // outline=document.getElementById('edit-speaker-outline-talking').value
+      depature_date_time=$('#edit-speaker-depature').val()
+      return_date_time=$('#edit-speaker-return-date').val()
+      new_profile_img=$('#edit-speaker-profile').prop("files")[0];
+      new_passport=$('#edit-speaker-passport').prop("files")[0];
       var current_build_page_lenght=$("select[name='build-table_length']").val();
 
       var current_page=$('#build-table').DataTable().page.info().page
@@ -2350,23 +2397,27 @@ function update_front_page(table) {
       m_data.append('companyname',companyname)
       m_data.append('designation',designation)
       m_data.append('country',country)
-      m_data.append('profile-image',profile)
-      
+      m_data.append('travel',travel)
+      // m_data.append('outline',outline)
+      m_data.append('departure_date_time',depature_date_time)
+      m_data.append('retun_date_time',return_date_time)
+      m_data.append('profile',new_profile_img)
+      m_data.append('passport',new_passport)
       m_data.append('csrfmiddlewaretoken','{{ csrf_token }}')
+      document.getElementById('edit-speaker-profile').value=''
+      document.getElementById('edit-speaker-passport').value=''
       $.ajax({
         type: "POST",
-        url: "{% url 'edit_submit_applicant_reg' %}",
+        url: "{% url 'edit_submit_distiguished_reg' %}",
         data:m_data,
         processData:false,
         contentType: false,
         dataType: "json",
         success: function (data) {
           
-          $('#edit-applicant-profile').val(null)
-
 
           $('#BuildModal').modal('hide');
-          $('#AP-'+edit_build_id).html(data.table_html)
+          $('#DG-'+edit_build_id).html(data.table_html)
           // $('#build-table-div').replaceWith(data.table_html);
           
           var table = $('#build-table').DataTable();
@@ -2376,7 +2427,7 @@ function update_front_page(table) {
           
           if (req_build_profile==true){
             
-            get_profile_details(3,edit_build_id)
+            get_profile_details(4,edit_build_id)
           }
           
       
@@ -3027,14 +3078,14 @@ function ExportToExcel_vapp(type, fn, dl) {
   <!-- profile -->
   <script>
     function get_profile_details(table,id) {
-      document.getElementById('profile-dp').src="https://seuclick.com/imagens/loading.gif?%3E"
+      document.getElementById('profile-dp').src="https://seuclick.com/imagens/loading.gif?%3E"  
       $.ajax({
         type: "POST",
         url: "{% url 'get_profile_details' %}",
         data:{table:table,id:id,csrfmiddlewaretoken:'{{ csrf_token }}'} ,
         dataType: "json",
         success: function (data) {
-          
+
           document.getElementById('preview-img').src=''
           var role_id=Number('{{role_id}}')
           document.getElementById('profile-next-btn').style.display='block'
@@ -3056,28 +3107,26 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('profile-status-label').classList.add('badge')
             document.getElementById('profile-status-label').classList.add('badge-warning')
             document.getElementById('profile-status-label').innerHTML='Approval Pending'
-           // document.getElementById('profile-reason-textarea').style.display='none'
+            //document.getElementById('profile-reason-textarea').style.display='none'
           }
-          if (data.status == 1 ){
+          if (data.status == 1){
             document.getElementById('profile-status-label').className=''
             document.getElementById('profile-status-label').classList.add('badge')
             document.getElementById('profile-status-label').classList.add('badge-success')
             document.getElementById('profile-status-label').innerHTML='Approved'
 
-           // document.getElementById('profile-reason-textarea').style.display='block'
-           // document.getElementById('profile-reason-textarea').innerHTML=data.remark
+           // document.getElementById('profile-reason-textarea').style.display='none'
           }
           if (data.status == 2){
             document.getElementById('profile-status-label').className=''
             document.getElementById('profile-status-label').classList.add('badge')
             document.getElementById('profile-status-label').classList.add('badge-danger')
             document.getElementById('profile-status-label').innerHTML='Rejected'
-          //  document.getElementById('profile-reason-textarea').style.display='block'
-           // document.getElementById('profile-reason-textarea').innerHTML=data.remark
+            
             
 
           }
-          
+
           if (data.remark != '' ){
             document.getElementById('profile-reason-textarea').style.display='block'
             document.getElementById('profile-reason-textarea').innerHTML=data.remark
@@ -3087,65 +3136,7 @@ function ExportToExcel_vapp(type, fn, dl) {
 
 
           
-          if (table==1){
-
-
-            document.getElementById('profile-verf-div').style.display='none'
-            document.getElementById('id-data-div').style.display='none'
-            document.getElementById('id-photo-hover-div').style.display='block'
-          document.getElementById('profile-user-name').innerHTML=data.name
-          document.getElementById('profile-email').innerHTML=data.email
-          document.getElementById('profile-mobile').innerHTML=data.mobile
-          document.getElementById('profile-comp').innerHTML=data.comp
-          document.getElementById('profile-created').innerHTML=data.created_at
-          document.getElementById('vehicle-num').style.display='none'
-          document.getElementById('profile-dp').src=data.profile_image
-          document.getElementById('id-photo-img-back-div').style.display='none'
-          document.getElementById('mulkiya-img-back-div').style.display='none'
-          document.getElementById('vapp-type-div').style.display='none'
-
-          //document.getElementById('id-photo-img').src=data.passport
-          document.getElementById('id-photo-img').style.display='none'
-          document.getElementById('id-photo-img-lable').style.display='block'
-          document.getElementById('download-id-proof').href=data.passport
-          document.getElementById('profile-next-btn').onclick=function(){ next_profile(1,data.id) }
-          document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(1,data.id) }
-           document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,1,data.id); update_status_profile(data.status,data.remark); }
-           document.getElementById("profile-reject-btn").onclick=function() {  update_status(2,1,data.id)  }
-            document.getElementById('profile-travel').innerHTML=data.travel
-            document.getElementById('profile-outline').innerHTML=data.outline
-            document.getElementById('profile-country').innerHTML=data.country
-
-           document.getElementById('profile-depature-date-time').innerHTML=data.depature_time
-           document.getElementById('profile-return-date-time').innerHTML=data.return_time
-           document.getElementById('profile_edit-build').style.display='block'
-           document.getElementById('profile_edit-event').style.display='none'
-           document.getElementById('profile_edit-vapp').style.display='none'
-           document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,data.travel,data.outline,data.return_time_iso,data.depature_time_iso,true)}
-           
-           if (data.ksa_visa == 0){
-            document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-xmark text-danger font-weight-bold"></i>`
-           }
-           else{
-            document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-check text-success font-weight-bold"></i>`
-
-           }
-         
-          
-          if(data.des_id == 0){
-            document.getElementById('profile-des').innerHTML=data.other_des
-          }
-          else{
-            document.getElementById('profile-des').innerHTML=data.des
-          }
-
-
-
-        }
-
-          if (table==2){
-
-
+          if (table==4){
             document.getElementById('profile-verf-div').style.display='none'
             document.getElementById('id-data-div').style.display='none'
             document.getElementById('id-photo-hover-div').style.display='block'
@@ -3161,20 +3152,21 @@ function ExportToExcel_vapp(type, fn, dl) {
           document.getElementById('vapp-type-div').style.display='none'
           document.getElementById('id-photo-img').src=data.passport
           document.getElementById('download-id-proof').href=data.passport
-          document.getElementById('profile-next-btn').onclick=function(){ next_profile(2,data.id) }
-          document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(2,data.id) }
-           document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,2,data.id); update_status_profile(data.status,data.remark); }
-           document.getElementById("profile-reject-btn").onclick=function() {  update_status(2,2,data.id)  }
-
+          document.getElementById('profile-next-btn').onclick=function(){ next_profile(4,data.id) }
+          document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(4,data.id) }
+           document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,4,data.id); update_status_profile(data.status,data.remark); }
+           document.getElementById("profile-reject-btn").onclick=function() {  update_status(2,4,data.id)  }
+            document.getElementById('profile-travel').innerHTML=data.travel
+            // document.getElementById('profile-outline').innerHTML=data.outline
             document.getElementById('profile-country').innerHTML=data.country
 
-
+           document.getElementById('profile-depature-date-time').innerHTML=data.depature_time
+           document.getElementById('profile-return-date-time').innerHTML=data.return_time
            document.getElementById('profile_edit-build').style.display='block'
            document.getElementById('profile_edit-event').style.display='none'
            document.getElementById('profile_edit-vapp').style.display='none'
-           document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,true)}
+           document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,data.travel,data.return_time_iso,data.depature_time_iso,true,data.photo_upload,data.passport_str)}
            
-
            if (data.ksa_visa == 0){
             document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-xmark text-danger font-weight-bold"></i>`
            }
@@ -3182,7 +3174,8 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-check text-success font-weight-bold"></i>`
 
            }
-
+         
+          
           if(data.des_id == 0){
             document.getElementById('profile-des').innerHTML=data.other_des
           }
@@ -3190,69 +3183,115 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('profile-des').innerHTML=data.des
           }
 
-        }
+          }
 
+          if (table==2){
+          document.getElementById('profile-verf-div').style.display='block'
+          document.getElementById('id-photo-hover-div').style.display='block'
+          document.getElementById('id-data-div').style.display='block'
+          document.getElementById('profile-user-name').innerHTML=data.name
+          document.getElementById('profile-email').innerHTML=data.email
+          document.getElementById('profile-mobile').innerHTML=data.mobile
+          document.getElementById('profile-comp').innerHTML=data.comp
+          document.getElementById('profile-created').innerHTML=data.created_at
+          document.getElementById('id-data').innerHTML=data.id_proof
+          document.getElementById('profile-nation').innerHTML=data.nationality
+          document.getElementById('download-id-proof').href=data.id_proof_img
+          document.getElementById('vehicle-num').style.display='none'
+          document.getElementById('profile-dp').src=data.dp
+          document.getElementById('profile-exp-date').innerHTML=data.exp_date
+
+          document.getElementById('id-photo-img').src=data.id_proof_img
+          // document.getElementById('id-photo-img-hover').src=data.id_proof_img
+          
+          document.getElementById('vapp-type-div').style.display='none'
+          document.getElementById('mulkiya-img-back-div').style.display='none'
+          document.getElementById('profile-next-btn').onclick=function(){ next_profile(2,data.id) }
+          document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(2,data.id) }
+          document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,2,data.id); update_status_profile(data.status,data.remark); }
+          document.getElementById("profile-reject-btn").onclick=function() {   update_status(2,2,data.id)  }
+        
+          document.getElementById('profile_edit-event').style.display='block'
+          document.getElementById('profile_edit-build').style.display='none'
+          document.getElementById('profile_edit-vapp').style.display='none'
+          document.getElementById('profile_edit-event').onclick=function(){edit_eventtable(data.id,data.firstname,data.lastname,data.comp,data.des_id,data.other_des,data.exp_date,true)}
+         
+          if(Number(data.id_cat) == 1){
+            document.getElementById('id-proof-lable').innerHTML='Emirates ID'
+            document.getElementById('id-image-lable').innerHTML='Emirates ID Front'
+
+            document.getElementById('id-photo-img-back-div').style.display='block'
+            document.getElementById('id-photo-img-back').src=data.id_proof_back
+            // document.getElementById('id-photo-img-back-hover').src=data.id_proof_back
+            document.getElementById('download-id-back-proof').href=data.id_proof_back
+
+          }
+          else{
+            document.getElementById('id-proof-lable').innerHTML='Passport'
+            document.getElementById('id-image-lable').innerHTML='Passport'
+            document.getElementById('id-photo-img-back-div').style.display='none'
+          }
+
+          if(data.des_id == 0){id-data-div
+            document.getElementById('profile-des').innerHTML=data.other_des
+          }
+          else{
+            document.getElementById('profile-des').innerHTML=data.des
+          }
+
+          }
 
           if (table==3){
+          document.getElementById('id-photo-hover-div').style.display='block'
+          document.getElementById('profile-verf-div').style.display='none'
+          document.getElementById('id-data-div').style.display='none'
+          document.getElementById('profile-user-name').innerHTML=data.name
+          document.getElementById('profile-email').innerHTML=data.email
+          document.getElementById('profile-mobile').innerHTML=data.mobile
+          document.getElementById('profile-comp').innerHTML=data.comp
+          document.getElementById('vapp-type-div').style.display='block'
+          document.getElementById('type-lable').innerHTML=data.type
+          document.getElementById('profile-created').innerHTML=data.created_at
+          document.getElementById('vehicle-num').style.display='block'
+          document.getElementById('profile-vehicle-num').innerHTML=data.vehicle_num
+          document.getElementById('profile-dp').src='https://img.icons8.com/bubbles/100/000000/user.png'
+          document.getElementById('id-image-lable').innerHTML='Emirates ID Front'
+          document.getElementById('mulkiya-img').src=data.mulkya
+          // document.getElementById('mulkiya-img-hover').src=data.mulkya
 
-
-            document.getElementById('profile-verf-div').style.display='none'
-            document.getElementById('id-data-div').style.display='none'
-            document.getElementById('id-photo-hover-div').style.display='block'
-            document.getElementById('profile-user-name').innerHTML=data.name
-            document.getElementById('profile-email').innerHTML=data.email
-            document.getElementById('profile-mobile').innerHTML=data.mobile
-            document.getElementById('profile-comp').innerHTML=data.comp
-            document.getElementById('profile-created').innerHTML=data.created_at
-            document.getElementById('vehicle-num').style.display='none'
-            document.getElementById('profile-dp').src=data.profile_image
-            document.getElementById('id-photo-img-back-div').style.display='none'
-            document.getElementById('mulkiya-img-back-div').style.display='none'
-            document.getElementById('vapp-type-div').style.display='none'
-            // document.getElementById('id-photo-img').src=data.passport
-           // document.getElementById('id-photo-img').style.display='none'
-         // document.getElementById('id-photo-img-lable').style.display='block'
-            //document.getElementById('download-id-proof').href=data.passport
-            document.getElementById('profile-next-btn').onclick=function(){ next_profile(3,data.id) }
-            document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(3,data.id) }
-            document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,3,data.id); update_status_profile(data.status,data.remark); }
-            document.getElementById("profile-reject-btn").onclick=function() {  update_status(2,3,data.id)  }
-
-            document.getElementById('profile-country').innerHTML=data.country
-
-
-            document.getElementById('profile_edit-build').style.display='block'
-            document.getElementById('profile_edit-event').style.display='none'
-            document.getElementById('profile_edit-vapp').style.display='none'
-         
-            document.getElementById('profile_edit-build').onclick=function(){  edit_speakertable(data.id,data.firstname,data.lastname,data.comp,data.des,data.country,true,data.photo_upload)}
-
-            if (data.ksa_visa == 0){
-            document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-xmark text-danger font-weight-bold"></i>`
-            }
-            else{
-            document.getElementById('profile-ksa-visa').innerHTML=`<i class="fa-solid fa-check text-success font-weight-bold"></i>`
-
-            }
-
-            if (data.pre_attand==1){
-            document.getElementById('reason-for-attend-div').style.display='block'
-            $('#profile-reason-attend').val(data.reason_attend)
+          document.getElementById('download-id-mulkya-proof').href=data.mulkya
+          document.getElementById('id-photo-img').src=data.id_proof
+          // document.getElementById('id-photo-img-hover').src=data.id_proof
+          document.getElementById('download-id-proof').href=data.id_proof
           
-          }
-           else{
-            document.getElementById('reason-for-attend-div').style.display='none'
-           }
+          document.getElementById('id-photo-img-back').src=data.id_proof_back
+          // document.getElementById('id-photo-img-back-hover').src=data.id_proof_back
+          document.getElementById('download-id-back-proof').href=data.id_proof_back
+          document.getElementById('profile-next-btn').onclick=function(){ next_profile(3,data.id) }
+          document.getElementById('profile-prs-btn').onclick=function(){ previous_profile(3,data.id) }
+          document.getElementById("profile-apporve-btn").onclick=function() {  update_status(1,3,data.id); }
+          document.getElementById("profile-reject-btn").onclick=function() {   update_status(2,3,data.id)  }
+           
+            document.getElementById('mulkiya-img-back-div').style.display='block'
 
-
-            if(data.des_id == 0){
+            document.getElementById('profile_edit-build').style.display='none'
+           document.getElementById('profile_edit-event').style.display='none'
+           document.getElementById('profile_edit-vapp').style.display='block'
+           console.log(data.id,data.firstname,data.lastname,data.vehicle_num,data.mobile,data.comp,data.type,data.exp_date,data.approved_date)
+           document.getElementById('profile_edit-vapp').onclick=function(){  edit_vapptable(data.id,data.firstname,data.lastname,data.vehicle_num,data.mobile,data.comp,data.category_id,data.exp_date,data.approved_date,true)}
+           
+            
+          if(data.des_id == 0){
             document.getElementById('profile-des').innerHTML=data.other_des
-            }
-            else{
+          }
+          else{
             document.getElementById('profile-des').innerHTML=data.des
-            }
+          }
 
-            }
+
+          
+
+        } 
         }
       });
       
@@ -3282,16 +3321,16 @@ function ExportToExcel_vapp(type, fn, dl) {
 
     function next_profile(table,id){
 
-      if (table ==1 ){
+      if (table ==4 ){
         var build_array=$("[id='build-uid'] .uid")
-        qid='SPK'+String(id)
+        qid='DIG'+String(id)
 
         for (let i = 0; i < build_array.length; i++) {
           
           if (String(build_array[i].innerHTML)==qid){
             if (build_array[i+1]!=null){
               next_id=build_array[i+1].innerHTML.substring(3)
-              get_profile_details(1,next_id) 
+              get_profile_details(4,next_id) 
             }
             else{
               document.getElementById('profile-next-btn').style.display='none'
@@ -3305,46 +3344,45 @@ function ExportToExcel_vapp(type, fn, dl) {
        
       }
       if (table ==2 ){
-        var build_array=$("[id='build-uid'] .uid")
-        qid='INV'+String(id)
-
-        for (let i = 0; i < build_array.length; i++) {
-          
-          if (String(build_array[i].innerHTML)==qid){
-            if (build_array[i+1]!=null){
-              next_id=build_array[i+1].innerHTML.substring(3)
-              get_profile_details(2,next_id) 
-            }
-            else{
-              document.getElementById('profile-next-btn').style.display='none'
-            }
-            break;
-           
+        var event_array=$("[id='event-uid'] .uid")
+        qid='EVP'+String(id)
+       
+        for (let i = 0; i < event_array.length; i++) {
+         
+          if (String(event_array[i].innerHTML)==qid){
+              if (event_array[i+1]!=null){
+                next_id=event_array[i+1].innerHTML.substring(3)
+                console.log(next_id)
+                get_profile_details(2,next_id) 
+              }
+              else{
+                document.getElementById('profile-next-btn').style.display='none'
+              }
+              
+              break;
           }
-        
-        
+         
         }
        
       }
       if (table ==3 ){
-        var build_array=$("[id='build-uid'] .uid")
-        qid='APL'+String(id)
+        var vapp_array=$("[id='vapp-uid'] .uid")
+        qid='VAP'+String(id)
 
-        for (let i = 0; i < build_array.length; i++) {
+        for (let i = 0; i < vapp_array.length; i++) {
           
-          if (String(build_array[i].innerHTML)==qid){
-            if (build_array[i+1]!=null){
-              next_id=build_array[i+1].innerHTML.substring(3)
+          if (String(vapp_array[i].innerHTML)==qid){
+            if (vapp_array[i+1]!=null){
+              next_id=vapp_array[i+1].innerHTML.substring(3)
               get_profile_details(3,next_id) 
+              
             }
             else{
               document.getElementById('profile-next-btn').style.display='none'
             }
             break;
-           
           }
-        
-        
+         
         }
        
       }
@@ -3354,16 +3392,16 @@ function ExportToExcel_vapp(type, fn, dl) {
 
 function previous_profile(table,id){
 
-if (table ==1 ){
+if (table ==4 ){
   var build_array=$("[id='build-uid'] .uid")
-  qid='SPK'+String(id)
+  qid='DIG'+String(id)
 
   for (let i = 0; i < build_array.length; i++) {
     
     if (String(build_array[i].innerHTML)==qid){
       if (build_array[i-1]!=null){
         prs_id=build_array[i-1].innerHTML.substring(3)
-        get_profile_details(1,prs_id) 
+        get_profile_details(4,prs_id) 
       }
       else{
         document.getElementById('profile-prs-btn').style.display='none'
@@ -3377,46 +3415,45 @@ if (table ==1 ){
  
 }
 if (table ==2 ){
-  var build_array=$("[id='build-uid'] .uid")
-  qid='INV'+String(id)
-
-  for (let i = 0; i < build_array.length; i++) {
-    
-    if (String(build_array[i].innerHTML)==qid){
-      if (build_array[i-1]!=null){
-        prs_id=build_array[i-1].innerHTML.substring(3)
-        get_profile_details(2,prs_id) 
-      }
-      else{
-        document.getElementById('profile-prs-btn').style.display='none'
-      }
-      break;
-     
+  var event_array=$("[id='event-uid'] .uid")
+  qid='EVP'+String(id)
+ 
+  for (let i = 0; i < event_array.length; i++) {
+   
+    if (String(event_array[i].innerHTML)==qid){
+        if (event_array[i-1]!=null){
+          prs_id=event_array[i-1].innerHTML.substring(3)
+          
+          get_profile_details(2,prs_id) 
+        }
+        else{
+          document.getElementById('profile-prs-btn').style.display='none'
+        }
+        
+        break;
     }
-  
-  
+   
   }
  
 }
 if (table ==3 ){
-  var build_array=$("[id='build-uid'] .uid")
-  qid='APL'+String(id)
+  var vapp_array=$("[id='vapp-uid'] .uid")
+  qid='VAP'+String(id)
 
-  for (let i = 0; i < build_array.length; i++) {
+  for (let i = 0; i < vapp_array.length; i++) {
     
-    if (String(build_array[i].innerHTML)==qid){
-      if (build_array[i-1]!=null){
-        prs_id=build_array[i-1].innerHTML.substring(3)
+    if (String(vapp_array[i].innerHTML)==qid){
+      if (vapp_array[i-1]!=null){
+        prs_id=vapp_array[i-1].innerHTML.substring(3)
         get_profile_details(3,prs_id) 
+        
       }
       else{
         document.getElementById('profile-prs-btn').style.display='none'
       }
       break;
-     
     }
-  
-  
+   
   }
  
 }
@@ -3521,27 +3558,75 @@ var table=0
 
 //     console.log(id_array,table)
 //   }
-  function send_rejection_mail(id_array,table,photo_rejection) {
-    console.log('mail sended ',table)
+//   function send_mail() {
+//     console.log('mail sended ',table)
 
-    var reason=document.getElementById('reason-textarea').value;
-    document.getElementById('reason-textarea').value='';
+//     var reason=document.getElementById('reason-textarea').value;
+//     document.getElementById('reason-textarea').value='';
+//     console.log(reason)
+//     console.log(id_array)
+//     if (id_array.length == 1){
+      
+//       update_status(2,table,id_array[0])
+//     }
+//     else{
+//       update_bulk_selected(table,2)
 
-    
+      
 
-    $.ajax({
-      type: "POST",
-      url: "{% url 'send_rejection_mail' %}",
-      data: {id_array:id_array,reason:reason,table:table,photo_rejection:photo_rejection,csrfmiddlewaretoken:'{{ csrf_token }}'},
-      dataType: "json",
-      success: function (data) {
+//     }
+
+//       var current_build_page=$('table.build').DataTable().page.info().page
+//       //var current_event_page=$('table.event').DataTable().page.info().page
+//       //var current_vapp_page=$('table.vapp').DataTable().page.info().page
+
+//       var search_build_val=$('#build-table_filter input').val();
+//       //var search_event_val=$('#event-table_filter input').val();
+//       //var search_vapp_val=$('#vapp-table_filter input').val();
+      
+//       var current_build_page_lenght=$("select[name='build-table_length']").val();
+//       ///var current_event_page_lenght=$("select[name='event-table_length']").val();
+//       //var current_vapp_page_lenght=$("select[name='vapp-table_length']").val();
+
+//     $.ajax({
+//       type: "POST",
+//       url: "{% url 'send_rejection_mail' %}",
+//       data: {id_array:id_array,reason:reason,table:table,csrfmiddlewaretoken:'{{ csrf_token }}'},
+//       dataType: "json",
+//       success: function (data) {
+//         // if(table == 1){
+           
         
-        
-        
+//         //    $('#build-table-div').replaceWith(data.table_html);
+//         //    $('table.build').DataTable().page.len(current_build_page_lenght).draw();
+//         //    $('table.build').DataTable().search(search_build_val).draw();
+           
+//         //    $('table.build').DataTable().page(current_build_page).draw('page')
+//         //  }
+//         //  if(table == 2){
+           
+//         //   $('#event-table-div').replaceWith(data.table_html);
+//         //    document.getElementById('event-table-div').classList.add('show')
+//         //    document.getElementById('event-table-div').classList.add('active')
+//         //    $('table.event').DataTable().page.len(current_event_page_lenght).draw();
+//         //    $('table.event').DataTable().search(search_event_val).draw();
+           
+//         //    $('table.event').DataTable().page(current_event_page).draw('page')
+//         // }
 
-      }
-    });
-  }
+//         // if(table == 3){
+           
+//         //    $('#vapp-table-div').replaceWith(data.table_html);
+//         //     document.getElementById('vapp-table-div').classList.add('show')
+//         //     document.getElementById('vapp-table-div').classList.add('active')
+//         //     $('table.vapp').DataTable().page.len(current_vapp_page_lenght).draw();
+//         //     $('table.vapp').DataTable().search(search_vapp_val).draw();
+            
+//         //     $('table.vapp').DataTable().page(current_vapp_page).draw('page')
+//         //  }
+//       }
+//     });
+//   }
 
  </script>
 
@@ -3565,10 +3650,25 @@ var table=0
         }
       });
     }
-
    
-    
-    
+    function send_rejection_mail(id_array,table,photo_rejection) {
+    console.log('mail sended ',table)
+
+    var reason=document.getElementById('reason-textarea').value;
+    document.getElementById('reason-textarea').value='';
+
+ 
+
+    $.ajax({
+      type: "POST",
+      url: "{% url 'send_rejection_mail' %}",
+      data: {id_array:id_array,reason:reason,table:table,photo_rejection:photo_rejection,csrfmiddlewaretoken:'{{ csrf_token }}'},
+      dataType: "json",
+      success: function (data) {
+      
+      }
+    });
+  }
    </script>
 
    <!-- zoom -->
@@ -3751,10 +3851,10 @@ function load_new_data() {
   
       var last_row_id=0
 
-      build_last_row_id=build_last_data_id
+build_last_row_id=build_last_data_id
 
 
-      var current_build_page=$('table.build').DataTable().page.info().page
+var current_build_page=$('table.build').DataTable().page.info().page
 
 
       var search_build_val=$('#build-table_filter input').val();
@@ -3766,29 +3866,32 @@ function load_new_data() {
 $.ajax({
 type: "GET",
 url: "{% url 'get_new_data' %}",
-data:{build_last_row_id:build_last_row_id,table:3,csrfmiddlewaretoken:'{{ csrf_token }}'},
+data:{build_last_row_id:build_last_row_id,table:4,csrfmiddlewaretoken:'{{ csrf_token }}'},
 dataType: "json",
 success: function (data) {
   // clearInterval(interval);
   //console.log(data.last_row)
+
   online_list_html=''
   for (let u = 0; u < data.online_list.length; u++) {
     online_list_html+=`<div class="sidebar-bg-options"><div class="img-ss rounded-circle bg-success border mr-3"></div>${data.online_list[u]}</div>`
     
+    
+    
   }
   $('#online-list').html(online_list_html)
- 
 
   if (data.new_data.build_new_data==true){
 
-      for (let i = 0; i < data.new_html.build_html.length; i++) {
-   
-        
-        $('table.build').DataTable().row('#AP-'+data.new_html.build_updated_id[i]).remove().draw()
-        $('table.build').DataTable().order([2,'desc']).row.add($(data.new_html.build_html[i])).draw(false)
+            for (let i = 0; i < data.new_html.build_html.length; i++) {
+              // console.log(data.new_html.build_updated_id[i])
+              // console.log($('#SP-'+data.new_html.build_updated_id[i]))
+              
+              $('table.build').DataTable().row('#DG-'+data.new_html.build_updated_id[i]).remove().draw()
+              $('table.build').DataTable().order([2,'desc']).row.add($(data.new_html.build_html[i])).draw(false)
 
-        
-      }
+              
+            }
             
            
           //$('#build-table tbody').prepend(data.new_html)
@@ -3815,6 +3918,7 @@ success: function (data) {
 
 
 }
+
 function undo_status(table,id){
   console.log(table,id)
   var current_build_page=$('table.build').DataTable().page.info().page
@@ -3831,22 +3935,22 @@ function undo_status(table,id){
     data: {id:id,table:table,csrfmiddlewaretoken:'{{ csrf_token }}'},
     dataType: "json",
     success: function (data) {
-      if(table == 3){
+      if(table == 1){
            
            // $('#build-table-div').replaceWith(data.table_html);
            $('table.build').DataTable().page.len(current_build_page_lenght).draw();
            $('table.build').DataTable().search(search_build_val).draw();
            $('table.build').DataTable().page(current_build_page).draw('page')
-           $('#AP-'+id).html(data.table_html)
+           $('#SP-'+id).html(data.table_html)
+           $.ajax({type: "GET",url: "{% url 'send_undo_mail' %}",data: {id:id,table:table},dataType: "json",
 
+            success: function (response) {
+              
+            }});
 
 
          }
-         $.ajax({type: "GET",url: "{% url 'send_undo_mail' %}",data: {id:id,table:table},dataType: "json",
-
-          success: function (response) {
-            
-          }});
+      
     }
   });
 

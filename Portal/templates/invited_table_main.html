@@ -330,11 +330,13 @@ p {
           
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <!-- <a class="dropdown-item" href="{% url 'tables' %}">NEW REGISTRATIONS</a> -->
-              <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}">SPEAKER REGISTRATIONS</a>
+              <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}">SPEAKERS </a>
               <a class="dropdown-item" href="{% url 'invited_registrations_page' %}" >INVITED DELEGATES</a>
                <a class="dropdown-item" href="{% url 'applicant_registrations_page' %}">APPLICANT DELEGATES</a>
-               <a class="dropdown-item" href="{% url 'applicant_registrations_page' %}?filter=approved">ACCEPTED DELEGATES</a>
-              
+               <a class="dropdown-item" href="{% url 'distiguished_registrations_page' %}">DISTINGUISHED GUSET</a>
+               <hr/>
+               <a class="dropdown-item text-success" href="{% url 'applicant_registrations_page' %}?filter=approved">ACCEPTED DELEGATES</a>
+               <a class="dropdown-item text-danger" href="{% url 'applicant_registrations_page' %}?filter=rejected">REJECTED DELEGATES</a>
             </div>
           </div>
       </div>
@@ -425,8 +427,8 @@ p {
 
       {% if filter_bool %}
       <div class="col-md-6 ml-5" >
-    <a class="btn btn-primary filter-btn {% if page == 'applicant' %}active {% endif %}" href="{% url 'applicant_registrations_page' %}?filter=approved"  style="display: inline-block;"> Applicant Delegates </a>
-    <a class="btn btn-primary filter-btn {% if page == 'invited' %}active {% endif %}" href="{% url 'invited_registrations_page' %}?filter=approved"  style="display: inline-block;"> Invited Delegates </a>
+    <a class="btn btn-primary filter-btn applicant-filter-btn {% if page == 'applicant' %}active {% endif %}" href="{% url 'applicant_registrations_page' %}?filter=approved"  style="display: inline-block;"> Applicant Delegates </a>
+    <a class="btn btn-primary filter-btn invited-filter-btn {% if page == 'invited' %}active {% endif %}" href="{% url 'invited_registrations_page' %}?filter=approved"  style="display: inline-block;"> Invited Delegates </a>
         </div>
         {% endif %}
       
@@ -1466,7 +1468,12 @@ $(window).on('load', function(){
  
       ,5000)
  
-    }
+    }else{
+
+  $('.applicant-filter-btn')[0].href="{% url 'applicant_registrations_page' %}?filter=0".replace(0,searchParams.get('filter'))
+  $('.invited-filter-btn')[0].href="{% url 'invited_registrations_page' %}?filter=0".replace(0,searchParams.get('filter'))
+
+} 
     
 });
 // function load_new_data(table) {

@@ -98,12 +98,13 @@
           
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <!-- <a class="dropdown-item" href="{% url 'tables' %}">NEW REGISTRATIONS</a> -->
-              <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}">SPEAKER REGISTRATION</a>
+              <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}">SPEAKERS </a>
               <a class="dropdown-item" href="{% url 'invited_registrations_page' %}" >INVITED DELEGATES</a>
                <a class="dropdown-item" href="{% url 'applicant_registrations_page' %}">APPLICANT DELEGATES</a>
+               <a class="dropdown-item" href="{% url 'distiguished_registrations_page' %}">DISTINGUISHED GUSET</a>
                <hr/>
                <a class="dropdown-item text-success" href="{% url 'applicant_registrations_page' %}?filter=approved">ACCEPTED DELEGATES</a>
-               <!-- <a class="dropdown-item text-danger" href="{% url 'applicant_registrations_page' %}?filter=approved">REJECTED DELEGATES</a> -->
+               <a class="dropdown-item text-danger" href="{% url 'applicant_registrations_page' %}?filter=rejected">REJECTED DELEGATES</a>
             </div>
           </div>
           
@@ -118,9 +119,14 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton1">
         
-          <a class="dropdown-item font-weight-bold" href="{% url 'dashboard' %}">Dashboard</a>
-          <a class="dropdown-item font-weight-bold" href="{% url 'tables' %}">Events</a>
-          <a class="dropdown-item font-weight-bold" href="{% url 'registration' %}">Register</a>
+          <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}">SPEAKERS </a>
+          <a class="dropdown-item" href="{% url 'invited_registrations_page' %}" >INVITED DELEGATES</a>
+           <a class="dropdown-item" href="{% url 'applicant_registrations_page' %}">APPLICANT DELEGATES</a>
+           <a class="dropdown-item" href="{% url 'distiguished_registrations_page' %}">DISTINGUISHED GUSET</a>
+           <hr/>
+           <a class="dropdown-item text-success" href="{% url 'applicant_registrations_page' %}?filter=approved">ACCEPTED DELEGATES</a>
+           <a class="dropdown-item text-danger" href="{% url 'applicant_registrations_page' %}?filter=rejected">REJECTED DELEGATES</a>
+        
          
         </div>
       </div>
@@ -204,8 +210,8 @@
                 <div class="d0-np col-12 col-xl-4">
                   <div class="justify-content-end d-flex">
                    <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                     <button class="d-none btn btn-sm bg-black" type="button" id="dropdownMenuDate2">
-                      <span  class="badge badge-success mr-1" style="border-radius: 5px !important;" >Accepted Delegates</span><span class="badge badge-danger" style="border-radius: 5px !important;">Rejected Delegates</span>
+                     <button class=" btn btn-sm bg-black" type="button" id="dropdownMenuDate2">
+                      <a href="{% url 'applicant_registrations_page' %}?filter=approved"> <span  class="badge badge-success mr-1" style="border-radius: 5px !important;" >Accepted Delegates</span></a> <a href="{% url 'applicant_registrations_page' %}?filter=rejected"><span class="badge badge-danger" style="border-radius: 5px !important;">Rejected Delegates</span></a>
                      </button>
                  
                    </div>
@@ -246,13 +252,13 @@
             </div>
             <div class="col-md-6 grid-margin transparent mt-3">
               <div class="row">
-                <div class=" d-none col-md-6 mb-4 stretch-card transparent">
+                <div class=" col-md-6 mb-4 stretch-card transparent">
                     
-                     <a href="{% url 'applicant_registrations_page' %}?filter=approved" style="text-decoration: none; color: white;">
+                     <a href="{% url 'distiguished_registrations_page' %}" style="text-decoration: none; color: white;">
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4 text-center">DISTINGUISHED GUSET</p>
-                      <p class="fs-30 mb-2  text-center">{{accepted_count}}</p>
+                      <p class="fs-30 mb-2  text-center">{{distinguished_count}}</p>
                       <p class="text-center">NEXTWRLD</p>
                       
                     </div>

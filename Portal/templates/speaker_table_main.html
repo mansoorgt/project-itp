@@ -327,7 +327,10 @@ p {
             <a class="dropdown-item" href="https://www.nextwrld.sa/registration/SpeakerForm" target="_blank">SPEAKER REGISTRATION</a>
             <a class="dropdown-item" href="https://www.nextwrld.sa/registration/InvitedDelegates" target="_blank">INVITED DELEGATES</a>
             <a class="dropdown-item" href="https://www.nextwrld.sa/registration/Applicantdelegates" target="_blank">APPLICANT DELEGATES</a>
-            <a class="dropdown-item" href="{% url 'applicant_registrations_page' %}?filter=approved">ACCEPTED DELEGATES</a>
+            <a class="dropdown-item" href="{% url 'distiguished_registrations_page' %}">DISTINGUISHED GUSET</a>
+               <hr/>
+               <a class="dropdown-item text-success" href="{% url 'applicant_registrations_page' %}?filter=approved">ACCEPTED DELEGATES</a>
+               <a class="dropdown-item text-danger" href="{% url 'applicant_registrations_page' %}?filter=rejected">REJECTED DELEGATES</a>
           </div>
         </div>
       </div>
@@ -342,10 +345,13 @@ p {
           
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <!-- <a class="dropdown-item" href="{% url 'tables' %}">NEW REGISTRATIONS</a> -->
-              <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}">SPEAKER REGISTRATIONS</a>
+              <a class="dropdown-item" href="{% url 'speaker_registrations_page' %}">SPEAKERS </a>
               <a class="dropdown-item" href="{% url 'invited_registrations_page' %}" >INVITED DELEGATES</a>
                <a class="dropdown-item" href="{% url 'applicant_registrations_page' %}">APPLICANT DELEGATES</a>
-               <a class="dropdown-item" href="{% url 'applicant_registrations_page' %}?filter=approved">ACCEPTED DELEGATES</a>
+               <a class="dropdown-item" href="{% url 'distiguished_registrations_page' %}">DISTINGUISHED GUSET</a>
+               <hr/>
+               <a class="dropdown-item text-success" href="{% url 'applicant_registrations_page' %}?filter=approved">ACCEPTED DELEGATES</a>
+               <a class="dropdown-item text-danger" href="{% url 'applicant_registrations_page' %}?filter=rejected">REJECTED DELEGATES</a>
             </div>
           </div>
       </div>

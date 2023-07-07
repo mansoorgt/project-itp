@@ -338,13 +338,15 @@ class Dashboard():
     def dashboard_page(request):
         
         speaker_count=SpeakerRegistrations.objects.filter(deleted=0).count()
-        applicant_count=ApplicantRegistrations.objects.filter(deleted=0).filter(~Q(status=1)).count()
-        invited_count=InvitedRegistrations.objects.filter(deleted=0).filter(~Q(status=1)).count()
+        applicant_count=ApplicantRegistrations.objects.filter(deleted=0).filter(status=0).count()
+        invited_count=InvitedRegistrations.objects.filter(deleted=0).filter(status=0).count()
+        Distinguished_count=DistinguishedRegistrations.objects.filter(deleted=0).filter(status=0).count()
         all_count=speaker_count+applicant_count+invited_count
         accepted_count=ApplicantRegistrations.objects.filter(deleted=0,status=1).count()+InvitedRegistrations.objects.filter(deleted=0,status=1).count()
+        
         username=request.user.username
        
-        data={'username':username,'speacker_count':speaker_count,'accepted_count':accepted_count,'all_count':all_count,'applicant_count':applicant_count,'invited_count':invited_count,'role_id':int(request.session['user_role'])}
+        data={'username':username,'speacker_count':speaker_count,'distinguished_count':Distinguished_count,'accepted_count':accepted_count,'all_count':all_count,'applicant_count':applicant_count,'invited_count':invited_count,'role_id':int(request.session['user_role'])}
         return render(request,'dashboard.html',data)       
 class Tablepage():
     @login_required
@@ -402,6 +404,13 @@ class Tablepage():
         return render(request,'speaker_table_main.html',data)
     
     @login_required
+    def Distinguished_reg_page(request):
+   
+        objs=DistinguishedRegistrations.objects.filter(deleted=0).annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
+        data={'datas':objs,'username':request.user.username}
+        return render(request,'destiguished_table_main.html',data)
+
+    @login_required
     def invited_reg_page(request):
         filter=request.GET.get('filter')
         objs=InvitedRegistrations.objects.filter(deleted=0)
@@ -409,8 +418,11 @@ class Tablepage():
         if filter == 'approved':
             objs=objs.filter(status=1)
             filter_bool=True
+        elif filter == 'rejected':
+            objs=objs.filter(status=2)
+            filter_bool=True
         else:
-            objs=objs.filter(~Q(status=1))
+            objs=objs.filter(status=0)
             
         datas=objs.annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
         
@@ -425,8 +437,11 @@ class Tablepage():
         if filter== 'approved':
             objs=objs.filter(status=1)
             filter_bool=True
+        elif filter == 'rejected':
+            objs=objs.filter(status=2)
+            filter_bool=True
         else:
-            objs=objs.filter(~Q(status=1))
+            objs=objs.filter(status=0)
             
         datas=objs.annotate(approved_by_name=Subquery(user_DB.objects.filter(id=OuterRef('approved_by')).values('username')[:1])).order_by('-id')
         
@@ -450,7 +465,7 @@ class Tablepage():
         id=request.POST.get('id')
         collected=request.POST.get('collected')
 
-            
+       
         
         if int(table)==1:
            
@@ -529,6 +544,29 @@ class Tablepage():
            
             html=render_to_string('tables/table rows/applicant_table_row.html',data)    
         
+        if int(table)==4:
+           
+            if collected != 'true':
+                obj=DistinguishedRegistrations.objects.get(id=id)
+                obj.status=status
+                if status == '1' or status == '2':
+                    obj.approved_by=user_DB.objects.get(username=request.user.username).id
+                obj.updated_at=timezone.now()
+                obj.save()
+            else:
+                obj=DistinguishedRegistrations.objects.get(id=id)
+                obj.collected=status
+                obj.updated_at=timezone.now()
+                obj.save()
+                
+            try:
+                approved_by=user_DB.objects.get(id=obj.approved_by).username
+            except:
+                approved_by='not-apporved'
+            
+            data={'sp':DistinguishedRegistrations.objects.get(id=obj.id),'approved_by_name':approved_by}
+            html=render_to_string('tables/table rows/distiguished_table_row.html',data)
+            
         return JsonResponse({'table_html':html})
     #update cheked box 
     def update_bulk_status(request):
@@ -933,6 +971,13 @@ class Tablepage():
             obj.deleted=1
             obj.save()
         
+        if int(table)==4:
+           
+            obj=DistinguishedRegistrations.objects.get(id=id)
+            
+            obj.deleted=1
+            obj.save()
+
             # vpp_table=[]
             # for v in vapp_table_obj:
             #     category=vapp_category.objects.get(id=v.category_id).category
@@ -1104,6 +1149,59 @@ class Tablepage():
         html=render_to_string('tables/table rows/applicant_table_row.html',data)
         return JsonResponse({'table_html':html})
     
+    def edit_submit_distiguished_reg(request):
+        id=request.POST.get('id')
+        firstname=request.POST.get('firstname')
+        lastname=request.POST.get('lastname')
+        company=request.POST.get('companyname')
+        designation=request.POST.get('designation')
+        country=request.POST.get('country')
+        travel=request.POST.get('travel')
+        # outline=request.POST.get('outline')
+        departure_date_time=request.POST.get('departure_date_time')
+        retun_date_time=request.POST.get('retun_date_time')
+        profile=request.FILES.get('profile')
+        passport=request.FILES.get('passport')
+        
+        obj=DistinguishedRegistrations.objects.get(id=id)
+        obj.first_name=firstname
+        obj.last_name=lastname
+        obj.company=company
+        obj.designation=designation
+        obj.country=country
+        obj.traveling_from=travel
+        # obj.outline_talk=outline
+        obj.depature_date_time=departure_date_time
+        obj.retun_date_time=retun_date_time
+        
+        if profile != None:
+            obj.photo_upload=profile
+        
+        if passport != None:
+            obj.passport_copy=passport
+            
+        obj.updated_at=timezone.now()
+            
+        obj.save()
+        
+        # build_table=[]
+        # for b in build_table_obj:
+        #     designation=build_designation.objects.get(id=b.designation_id).designation
+        #     build_table.append({'name':b.firstname+' '+b.lastname,'firstname':b.firstname,'lastname':b.lastname,'des_id':b.designation_id,'id':b.id,'UID':b.UID,'designation':designation,'comp':b.company_name,'exp_date':b.exp_date,'status':b.status,'print_status':b.print_status,'print_count':b.print_count,'other_des':b.other_designation,'created_at':b.reg_created_at,'remark':b.remark})
+        
+        # data={'build_table':build_table,'role_id':int(request.session['user_role']),'categorys':vapp_category.objects.all(),'user_id':int(request.session['user_id'])}
+        # html=render_to_string('tables/build_table.html',data)
+        obj=DistinguishedRegistrations.objects.get(id=id)
+        # designation=build_designation.objects.get(id=obj.designation_id).designation
+        try:
+            approved_by=user_DB.objects.get(id=obj.approved_by).username
+        except:
+            approved_by='not-apporved'
+        data={'sp':obj,'approved_by_name':approved_by}
+        html=render_to_string('tables/table rows/distiguished_table_row.html',data)
+        return JsonResponse({'table_html':html})
+
+
     def edit_bulk(request):
         select=request.POST.get('select')
         other_des=request.POST.get('other_des')
@@ -1399,7 +1497,7 @@ class Tablepage():
     def get_profile_details(request):
         id=request.POST.get('id')
         table=request.POST.get('table')
-        
+     
       
         if int(table)==1:
             obj=SpeakerRegistrations.objects.get(id=id)
@@ -1407,12 +1505,17 @@ class Tablepage():
         
         if int(table)==2:
             obj=InvitedRegistrations.objects.get(id=id)
-            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'intrested':obj.intrested_in,'remark':obj.remark,'photo_upload':str(obj.photo_upload)}
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'intrested':obj.intrested_in,'remark':obj.remark,'photo_upload':str(obj.photo_upload)}
         
         if int(table)==3:
             obj=ApplicantRegistrations.objects.get(id=id)
             data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'country':obj.country,'ksa_visa':obj.ksa_visa,'pre_attand':obj.pre_attend,'remark':obj.remark,'photo_upload':str(obj.photo_upload)}
-         
+        
+        if int(table)==4:
+            obj=DistinguishedRegistrations.objects.get(id=id)
+            data={'id':obj.id,'uid':obj.id,'name':obj.first_name+' '+obj.last_name,'firstname':obj.first_name,'lastname':obj.last_name,'mobile':obj.mobile,'email':obj.email,'created_at':obj.created_at.date(),'comp':obj.company,'des':obj.designation,'status':obj.status,'profile_image':obj.photo_upload.url,'passport':obj.passport_copy.url,'travel':obj.traveling_from,'depature_time':obj.depature_date_time.strftime("%d-%m-%y %I:%M %p"),'return_time':obj.retun_date_time.strftime("%d-%m-%y %I:%M %p"),'depature_time_iso':obj.depature_date_time,'return_time_iso':obj.retun_date_time,'country':obj.country,'ksa_visa':obj.ksa_visa,'remark':obj.remark,'photo_upload':str(obj.photo_upload),'passport_str':str(obj.passport_copy)}
+        
+     
         return JsonResponse(data)
 
     def get_img_urls(request):
@@ -1447,6 +1550,11 @@ class Tablepage():
           
             obj=ApplicantRegistrations.objects.get(id=id)
             obj.remark=value
+            obj.save() 
+        if int(Table)==4:
+          
+            obj=DistinguishedRegistrations.objects.get(id=id)
+            obj.remark=value
             obj.save()   
             
         return JsonResponse({}) 
@@ -1475,6 +1583,11 @@ class Tablepage():
                 obj.remark=reason
                 obj.save()
                 data={'uid':'APL-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Applicant','reason':reason}   
+            if int(table)==4:
+                obj=DistinguishedRegistrations.objects.get(id=i)
+                obj.remark=reason
+                obj.save()
+                data={'uid':'DIG-'+str(obj.id),'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Distinguished','reason':reason}
             try:
                 validate_email(obj.email)
             except ValidationError as e:
@@ -1515,7 +1628,7 @@ class Tablepage():
         for i in id_array:
             if int(table)==1:
                 obj=SpeakerRegistrations.objects.get(id=i)
-                qr_url=Qrcode_generate(filename='SPK-'+str(obj.id),data=obj.id).url
+                qr_url=Qrcode_generate(filename='SPK-'+str(obj.id),data={'name':obj.first_name+' '+obj.last_name,'designation':obj.designation,'country':obj.country,'email':obj.email}).url
                 data={'uid':'SPK-'+str(obj.id),'qr_url':qr_url,'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}
             if int(table)==2:
                 obj=InvitedRegistrations.objects.get(id=i)
@@ -1526,6 +1639,11 @@ class Tablepage():
                 obj=ApplicantRegistrations.objects.get(id=i)
                 qr_url=Qrcode_generate(filename='APL-'+str(obj.id),data=obj.id).url
                 data={'uid':'APL-'+str(obj.id),'qr_url':qr_url,'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Speaker'}   
+            if int(table)==4:
+                obj=DistinguishedRegistrations.objects.get(id=i)
+                qr_url=Qrcode_generate(filename='DIG-'+str(obj.id),data={'name':obj.first_name+' '+obj.last_name,'designation':obj.designation,'country':obj.country,'email':obj.email}).url
+                data={'uid':'DIG-'+str(obj.id),'qr_url':qr_url,'mobile':obj.mobile,'name':obj.first_name+' '+obj.last_name,'created_at':obj.created_at,'reg':'Distinguished'}
+                
             try:
                 validate_email(obj.email)
             except ValidationError as e:
@@ -1700,12 +1818,15 @@ class Tablepage():
         speaker_reginstations_all=SpeakerRegistrations.objects.filter(deleted=0).all()
         invited_reginstations_all=InvitedRegistrations.objects.filter(deleted=0).all()
         applicant_reginstations_all=ApplicantRegistrations.objects.filter(deleted=0).all()
+        desinguished_registrations_all=DistinguishedRegistrations.objects.filter(deleted=0).all()
+        
         
         table=request.GET.get('table')
         
         build_new_data=False
         event_new_data=False
         vapp_new_data=False
+        
         build_updated_id=[]
         event_updated_id=[]
         vapp_updated_id=[]
@@ -1774,7 +1895,7 @@ class Tablepage():
            
             last_obj=InvitedRegistrations.objects.last()
             if int(last_obj.id) != int(last_row_id):
-                new_data=invited_reginstations_all.filter(id__range=(int(last_row_id)+1,last_obj.id)).filter(~Q(status=1))
+                new_data=InvitedRegistrations.objects.filter(deleted=0,status=0).filter(id__range=(int(last_row_id)+1,last_obj.id)).filter(~Q(status=1))
                 
                 for i in new_data:
                
@@ -1820,9 +1941,11 @@ class Tablepage():
         if int(table)==3 or int(table)== 0:
             last_row_id=request.GET.get('build_last_row_id')
            
+            
             last_obj=ApplicantRegistrations.objects.last()
+            
             if int(last_obj.id) != int(last_row_id):
-                new_data=applicant_reginstations_all.filter(id__range=(int(last_row_id)+1,last_obj.id)).filter(~Q(status=1))
+                new_data=ApplicantRegistrations.objects.filter(deleted=0,status=0).filter(id__range=(int(last_row_id)+1,last_obj.id)).filter(~Q(status=1))
                 
                 for i in new_data:
                
@@ -1864,6 +1987,53 @@ class Tablepage():
                 build_new_data=True
                 build_last_row_id=ApplicantRegistrations.objects.last().id
                 
+        if int(table)==4 or int(table)==0:
+        
+            last_row_id=request.GET.get('build_last_row_id')
+           
+            last_obj=DistinguishedRegistrations.objects.last()
+            if int(last_obj.id) != int(last_row_id):
+                new_data=desinguished_registrations_all.filter(id__range=(int(last_row_id)+1,last_obj.id))
+                
+                for i in new_data:
+                    
+                    obj=desinguished_registrations_all.get(id=i.id)
+                    tr="<tr id='DG-"+str(i.id)+"'>"
+                    
+                    try:
+                        approved_by=user_DB.objects.get(id=obj.approved_by).username
+                    except:
+                        approved_by='not-apporved'
+                    data={'sp':obj,'approved_by_name':approved_by}
+                    html=render_to_string('tables/table rows/distiguished_table_row.html',data) 
+                    new_html=tr+html+'</tr>'  
+                    build_new_html.append(new_html)
+                    
+                build_new_data=True
+                build_last_row_id=last_obj.id
+            else:
+                
+                build_new_data=False
+
+            updated_data=desinguished_registrations_all.filter(updated_at__range=[timezone.now()-timezone.timedelta(seconds=5),timezone.now()])
+           
+                
+            for i in updated_data:
+                
+                obj=desinguished_registrations_all.get(id=i.id)
+                tr="<tr id='DG-"+str(i.id)+"'>"
+                # designation=build_designation.objects.get(id=obj.designation_id).designation
+                try:
+                    approved_by=user_DB.objects.get(id=obj.approved_by).username
+                except:
+                    approved_by='not-apporved'
+                data={'sp':obj,'approved_by_name':approved_by}
+                html=render_to_string('tables/table rows/distiguished_table_row.html',data) 
+                new_html=tr+html+'</tr>'  
+                build_new_html.append(new_html)
+                build_updated_id.append(i.id)
+                build_new_data=True
+                build_last_row_id=DistinguishedRegistrations.objects.last().id
                 
         last_row={'build_row_id':build_last_row_id,'event_row_id':event_last_row_id,'vapp_row_id':vapp_last_row_id}
         new_html={'build_html':build_new_html,'event_html':event_new_html,'vapp_html':vapp_new_html,'build_updated_id':build_updated_id,'event_updated_id':event_updated_id,'vapp_updated_id':vapp_updated_id}
@@ -1983,8 +2153,8 @@ class Tablepage():
                         code_num=str(i + 1 )    
                     obj.code=str( sp_charset + code_num )
                     obj.save()
-                    
-                new_count_html+='<tr> <td>'+ obj.code +' </td> </tr>'
+                code=str(obj.code)
+                new_count_html+='<tr> <td>'+ code +' </td> </tr>'
                 
             data['new_codes_tr']=new_count_html
 
