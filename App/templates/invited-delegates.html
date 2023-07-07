@@ -357,18 +357,18 @@
 
 <div class="row">
 
-<!-- <div class="col-lg-6 col-md-12 col-sm-12">
+<div class="col-lg-6 col-md-12 col-sm-12">
 
   <div class="form-group mt-4">
-        <label for="exampleInputEmail1">Passport Copy</label>
-        <input type="file" class="myform-control" id="passport-copy" onchange="check_file_input_size(this)" name="passport-copy" accept="image/png, image/jpeg" aria-describedby="emailHelp" required>
-        <small id="passport-copy-error" class="d-none" style="color: #f296a5;">
-          Please upload passport copy
+        <label for="exampleInputEmail1">National ID / Passport Number</label>
+        <input type="text" class="myform-control" id="passport-id" name="passport-id" required>
+        <small id="passport-id-error" class="d-none" style="color: #f296a5;">
+          Please enter your National ID / Passport Number
         </small>
       </div>
 
 
-</div> -->
+</div>
 
                                                                               
  <div class="col-lg-6 col-md-12 col-sm-12">
@@ -392,25 +392,7 @@
 </div>   
 
 
-<div class="col-lg-6 col-md-12 col-sm-12">
 
-  <label class="mt-4" for="exampleInputEmail1">Do you require KSA visa?</label>
-  <br>
-  <div class="form-check form-check-inline mt-2 ">
-      <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio1" required value="1">
-      <label class="form-check-label" for="inlineRadio1">YES</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio2" value="0" required>
-      <label class="form-check-label" for="inlineRadio2">NO</label>
-    </div>
-    <br>
-    <small id="ksa-visa-error" class="d-none" style="color: #f296a5;">
-      Please select an option
-     </small>
-
-
-</div>
 
 
 
@@ -421,7 +403,25 @@
 
 
 <div class="row">
+  <div class="col-lg-6 col-md-12 col-sm-12">
 
+    <label class="mt-4" for="exampleInputEmail1">Do you require KSA visa?</label>
+    <br>
+    <div class="form-check form-check-inline mt-2 ">
+        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio1" required value="1">
+        <label class="form-check-label" for="inlineRadio1">YES</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="ksa-visa" id="inlineRadio2" value="0" required>
+        <label class="form-check-label" for="inlineRadio2">NO</label>
+      </div>
+      <br>
+      <small id="ksa-visa-error" class="d-none" style="color: #f296a5;">
+        Please select an option
+       </small>
+  
+  
+  </div>
 
 
       <div class="col-lg-6 col-md-12 col-sm-12">
@@ -480,6 +480,12 @@
        
   </div>
 
+  
+
+
+</div>
+
+<div class="row">
   <div class="col-lg-6 col-md-12 col-sm-12">
     <label class="mt-4" for="exampleInputEmail2">Did you attend the previous Next World Forum?</label>
     <br>
@@ -496,12 +502,6 @@
       Please select an option
      </small>
   </div>
-
-
-</div>
-
-<div class="row">
- 
 </div>
 
 <div id="loading-indicator" class="d-none text-white text-center">

@@ -93,11 +93,12 @@ class ReginstraionForms():
         urc_code=request.POST.get('urc-code')
         occupation=request.POST.get('occupation')
         intrested=request.POST.get('intrested_in')
+        passport_id=request.POST.get('passport-id')
         
         if Unique_reg_code.objects.filter(code=urc_code)[0].used == 0 :
             return JsonResponse({'urc_code_exceed':True})
         
-        obj=InvitedRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,urc_code=urc_code,
+        obj=InvitedRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,urc_code=urc_code,passport_id=passport_id,
                                                  email=email,mobile=mobile,country=country,ksa_visa=ksa_visa,occupation=occupation,intrested_in=intrested,pre_attend=attended_pre,
                                                  passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)
 
@@ -152,13 +153,13 @@ class ReginstraionForms():
         attended_pre=request.POST.get('attend')
         occupation=request.POST.get('occupation')
         intrested=request.POST.get('intrested_in')
+        passport_id=request.POST.get('passport-id')
         
-        
-        obj=ApplicantRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,
+        obj=ApplicantRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,passport_id=passport_id,
                                                  email=email,mobile=mobile,country=country,ksa_visa=ksa_visa,pre_attend=attended_pre,occupation=occupation,intrested_in=intrested,
                                                  passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)
+
     
-        
         return JsonResponse({'reg_id':obj.id})
     
     def send_applicant_registration_succcess_mail(request):

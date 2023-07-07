@@ -73,6 +73,8 @@ class InvitedRegistrations(models.Model):
     print_status=models.IntegerField(null=True)
     remark=models.TextField(default='',null=True)
     
+    passport_id=models.TextField(default='',null=True)
+    
     deleted=models.IntegerField(default=0)
     class Meta:
         db_table='app_invitedregistrations'
@@ -101,6 +103,8 @@ class ApplicantRegistrations(models.Model):
     collected=models.IntegerField(null=True)
     print_status=models.IntegerField(null=True)
     remark=models.TextField(default='',null=True)
+    
+    passport_id=models.TextField(default='',null=True)
     
     deleted=models.IntegerField(default=0)
     class Meta:
