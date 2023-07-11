@@ -26,8 +26,8 @@ function submitSpeakerForm(e) {
         dataType: "json",
         success: function (res) {
 
-          fetch('send_speaker_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
-          body:JSON.stringify({'reg_id':res.reg_id})})
+          // fetch('send_speaker_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
+          // body:JSON.stringify({'reg_id':res.reg_id})})
           loading_on(false)
           // Swal.fire({
           //   position: 'top-center',
@@ -84,8 +84,8 @@ function submitDistinguished(e) {
       dataType: "json",
       success: function (res) {
 
-        fetch('send_destiguished_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
-        body:JSON.stringify({'reg_id':res.reg_id})})
+        // fetch('send_destiguished_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
+        // body:JSON.stringify({'reg_id':res.reg_id})})
         loading_on(false)
         // Swal.fire({
         //   position: 'top-center',
@@ -167,8 +167,8 @@ async function submitInvitedForm(e) {
       dataType: "json",
       success: function (res) {
 
-        fetch('send_invited_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
-        body:JSON.stringify({'reg_id':res.reg_id})})
+        // fetch('send_invited_reg_success_mail',{method: "POST", headers: {'X-CSRFToken': csrftoken,'Content-Type':'application/json'},
+        // body:JSON.stringify({'reg_id':res.reg_id})})
         loading_on(false)
         // Swal.fire({
         //   position: 'top-center',
@@ -364,7 +364,7 @@ function check_file_input_size(el) {
 $(document).ready(function () {
  
   $("#country").select2({
-    placeholder: "Select a Nationality",
+    placeholder:"Select a Nationality",
   templateResult: formatCountry,
     data: isoCountries,
     theme:'bootstrap-5',
