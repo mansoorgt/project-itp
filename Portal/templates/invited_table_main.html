@@ -1108,6 +1108,10 @@ p {
                                                                 <p class="m-b-10 f-w-600">Salutation</p> 
                                                                 <h6 class="text-muted f-w-400" id="profile-salutation"></h6>
                                                             </div>
+                                                            <div class="col-md-6 col-sm-6">
+                                                              <p class="m-b-10 f-w-600">Your Postion</p> 
+                                                              <h6 class="text-muted f-w-400" id="profile-your-postion"></h6>
+                                                          </div>
                                                                       <div class="col-md-6 col-sm-6" id='vehicle-num'>
                                                                         <p class="m-b-10 f-w-600" >Vehicle Number </p>
                                                                         <h6 class="text-muted f-w-400" id="profile-vehicle-num">98979989898</h6>
@@ -3087,7 +3091,7 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('profile-travel').innerHTML=data.travel
             document.getElementById('profile-outline').innerHTML=data.outline
             document.getElementById('profile-country').innerHTML=data.country
-
+            
            document.getElementById('profile-depature-date-time').innerHTML=data.depature_time
            document.getElementById('profile-return-date-time').innerHTML=data.return_time
            document.getElementById('profile_edit-build').style.display='block'
@@ -3143,7 +3147,7 @@ function ExportToExcel_vapp(type, fn, dl) {
             document.getElementById('profile-country').innerHTML=data.country
 
             document.getElementById('profile-salutation').innerHTML=data.salutation
-            
+            document.getElementById('profile-your-postion').innerHTML=data.desiganation
            document.getElementById('profile_edit-build').style.display='block'
            document.getElementById('profile_edit-event').style.display='none'
            document.getElementById('profile_edit-vapp').style.display='none'

@@ -364,7 +364,7 @@ function check_file_input_size(el) {
 $(document).ready(function () {
  
   $("#country").select2({
-    placeholder:"Select a Nationality",
+    placeholder:"Select your nationality",
   templateResult: formatCountry,
     data: isoCountries,
     theme:'bootstrap-5',
