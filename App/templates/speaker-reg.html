@@ -232,29 +232,59 @@
 
 
 <div class="row">
+<div class="col-lg-6 col-md-12 col-md-12">
+
+  <div class="form-group mt-4">
+    <label for="occupation">Select a Salutation</label>
+    <select  name="salutation" id="salutation" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+      <option value="" selected disabled>Select a Salutation</option>
+
+      <option value="Mr.">Mr.</option>
+      <option value="Ms.">Ms.</option>
+      <option value="Mrs.">Mrs.</option>
+      <option value="Dr.">Dr.</option>
+
+    </select>
+    <small id="occupation-error" class="d-none" style="color: #f296a5;">
+      Please select a salutation
+    </small>
+  </div>
+
+
+</div>
+
+
 <div class="col-lg-6 col-md-12 col-sm-12">
   <div class="form-group mt-4">
-    <label for="exampleInputEmail1">Designation</label>
+    
+    <label for="exampleInputEmail1">Your Position</label>
       <input type="text" class="form-control" name="designation" id="designation" aria-describedby="emailHelp"  required>
       <small id="designation-error" class="d-none" style="color: #f296a5;">
-        Please enter you designation
+        Please enter your position
       </small>
     </div>
+
+
+ 
+
 </div>
 
 
-<div class="col-lg-6 col-md-12 col-sm-12">
-  <div class="form-group mt-4">
-    <label for="exampleInputEmail1">Company</label>
-      <input type="text" class="form-control" name="company" id="company" aria-describedby="emailHelp" placeholder="" required>
-      <small id="company-error" class="d-none" style="color: #f296a5;">
-        Please enter your company name
-      </small>
-    </div>
-</div>
+
 </div>
 
 <div class="row">
+
+  <div class="col-lg-6 col-md-12 col-sm-12">
+    <div class="form-group mt-4">
+      <label for="exampleInputEmail1">Company</label>
+        <input type="text" class="form-control" name="company" id="company" aria-describedby="emailHelp" placeholder="" required>
+        <small id="company-error" class="d-none" style="color: #f296a5;">
+          Please enter your company name
+        </small>
+      </div>
+  </div>
+
 
   <div class="col-lg-6 col-md-12 col-sm-12">
     <div class="form-group mt-4">
@@ -266,7 +296,13 @@
       </div>
 </div>
 
-<div class="col-lg-6 col-md-12 col-sm-12">
+
+
+
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-12 col-sm-12">
     <div class="form-group mt-4">
       <label for="exampleInputEmail1"> Mobile Number</label>
         <input type="tel" class="form-control" name="mobile"  id="mobile" aria-describedby="emailHelp"  required>
@@ -275,23 +311,24 @@
         </small>
       </div>
 </div>
-
-
-</div>
-
-<div class="row">
-
   <div class="col-lg-6 col-md-12 col-sm-12">
     <div class="form-group mt-4">
-        <label for="exampleInputEmail1">Country Of Residence</label>
+        <label for="exampleInputEmail1">Nationality</label>
         <select  class="form-control " name="country" id="country" aria-describedby="emailHelp" required>
           </select>
           <small id="country-error" class="d-none" style="color: #f296a5;">
-            Please enter your country of residence
+            Please enter your nationality
           </small>
       </div>
 </div>
 
+
+                                                                          
+</div>
+
+
+
+<div class="row">
   <div class="col-lg-6 col-md-12 col-sm-12">
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">City Travelling From</label>
@@ -301,14 +338,19 @@
         </small>
       </div>
 </div>
-                                                                          
+
+
+
+  
 </div>
 
 
 
-<div class="row">
 
-<div class="col-lg-6 col-md-12 col-sm-12">
+
+
+<div class="row">
+  <div class="col-lg-6 col-md-12 col-sm-12">
 
 
     <div  class="form-group mt-4">
@@ -323,55 +365,53 @@
 
 
 </div>
+  <div class="col-lg-6 col-md-12 col-sm-12">
 
-<div class="col-lg-6 col-md-12 col-sm-12">
+
+    <div class="form-group mt-4">
+           <label for="exampleInputEmail1">Return Date and Time</label>
+           <div onclick="onPressReturnDate()">        
+           <input type="text" class="form-control" onfocus="this.blur()" id="retun-date-time" style="pointer-events: none;" placeholder="dd-mm-yyyy hh-mm" name="retun-date-time" aria-describedby="emailHelp" required>
+           </div>
+          <small id="retun-date-time-error" class="d-none" style="color: #f296a5;">
+             Please select a return date and time
+           </small>
+         </div>
+   
+   
+   </div>
+   
+   <div class="col-md-12 col-lg-12 col-sm-12 text-white mt-4 mb-2" style="text-align:justify;">
+   Please note flights are booked by the Next World team. An itinerary based on your above preferences will be shared ahead of booking for your confirmation. 
+   
+     <br>
+   A 3-night stay at Four Season Hotel Riyadh is provided by the Saudi Esports Federation.
+     
+   </div>
 
 
- <div class="form-group mt-4">
-        <label for="exampleInputEmail1">Return Date and Time</label>
-        <div onclick="onPressReturnDate()">        
-        <input type="text" class="form-control" onfocus="this.blur()" id="retun-date-time" style="pointer-events: none;" placeholder="dd-mm-yyyy hh-mm" name="retun-date-time" aria-describedby="emailHelp" required>
-        </div>
-       <small id="retun-date-time-error" class="d-none" style="color: #f296a5;">
-          Please select a return date and time
-        </small>
-      </div>
 
 
 </div>
-
-<div class="col-md-12 col-lg-12 col-sm-12 text-white mt-4 mb-2" style="text-align:justify;">
-Please note flights are booked by the Next World team. An itinerary based on your above preferences will be shared ahead of booking for your confirmation. 
-
-  <br>
-A 3-night stay at Four Season Hotel Riyadh is provided by the Saudi Esports Federation.
-  
-</div>
-  
-</div>
-
-
-
-
 
 
 <div class="row">
 
-<div class="col-lg-6 col-md-12 col-sm-12">
+  <div class="col-lg-6 col-md-12 col-sm-12">
 
-  <div class="form-group mt-4">
-        <label for="exampleInputEmail1">Passport Copy</label>
-        <input type="file" class="myform-control" id="passport-copy" onchange="check_file_input_size(this)" name="passport-copy" accept="image/png, image/jpeg" aria-describedby="emailHelp" required>
-        <small id="passport-copy-error" class="d-none" style="color: #f296a5;">
-          
-          Please upload the passport copy
-        </small>
-      </div>
+    <div class="form-group mt-4">
+          <label for="exampleInputEmail1">Passport Copy</label>
+          <input type="file" class="myform-control" id="passport-copy" onchange="check_file_input_size(this)" name="passport-copy" accept="image/png, image/jpeg" aria-describedby="emailHelp" required>
+          <small id="passport-copy-error" class="d-none" style="color: #f296a5;">
+            
+            Please upload the passport copy
+          </small>
+        </div>
+  
+  
+  </div>
 
-
-</div>
-
-   <div class="col-lg-6 col-md-12 col-sm-12">
+  <div class="col-lg-6 col-md-12 col-sm-12">
 
     <div class="form-group mt-4">
         <label for="exampleInputEmail1">Photo Upload</label>
@@ -390,25 +430,26 @@ A 3-night stay at Four Season Hotel Riyadh is provided by the Saudi Esports Fed
 
 </div>
 
+
+
 </div>
+<div class="row"> 
 
+  <div class="col-lg-6 col-md-12 col-sm-12">
 
-<div class="row">
-
-<div class="col-lg-6 col-md-12 col-sm-12">
-
-  <div class="form-group mt-4">
-      <label for="exampleInputEmail1">Outline Of Talking Points</label>
-<textarea class="form-control" id="outline-talk" name="outline-talk" required></textarea>
-<small id="outline-talk-error" class="d-none" style="color: #f296a5;">
-  Please enter the outline of talking points
-</small>
-    </div>
+    <div class="form-group mt-4">
+        <label for="exampleInputEmail1">Outline Of Talking Points</label>
+  <textarea class="form-control" id="outline-talk" name="outline-talk" required></textarea>
+  <small id="outline-talk-error" class="d-none" style="color: #f296a5;">
+    Please enter the outline of talking points
+  </small>
+      </div>
+    
   
+  
+  </div>
 
-
-</div>
-<div class="col-lg-6 col-md-12 col-sm-12">
+  <div class="col-lg-6 col-md-12 col-sm-12">
 
     <label class="mt-4" for="exampleInputEmail1">Do you require KSA visa?</label>
     <br>
@@ -430,7 +471,6 @@ A 3-night stay at Four Season Hotel Riyadh is provided by the Saudi Esports Fed
 </div>
 
 </div>
-
 
 
 <div id="loading-indicator" class="d-none text-white text-center">

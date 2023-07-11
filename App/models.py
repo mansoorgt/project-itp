@@ -44,7 +44,7 @@ class SpeakerRegistrations(models.Model):
     collected=models.IntegerField(null=True)
     print_status=models.IntegerField(null=True)
     remark=models.TextField(default='',null=True)
-    
+    salutation=models.CharField(max_length=100,null=True)
     deleted=models.IntegerField(default=0)
     class Meta:
         db_table='app_speakerregistrations'
@@ -72,7 +72,7 @@ class InvitedRegistrations(models.Model):
     collected=models.IntegerField(null=True)
     print_status=models.IntegerField(null=True)
     remark=models.TextField(default='',null=True)
-    
+    salutation=models.CharField(max_length=100,null=True)
     passport_id=models.TextField(default='',null=True)
     
     deleted=models.IntegerField(default=0)
@@ -95,6 +95,7 @@ class ApplicantRegistrations(models.Model):
     passport_copy=models.FileField(upload_to=applicant_directory_path)
     photo_upload=models.FileField(upload_to=applicant_directory_path)
     ksa_visa=models.IntegerField(null=True)
+    salutation=models.CharField(max_length=100,null=True)
     
     status=models.IntegerField(null=True)
     created_at=models.DateTimeField(null=True)
@@ -134,7 +135,7 @@ class DistinguishedRegistrations(models.Model):
     collected=models.IntegerField(null=True)
     print_status=models.IntegerField(null=True)
     remark=models.TextField(default='',null=True)
-    
+    salutation=models.CharField(max_length=100,null=True)
     deleted=models.IntegerField(default=0)
     class Meta:
         db_table='app_destiguishedregistrations'

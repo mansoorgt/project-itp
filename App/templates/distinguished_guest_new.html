@@ -232,15 +232,30 @@
 
 
 <div class="row">
-<div class="col-lg-6 col-md-12 col-sm-12">
-  <div class="form-group mt-4">
-    <label for="exampleInputEmail1">Designation</label>
-      <input type="text" class="form-control" name="designation" id="designation" aria-describedby="emailHelp"  required>
-      <small id="designation-error" class="d-none" style="color: #f296a5;">
-        Please enter you designation
+
+  <div class="col-lg-6 col-md-12 col-md-12">
+
+    <div class="form-group mt-4">
+      <label for="occupation">Select a Salutation</label>
+      <select  name="salutation" id="salutation" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+        <option value="" selected disabled>Select a Salutation</option>
+  
+        <option value="Mr.">Mr.</option>
+        <option value="Ms.">Ms.</option>
+        <option value="Mrs.">Mrs.</option>
+        <option value="Dr.">Dr.</option>
+  
+      </select>
+      <small id="salutation-error" class="d-none" style="color: #f296a5;">
+        Please select a salutation
       </small>
     </div>
-</div>
+  
+  
+  </div>
+
+
+
 
 
 <div class="col-lg-6 col-md-12 col-sm-12">
@@ -255,6 +270,15 @@
 </div>
 
 <div class="row">
+  <div class="col-lg-6 col-md-12 col-sm-12">
+    <div class="form-group mt-4">
+      <label for="exampleInputEmail1">Your Position</label>
+        <input type="text" class="form-control" name="designation" id="designation" aria-describedby="emailHelp"  required>
+        <small id="designation-error" class="d-none" style="color: #f296a5;">
+          Please enter you position
+        </small>
+      </div>
+  </div>
 
   <div class="col-lg-6 col-md-12 col-sm-12">
     <div class="form-group mt-4">
@@ -266,7 +290,13 @@
       </div>
 </div>
 
-<div class="col-lg-6 col-md-12 col-sm-12">
+
+
+
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-12 col-sm-12">
     <div class="form-group mt-4">
       <label for="exampleInputEmail1"> Mobile Number</label>
         <input type="tel" class="form-control" name="mobile"  id="mobile" aria-describedby="emailHelp"  required>
@@ -277,20 +307,21 @@
 </div>
 
 
-</div>
-
-<div class="row">
-
   <div class="col-lg-6 col-md-12 col-sm-12">
     <div class="form-group mt-4">
-        <label for="exampleInputEmail1">Country Of Residence</label>
+        <label for="exampleInputEmail1">Nationality</label>
         <select  class="form-control " name="country" id="country" aria-describedby="emailHelp" required>
           </select>
           <small id="country-error" class="d-none" style="color: #f296a5;">
-            Please enter your country of residence
+            Please enter your nationality
           </small>
       </div>
 </div>
+
+
+                                                                          
+</div>
+<div class="row">
 
   <div class="col-lg-6 col-md-12 col-sm-12">
     <div class="form-group mt-4">
@@ -301,9 +332,8 @@
         </small>
       </div>
 </div>
-                                                                          
-</div>
 
+</div>
 
 
 <div class="row">

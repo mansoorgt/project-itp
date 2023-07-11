@@ -1104,6 +1104,10 @@ p {
                                                                   <p class="m-b-10 f-w-600">National ID / Passport Number</p> 
                                                                   <h6 class="text-muted f-w-400" id="profile-passport-id"></h6>
                                                               </div>
+                                                              <div class="col-md-6 col-sm-6">
+                                                                <p class="m-b-10 f-w-600">Salutation</p> 
+                                                                <h6 class="text-muted f-w-400" id="profile-salutation"></h6>
+                                                            </div>
                                                                       <div class="col-md-6 col-sm-6" id='vehicle-num'>
                                                                         <p class="m-b-10 f-w-600" >Vehicle Number </p>
                                                                         <h6 class="text-muted f-w-400" id="profile-vehicle-num">98979989898</h6>
@@ -3138,7 +3142,8 @@ function ExportToExcel_vapp(type, fn, dl) {
 
             document.getElementById('profile-country').innerHTML=data.country
 
-
+            document.getElementById('profile-salutation').innerHTML=data.salutation
+            
            document.getElementById('profile_edit-build').style.display='block'
            document.getElementById('profile_edit-event').style.display='none'
            document.getElementById('profile_edit-vapp').style.display='none'

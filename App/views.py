@@ -36,8 +36,10 @@ class ReginstraionForms():
         passport_copy=request.FILES.get('passport-copy')
         photo_upload=request.FILES.get('photo-upload')
         ksa_visa=request.POST.get('ksa-visa')
-
-        obj=SpeakerRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,
+        
+        salutation=request.POST.get('salutation')
+        
+        obj=SpeakerRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,salutation=salutation,
                                                 email=email,mobile=mobile,country=country,traveling_from=traveling_from,retun_date_time=retun_date_time,depature_date_time=depature_date_time,ksa_visa=ksa_visa,
                                                 outline_talk=outline_talk,passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)
 
@@ -68,7 +70,7 @@ class ReginstraionForms():
     #invited applicant form
     def InvitedDeligates(request):
         
-        m_occupations=occupations.objects.filter(status=1)
+        m_occupations=occupations.objects.filter(status=0)
         data={'occupations':m_occupations}
         return render(request,'invited-delegates.html',data)
 
@@ -91,15 +93,16 @@ class ReginstraionForms():
         photo_upload=request.FILES.get('photo-upload')
         ksa_visa=request.POST.get('ksa-visa')
         urc_code=request.POST.get('urc-code')
-        occupation=request.POST.get('occupation')
+        #occupation=request.POST.get('occupation')
         intrested=request.POST.get('intrested_in')
         passport_id=request.POST.get('passport-id')
+        salutation=request.POST.get('salutation')
         
         if Unique_reg_code.objects.filter(code=urc_code)[0].used == 0 :
             return JsonResponse({'urc_code_exceed':True})
         
         obj=InvitedRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,urc_code=urc_code,passport_id=passport_id,
-                                                 email=email,mobile=mobile,country=country,ksa_visa=ksa_visa,occupation=occupation,intrested_in=intrested,pre_attend=attended_pre,
+                                                 email=email,mobile=mobile,country=country,ksa_visa=ksa_visa,salutation=salutation,intrested_in=intrested,pre_attend=attended_pre,
                                                  passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)
 
         urc_used_count=Unique_reg_code.objects.filter(code=urc_code)[0].used - 1
@@ -135,7 +138,7 @@ class ReginstraionForms():
     
     #aplicant form
     def ApplicantDelegates(request):
-        m_occupations=occupations.objects.filter(status=1)
+        m_occupations=occupations.objects.filter(status=0)
         data={'occupations':m_occupations}
         return render(request,'applicant-delegates.html',data) 
     
@@ -151,12 +154,13 @@ class ReginstraionForms():
         photo_upload=request.FILES.get('photo-upload')
         ksa_visa=request.POST.get('ksa-visa')
         attended_pre=request.POST.get('attend')
-        occupation=request.POST.get('occupation')
+        #occupation=request.POST.get('occupation')
         intrested=request.POST.get('intrested_in')
         passport_id=request.POST.get('passport-id')
+        salutation=request.POST.get('salutation')
         
         obj=ApplicantRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,passport_id=passport_id,
-                                                 email=email,mobile=mobile,country=country,ksa_visa=ksa_visa,pre_attend=attended_pre,occupation=occupation,intrested_in=intrested,
+                                                 email=email,mobile=mobile,country=country,ksa_visa=ksa_visa,pre_attend=attended_pre,salutation=salutation,intrested_in=intrested,
                                                  passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)
 
     
@@ -201,13 +205,13 @@ class ReginstraionForms():
         traveling_from=request.POST.get('traveling-from')
         retun_date_time=request.POST.get('retun-date-time')
         depature_date_time=request.POST.get('depature-date-time')
-       
+        salutation=request.POST.get('salutation')
   
         passport_copy=request.FILES.get('passport-copy')
         photo_upload=request.FILES.get('photo-upload')
         ksa_visa=request.POST.get('ksa-visa')
 
-        obj=DistinguishedRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,
+        obj=DistinguishedRegistrations.objects.create(first_name=first_name,last_name=last_name,designation=designation,company=company,salutation=salutation,
                                                 email=email,mobile=mobile,country=country,traveling_from=traveling_from,retun_date_time=retun_date_time,depature_date_time=depature_date_time,ksa_visa=ksa_visa,
                                                 passport_copy=passport_copy,photo_upload=photo_upload,created_at=timezone.now(),status=0,collected=0,print_status=0,approved_by=0)
 

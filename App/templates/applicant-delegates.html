@@ -256,13 +256,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="row">
 <div class="col-lg-6 col-md-12 col-sm-6">
-  <div class="form-group mt-4">
-    <label for="designation">Designation</label>
-      <input type="text" class="form-control" name="designation" id="designation" aria-describedby="emailHelp"  required>
-      <small id="designation-error" class="d-none" style="color: #f296a5;">
-        Please enter your designation
+  
+
+
+    <div class="form-group mt-4">
+      <label for="occupation">Select a Salutation</label>
+      <select  name="salutation" id="salutation" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+        <option value="" selected disabled>Select a Salutation</option>
+
+        <option value="Mr.">Mr.</option>
+        <option value="Ms.">Ms.</option>
+        <option value="Mrs.">Mrs.</option>
+        <option value="Dr.">Dr.</option>
+
+      </select>
+      <small id="salutation-error" class="d-none" style="color: #f296a5;">
+        Please select a salutation
       </small>
     </div>
+
+
 </div>
 
 
@@ -283,19 +296,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="col-lg-6 col-md-12 col-sm-6">
   
   <div class="form-group mt-4">
-    <label for="occupation">Select an Occupation</label>
-    <select  name="occupation" id="occupation" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
-      <option value="" selected disabled>Select an Occupation</option>
-
-      {% for o in occupations %}
-      <option value="{{o.id}}">{{o.occupation_name}}</option>
-      {% endfor %}
-
-    </select>
-    <small id="occupation-error" class="d-none" style="color: #f296a5;">
-      Please select an occupation
-    </small>
-  </div>
+    <label for="designation">Your Position</label>
+      <input type="text" class="form-control" name="designation" id="designation" aria-describedby="emailHelp"  required>
+      
+      <small id="designation-error" class="d-none" style="color: #f296a5;">
+        Please enteryour position
+      </small>
+    </div>
 
 
 
@@ -331,11 +338,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="col-lg-6 col-md-12 col-sm-6">
   <div class="form-group mt-4">
-      <label for="country">Country Of Residence</label>
+      <label for="country">Nationality</label>
       <select  class="form-control " name="country" id="country" aria-describedby="emailHelp" required>
         </select>
         <small id="country-error" class="d-none" style="color: #f296a5;">
-          Please select a country
+          Please select a nationality
         </small>
     </div>
 </div>
